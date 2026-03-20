@@ -12,9 +12,11 @@ E-Mail: paul.pronobis@gmail.com
 
 **Autoren:** Prof. Dr. Paul Pronobis, Tobias Lämmle
 
-**Ausgabe:** 1. Auflage 2026, E-Book (EPUB)
+**Ausgabe:** 1. Auflage 2026
 
-**ISBN:** 978-94-0386-752-6
+**ISBN:** 978-94-0386-752-6 (EPUB) | [Auch erhältlich bei Bookmundo](https://www.bookmundo.com/shop/ki-python-9789403867526)
+
+**Online-Ausgabe:** Diese kostenlose Online-Version finden Sie unter [ppronobis.github.io/ki-python](https://ppronobis.github.io/ki-python/)
 
 ---
 

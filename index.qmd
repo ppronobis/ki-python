@@ -16,6 +16,10 @@ Herzliche Grüße,
 
 Prof. Dr. Paul Pronobis & Tobias Lämmle
 
+::: {.callout-note appearance="simple"}
+📖 **ISBN:** 978-94-0386-752-6 | Auch als [EPUB bei Bookmundo](https://www.bookmundo.com/shop/ki-python-9789403867526) erhältlich.
+:::
+
 ## Über die Autoren
 
 ### Prof. Dr. Paul Pronobis ([LinkedIn-Profil](https://www.linkedin.com/in/paul-pronobis/?originalSubdomain=de))
