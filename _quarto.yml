@@ -15,7 +15,7 @@ book:
       affiliation: "Professor, Freie Universität Bozen"
     - name: "Tobias Lämmle"
       affiliation: "Software-Architekt & Machine-Learning-Experte"
-  cover-image: cover_a5.png
+  cover-image: Buchcover/output/frontcover.png
   favicon: favicon.png
   date: today
   date-format: "DD. MMMM YYYY"
