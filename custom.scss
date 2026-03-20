@@ -1,0 +1,66 @@
+/*-- scss:defaults --*/
+
+// Farben
+$primary: #2c3e50;
+$secondary: #3498db;
+$success: #27ae60;
+$info: #16a085;
+$warning: #f39c12;
+$danger: #e74c3c;
+
+// Schriftarten
+$font-family-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "Fira Code", "Courier New", monospace;
+
+/*-- scss:rules --*/
+
+// Überschriften
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+// Code-Blöcke
+pre {
+  background-color: #f8f9fa;
+  border-left: 3px solid $primary;
+  padding: 1em;
+  border-radius: 4px;
+}
+
+code {
+  background-color: #f1f3f5;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+// Callout-Boxen
+.callout {
+  margin: 1.5em 0;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+// Links
+a {
+  color: $secondary;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Sidebar
+.sidebar {
+  background-color: #f8f9fa;
+}
+
+// Kapitel-Navigation
+.chapter-nav {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #dee2e6;
+}

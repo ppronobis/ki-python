@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KI Python - 3&nbsp; Bedingungen &amp; Schleifen</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Kapitel 4.html" rel="next">
+<link href="./Kapitel 2.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Kapitel 3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KI Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ppronobis/ki-python" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">KI Python lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impressum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Impressum</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#sec-willkommen-kap3" id="toc-sec-willkommen-kap3" class="nav-link active" data-scroll-target="#sec-willkommen-kap3"><span class="header-section-number">3.1</span> Willkommen zu Kapitel 3</a></li>
+  <li><a href="#sec-if-else" id="toc-sec-if-else" class="nav-link" data-scroll-target="#sec-if-else"><span class="header-section-number">3.2</span> If-Else Anweisungen</a>
+  <ul class="collapse">
+  <li><a href="#die-if-anweisung" id="toc-die-if-anweisung" class="nav-link" data-scroll-target="#die-if-anweisung">Die if-Anweisung</a></li>
+  <li><a href="#die-if-else-anweisung" id="toc-die-if-else-anweisung" class="nav-link" data-scroll-target="#die-if-else-anweisung">Die if-else-Anweisung</a></li>
+  <li><a href="#die-if-elif-else-anweisung" id="toc-die-if-elif-else-anweisung" class="nav-link" data-scroll-target="#die-if-elif-else-anweisung">Die if-elif-else-Anweisung</a></li>
+  </ul></li>
+  <li><a href="#sec-vergleichsoperatoren-kap3" id="toc-sec-vergleichsoperatoren-kap3" class="nav-link" data-scroll-target="#sec-vergleichsoperatoren-kap3"><span class="header-section-number">3.3</span> Vergleichsoperatoren</a></li>
+  <li><a href="#sec-logische-operatoren-kap3" id="toc-sec-logische-operatoren-kap3" class="nav-link" data-scroll-target="#sec-logische-operatoren-kap3"><span class="header-section-number">3.4</span> Logische Operatoren</a>
+  <ul class="collapse">
+  <li><a href="#der-and-operator" id="toc-der-and-operator" class="nav-link" data-scroll-target="#der-and-operator">Der and-Operator</a></li>
+  <li><a href="#der-or-operator" id="toc-der-or-operator" class="nav-link" data-scroll-target="#der-or-operator">Der or-Operator</a></li>
+  <li><a href="#der-not-operator" id="toc-der-not-operator" class="nav-link" data-scroll-target="#der-not-operator">Der not-Operator</a></li>
+  <li><a href="#kombinieren-von-logischen-operatoren" id="toc-kombinieren-von-logischen-operatoren" class="nav-link" data-scroll-target="#kombinieren-von-logischen-operatoren">Kombinieren von logischen Operatoren</a></li>
+  </ul></li>
+  <li><a href="#sec-verschachtelte-bedingungen" id="toc-sec-verschachtelte-bedingungen" class="nav-link" data-scroll-target="#sec-verschachtelte-bedingungen"><span class="header-section-number">3.5</span> Verschachtelte Bedingungen</a>
+  <ul class="collapse">
+  <li><a href="#verschachtelungstiefe-begrenzen" id="toc-verschachtelungstiefe-begrenzen" class="nav-link" data-scroll-target="#verschachtelungstiefe-begrenzen">Verschachtelungstiefe begrenzen</a></li>
+  </ul></li>
+  <li><a href="#sec-for-schleifen" id="toc-sec-for-schleifen" class="nav-link" data-scroll-target="#sec-for-schleifen"><span class="header-section-number">3.6</span> For-Schleifen</a>
+  <ul class="collapse">
+  <li><a href="#die-for-schleife-mit-range" id="toc-die-for-schleife-mit-range" class="nav-link" data-scroll-target="#die-for-schleife-mit-range">Die for-Schleife mit range()</a></li>
+  <li><a href="#die-for-schleife-mit-listen" id="toc-die-for-schleife-mit-listen" class="nav-link" data-scroll-target="#die-for-schleife-mit-listen">Die for-Schleife mit Listen</a></li>
+  <li><a href="#erweiterte-möglichkeiten-mit-range" id="toc-erweiterte-möglichkeiten-mit-range" class="nav-link" data-scroll-target="#erweiterte-möglichkeiten-mit-range">Erweiterte Möglichkeiten mit range()</a></li>
+  <li><a href="#iteration-über-strings" id="toc-iteration-über-strings" class="nav-link" data-scroll-target="#iteration-über-strings">Iteration über Strings</a></li>
+  <li><a href="#index-und-wert-mit-enumerate" id="toc-index-und-wert-mit-enumerate" class="nav-link" data-scroll-target="#index-und-wert-mit-enumerate">Index und Wert mit enumerate()</a></li>
+  </ul></li>
+  <li><a href="#sec-while-schleifen" id="toc-sec-while-schleifen" class="nav-link" data-scroll-target="#sec-while-schleifen"><span class="header-section-number">3.7</span> While-Schleifen</a>
+  <ul class="collapse">
+  <li><a href="#die-gefahr-von-endlosschleifen" id="toc-die-gefahr-von-endlosschleifen" class="nav-link" data-scroll-target="#die-gefahr-von-endlosschleifen">Die Gefahr von Endlosschleifen</a></li>
+  <li><a href="#typische-anwendungsfälle" id="toc-typische-anwendungsfälle" class="nav-link" data-scroll-target="#typische-anwendungsfälle">Typische Anwendungsfälle</a></li>
+  </ul></li>
+  <li><a href="#sec-break-continue" id="toc-sec-break-continue" class="nav-link" data-scroll-target="#sec-break-continue"><span class="header-section-number">3.8</span> Break &amp; Continue</a>
+  <ul class="collapse">
+  <li><a href="#die-break-anweisung" id="toc-die-break-anweisung" class="nav-link" data-scroll-target="#die-break-anweisung">Die break-Anweisung</a></li>
+  <li><a href="#die-continue-anweisung" id="toc-die-continue-anweisung" class="nav-link" data-scroll-target="#die-continue-anweisung">Die continue-Anweisung</a></li>
+  <li><a href="#wann-break-und-continue-verwenden" id="toc-wann-break-und-continue-verwenden" class="nav-link" data-scroll-target="#wann-break-und-continue-verwenden">Wann break und continue verwenden?</a></li>
+  </ul></li>
+  <li><a href="#sec-projekt-game" id="toc-sec-projekt-game" class="nav-link" data-scroll-target="#sec-projekt-game"><span class="header-section-number">3.9</span> Übung: Python Game</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen" id="toc-anforderungen" class="nav-link" data-scroll-target="#anforderungen">Anforderungen</a></li>
+  <li><a href="#anleitung" id="toc-anleitung" class="nav-link" data-scroll-target="#anleitung">Anleitung</a></li>
+  <li><a href="#beispiel-code-struktur" id="toc-beispiel-code-struktur" class="nav-link" data-scroll-target="#beispiel-code-struktur">Beispiel-Code-Struktur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#sec-loesungen-kap3" id="toc-sec-loesungen-kap3" class="nav-link" data-scroll-target="#sec-loesungen-kap3"><span class="header-section-number">3.10</span> Lösungen zu Kapitel 3</a>
+  <ul class="collapse">
+  <li><a href="#lösung-zum-projekt-python-game-zahlen-raten" id="toc-lösung-zum-projekt-python-game-zahlen-raten" class="nav-link" data-scroll-target="#lösung-zum-projekt-python-game-zahlen-raten">Lösung zum Projekt: Python Game “Zahlen raten”</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ppronobis/ki-python/edit/main/Kapitel 3.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ppronobis/ki-python/issues/new" class="toc-action">Problem melden</a></p><p><a href="https://github.com/ppronobis/ki-python/blob/main/Kapitel 3.qmd" class="toc-action">Quellcode anzeigen</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-bedingungen-schleifen" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="sec-willkommen-kap3" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-willkommen-kap3"><span class="header-section-number">3.1</span> Willkommen zu Kapitel 3</h2>
+<p>Herzlich willkommen zu Kapitel 3! Nachdem wir uns in Kapitel 1 mit den grundlegenden Bausteinen von Python vertraut gemacht und in Kapitel 2 gelernt haben, wie wir unseren Code mit Funktionen strukturieren können, ist es nun an der Zeit, unseren Programmen echte Intelligenz zu verleihen.</p>
+<p>Stellen Sie sich vor, Sie möchten ein Programm schreiben, das auf unterschiedliche Situationen unterschiedlich reagiert – etwa einen Benutzer begrüßt, wenn er sich erfolgreich anmeldet, aber eine Fehlermeldung zeigt, wenn das Passwort falsch ist. Oder denken Sie an ein Programm, das automatisch alle Dateien in einem Ordner durchgeht und bestimmte Aktionen ausführt. Genau für solche Aufgaben benötigen wir die Kontrollstrukturen, die wir in diesem Kapitel kennenlernen werden.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🎯 In diesem Kapitel lernen Sie zwei fundamentale Konzepte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>1. 🤔 Bedingungen:</strong> Sie ermöglichen es Ihrem Programm, Entscheidungen zu treffen. Basierend auf bestimmten Bedingungen kann das Programm unterschiedliche Wege einschlagen. Dies ist die Grundlage für jede Art von intelligenter Logik.</p>
+<p><strong>2. 🔄 Schleifen:</strong> Sie ermöglichen es Ihrem Programm, Codeblöcke wiederholt auszuführen. Anstatt denselben Code immer wieder zu schreiben, können Sie eine Schleife verwenden, um eine Aufgabe so oft wie nötig zu wiederholen.</p>
+</div>
+</div>
+<p>Diese beiden Konzepte sind das Herzstück praktisch jedes Programms. Ohne sie könnten unsere Programme nur stumpf eine Anweisung nach der anderen ausführen, ohne jemals auf verschiedene Situationen zu reagieren oder repetitive Aufgaben zu automatisieren.</p>
+<p>Am Ende dieses Kapitels werden Sie in der Lage sein, Programme zu schreiben, die auf Benutzereingaben reagieren, Daten verarbeiten und komplexe, sich wiederholende Aufgaben automatisieren können. Als krönenden Abschluss werden wir gemeinsam ein kleines Python-Spiel entwickeln – Ihr erstes richtiges Projekt, bei dem Sie alle gelernten Konzepte in der Praxis anwenden können!</p>
+<p>Lassen Sie uns beginnen und lernen, wie wir unseren Programmen Logik und Intelligenz verleihen können.</p>
+</section>
+<section id="sec-if-else" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-if-else"><span class="header-section-number">3.2</span> If-Else Anweisungen</h2>
+<p>Die if-else-Anweisung ist die grundlegendste Form der bedingten Anweisung in Python. Sie erlaubt es uns, einen Codeblock nur dann auszuführen, wenn eine bestimmte Bedingung wahr (True) ist. Optional können wir einen anderen Codeblock ausführen, wenn die Bedingung falsch (False) ist.</p>
+<p>Stellen Sie sich vor, Sie stehen an einer Weggabelung: Je nachdem, welchen Weg Sie wählen, erleben Sie etwas anderes. Genau so funktioniert die if-Anweisung – sie lässt Ihr Programm basierend auf einer Bedingung unterschiedliche Pfade einschlagen. Ohne bedingte Anweisungen würde ein Programm immer denselben linearen Ablauf durchführen – mit ihnen kann es auf verschiedene Situationen unterschiedlich reagieren.</p>
+<section id="die-if-anweisung" class="level3">
+<h3 class="anchored" data-anchor-id="die-if-anweisung">Die if-Anweisung</h3>
+<p>Die einfachste Form der bedingten Anweisung ist die reine if-Anweisung. Der Codeblock innerhalb der if-Anweisung wird nur dann ausgeführt, wenn die angegebene Bedingung erfüllt ist. Ist die Bedingung nicht erfüllt, wird der gesamte Block übersprungen und das Programm läuft normal weiter.</p>
+<p>Die Syntax einer if-Anweisung folgt einem klaren Muster: Zuerst kommt das Schlüsselwort <code>if</code>, gefolgt von einer Bedingung, die zu <code>True</code> oder <code>False</code> ausgewertet wird. Nach der Bedingung steht ein Doppelpunkt, und der auszuführende Code muss eingerückt sein – üblicherweise mit vier Leerzeichen. Diese Einrückung ist in Python nicht nur Stilfrage, sondern syntaktisch erforderlich.</p>
+<p>Hier ein einfaches Beispiel:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>alter <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sie sind volljährig."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In diesem Beispiel prüft Python, ob der Wert der Variable <code>alter</code> größer oder gleich 18 ist. Da dies der Fall ist (18 &gt;= 18 ergibt <code>True</code>), wird die eingerückte Zeile ausgeführt und “Sie sind volljährig.” ausgegeben. Wäre <code>alter</code> beispielsweise 16, würde die Bedingung <code>False</code> ergeben und die print-Anweisung würde übersprungen.</p>
+</section>
+<section id="die-if-else-anweisung" class="level3">
+<h3 class="anchored" data-anchor-id="die-if-else-anweisung">Die if-else-Anweisung</h3>
+<p>Oft möchten wir nicht nur etwas tun, wenn eine Bedingung erfüllt ist, sondern auch eine Alternative anbieten für den Fall, dass sie nicht erfüllt ist. Ein Programm zur Altersüberprüfung sollte beispielsweise nicht einfach nichts tun, wenn jemand minderjährig ist – es sollte eine entsprechende Rückmeldung geben.</p>
+<p>Genau hier kommt die if-else-Anweisung ins Spiel. Der <code>else</code>-Block definiert, was passieren soll, wenn die Bedingung im <code>if</code>-Teil nicht erfüllt ist. Es gibt immer genau einen der beiden Wege – nie beide und nie keinen.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>alter <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sie sind volljährig."</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sie sind minderjährig."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Da <code>alter</code> hier den Wert 16 hat, ergibt die Bedingung <code>16 &gt;= 18</code> den Wert <code>False</code>. Python überspringt daher den if-Block und führt stattdessen den else-Block aus: “Sie sind minderjährig.” wird ausgegeben.</p>
+</section>
+<section id="die-if-elif-else-anweisung" class="level3">
+<h3 class="anchored" data-anchor-id="die-if-elif-else-anweisung">Die if-elif-else-Anweisung</h3>
+<p>Was aber, wenn wir mehr als zwei Möglichkeiten haben? Stellen Sie sich ein Notensystem vor: Je nach Punktzahl gibt es verschiedene Noten, nicht nur “bestanden” oder “nicht bestanden”. Für solche Fälle bietet Python die <code>elif</code>-Anweisung (kurz für “else if”).</p>
+<p>Mit <code>elif</code> können Sie beliebig viele zusätzliche Bedingungen zwischen <code>if</code> und <code>else</code> einfügen. Python prüft diese Bedingungen von oben nach unten und führt den Codeblock der ersten wahren Bedingung aus. Sobald eine Bedingung zutrifft, werden alle weiteren übersprungen – auch wenn sie ebenfalls wahr wären. Wenn keine der Bedingungen wahr ist, wird der <code>else</code>-Block ausgeführt (falls vorhanden).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>punktzahl <span class="op">=</span> <span class="dv">85</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> punktzahl <span class="op">&gt;=</span> <span class="dv">90</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    note <span class="op">=</span> <span class="st">"Sehr Gut"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> punktzahl <span class="op">&gt;=</span> <span class="dv">80</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    note <span class="op">=</span> <span class="st">"Gut"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> punktzahl <span class="op">&gt;=</span> <span class="dv">70</span>:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    note <span class="op">=</span> <span class="st">"Befriedigend"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    note <span class="op">=</span> <span class="st">"Nicht bestanden"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ihre Note ist: </span><span class="sc">{</span>note<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Bei einer Punktzahl von 85 prüft Python zuerst <code>85 &gt;= 90</code> (False), dann <code>85 &gt;= 80</code> (True). Da diese Bedingung erfüllt ist, wird <code>note = "Gut"</code> ausgeführt und alle weiteren elif- und else-Blöcke werden übersprungen.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💡 Die Reihenfolge der Bedingungen ist entscheidend
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Achten Sie bei elif-Ketten darauf, die Bedingungen in der richtigen Reihenfolge zu schreiben. Hätten wir im Notenbeispiel zuerst <code>&gt;= 70</code> geprüft, würde eine Punktzahl von 85 bereits dort als “wahr” erkannt und fälschlicherweise als “Befriedigend” eingestuft werden.</p>
+</div>
+</div>
+<p>Bedingte Anweisungen sind das Rückgrat der Entscheidungsfindung in der Programmierung. Sie ermöglichen es uns, flexible und intelligente Programme zu schreiben, die auf unterschiedliche Situationen angemessen reagieren können. Im nächsten Abschnitt werden wir uns ansehen, wie wir die Bedingungen selbst formulieren – mit Hilfe von Vergleichsoperatoren.</p>
+</section>
+</section>
+<section id="sec-vergleichsoperatoren-kap3" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-vergleichsoperatoren-kap3"><span class="header-section-number">3.3</span> Vergleichsoperatoren</h2>
+<p>Nachdem wir nun wissen, wie if-Anweisungen strukturiert sind, stellt sich die Frage: Wie formulieren wir eigentlich die Bedingungen selbst? Genau hier kommen die Vergleichsoperatoren ins Spiel.</p>
+<p>Vergleichsoperatoren ermöglichen es uns, zwei Werte miteinander zu vergleichen. Das Ergebnis eines solchen Vergleichs ist immer ein boolescher Wert – also entweder <code>True</code> (wahr) oder <code>False</code> (falsch). Diese Operatoren haben wir bereits in <a href="Kapitel 1.html"><span>Kapitel&nbsp;1</span></a> kennengelernt, aber hier werden wir ihre Anwendung im Kontext von if-Anweisungen vertiefen.</p>
+<p>Python bietet sechs grundlegende Vergleichsoperatoren, die Sie in der folgenden Tabelle sehen:</p>
+<div id="tbl-vergleichsoperatoren-kap3" class="anchored">
+<table class="table">
+<caption>Tabelle&nbsp;3.1: Vergleichsoperatoren in Python</caption>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>Gleich</td>
+<td><code>10 == 5</code></td>
+<td><code>False</code></td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>Ungleich</td>
+<td><code>10 != 5</code></td>
+<td><code>True</code></td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>Größer als</td>
+<td><code>10 &gt; 5</code></td>
+<td><code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;</code></td>
+<td>Kleiner als</td>
+<td><code>10 &lt; 5</code></td>
+<td><code>False</code></td>
+</tr>
+<tr class="odd">
+<td><code>&gt;=</code></td>
+<td>Größer oder gleich als</td>
+<td><code>10 &gt;= 10</code></td>
+<td><code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>Kleiner oder gleich als</td>
+<td><code>10 &lt;= 5</code></td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Besonders wichtig ist der Unterschied zwischen dem Gleichheitsoperator <code>==</code> und dem Zuweisungsoperator <code>=</code>. Während <code>=</code> einen Wert in einer Variable speichert (<code>alter = 18</code>), prüft <code>==</code> ob zwei Werte gleich sind (<code>alter == 18</code>). Diese Verwechslung ist einer der häufigsten Anfängerfehler.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Häufiger Fehler: = statt ==
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FALSCH - Dies ist eine Zuweisung, kein Vergleich!</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">=</span> <span class="dv">18</span>:  <span class="co"># SyntaxError!</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Volljährig"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># RICHTIG - Doppeltes Gleichheitszeichen für Vergleich</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">==</span> <span class="dv">18</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Genau 18 Jahre alt"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Lassen Sie uns diese Operatoren nun in praktischen Beispielen anwenden. Ein typischer Anwendungsfall ist die Überprüfung von Benutzereingaben:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beispiel 1: Überprüfen, ob ein Benutzername korrekt ist</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>korrekter_benutzername <span class="op">=</span> <span class="st">"admin"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>eingegebener_benutzername <span class="op">=</span> <span class="st">"admin"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> eingegebener_benutzername <span class="op">==</span> korrekter_benutzername:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Benutzername korrekt. Zugriff gewährt."</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Benutzername falsch. Zugriff verweigert."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In diesem Beispiel verwenden wir <code>==</code>, um zu prüfen, ob der eingegebene Benutzername mit dem korrekten übereinstimmt. Da beide Strings identisch sind, ergibt der Vergleich <code>True</code> und der Zugriff wird gewährt.</p>
+<p>Ein weiterer häufiger Anwendungsfall ist das Prüfen von Wertebereichen:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beispiel 2: Überprüfen, ob eine Zahl in einem bestimmten Bereich liegt</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>temperatur <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> temperatur <span class="op">&gt;</span> <span class="dv">20</span> <span class="kw">and</span> temperatur <span class="op">&lt;</span> <span class="dv">30</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Die Temperatur ist angenehm."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Das Beherrschen der Vergleichsoperatoren ist entscheidend, um sinnvolle und effektive Bedingungen in Ihren Programmen zu formulieren. Im zweiten Beispiel haben Sie vielleicht das Wort <code>and</code> bemerkt – damit können wir mehrere Bedingungen verknüpfen. Genau darum geht es im nächsten Abschnitt.</p>
+</section>
+<section id="sec-logische-operatoren-kap3" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-logische-operatoren-kap3"><span class="header-section-number">3.4</span> Logische Operatoren</h2>
+<p>In der Praxis müssen wir oft mehrere Bedingungen gleichzeitig prüfen. Denken Sie an eine Autovermietung: Ein Kunde darf nur ein Auto mieten, wenn er mindestens 18 Jahre alt ist UND einen gültigen Führerschein besitzt. Oder an einen Online-Shop: Versandkostenfrei ist eine Bestellung, wenn der Warenwert über 50 Euro liegt ODER der Kunde ein Premium-Mitglied ist.</p>
+<p>Für solche Fälle bietet Python die logischen Operatoren <code>and</code>, <code>or</code> und <code>not</code>, die wir bereits in <a href="Kapitel 1.html"><span>Kapitel&nbsp;1</span></a> kennengelernt haben. Mit ihnen können wir mehrere Bedingungen zu einer komplexeren Gesamtbedingung verknüpfen.</p>
+<p>Die folgende Tabelle gibt einen Überblick über die drei logischen Operatoren:</p>
+<div id="tbl-logische-operatoren-kap3" class="anchored">
+<table class="table">
+<caption>Tabelle&nbsp;3.2: Logische Operatoren in Python</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 39%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>and</code></td>
+<td>Beide Bedingungen müssen wahr sein</td>
+<td><code>alter &gt;= 18 and hat_ausweis</code></td>
+</tr>
+<tr class="even">
+<td><code>or</code></td>
+<td>Mindestens eine Bedingung muss wahr sein</td>
+<td><code>ist_student or ist_rentner</code></td>
+</tr>
+<tr class="odd">
+<td><code>not</code></td>
+<td>Kehrt den Wahrheitswert um</td>
+<td><code>not ist_gesperrt</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="der-and-operator" class="level3">
+<h3 class="anchored" data-anchor-id="der-and-operator">Der and-Operator</h3>
+<p>Der <code>and</code>-Operator verknüpft zwei Bedingungen und ergibt nur dann <code>True</code>, wenn beide Bedingungen wahr sind. Sobald eine der Bedingungen falsch ist, ist das Gesamtergebnis <code>False</code>. Dies entspricht dem deutschen “UND” – beide Teile müssen zutreffen.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prüfen, ob jemand ein Auto mieten darf</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>alter <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>hat_fuehrerschein <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">&gt;=</span> <span class="dv">18</span> <span class="kw">and</span> hat_fuehrerschein:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sie dürfen ein Auto mieten."</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Leider können Sie kein Auto mieten."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In diesem Beispiel müssen beide Bedingungen erfüllt sein: Das Alter muss mindestens 18 sein UND die Person muss einen Führerschein haben. Nur wenn beides zutrifft, wird das Auto vermietet.</p>
+</section>
+<section id="der-or-operator" class="level3">
+<h3 class="anchored" data-anchor-id="der-or-operator">Der or-Operator</h3>
+<p>Der <code>or</code>-Operator ergibt <code>True</code>, wenn mindestens eine der beiden Bedingungen wahr ist. Nur wenn beide Bedingungen falsch sind, ist das Gesamtergebnis <code>False</code>. Dies entspricht dem deutschen “ODER” – es reicht, wenn ein Teil zutrifft.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rabatt für Studenten oder Rentner</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ist_student <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ist_rentner <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ist_student <span class="kw">or</span> ist_rentner:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sie erhalten 20% Rabatt!"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Hier erhält man den Rabatt, wenn man Student ist ODER Rentner ist – oder sogar beides. Die Person ist kein Student, aber Rentner, also wird der Rabatt gewährt.</p>
+</section>
+<section id="der-not-operator" class="level3">
+<h3 class="anchored" data-anchor-id="der-not-operator">Der not-Operator</h3>
+<p>Der <code>not</code>-Operator kehrt einen Wahrheitswert um: Aus <code>True</code> wird <code>False</code> und umgekehrt. Dies ist nützlich, wenn Sie prüfen möchten, ob etwas NICHT der Fall ist.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zugang nur wenn nicht gesperrt</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ist_gesperrt <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> ist_gesperrt:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Zugang gewährt."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Da <code>ist_gesperrt</code> den Wert <code>False</code> hat, ergibt <code>not ist_gesperrt</code> den Wert <code>True</code>, und der Zugang wird gewährt.</p>
+</section>
+<section id="kombinieren-von-logischen-operatoren" class="level3">
+<h3 class="anchored" data-anchor-id="kombinieren-von-logischen-operatoren">Kombinieren von logischen Operatoren</h3>
+<p>Ein wichtiger Aspekt bei der Verwendung logischer Operatoren ist die Reihenfolge, in der Python sie auswertet. Bei komplexen Bedingungen ist es wichtig zu wissen, dass <code>not</code> vor <code>and</code> ausgewertet wird, und <code>and</code> vor <code>or</code>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Verwenden Sie Klammern für Klarheit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn Sie mehrere logische Operatoren kombinieren, können Klammern Missverständnisse vermeiden:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ohne Klammern: and wird vor or ausgewertet</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">&gt;=</span> <span class="dv">18</span> <span class="kw">and</span> hat_ausweis <span class="kw">or</span> ist_vip:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># VIPs kommen immer rein, andere brauchen Alter + Ausweis</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit Klammern: Ihre Absicht ist klar</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (alter <span class="op">&gt;=</span> <span class="dv">18</span> <span class="kw">and</span> hat_ausweis) <span class="kw">or</span> ist_vip:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Gleiche Logik, aber besser lesbar</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Auch wenn Python die erste Variante korrekt auswertet, macht die zweite Variante die Intention des Codes sofort deutlich.</p>
+</div>
+</div>
+<p>Logische Operatoren sind ein mächtiges Werkzeug, um komplexe Entscheidungslogik elegant auszudrücken. Manchmal führen sehr komplexe Bedingungen jedoch zu schwer lesbarem Code. In solchen Fällen kann es sinnvoll sein, verschachtelte Bedingungen zu verwenden – unser nächstes Thema.</p>
+</section>
+</section>
+<section id="sec-verschachtelte-bedingungen" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="sec-verschachtelte-bedingungen"><span class="header-section-number">3.5</span> Verschachtelte Bedingungen</h2>
+<p>Manchmal reicht eine einzelne Ebene von Bedingungen nicht aus, um unsere Logik abzubilden. Stellen Sie sich einen Ticketautomaten vor: Zuerst muss geprüft werden, ob die Person volljährig ist – und nur wenn das der Fall ist, wird zusätzlich geprüft, ob sie einen Studentenausweis hat, um einen Rabatt zu erhalten.</p>
+<p>Für solche Szenarien können wir if-Anweisungen ineinander verschachteln. Das bedeutet, dass wir innerhalb eines if-, elif- oder else-Blocks weitere Bedingungen prüfen können. Die innere Bedingung wird nur dann überhaupt geprüft, wenn die äußere Bedingung bereits erfüllt ist.</p>
+<p>Hier ein Beispiel für einen Ticketautomaten:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>alter <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ist_student <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Person ist volljährig."</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ist_student:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Studentenrabatt wird gewährt. Ticketpreis: 5 Euro."</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Kein Studentenrabatt. Ticketpreis: 10 Euro."</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Person ist minderjährig. Kein Zutritt."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beachten Sie die Einrückung: Die innere if-else-Anweisung ist Teil des äußeren if-Blocks und wird daher weiter eingerückt. Python verwendet die Einrückung, um zu erkennen, welcher Code zu welchem Block gehört. In diesem Beispiel wird die Prüfung auf Studentenstatus nur durchgeführt, wenn die Person bereits als volljährig erkannt wurde.</p>
+<p>Der Ablauf ist wie folgt: Zuerst prüft Python <code>alter &gt;= 18</code>. Da 20 größer oder gleich 18 ist, wird “Person ist volljährig.” ausgegeben und die innere if-Anweisung ausgeführt. Dort wird <code>ist_student</code> geprüft – da es <code>True</code> ist, wird der Studentenrabatt gewährt.</p>
+<section id="verschachtelungstiefe-begrenzen" class="level3">
+<h3 class="anchored" data-anchor-id="verschachtelungstiefe-begrenzen">Verschachtelungstiefe begrenzen</h3>
+<p>Verschachtelte Bedingungen können jedoch schnell unübersichtlich werden. Bei mehr als zwei oder drei Verschachtelungsebenen wird der Code schwer lesbar und fehleranfällig. Jede zusätzliche Ebene erfordert mehr Einrückung und macht es schwieriger, den Überblick zu behalten.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Alternativen zu tiefen Verschachtelungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn Sie merken, dass Ihre Verschachtelungen zu tief werden, gibt es zwei bewährte Alternativen:</p>
+<ol type="1">
+<li><strong>Logische Operatoren verwenden:</strong> Kombinieren Sie mehrere Bedingungen mit <code>and</code> und <code>or</code></li>
+<li><strong>Code in Funktionen auslagern:</strong> Teilen Sie komplexe Logik in kleinere, benannte Funktionen auf</li>
+</ol>
+</div>
+</div>
+<p>Tatsächlich lässt sich das obige Ticketautomaten-Beispiel auch flacher schreiben, indem wir logische Operatoren verwenden:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>alter <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ist_student <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> alter <span class="op">&gt;=</span> <span class="dv">18</span> <span class="kw">and</span> ist_student:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Volljährig und Student. Ticketpreis: 5 Euro."</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> alter <span class="op">&gt;=</span> <span class="dv">18</span> <span class="kw">and</span> <span class="kw">not</span> ist_student:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Volljährig, aber kein Student. Ticketpreis: 10 Euro."</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Minderjährig. Kein Zutritt."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Diese Version ist flacher und oft leichter zu lesen, da alle Bedingungen auf derselben Ebene stehen. Welche Variante Sie wählen, hängt davon ab, welche die Logik am klarsten ausdrückt. Wenn eine hierarchische Struktur vorliegt (erst A prüfen, dann je nach Ergebnis B oder C), können verschachtelte Bedingungen die Logik besser abbilden. Wenn alle Fälle gleichwertig nebeneinander stehen, ist eine flache if-elif-else-Kette oft übersichtlicher.</p>
+<p>Mit dem Wissen über Bedingungen haben Sie nun alle Werkzeuge, um Ihren Programmen Entscheidungsfähigkeit zu verleihen. Im nächsten Teil des Kapitels werden wir uns dem zweiten großen Thema widmen: den Schleifen, mit denen wir Code wiederholt ausführen können.</p>
+</section>
+</section>
+<section id="sec-for-schleifen" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sec-for-schleifen"><span class="header-section-number">3.6</span> For-Schleifen</h2>
+<p>Stellen Sie sich vor, Sie möchten jeden Namen in einer Kundenliste begrüßen oder jede Zahl von 1 bis 100 auf Teilbarkeit prüfen. Ohne Schleifen müssten Sie denselben Code hundertmal schreiben – eine mühsame und fehleranfällige Aufgabe. Genau hier kommen Schleifen ins Spiel.</p>
+<p>Die for-Schleife ist eine der am häufigsten verwendeten Schleifen in Python. Sie ermöglicht es uns, über eine Sequenz von Elementen zu “iterieren” – das bedeutet, jedes Element der Reihe nach zu bearbeiten. Diese Sequenz kann eine Liste, ein String oder ein Zahlenbereich sein. Die Grundstruktur ist dabei immer gleich: <code>for element in sequenz:</code> – für jedes Element in der Sequenz führe den folgenden Code aus.</p>
+<section id="die-for-schleife-mit-range" class="level3">
+<h3 class="anchored" data-anchor-id="die-for-schleife-mit-range">Die for-Schleife mit range()</h3>
+<p>Der häufigste Anwendungsfall ist das Durchlaufen einer bestimmten Anzahl von Wiederholungen. Hierfür verwenden wir die <code>range()</code>-Funktion, die eine Sequenz von Zahlen erzeugt. Die einfachste Form ist <code>range(n)</code>, die die Zahlen von 0 bis n-1 erzeugt:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Schleife, die von 0 bis 4 läuft</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: 0, 1, 2, 3, 4</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beachten Sie: <code>range(5)</code> erzeugt die Zahlen 0, 1, 2, 3, 4 – also fünf Zahlen, aber nicht die 5 selbst. Der Endwert ist immer ausgeschlossen. Dies mag zunächst verwirrend erscheinen, ist aber in der Programmierung eine gängige Konvention, die sich als praktisch erweist.</p>
+<p>Wenn Sie einen anderen Startwert als 0 verwenden möchten, können Sie <code>range(start, ende)</code> verwenden:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Schleife, die von 1 bis 5 läuft</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: 1, 2, 3, 4, 5</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Um die Zahlen 1 bis 5 zu erhalten, müssen wir also <code>range(1, 6)</code> schreiben – der Startwert ist inklusive, der Endwert exklusiv.</p>
+</section>
+<section id="die-for-schleife-mit-listen" class="level3">
+<h3 class="anchored" data-anchor-id="die-for-schleife-mit-listen">Die for-Schleife mit Listen</h3>
+<p>Besonders elegant ist Python beim Iterieren über Listen. Anstatt mit Indizes zu arbeiten, können wir direkt über die Elemente selbst iterieren:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> frucht <span class="kw">in</span> fruechte:</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(frucht)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Apfel, Banane, Kirsche</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In jeder Iteration der Schleife nimmt die Variable <code>frucht</code> den Wert des nächsten Elements in der Liste <code>fruechte</code> an. Diese Schreibweise ist nicht nur kürzer, sondern auch leichter zu lesen als das Arbeiten mit Indizes. Der Variablenname <code>frucht</code> ist dabei frei wählbar – er sollte aber beschreiben, was jedes einzelne Element repräsentiert.</p>
+</section>
+<section id="erweiterte-möglichkeiten-mit-range" class="level3">
+<h3 class="anchored" data-anchor-id="erweiterte-möglichkeiten-mit-range">Erweiterte Möglichkeiten mit range()</h3>
+<p>Die <code>range()</code>-Funktion bietet noch mehr Flexibilität: Mit einem dritten Parameter können Sie die Schrittweite festlegen – zum Beispiel um nur jede zweite Zahl zu durchlaufen oder rückwärts zu zählen.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nur gerade Zahlen von 0 bis 10</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">11</span>, <span class="dv">2</span>):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: 0, 2, 4, 6, 8, 10</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Countdown von 10 bis 1</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Im ersten Beispiel startet die Schleife bei 0, geht bis 10 (11 ist exklusiv) und erhöht den Zähler jeweils um 2. Im zweiten Beispiel zählen wir rückwärts, indem wir eine negative Schrittweite (-1) verwenden.</p>
+</section>
+<section id="iteration-über-strings" class="level3">
+<h3 class="anchored" data-anchor-id="iteration-über-strings">Iteration über Strings</h3>
+<p>Ein interessanter Aspekt von Python: Auch Strings sind Sequenzen – nämlich Sequenzen von einzelnen Zeichen. Daher können wir mit einer for-Schleife auch jeden Buchstaben eines Wortes einzeln durchgehen:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wort <span class="op">=</span> <span class="st">"Python"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> buchstabe <span class="kw">in</span> wort:</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(buchstabe)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: P, y, t, h, o, n</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dies ist besonders nützlich, wenn Sie Texte analysieren möchten – zum Beispiel um zu zählen, wie oft ein bestimmter Buchstabe vorkommt, oder um jeden Buchstaben einzeln zu verarbeiten.</p>
+</section>
+<section id="index-und-wert-mit-enumerate" class="level3">
+<h3 class="anchored" data-anchor-id="index-und-wert-mit-enumerate">Index und Wert mit enumerate()</h3>
+<p>Manchmal benötigen wir beim Iterieren nicht nur das Element selbst, sondern auch dessen Position in der Sequenz. Dafür bietet Python die praktische <code>enumerate()</code>-Funktion, die beides gleichzeitig liefert:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, frucht <span class="kw">in</span> <span class="bu">enumerate</span>(fruechte):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Position </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>frucht<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe:</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Position 0: Apfel</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Position 1: Banane</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Position 2: Kirsche</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Der Index beginnt standardmäßig bei 0. Wenn Sie lieber bei 1 beginnen möchten (etwa für eine nummerierte Ausgabe), können Sie den Startwert anpassen:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nummer, frucht <span class="kw">in</span> <span class="bu">enumerate</span>(fruechte, start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nummer<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>frucht<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe:</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Apfel</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Banane</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Kirsche</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💡 Wann enumerate() verwenden?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Verwenden Sie <code>enumerate()</code>, wenn Sie sowohl den Index als auch den Wert benötigen. Wenn Sie nur den Wert brauchen, iterieren Sie direkt über die Liste. Wenn Sie nur den Index brauchen, verwenden Sie <code>range(len(liste))</code>.</p>
+</div>
+</div>
+<p>for-Schleifen sind unglaublich mächtig, um sich wiederholende Aufgaben zu automatisieren, sei es die Verarbeitung von Elementen in einer Liste, das Einlesen von Zeilen aus einer Datei oder das Durchführen von Berechnungen für eine Reihe von Werten. Doch was tun wir, wenn wir nicht im Voraus wissen, wie oft eine Schleife laufen soll? Dafür gibt es die while-Schleife.</p>
+</section>
+</section>
+<section id="sec-while-schleifen" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="sec-while-schleifen"><span class="header-section-number">3.7</span> While-Schleifen</h2>
+<p>Die for-Schleife ist ideal, wenn wir im Voraus wissen, wie oft wir etwas wiederholen möchten – zum Beispiel “für jedes Element in dieser Liste” oder “genau zehnmal”. Aber was ist, wenn wir nicht wissen, wie oft die Schleife laufen soll?</p>
+<p>Stellen Sie sich ein Spiel vor, bei dem der Benutzer so lange raten darf, bis er die richtige Zahl errät. Oder ein Programm, das Daten von einem Server abruft, bis keine weiteren Daten mehr verfügbar sind. Für solche Szenarien gibt es die while-Schleife.</p>
+<p>Eine while-Schleife führt ihren Codeblock so lange aus, wie eine bestimmte Bedingung wahr (True) ist. Sobald die Bedingung falsch wird, endet die Schleife und das Programm läuft weiter. Die grundlegende Syntax sieht so aus:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> bedingung:</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Code, der wiederholt ausgeführt wird</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Bedingung wird vor jeder Iteration geprüft – das ist wichtig zu verstehen. Ist sie von Anfang an <code>False</code>, wird der Schleifenkörper gar nicht erst ausgeführt. Ist sie <code>True</code>, wird der Code im Schleifenkörper ausgeführt, und danach wird die Bedingung erneut geprüft.</p>
+<p>Schauen wir uns ein klassisches Beispiel an: einen Countdown. Die Schleife läuft, solange der Zähler größer als 0 ist, und in jeder Iteration wird der Zähler um 1 verringert:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>zaehler <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> zaehler <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(zaehler)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    zaehler <span class="op">=</span> zaehler <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Start!"</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: 5, 4, 3, 2, 1, Start!</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lassen Sie uns den Ablauf Schritt für Schritt durchgehen: Zu Beginn ist <code>zaehler</code> gleich 5. Die Bedingung <code>5 &gt; 0</code> ist <code>True</code>, also wird der Schleifenkörper ausgeführt: “5” wird ausgegeben und <code>zaehler</code> wird auf 4 reduziert. Dann wird die Bedingung erneut geprüft: <code>4 &gt; 0</code> ist immer noch <code>True</code>. Dies wiederholt sich, bis <code>zaehler</code> den Wert 0 erreicht. Dann ist <code>0 &gt; 0</code> gleich <code>False</code>, die Schleife endet, und “Start!” wird ausgegeben.</p>
+<section id="die-gefahr-von-endlosschleifen" class="level3">
+<h3 class="anchored" data-anchor-id="die-gefahr-von-endlosschleifen">Die Gefahr von Endlosschleifen</h3>
+<p>Ein entscheidender Punkt bei while-Schleifen ist die Verantwortung, die Sie als Programmierer tragen: Sie müssen sicherstellen, dass die Bedingung irgendwann <code>False</code> wird. Im Countdown-Beispiel geschieht dies durch die Zeile <code>zaehler = zaehler - 1</code>, die den Zähler in jeder Iteration verringert.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Achtung: Endlosschleifen!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn die Bedingung niemals <code>False</code> wird, gerät das Programm in eine Endlosschleife – es läuft für immer (oder bis Sie es manuell beenden). Ein typischer Anfängerfehler ist, die Veränderung der Schleifenvariable zu vergessen:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>zaehler <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> zaehler <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(zaehler)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># FEHLER: zaehler wird nie verändert!</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Diese Schleife gibt endlos "5" aus</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Fügen Sie immer eine Anweisung ein, die die Schleifenbedingung irgendwann falsch werden lässt.</p>
+</div>
+</div>
+</section>
+<section id="typische-anwendungsfälle" class="level3">
+<h3 class="anchored" data-anchor-id="typische-anwendungsfälle">Typische Anwendungsfälle</h3>
+<p>while-Schleifen sind besonders nützlich in folgenden Situationen:</p>
+<ul>
+<li><strong>Benutzereingaben:</strong> Wiederhole eine Abfrage, bis der Benutzer eine gültige Eingabe macht</li>
+<li><strong>Spielschleifen:</strong> Lasse ein Spiel laufen, bis der Spieler gewinnt, verliert oder aufgibt</li>
+<li><strong>Datenverarbeitung:</strong> Verarbeite Daten, bis keine weiteren Daten mehr verfügbar sind</li>
+<li><strong>Warten auf Ereignisse:</strong> Wiederhole eine Prüfung, bis ein bestimmtes Ereignis eintritt</li>
+</ul>
+<p>Im Projekt am Ende dieses Kapitels werden Sie sehen, wie eine while-Schleife das Herzstück eines kleinen Spiels bildet – sie hält das Spiel am Laufen, solange der Spieler noch Versuche übrig hat und die Zahl noch nicht erraten wurde.</p>
+</section>
+</section>
+<section id="sec-break-continue" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="sec-break-continue"><span class="header-section-number">3.8</span> Break &amp; Continue</h2>
+<p>Bisher haben unsere Schleifen immer ihren vollständigen Ablauf durchgeführt – jede Iteration wurde komplett ausgeführt und die Schleife endete erst, wenn ihre Bedingung nicht mehr erfüllt war. Aber was ist, wenn wir eine Schleife vorzeitig beenden möchten, weil wir gefunden haben, wonach wir gesucht haben? Oder wenn wir bestimmte Elemente überspringen möchten?</p>
+<p>Python bietet hierfür zwei spezielle Anweisungen: <code>break</code> zum vollständigen Beenden einer Schleife und <code>continue</code> zum Überspringen der aktuellen Iteration. Beide Anweisungen geben Ihnen feinere Kontrolle über den Ablauf Ihrer Schleifen.</p>
+<section id="die-break-anweisung" class="level3">
+<h3 class="anchored" data-anchor-id="die-break-anweisung">Die break-Anweisung</h3>
+<p>Stellen Sie sich vor, Sie durchsuchen eine lange Liste nach einem bestimmten Wert. Sobald Sie ihn gefunden haben, macht es keinen Sinn, den Rest der Liste weiter zu durchsuchen – das wäre Zeitverschwendung. Genau hier kommt <code>break</code> ins Spiel.</p>
+<p>Die <code>break</code>-Anweisung beendet die aktuelle Schleife sofort, unabhängig davon, ob die Schleifenbedingung noch erfüllt ist. Die Ausführung des Programms wird direkt nach der Schleife fortgesetzt.</p>
+<p>Sehen wir uns ein praktisches Beispiel an: Wir suchen eine bestimmte Zahl in einer Liste und möchten aufhören, sobald wir sie gefunden haben:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> zahl <span class="kw">in</span> zahlen:</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> zahl <span class="op">==</span> <span class="dv">15</span>:</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Die Zahl 15 wurde gefunden!"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Aktuelle Zahl: </span><span class="sc">{</span>zahl<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Ausgabe dieses Codes ist:</p>
+<pre><code>Aktuelle Zahl: 1
+Aktuelle Zahl: 5
+Aktuelle Zahl: 10
+Die Zahl 15 wurde gefunden!</code></pre>
+<p>Sobald die Zahl 15 erreicht wird, gibt das Programm die Erfolgsmeldung aus und beendet die Schleife mit <code>break</code>. Die Zahlen 20 und 25 werden gar nicht mehr geprüft. Bei großen Datenmengen kann dies einen erheblichen Geschwindigkeitsvorteil bringen.</p>
+</section>
+<section id="die-continue-anweisung" class="level3">
+<h3 class="anchored" data-anchor-id="die-continue-anweisung">Die continue-Anweisung</h3>
+<p>Manchmal möchten wir nicht die gesamte Schleife beenden, sondern nur bestimmte Elemente überspringen und mit dem nächsten weitermachen. Dafür gibt es <code>continue</code>.</p>
+<p>Die <code>continue</code>-Anweisung beendet nicht die gesamte Schleife, sondern nur die aktuelle Iteration. Die Ausführung springt sofort zum Anfang der nächsten Iteration – der restliche Code im Schleifenkörper wird für dieses Element übersprungen.</p>
+<p>Ein typisches Beispiel ist das Filtern von Elementen: Wir möchten nur bestimmte Elemente verarbeiten und alle anderen ignorieren:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:  <span class="co"># Wenn die Zahl gerade ist</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>      <span class="co"># Überspringe den Rest der Iteration</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Ausgabe ist: 1, 3, 5, 7, 9. Die geraden Zahlen (2, 4, 6, 8, 10) werden übersprungen – sobald Python erkennt, dass eine Zahl gerade ist, springt es mit <code>continue</code> direkt zur nächsten Zahl, ohne die <code>print</code>-Anweisung auszuführen.</p>
+</section>
+<section id="wann-break-und-continue-verwenden" class="level3">
+<h3 class="anchored" data-anchor-id="wann-break-und-continue-verwenden">Wann break und continue verwenden?</h3>
+<p><code>break</code> und <code>continue</code> sind nützliche Werkzeuge, um die Steuerung innerhalb von Schleifen zu verfeinern. Hier einige typische Anwendungsfälle:</p>
+<p><strong>break verwenden Sie, wenn:</strong> - Sie einen gesuchten Wert gefunden haben und nicht weitersuchen müssen - Eine Abbruchbedingung eintritt (z.B. Benutzer gibt “quit” ein) - Ein Fehler aufgetreten ist und die Schleife beendet werden soll</p>
+<p><strong>continue verwenden Sie, wenn:</strong> - Sie bestimmte Elemente überspringen möchten (z.B. ungültige Eingaben) - Sie nur Elemente verarbeiten möchten, die bestimmte Kriterien erfüllen - Sie den restlichen Schleifencode für bestimmte Fälle nicht ausführen möchten</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💡 Sparsam einsetzen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Verwenden Sie <code>break</code> und <code>continue</code> sparsam. Zu viele dieser Anweisungen können den Code schwer verständlich machen, da sie den normalen Kontrollfluss unterbrechen. Oft lässt sich derselbe Effekt auch mit gut strukturierten if-Anweisungen erreichen.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-projekt-game" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="sec-projekt-game"><span class="header-section-number">3.9</span> Übung: Python Game</h2>
+<p>Jetzt ist es an der Zeit, alles zusammenzubringen! Wir haben Bedingungen gelernt, um Entscheidungen zu treffen, und Schleifen, um Code zu wiederholen. In diesem Projekt werden Sie sehen, wie diese Konzepte zusammenspielen, um ein vollständiges, interaktives Programm zu erstellen.</p>
+<p>Wir werden ein klassisches Ratespiel entwickeln: Der Computer denkt sich eine Zahl aus, und Sie müssen sie erraten. Nach jedem Versuch bekommen Sie einen Hinweis, ob Ihre Zahl zu hoch oder zu niedrig war.</p>
+<p><strong>Ziel:</strong> Erstellen Sie ein interaktives Zahlen-Ratespiel, bei dem der Computer eine zufällige Zahl generiert und der Spieler diese mit Hilfe von Hinweisen erraten muss.</p>
+<section id="anforderungen" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen">Anforderungen</h3>
+<ol type="1">
+<li><strong>Zufallszahl generieren:</strong> Der Computer soll sich eine Zahl “ausdenken”:
+<ul>
+<li>Die Zahl liegt zwischen 1 und 100 (beide inklusive)</li>
+<li>Verwenden Sie <code>random.randint()</code> aus dem <code>random</code>-Modul</li>
+</ul></li>
+<li><strong>Spielschleife:</strong> Das Spiel soll in einer Schleife laufen:
+<ul>
+<li>Die Schleife läuft, solange Versuche übrig sind UND die Zahl nicht erraten wurde</li>
+<li>Verwenden Sie eine <code>while</code>-Schleife</li>
+</ul></li>
+<li><strong>Benutzereingabe:</strong> Der Spieler soll raten können:
+<ul>
+<li>Nach jeder Runde eine Zahl vom Spieler abfragen</li>
+<li>Kombinieren Sie <code>input()</code> und <code>int()</code> zur Umwandlung</li>
+</ul></li>
+<li><strong>Hinweise geben:</strong> Das Programm soll dem Spieler helfen:
+<ul>
+<li>Wenn die geratene Zahl zu hoch ist: “Zu hoch!” ausgeben</li>
+<li>Wenn die geratene Zahl zu niedrig ist: “Zu niedrig!” ausgeben</li>
+<li>Bei richtigem Tipp: Glückwunsch-Nachricht anzeigen</li>
+</ul></li>
+<li><strong>Spielende:</strong> Das Spiel soll korrekt enden:
+<ul>
+<li>Bei richtigem Tipp: Schleife mit <code>break</code> sofort beenden</li>
+<li>Bei 0 verbleibenden Versuchen: Verlierer-Nachricht mit der Lösung anzeigen</li>
+</ul></li>
+</ol>
+</section>
+<section id="anleitung" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung">Anleitung</h3>
+<ol type="1">
+<li>Importieren Sie das <code>random</code>-Modul am Anfang der Datei.</li>
+<li>Generieren Sie eine Zufallszahl mit <code>random.randint(1, 100)</code> und speichern Sie diese in einer Variable.</li>
+<li>Legen Sie eine Variable für die Anzahl der Versuche fest (z.B. 7).</li>
+<li>Erstellen Sie eine <code>while</code>-Schleife, die läuft solange <code>versuche &gt; 0</code>.</li>
+<li>Fragen Sie innerhalb der Schleife die Benutzereingabe ab und wandeln Sie sie in eine Ganzzahl um.</li>
+<li>Prüfen Sie mit <code>if-elif-else</code>, ob die Zahl richtig, zu hoch oder zu niedrig ist.</li>
+<li>Reduzieren Sie die Versuche nach jedem Tipp um 1.</li>
+<li>Verwenden Sie <code>break</code>, um die Schleife bei richtigem Tipp vorzeitig zu beenden.</li>
+</ol>
+</section>
+<section id="beispiel-code-struktur" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-code-struktur">Beispiel-Code-Struktur</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Zufallszahl zwischen 1 und 100 generieren</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>zufallszahl <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Anzahl der Versuche festlegen</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>versuche <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Willkommen beim Zahlen-Raten-Spiel!"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ich denke an eine Zahl zwischen 1 und 100. Du hast </span><span class="sc">{</span>versuche<span class="sc">}</span><span class="ss"> Versuche."</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Spielschleife: Läuft solange Versuche &gt; 0</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> versuche <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Benutzereingabe abfragen und in Integer umwandeln</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: input() gibt einen String zurück, int() wandelt ihn um</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prüfen: Ist die geratene Zahl gleich der Zufallszahl?</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Falls ja: Glückwunsch ausgeben und Schleife mit break beenden</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prüfen: Ist die geratene Zahl kleiner als die Zufallszahl?</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Falls ja: "Zu niedrig!" ausgeben</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ansonsten (else): "Zu hoch!" ausgeben</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Versuche um 1 reduzieren und verbleibende Versuche anzeigen</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach der Schleife: Prüfen ob Versuche aufgebraucht sind</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Falls ja: Verlierer-Nachricht mit der gesuchten Zahl ausgeben</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise">Hinweise</h3>
+<ul>
+<li><code>random.randint(1, 100)</code> erzeugt eine zufällige Ganzzahl zwischen 1 und 100 (beide inklusive).</li>
+<li><code>int(input("Text: "))</code> kombiniert Eingabe und Umwandlung in einem Schritt.</li>
+<li>Denken Sie daran, <code>versuche</code> nach jedem Tipp zu reduzieren – sonst entsteht eine Endlosschleife!</li>
+<li>Die Bedingung <code>versuche &gt; 0</code> wird VOR jeder Iteration geprüft.</li>
+</ul>
+<div id="exr-zahlenraten" class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Testen Sie Ihr Spiel mit verschiedenen Strategien – versuchen Sie zum Beispiel die binäre Suche: Raten Sie immer die Mitte des verbleibenden Bereichs! Die Lösung finden Sie weiter unten in diesem Kapitel, aber versuchen Sie es zuerst selbst.</p>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="sec-loesungen-kap3" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="sec-loesungen-kap3"><span class="header-section-number">3.10</span> Lösungen zu Kapitel 3</h2>
+<p>In diesem Abschnitt finden Sie die Lösung zum Projekt. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen. Bedenken Sie dabei: In der Programmierung gibt es oft mehrere richtige Wege zur Lösung eines Problems. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie die Spiellogik korrekt umsetzt und funktioniert.</p>
+<section id="lösung-zum-projekt-python-game-zahlen-raten" class="level3">
+<h3 class="anchored" data-anchor-id="lösung-zum-projekt-python-game-zahlen-raten">Lösung zum Projekt: Python Game “Zahlen raten”</h3>
+<p>Die folgende Lösung verwendet alle Konzepte, die wir in diesem Kapitel gelernt haben: eine while-Schleife als Hauptstruktur, if-elif-else für die Spiellogik, <code>break</code> zum vorzeitigen Beenden bei Erfolg und <code>continue</code> zum Überspringen ungültiger Eingaben.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🛡️ Vorschau: Fehlerbehandlung mit try-except
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In der folgenden Lösung verwenden wir <code>try-except</code>, um fehlerhafte Benutzereingaben abzufangen. Wenn der Spieler statt einer Zahl zum Beispiel einen Buchstaben eingibt, würde das Programm normalerweise mit einem Fehler abstürzen. Mit <code>try-except</code> können wir solche Fehler elegant behandeln.</p>
+<p>Dieses Konzept werden wir in einem späteren Kapitel ausführlich behandeln. Für den Moment reicht es zu wissen: Der Code im <code>try</code>-Block wird versucht auszuführen, und falls ein Fehler auftritt, springt Python zum <code>except</code>-Block, anstatt abzustürzen.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Der Computer denkt sich eine Zahl aus</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>zufallszahl <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>versuche <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Willkommen beim Zahlen-Raten-Spiel!"</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht. Du hast </span><span class="sc">{</span>versuche<span class="sc">}</span><span class="ss"> Versuche."</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> versuche <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        geratene_zahl <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Gib deine Zahl ein: "</span>))</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Das war keine gültige Zahl. Bitte versuche es erneut."</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> geratene_zahl <span class="op">==</span> zufallszahl:</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Herzlichen Glückwunsch! Du hast die Zahl </span><span class="sc">{</span>zufallszahl<span class="sc">}</span><span class="ss"> erraten!"</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> geratene_zahl <span class="op">&lt;</span> zufallszahl:</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Deine Zahl ist zu niedrig."</span>)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Deine Zahl ist zu hoch."</span>)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    versuche <span class="op">=</span> versuche <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Du hast noch </span><span class="sc">{</span>versuche<span class="sc">}</span><span class="ss"> Versuche übrig."</span>)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> versuche <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Leider verloren! Die gesuchte Zahl war </span><span class="sc">{</span>zufallszahl<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Analysieren Sie die Lösung Zeile für Zeile und vergleichen Sie sie mit Ihrem eigenen Ansatz. Achten Sie besonders darauf, wie die verschiedenen Konzepte – while-Schleife, if-elif-else, break und continue – zusammenspielen, um das gewünschte Spielverhalten zu erzeugen.</p>
+<p><strong>Herzlichen Glückwunsch!</strong> Sie haben Kapitel 3 erfolgreich abgeschlossen und beherrschen nun zwei der wichtigsten Konzepte der Programmierung. Mit <strong>Bedingungen</strong> (if, elif, else) können Sie Ihrem Programm beibringen, Entscheidungen zu treffen. Mit <strong>Schleifen</strong> (for und while) können Sie Code wiederholt ausführen und so repetitive Aufgaben automatisieren. Und mit <strong>break</strong> und <strong>continue</strong> können Sie den Ablauf von Schleifen fein steuern. Im nächsten Kapitel werden wir uns mit Datenstrukturen beschäftigen, um mehrere Werte effizient zu speichern und zu verwalten. Damit werden Ihre Programme noch mächtiger!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Kapitel 2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Kapitel 4.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">KI Python - IHK Rhein-Neckar</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">© 2026 Paul Pronobis &amp; Tobias Lämmle</div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,91 @@
+project:
+  type: book
+  output-dir: docs
+
+execute:
+  freeze: auto
+
+lang: de
+
+book:
+  title: "KI Python"
+  subtitle: "Von den Grundlagen bis zur GPT-Integration"
+  author: 
+    - name: "Prof. Dr. Paul Pronobis"
+      affiliation: "Professor, Freie Universität Bozen"
+    - name: "Tobias Lämmle"
+      affiliation: "Software-Architekt & Machine-Learning-Experte"
+  cover-image: cover_a5.png
+  favicon: favicon.png
+  date: today
+  date-format: "DD. MMMM YYYY"
+  repo-url: https://github.com/ppronobis/ki-python
+  repo-actions: [edit, issue, source]
+
+  
+  chapters:
+    - index.qmd
+    - "Kapitel 1.qmd"
+    - "Kapitel 2.qmd"
+    - "Kapitel 3.qmd"
+    - "Kapitel 4.qmd"
+    - "Kapitel 5.qmd"
+    - "Kapitel 6.qmd"
+    - "Kapitel 7.qmd"
+    - "impressum.qmd"
+
+  sidebar:
+    style: "docked"
+    background: light
+    
+  page-footer:
+    left: |
+      KI Python - IHK Rhein-Neckar
+    right: |
+      © 2026 Paul Pronobis & Tobias Lämmle
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: 
+      light: [cosmo, custom.scss]
+    code-copy: true
+    code-fold: false
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 2
+    link-external-newwindow: true
+
+    
+  pdf:
+    documentclass: scrbook
+    papersize: a4
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 2
+    colorlinks: true
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  
+  epub:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 2
+    cover-image: Buchcover/output/frontcover.png
+    publisher: "IHK Rhein-Neckar"
+    rights: "© 2026 Paul Pronobis & Tobias Lämmle"
+    language: de
+
+language:
+  title-block-author-single: "Autor"
+  title-block-author-plural: "Autoren"
+  title-block-published: "Veröffentlicht"
+  toc-title-document: "Inhaltsverzeichnis"
+  section-title-references: "Literaturverzeichnis"

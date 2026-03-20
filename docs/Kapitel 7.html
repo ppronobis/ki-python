@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KI Python - 7&nbsp; Abschlusstest KI Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./impressum.html" rel="next">
+<link href="./Kapitel 6.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Kapitel 7.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KI Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ppronobis/ki-python" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">KI Python lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 7.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impressum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Impressum</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#willkommen-zum-finalen-test" id="toc-willkommen-zum-finalen-test" class="nav-link active" data-scroll-target="#willkommen-zum-finalen-test"><span class="header-section-number">7.1</span> Willkommen zum finalen Test</a></li>
+  <li><a href="#testformat-und-anforderungen" id="toc-testformat-und-anforderungen" class="nav-link" data-scroll-target="#testformat-und-anforderungen"><span class="header-section-number">7.2</span> Testformat und Anforderungen</a></li>
+  <li><a href="#sec-uebung1-grundlagen" id="toc-sec-uebung1-grundlagen" class="nav-link" data-scroll-target="#sec-uebung1-grundlagen"><span class="header-section-number">7.3</span> Übung 1: Grundlagen-Check</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen" id="toc-anforderungen" class="nav-link" data-scroll-target="#anforderungen">Anforderungen</a></li>
+  <li><a href="#anleitung" id="toc-anleitung" class="nav-link" data-scroll-target="#anleitung">Anleitung</a></li>
+  <li><a href="#code-struktur" id="toc-code-struktur" class="nav-link" data-scroll-target="#code-struktur">Code-Struktur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#sec-uebung2-listen" id="toc-sec-uebung2-listen" class="nav-link" data-scroll-target="#sec-uebung2-listen"><span class="header-section-number">7.4</span> Übung 2: Listen-Meister</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen-1" id="toc-anforderungen-1" class="nav-link" data-scroll-target="#anforderungen-1">Anforderungen</a></li>
+  <li><a href="#anleitung-1" id="toc-anleitung-1" class="nav-link" data-scroll-target="#anleitung-1">Anleitung</a></li>
+  <li><a href="#code-struktur-1" id="toc-code-struktur-1" class="nav-link" data-scroll-target="#code-struktur-1">Code-Struktur</a></li>
+  <li><a href="#hinweise-1" id="toc-hinweise-1" class="nav-link" data-scroll-target="#hinweise-1">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#sec-uebung3-algorithmus" id="toc-sec-uebung3-algorithmus" class="nav-link" data-scroll-target="#sec-uebung3-algorithmus"><span class="header-section-number">7.5</span> Übung 3: Algorithmus-Challenge</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen-2" id="toc-anforderungen-2" class="nav-link" data-scroll-target="#anforderungen-2">Anforderungen</a></li>
+  <li><a href="#anleitung-2" id="toc-anleitung-2" class="nav-link" data-scroll-target="#anleitung-2">Anleitung</a></li>
+  <li><a href="#code-struktur-2" id="toc-code-struktur-2" class="nav-link" data-scroll-target="#code-struktur-2">Code-Struktur</a></li>
+  <li><a href="#hinweise-2" id="toc-hinweise-2" class="nav-link" data-scroll-target="#hinweise-2">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#sec-uebung4-geschaeft" id="toc-sec-uebung4-geschaeft" class="nav-link" data-scroll-target="#sec-uebung4-geschaeft"><span class="header-section-number">7.6</span> Übung 4: Geschäftsrechner</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen-3" id="toc-anforderungen-3" class="nav-link" data-scroll-target="#anforderungen-3">Anforderungen</a></li>
+  <li><a href="#anleitung-3" id="toc-anleitung-3" class="nav-link" data-scroll-target="#anleitung-3">Anleitung</a></li>
+  <li><a href="#code-struktur-3" id="toc-code-struktur-3" class="nav-link" data-scroll-target="#code-struktur-3">Code-Struktur</a></li>
+  <li><a href="#hinweise-3" id="toc-hinweise-3" class="nav-link" data-scroll-target="#hinweise-3">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#sec-uebung5-sentiment" id="toc-sec-uebung5-sentiment" class="nav-link" data-scroll-target="#sec-uebung5-sentiment"><span class="header-section-number">7.7</span> Übung 5: Sentiment-Analyse</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen-4" id="toc-anforderungen-4" class="nav-link" data-scroll-target="#anforderungen-4">Anforderungen</a></li>
+  <li><a href="#anleitung-4" id="toc-anleitung-4" class="nav-link" data-scroll-target="#anleitung-4">Anleitung</a></li>
+  <li><a href="#code-struktur-4" id="toc-code-struktur-4" class="nav-link" data-scroll-target="#code-struktur-4">Code-Struktur</a></li>
+  <li><a href="#hinweise-4" id="toc-hinweise-4" class="nav-link" data-scroll-target="#hinweise-4">Hinweise</a></li>
+  <li><a href="#der-algorithmus-im-detail" id="toc-der-algorithmus-im-detail" class="nav-link" data-scroll-target="#der-algorithmus-im-detail">Der Algorithmus im Detail</a></li>
+  </ul></li>
+  <li><a href="#erfolgsstrategien" id="toc-erfolgsstrategien" class="nav-link" data-scroll-target="#erfolgsstrategien"><span class="header-section-number">7.8</span> Erfolgsstrategien</a></li>
+  <li><a href="#nach-dem-test" id="toc-nach-dem-test" class="nav-link" data-scroll-target="#nach-dem-test"><span class="header-section-number">7.9</span> Nach dem Test</a>
+  <ul class="collapse">
+  <li><a href="#ihre-weiterbildungsmöglichkeit-business-data-analyst-ihk" id="toc-ihre-weiterbildungsmöglichkeit-business-data-analyst-ihk" class="nav-link" data-scroll-target="#ihre-weiterbildungsmöglichkeit-business-data-analyst-ihk">Ihre Weiterbildungsmöglichkeit: Business Data Analyst (IHK)</a></li>
+  <li><a href="#bleiben-sie-teil-der-community" id="toc-bleiben-sie-teil-der-community" class="nav-link" data-scroll-target="#bleiben-sie-teil-der-community">Bleiben Sie Teil der Community</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ppronobis/ki-python/edit/main/Kapitel 7.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ppronobis/ki-python/issues/new" class="toc-action">Problem melden</a></p><p><a href="https://github.com/ppronobis/ki-python/blob/main/Kapitel 7.qmd" class="toc-action">Quellcode anzeigen</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="willkommen-zum-finalen-test" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="willkommen-zum-finalen-test"><span class="header-section-number">7.1</span> Willkommen zum finalen Test</h2>
+<p>Herzlichen Glückwunsch! Sie haben eine beeindruckende Reise von den ersten Python-Variablen bis hin zur KI-Integration und Datenanalyse gemeistert. Jetzt ist es Zeit, Ihr erworbenes Wissen in einem umfassenden Abschlusstest unter Beweis zu stellen.</p>
+<p>Denken Sie einen Moment zurück an alles, was Sie in den vergangenen Wochen gelernt haben: Sie beherrschen nun die <strong>Python-Grundlagen</strong> mit Variablen, Datentypen und Operatoren. Sie können <strong>eigene Funktionen</strong> erstellen und wissen, wie Sie Code wiederverwendbar gestalten. Mit <strong>Bedingungen und Schleifen</strong> kontrollieren Sie den Programmfluss, und <strong>Datenstrukturen</strong> wie Listen, Tupel und Dictionaries sind Ihnen vertraut geworden. Darüber hinaus haben Sie erste Erfahrungen mit <strong>Pandas</strong> für die Datenanalyse gesammelt und sogar <strong>GPT-Modelle über APIs</strong> in Ihre Programme integriert.</p>
+<p>Diese Fähigkeiten bilden das Fundament für Ihre weitere Entwicklung als Python-Programmierer. Der folgende Test gibt Ihnen die Gelegenheit, dieses Wissen unter Beweis zu stellen und selbst zu sehen, wie weit Sie gekommen sind.</p>
+</section>
+<section id="testformat-und-anforderungen" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="testformat-und-anforderungen"><span class="header-section-number">7.2</span> Testformat und Anforderungen</h2>
+<p>Der Abschlusstest ist als praktisches Jupyter Notebook konzipiert, das Sie eigenständig bearbeiten. Insgesamt erwarten Sie 23 Aufgaben, die in fünf thematische Sets unterteilt sind: Sie beginnen mit den Grundlagen zu Variablen und Datentypen, arbeiten dann mit Listen, lösen algorithmische Aufgaben mit Schleifen und Bedingungen, wenden Ihr Wissen in einem praktischen Geschäftsszenario an und schließen mit einem umfassenden Sentiment-Analyse-Projekt ab.</p>
+<p>Um den Test zu bestehen, benötigen Sie mindestens 80% korrekte Antworten. Das klingt vielleicht anspruchsvoll, aber wenn Sie die Kapitel durchgearbeitet haben, sind Sie bestens vorbereitet.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📝 So funktioniert der Test
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Download:</strong> Laden Sie das Jupyter Notebook aus dem <a href="https://www.skool.com/business-data-professional/">Kursbereich</a> herunter</li>
+<li><strong>Bearbeitung:</strong> Lösen Sie alle 23 Aufgaben sorgfältig</li>
+<li><strong>Abgabe:</strong> Senden Sie das fertige Notebook an Ihre Dozenten</li>
+<li><strong>Bestehen:</strong> 80% korrekte Antworten erforderlich</li>
+</ol>
+</div>
+</div>
+<p>Im Folgenden werden wir jedes Aufgabenset im Detail betrachten. Nutzen Sie diese Übersicht, um sich gezielt auf die verschiedenen Themenbereiche vorzubereiten und eventuelle Wissenslücken noch vor dem Test zu schließen.</p>
+</section>
+<section id="sec-uebung1-grundlagen" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-uebung1-grundlagen"><span class="header-section-number">7.3</span> Übung 1: Grundlagen-Check</h2>
+<p>Das erste Aufgabenset testet Ihre Grundkenntnisse aus Kapitel 1. Sie werden mit den verschiedenen Datentypen arbeiten, die wir zu Beginn des Kurses kennengelernt haben: Strings für Text, Integer für ganze Zahlen und Booleans für Wahrheitswerte. Diese drei Grundtypen begegnen Ihnen in nahezu jedem Python-Programm, weshalb ein sicherer Umgang mit ihnen essentiell ist.</p>
+<p><strong>Ziel:</strong> Erstellen Sie ein Python-Programm, das persönliche Daten in Variablen speichert, diese in einem Dictionary organisiert und die Datentypen analysiert.</p>
+<section id="anforderungen" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen">Anforderungen</h3>
+<ol type="1">
+<li><p><strong>Variablen erstellen:</strong> Drei Variablen mit unterschiedlichen Datentypen:</p>
+<ul>
+<li><code>name</code> – ein String mit Ihrem Namen</li>
+<li><code>age</code> – ein Integer mit Ihrem Alter</li>
+<li><code>has_android_phone</code> – ein Boolean (True oder False)</li>
+</ul></li>
+<li><p><strong>Werte überprüfen:</strong> Alle drei Variablen mit <code>print()</code> ausgeben</p></li>
+<li><p><strong>Dictionary erstellen:</strong> Ein Dictionary <code>person</code> mit den Schlüsseln:</p>
+<ul>
+<li><code>"Name"</code> → Wert von <code>name</code></li>
+<li><code>"Age"</code> → Wert von <code>age</code></li>
+<li><code>"HasAndroidPhone"</code> → Wert von <code>has_android_phone</code></li>
+</ul></li>
+<li><p><strong>Dictionary verwenden:</strong> Die Werte aus dem Dictionary in einer formatierten Ausgabe nutzen</p></li>
+<li><p><strong>Datentypen analysieren:</strong> Mit einer <code>for</code>-Schleife jeden Schlüssel und den Typ des zugehörigen Wertes ausgeben</p></li>
+</ol>
+</section>
+<section id="anleitung" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung">Anleitung</h3>
+<ol type="1">
+<li>Erstellen Sie die Variable <code>name</code> und weisen Sie einen String zu.</li>
+<li>Erstellen Sie die Variable <code>age</code> und weisen Sie eine Ganzzahl zu.</li>
+<li>Erstellen Sie die Variable <code>has_android_phone</code> und weisen Sie <code>True</code> oder <code>False</code> zu.</li>
+<li>Geben Sie alle drei Variablen mit <code>print()</code> aus.</li>
+<li>Erstellen Sie das Dictionary <code>person</code> mit den drei Schlüssel-Wert-Paaren.</li>
+<li>Erstellen Sie eine formatierte Ausgabe mit den Dictionary-Werten.</li>
+<li>Durchlaufen Sie das Dictionary mit einer <code>for</code>-Schleife und geben Sie für jeden Schlüssel den Typ des Wertes aus.</li>
+</ol>
+</section>
+<section id="code-struktur" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur">Code-Struktur</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 1-3: Variablen erstellen</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen Sie pass durch Ihren Namen als String</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen Sie pass durch Ihr Alter als Integer</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>has_android_phone <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen Sie pass durch True oder False</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 4: Werte überprüfen</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(name)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(age)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(has_android_phone)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 5: Dictionary erstellen</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>person <span class="op">=</span> {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Name"</span>: <span class="cf">pass</span>,  <span class="co"># Ersetzen Sie pass durch die Variable name</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Age"</span>: <span class="cf">pass</span>,  <span class="co"># Ersetzen Sie pass durch die Variable age</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HasAndroidPhone"</span>: <span class="cf">pass</span>  <span class="co"># Ersetzen Sie pass durch die Variable has_android_phone</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 6: Dictionary-Werte in einer Ausgabe verwenden</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: Greifen Sie mit person["Name"] auf die Werte zu</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 7: Datentypen mit for-Schleife analysieren</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: Verwenden Sie person.items() und type()</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> schluessel, wert <span class="kw">in</span> person.items():</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise">Hinweise</h3>
+<ul>
+<li>Strings werden in Anführungszeichen geschrieben: <code>"Max"</code> oder <code>'Max'</code></li>
+<li>Integer sind Ganzzahlen ohne Anführungszeichen: <code>25</code></li>
+<li>Booleans sind <code>True</code> oder <code>False</code> (Groß-/Kleinschreibung beachten!)</li>
+<li>Dictionary-Zugriff erfolgt mit eckigen Klammern: <code>person["Name"]</code></li>
+<li>Die <code>type()</code>-Funktion gibt den Datentyp zurück: <code>type(variable)</code></li>
+<li>Mit <code>person.items()</code> erhalten Sie Schlüssel-Wert-Paare zum Durchlaufen</li>
+</ul>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Achten Sie besonders darauf, die Variablennamen exakt wie angegeben zu verwenden (<code>name</code>, nicht <code>Name</code>), da dies für die Bewertung wichtig ist.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-uebung2-listen" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec-uebung2-listen"><span class="header-section-number">7.4</span> Übung 2: Listen-Meister</h2>
+<p>Im zweiten Aufgabenset vertiefen Sie Ihre Kenntnisse über Listen – eine der wichtigsten und vielseitigsten Datenstrukturen in Python. Listen ermöglichen es Ihnen, mehrere Werte in einer geordneten Sammlung zu speichern und diese flexibel zu manipulieren.</p>
+<p><strong>Ziel:</strong> Demonstrieren Sie Ihre Fähigkeiten im Umgang mit Listen durch Erstellung, Zugriff auf Elemente und Manipulation mit Listenmethoden.</p>
+<section id="anforderungen-1" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen-1">Anforderungen</h3>
+<ol type="1">
+<li><p><strong>Liste erstellen:</strong> Eine Liste <code>my_list</code> mit drei Elementen:</p>
+<ul>
+<li>Ihre Lieblingsfarbe (String)</li>
+<li>Anzahl Ihrer Haustiere (Integer)</li>
+<li>Boolean für vorhandene Programmiererfahrung</li>
+</ul></li>
+<li><p><strong>Listenzugriff:</strong> Auf einzelne Elemente über den Index zugreifen und diese in Ausgaben verwenden</p></li>
+<li><p><strong>Element hinzufügen:</strong> Mit <code>append()</code> ein neues Element ans Ende der Liste anfügen</p></li>
+<li><p><strong>Element entfernen:</strong> Mit <code>pop()</code> das erste Element der Liste entfernen</p></li>
+<li><p><strong>Listenlänge ermitteln:</strong> Mit <code>len()</code> die Anzahl der Elemente ausgeben</p></li>
+</ol>
+</section>
+<section id="anleitung-1" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung-1">Anleitung</h3>
+<ol type="1">
+<li>Erstellen Sie die Liste <code>my_list</code> mit drei Elementen verschiedener Datentypen.</li>
+<li>Verwenden Sie <code>my_list[0]</code> für das erste Element, <code>my_list[1]</code> für das zweite, etc.</li>
+<li>Fügen Sie mit <code>my_list.append(wert)</code> ein viertes Element hinzu.</li>
+<li>Entfernen Sie mit <code>my_list.pop(0)</code> das erste Element.</li>
+<li>Ermitteln Sie mit <code>len(my_list)</code> die aktuelle Länge der Liste.</li>
+</ol>
+</section>
+<section id="code-struktur-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur-1">Code-Struktur</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 8: Liste erstellen</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>,  <span class="co"># Ersetzen: Ihre Lieblingsfarbe als String</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>,  <span class="co"># Ersetzen: Anzahl Ihrer Haustiere als Integer</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>   <span class="co"># Ersetzen: True oder False für Programmiererfahrung</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 9: Listenzugriff über Index</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: Index beginnt bei 0!</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Meine Lieblingsfarbe ist'</span>, <span class="cf">pass</span>)  <span class="co"># Ersetzen: my_list[?]</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Ich habe </span><span class="sc">{}</span><span class="st"> Tier(e).'</span>.<span class="bu">format</span>(<span class="cf">pass</span>))  <span class="co"># Ersetzen: my_list[?]</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="cf">pass</span>:  <span class="co"># Ersetzen: my_list[?]</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Ich habe Programmiererfahrung"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 10: Element hinzufügen</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: Verwenden Sie .append() mit Ihrer Lieblings-Einerzahl (0-9)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 11: Erstes Element entfernen</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: Verwenden Sie .pop(0) für das erste Element</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 12: Listenlänge ausgeben</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: Verwenden Sie len()</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Die Liste hat </span><span class="sc">{}</span><span class="st"> Elemente."</span>.<span class="bu">format</span>(<span class="cf">pass</span>))  <span class="co"># Ersetzen: len(?)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise-1" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise-1">Hinweise</h3>
+<ul>
+<li><strong>Indexierung beginnt bei 0:</strong> Das erste Element hat Index 0, das zweite Index 1, usw.</li>
+<li><code>my_list[0]</code> → erstes Element (Lieblingsfarbe)</li>
+<li><code>my_list[1]</code> → zweites Element (Anzahl Haustiere)</li>
+<li><code>my_list[2]</code> → drittes Element (Programmiererfahrung)</li>
+<li><code>append(wert)</code> fügt ein Element am Ende hinzu</li>
+<li><code>pop(index)</code> entfernt das Element am angegebenen Index und gibt es zurück</li>
+<li><code>len(liste)</code> gibt die Anzahl der Elemente zurück</li>
+</ul>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Achten Sie besonders auf die korrekte Indexierung – ein häufiger Fehler ist es, <code>my_list[1]</code> zu verwenden, wenn man eigentlich das erste Element meint (das wäre <code>my_list[0]</code>).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-uebung3-algorithmus" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="sec-uebung3-algorithmus"><span class="header-section-number">7.5</span> Übung 3: Algorithmus-Challenge</h2>
+<p>Das dritte Aufgabenset fordert Sie heraus, Ihr Wissen über Kontrollstrukturen in einem algorithmischen Problem anzuwenden. Hier kombinieren Sie <code>for</code>-Schleifen mit Bedingungen, um eine mathematische Berechnung durchzuführen.</p>
+<p><strong>Ziel:</strong> Berechnen Sie die Summe aller Zahlen in einem bestimmten Bereich, die durch 7 teilbar sind.</p>
+<section id="anforderungen-2" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen-2">Anforderungen</h3>
+<ol type="1">
+<li><p><strong>Zahlenbereich definieren:</strong> Alle Zahlen von 18 bis einschließlich 534 betrachten</p></li>
+<li><p><strong>Teilbarkeit prüfen:</strong> Für jede Zahl prüfen, ob sie durch 7 teilbar ist</p></li>
+<li><p><strong>Summe berechnen:</strong> Alle teilbaren Zahlen aufsummieren</p></li>
+<li><p><strong>Ergebnis ausgeben:</strong> Die berechnete Summe mit <code>print()</code> anzeigen</p></li>
+</ol>
+</section>
+<section id="anleitung-2" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung-2">Anleitung</h3>
+<ol type="1">
+<li>Initialisieren Sie eine Variable <code>summe</code> mit dem Wert 0.</li>
+<li>Erstellen Sie eine <code>for</code>-Schleife, die alle Zahlen von 18 bis 534 durchläuft.</li>
+<li>Prüfen Sie mit dem Modulo-Operator <code>%</code>, ob die Zahl durch 7 teilbar ist.</li>
+<li>Wenn ja, addieren Sie die Zahl zur Summe.</li>
+<li>Geben Sie nach der Schleife das Ergebnis aus.</li>
+</ol>
+</section>
+<section id="code-struktur-2" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur-2">Code-Struktur</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 13: Summe aller durch 7 teilbaren Zahlen zwischen 18 und 534</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Schritt 1: Summenvariable initialisieren</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>summe <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: Startwert für die Summe</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Schritt 2: Alle Zahlen im Bereich durchlaufen</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: range(start, ende) - ende ist NICHT inklusiv!</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> zahl <span class="kw">in</span> <span class="bu">range</span>(<span class="cf">pass</span>, <span class="cf">pass</span>):  <span class="co"># Ersetzen: Start- und Endwert</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Schritt 3: Prüfen, ob die Zahl durch 7 teilbar ist</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: zahl % 7 == 0 bedeutet "kein Rest bei Division durch 7"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="cf">pass</span>:  <span class="co"># Ersetzen: Bedingung für Teilbarkeit</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Schritt 4: Zahl zur Summe addieren</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        summe <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: summe + zahl</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Schritt 5: Ergebnis ausgeben</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Die Summe beträgt:'</span>, summe)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise-2" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise-2">Hinweise</h3>
+<ul>
+<li><strong>Modulo-Operator <code>%</code>:</strong> Gibt den Rest einer Division zurück
+<ul>
+<li><code>21 % 7</code> ergibt <code>0</code> → 21 ist durch 7 teilbar</li>
+<li><code>22 % 7</code> ergibt <code>1</code> → 22 ist NICHT durch 7 teilbar</li>
+</ul></li>
+<li><strong>Teilbarkeitsbedingung:</strong> <code>zahl % 7 == 0</code> ist <code>True</code>, wenn <code>zahl</code> durch 7 teilbar ist</li>
+<li><strong>range()-Funktion:</strong> <code>range(18, 535)</code> erzeugt Zahlen von 18 bis 534 (obere Grenze nicht inklusive!)</li>
+<li><strong>Summe aktualisieren:</strong> <code>summe = summe + zahl</code> oder kürzer <code>summe += zahl</code></li>
+</ul>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Denken Sie daran: <code>range()</code> schließt die obere Grenze nicht ein – wenn Sie alle Zahlen bis einschließlich 534 prüfen möchten, müssen Sie <code>range(18, 535)</code> verwenden.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-uebung4-geschaeft" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="sec-uebung4-geschaeft"><span class="header-section-number">7.6</span> Übung 4: Geschäftsrechner</h2>
+<p>Im vierten Aufgabenset wenden Sie Ihre Python-Kenntnisse auf ein realistisches Geschäftsszenario an. Stellen Sie sich vor, Sie arbeiten für ein Reiseunternehmen und müssen berechnen, ob eine geplante Flugreise profitabel ist.</p>
+<p><strong>Ziel:</strong> Berechnen Sie Gewinn oder Verlust eines Reiseunternehmens basierend auf Flugkosten und Ticketverkäufen.</p>
+<section id="anforderungen-3" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen-3">Anforderungen</h3>
+<ol type="1">
+<li><p><strong>Variablen definieren:</strong> Die gegebenen Geschäftsdaten in Variablen speichern:</p>
+<ul>
+<li>Flugkosten: 5000 Euro pro Flug</li>
+<li>Teilnehmer Hinflug: 29 Personen</li>
+<li>Ticketpreis: 200 Euro pro Person</li>
+<li>Teilnehmer Rückflug: 12 Personen</li>
+</ul></li>
+<li><p><strong>Gewinn Hinflug berechnen:</strong> Einnahmen minus Kosten für den Hinflug</p></li>
+<li><p><strong>Gesamtgewinn berechnen:</strong> Beide Flüge (Hin- und Rückflug) berücksichtigen</p></li>
+<li><p><strong>Ergebnis bewerten:</strong> Mit einer <code>if</code>-Anweisung prüfen, ob Gewinn oder Verlust vorliegt</p></li>
+</ol>
+</section>
+<section id="anleitung-3" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung-3">Anleitung</h3>
+<ol type="1">
+<li>Speichern Sie alle gegebenen Werte in Variablen.</li>
+<li>Berechnen Sie die Einnahmen für den Hinflug (Teilnehmer × Ticketpreis).</li>
+<li>Berechnen Sie den Gewinn für den Hinflug (Einnahmen - Flugkosten).</li>
+<li>Berechnen Sie die Gesamteinnahmen (Hinflug + Rückflug).</li>
+<li>Berechnen Sie die Gesamtkosten (2 × Flugkosten).</li>
+<li>Berechnen Sie den Gesamtgewinn und prüfen Sie mit <code>if</code>, ob er positiv ist.</li>
+</ol>
+</section>
+<section id="code-struktur-3" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur-3">Code-Struktur</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 14: Gewinn für den Hinflug berechnen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Gegebene Werte als Variablen</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>flugkosten <span class="op">=</span> <span class="dv">5000</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>teilnehmer_hinflug <span class="op">=</span> <span class="dv">29</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ticketpreis <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>teilnehmer_rueckflug <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Einnahmen Hinflug berechnen</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>einnahmen_hinflug <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: teilnehmer_hinflug * ticketpreis</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Gewinn Hinflug berechnen</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>gewinn_hinflug <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: einnahmen_hinflug - flugkosten</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gewinn Hinflug: </span><span class="sc">{</span>gewinn_hinflug<span class="sc">}</span><span class="ss"> Euro"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 15: Gesamtgewinn berechnen und bewerten</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Einnahmen Rückflug berechnen</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>einnahmen_rueckflug <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: teilnehmer_rueckflug * ticketpreis</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Gesamteinnahmen und Gesamtkosten</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>gesamteinnahmen <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: einnahmen_hinflug + einnahmen_rueckflug</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>gesamtkosten <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: flugkosten * 2 (Hin- UND Rückflug!)</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Gesamtgewinn berechnen</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>gesamtgewinn <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: gesamteinnahmen - gesamtkosten</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit if-Anweisung bewerten</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="cf">pass</span>:  <span class="co"># Ersetzen: Bedingung für Gewinn (gesamtgewinn &gt; 0)</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Das Unternehmen macht Gewinn: </span><span class="sc">{</span>gesamtgewinn<span class="sc">}</span><span class="ss"> Euro"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Das Unternehmen macht Verlust: </span><span class="sc">{</span>gesamtgewinn<span class="sc">}</span><span class="ss"> Euro"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise-3" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise-3">Hinweise</h3>
+<ul>
+<li><strong>Wichtig:</strong> Sowohl Hinflug als auch Rückflug kosten jeweils 5000 Euro!</li>
+<li>Einnahmen = Anzahl Teilnehmer × Ticketpreis</li>
+<li>Gewinn = Einnahmen - Kosten</li>
+<li>Mit <code>if gesamtgewinn &gt; 0:</code> prüfen Sie auf Gewinn</li>
+<li>Mit <code>if gesamtgewinn &lt; 0:</code> prüfen Sie auf Verlust</li>
+<li>f-Strings ermöglichen formatierte Ausgaben: <code>f"Text {variable} Text"</code></li>
+</ul>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Denken Sie daran: Beide Flüge verursachen Kosten, aber die Teilnehmerzahlen sind unterschiedlich. Strukturieren Sie Ihre Berechnung sorgfältig!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-uebung5-sentiment" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="sec-uebung5-sentiment"><span class="header-section-number">7.7</span> Übung 5: Sentiment-Analyse</h2>
+<p>Das finale Projekt ist das anspruchsvollste Aufgabenset und bringt alles zusammen, was Sie in diesem Kurs gelernt haben. Sie führen eine vereinfachte Sentiment-Analyse durch – eine Technik, die in der Praxis häufig verwendet wird, um die Stimmung in Texten automatisch zu analysieren.</p>
+<p><strong>Ziel:</strong> Führen Sie eine vollständige Sentiment-Analyse eines Nachrichtendatensatzes durch, indem Sie positive, negative und neutrale Nachrichten identifizieren und den Gesamtstimmungswert berechnen.</p>
+<section id="anforderungen-4" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen-4">Anforderungen</h3>
+<ol type="1">
+<li><p><strong>Datensatz analysieren:</strong> Die Anzahl der Nachrichten im Datensatz ermitteln</p></li>
+<li><p><strong>Positive Nachrichten:</strong></p>
+<ul>
+<li>Zählen, wie viele Nachrichten mindestens ein positives Wort enthalten</li>
+<li>Den Anteil positiver Nachrichten berechnen</li>
+</ul></li>
+<li><p><strong>Negative Nachrichten:</strong></p>
+<ul>
+<li>Zählen, wie viele Nachrichten mindestens ein negatives Wort enthalten</li>
+<li>Den Anteil negativer Nachrichten berechnen</li>
+</ul></li>
+<li><p><strong>Stimmungswert berechnen:</strong> Anteil positiv minus Anteil negativ</p></li>
+<li><p><strong>Gesamtstimmung bewerten:</strong> Mit <code>if</code>-Anweisung die Stimmung als positiv, negativ oder neutral einordnen</p></li>
+<li><p><strong>Neutrale Nachrichten:</strong> Den Anteil neutraler Nachrichten berechnen</p></li>
+</ol>
+</section>
+<section id="anleitung-4" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung-4">Anleitung</h3>
+<ol type="1">
+<li>Verwenden Sie <code>len()</code>, um die Anzahl der Nachrichten zu ermitteln.</li>
+<li>Erstellen Sie eine verschachtelte Schleife: äußere Schleife für Nachrichten, innere für Wörter.</li>
+<li>Prüfen Sie mit <code>if wort in nachricht</code>, ob ein Schlüsselwort enthalten ist.</li>
+<li>Zählen Sie positive und negative Nachrichten separat.</li>
+<li>Berechnen Sie Anteile durch Division: <code>anzahl / gesamtanzahl</code>.</li>
+<li>Der Stimmungswert ist: <code>anteil_positiv - anteil_negativ</code>.</li>
+<li>Neutrale Nachrichten sind weder positiv noch negativ kategorisiert.</li>
+</ol>
+</section>
+<section id="code-struktur-4" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur-4">Code-Struktur</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gegebene Daten (werden im Notebook bereitgestellt)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nachrichten = [...]  # Liste mit 10 Nachrichten</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># positive_wörter = [...]  # Liste mit 14 positiven Begriffen</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># negative_wörter = [...]  # Liste mit 6 negativen Begriffen</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 16: Anzahl der Nachrichten bestimmen</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>anzahl_nachrichten <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: len(nachrichten)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Anzahl Nachrichten: </span><span class="sc">{</span>anzahl_nachrichten<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 17-18: Positive Nachrichten analysieren</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>positive_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nachricht <span class="kw">in</span> nachrichten:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    ist_positiv <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> wort <span class="kw">in</span> positive_wörter:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="cf">pass</span>:  <span class="co"># Ersetzen: wort in nachricht</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            ist_positiv <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span>  <span class="co"># Schleife beenden, sobald ein Wort gefunden wurde</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ist_positiv:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        positive_count <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: positive_count + 1</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>anteil_positiv <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: positive_count / anzahl_nachrichten</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Positive Nachrichten: </span><span class="sc">{</span>positive_count<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>anteil_positiv<span class="sc">:.2%}</span><span class="ss">)"</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 19-20: Negative Nachrichten analysieren</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>negative_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nachricht <span class="kw">in</span> nachrichten:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    ist_negativ <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> wort <span class="kw">in</span> negative_wörter:</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="cf">pass</span>:  <span class="co"># Ersetzen: wort in nachricht</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>            ist_negativ <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ist_negativ:</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        negative_count <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: negative_count + 1</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>anteil_negativ <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: negative_count / anzahl_nachrichten</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Negative Nachrichten: </span><span class="sc">{</span>negative_count<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>anteil_negativ<span class="sc">:.2%}</span><span class="ss">)"</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 21: Stimmungswert berechnen</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>stimmungswert <span class="op">=</span> <span class="cf">pass</span>  <span class="co"># Ersetzen: anteil_positiv - anteil_negativ</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Stimmungswert: </span><span class="sc">{</span>stimmungswert<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 22: Gesamtstimmung bewerten</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="cf">pass</span>:  <span class="co"># Ersetzen: stimmungswert &gt; 0</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Die Gesamtstimmung ist POSITIV"</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="cf">pass</span>:  <span class="co"># Ersetzen: stimmungswert &lt; 0</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Die Gesamtstimmung ist NEGATIV"</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Die Gesamtstimmung ist NEUTRAL"</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufgabe 23: Anteil neutraler Nachrichten</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Hinweis: Neutral = weder positiv noch negativ kategorisiert</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Dies erfordert eine kombinierte Prüfung oder Berechnung</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise-4" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise-4">Hinweise</h3>
+<ul>
+<li><strong>Verschachtelte Schleifen:</strong> Eine äußere Schleife für Nachrichten, eine innere für Wörter</li>
+<li><strong><code>in</code>-Operator:</strong> <code>"gut" in "Das ist gut"</code> ergibt <code>True</code></li>
+<li><strong><code>break</code>:</strong> Beendet die innere Schleife vorzeitig, wenn ein Wort gefunden wurde</li>
+<li><strong>Anteil berechnen:</strong> <code>anzahl / gesamtanzahl</code> (ergibt eine Dezimalzahl zwischen 0 und 1)</li>
+<li><strong>Formatierung:</strong> <code>{wert:.2%}</code> zeigt den Wert als Prozent mit 2 Dezimalstellen</li>
+<li><strong>Stimmungswert:</strong> Positiv wenn &gt; 0, negativ wenn &lt; 0, neutral wenn = 0</li>
+</ul>
+</section>
+<section id="der-algorithmus-im-detail" class="level3">
+<h3 class="anchored" data-anchor-id="der-algorithmus-im-detail">Der Algorithmus im Detail</h3>
+<p>Der grundlegende Ansatz für die Wortsuche:</p>
+<ol type="1">
+<li>Zähler auf 0 setzen</li>
+<li>Jede Nachricht durchlaufen</li>
+<li>Für jede Nachricht: Hilfsvariable <code>ist_positiv</code> auf <code>False</code> setzen</li>
+<li>Alle Schlüsselwörter prüfen</li>
+<li>Wenn ein Wort gefunden wird: <code>ist_positiv = True</code> und <code>break</code></li>
+<li>Nach der inneren Schleife: Wenn <code>ist_positiv</code>, Zähler erhöhen</li>
+<li>Am Ende: Anteil = Zähler / Gesamtanzahl</li>
+</ol>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Dies ist das anspruchsvollste Aufgabenset – nehmen Sie sich Zeit, den Algorithmus zu verstehen, bevor Sie mit dem Coden beginnen. Bei der Berechnung neutraler Nachrichten müssen Sie überlegen, wie Sie Nachrichten identifizieren, die weder positiv noch negativ sind.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="erfolgsstrategien" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="erfolgsstrategien"><span class="header-section-number">7.8</span> Erfolgsstrategien</h2>
+<p>Eine gute Vorbereitung ist der halbe Erfolg. Bevor Sie mit dem Test beginnen, möchte ich Ihnen einige bewährte Strategien mit auf den Weg geben, die Ihnen helfen werden, die Aufgaben erfolgreich zu meistern.</p>
+<p><strong>Bei der Vorbereitung</strong> sollten Sie jede Aufgabe zunächst sorgfältig durchlesen, bevor Sie mit dem Coden beginnen. Nehmen Sie sich Zeit, die Aufgabenstellung wirklich zu verstehen. Planen Sie Ihre Lösung gedanklich oder auf Papier, bevor Sie sie in Code umsetzen. Und verwenden Sie von Anfang an aussagekräftige Variablennamen – das macht Ihren Code lesbarer und hilft Ihnen, Fehler zu vermeiden.</p>
+<p><strong>Während der Bearbeitung</strong> ist es wichtig, dass Sie Ihren Code in jeder Zelle testen, bevor Sie zur nächsten Aufgabe übergehen. Nutzen Sie <code>print()</code>-Statements, um Zwischenergebnisse zu überprüfen und Fehler zu finden. Wenn eine Berechnung nicht das erwartete Ergebnis liefert, können Sie so schnell herausfinden, wo das Problem liegt. Bei komplexeren Code-Abschnitten kann es auch hilfreich sein, kurze Kommentare hinzuzufügen, die erklären, was der Code tut.</p>
+<p><strong>Bei Problemen</strong> hilft es oft, einen Schritt zurückzutreten und das Problem in kleinere Teilschritte zu zerlegen. Wenn Sie bei einer Aufgabe feststecken, nutzen Sie die Community, um Fragen zu stellen – andere Teilnehmer haben vielleicht ähnliche Schwierigkeiten gehabt und können Ihnen helfen. Und überprüfen Sie Ihre Syntax sorgfältig: Ein fehlendes Komma oder eine falsche Einrückung kann dazu führen, dass Ihr Code nicht funktioniert.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Häufige Fallstricke
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Indentation:</strong> Achten Sie auf korrekte Einrückungen – Python nutzt Einrückungen, um Codeblöcke zu definieren</li>
+<li><strong>Variablennamen:</strong> Verwenden Sie die exakt angegebenen Namen, auch bei Groß- und Kleinschreibung</li>
+<li><strong>Datentypen:</strong> Beachten Sie Integer vs.&nbsp;String Konvertierungen</li>
+<li><strong>Listenzugriff:</strong> Index beginnt bei 0, nicht bei 1</li>
+<li><strong>Modulo-Operator:</strong> <code>%</code> gibt den Rest einer Division zurück</li>
+<li><strong>Verschachtelte Schleifen:</strong> Bei der Sentiment-Analyse benötigen Sie eine Schleife in einer Schleife</li>
+</ul>
+</div>
+</div>
+<p>Mit diesem Wissen sind Sie bestens gerüstet, um den Test erfolgreich zu meistern. Nehmen Sie sich die Zeit, die Sie brauchen, und arbeiten Sie die Aufgaben sorgfältig durch. Es gibt keinen Zeitdruck – Qualität geht vor Schnelligkeit.</p>
+</section>
+<section id="nach-dem-test" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="nach-dem-test"><span class="header-section-number">7.9</span> Nach dem Test</h2>
+<p>Unabhängig davon, ob Sie den Test beim ersten Versuch bestehen oder nicht – Sie haben bereits einen großen Schritt in Ihrer Programmierreise gemacht. Das Wichtigste ist, dass Sie dranbleiben und weiter lernen.</p>
+<p>Bei erfolgreichem Abschluss können Sie stolz auf sich sein und Ihren Erfolg in der Community feiern. Nutzen Sie das Momentum und entwickeln Sie eigene kleine Projekte, um Ihre neuen Fähigkeiten anzuwenden und zu festigen. Je mehr Sie programmieren, desto natürlicher wird es sich anfühlen.</p>
+<section id="ihre-weiterbildungsmöglichkeit-business-data-analyst-ihk" class="level3">
+<h3 class="anchored" data-anchor-id="ihre-weiterbildungsmöglichkeit-business-data-analyst-ihk">Ihre Weiterbildungsmöglichkeit: Business Data Analyst (IHK)</h3>
+<p>Wenn Sie Ihre Python-Kenntnisse vertiefen und professionell im Bereich Datenanalyse arbeiten möchten, ist der <strong><a href="https://www.ihk.de/rhein-neckar/system/veranstaltungssuche/vstdetail-antrago/5232590/94998?terminId=94998">Business Data Analyst (IHK) Kurs</a></strong> der ideale nächste Schritt. Dieser 8-wöchige Blended-Learning-Kurs baut direkt auf den Grundlagen auf, die Sie hier erworben haben.</p>
+<p>In den <strong>Wochen 1-2</strong> lernen Sie die Rolle des Data Analysts kennen und vertiefen Ihre statistischen Grundlagen. Sie beschäftigen sich mit Kennzahlen, Stichproben, dem Unterschied zwischen Korrelation und Kausalität sowie professioneller Datenvisualisierung.</p>
+<p>Die <strong>Wochen 3-4</strong> widmen sich der Python-Vertiefung und der Datenanalyse mit Pandas. Sie arbeiten intensiv mit DataFrames, lernen Datenmanipulation, Filterung und statistische Auswertung.</p>
+<p>In den <strong>Wochen 5-6</strong> erstellen Sie professionelle Diagramme mit Matplotlib – von Linien- und Streudiagrammen bis hin zu Balken- und Kuchendiagrammen. Sie lernen auch, Fehler in Visualisierungen zu erkennen und den richtigen Diagrammtyp für Ihre Daten zu wählen.</p>
+<p>Die <strong>Wochen 7-8</strong> führen Sie in Tableau ein, ein mächtiges Tool für interaktive Dashboards. Sie lernen sowohl Grundlagen als auch fortgeschrittene Techniken und erstellen anspruchsvolle Dashboards für datenbasierte Erkenntnisse.</p>
+<p>Als Bonus erhalten Sie einen Projektleitfaden zur erfolgreichen Umsetzung von Datenanalyse-Projekten in der Praxis.</p>
+<p>Das Format umfasst 78 Unterrichtsstunden (20 UE Live-Online + 58 UE Selbstlernstudium) und schließt mit einem Abschlussprojekt und IHK-Zertifikat ab.</p>
+</section>
+<section id="bleiben-sie-teil-der-community" class="level3">
+<h3 class="anchored" data-anchor-id="bleiben-sie-teil-der-community">Bleiben Sie Teil der Community</h3>
+<p>Vergessen Sie nicht, auch nach dem Kurs Teil unserer aktiven Lerngemeinschaft zu bleiben. In der <a href="https://www.skool.com/business-data-professional">Business Data Professional Community</a> können Sie sich mit anderen Teilnehmern austauschen, Fragen stellen und von den Erfahrungen anderer lernen. Gemeinsam lernt es sich leichter!</p>
+<hr>
+<p>Egal, welchen Weg Sie nach diesem Kurs einschlagen – Sie haben alle notwendigen Fähigkeiten erworben, um diesen Test erfolgreich zu bestehen. Vertrauen Sie auf Ihr Wissen und zeigen Sie, was Sie in den letzten Wochen gelernt haben!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Kapitel 6.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./impressum.html" class="pagination-link">
+        <span class="nav-page-text">Impressum</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">KI Python - IHK Rhein-Neckar</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">© 2026 Paul Pronobis &amp; Tobias Lämmle</div>
+  </div>
+</footer>
+
+
+
+</body></html>

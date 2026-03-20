@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KI Python - 4&nbsp; Datenstrukturen</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Kapitel 5.html" rel="next">
+<link href="./Kapitel 3.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Kapitel 4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KI Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ppronobis/ki-python" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">KI Python lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impressum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Impressum</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#sec-willkommen-kap4" id="toc-sec-willkommen-kap4" class="nav-link active" data-scroll-target="#sec-willkommen-kap4"><span class="header-section-number">4.1</span> Willkommen zu Kapitel 4</a></li>
+  <li><a href="#sec-listen" id="toc-sec-listen" class="nav-link" data-scroll-target="#sec-listen"><span class="header-section-number">4.2</span> Listen erstellen</a>
+  <ul class="collapse">
+  <li><a href="#auf-listenelemente-zugreifen" id="toc-auf-listenelemente-zugreifen" class="nav-link" data-scroll-target="#auf-listenelemente-zugreifen">Auf Listenelemente zugreifen</a></li>
+  <li><a href="#negative-indizes-und-slicing" id="toc-negative-indizes-und-slicing" class="nav-link" data-scroll-target="#negative-indizes-und-slicing">Negative Indizes und Slicing</a></li>
+  <li><a href="#listen-sind-veränderbar" id="toc-listen-sind-veränderbar" class="nav-link" data-scroll-target="#listen-sind-veränderbar">Listen sind veränderbar</a></li>
+  </ul></li>
+  <li><a href="#sec-listen-durchlaufen" id="toc-sec-listen-durchlaufen" class="nav-link" data-scroll-target="#sec-listen-durchlaufen"><span class="header-section-number">4.3</span> Listen durchlaufen</a></li>
+  <li><a href="#sec-tupel" id="toc-sec-tupel" class="nav-link" data-scroll-target="#sec-tupel"><span class="header-section-number">4.4</span> Tupel erstellen</a></li>
+  <li><a href="#sec-dictionaries" id="toc-sec-dictionaries" class="nav-link" data-scroll-target="#sec-dictionaries"><span class="header-section-number">4.5</span> Dictionaries erstellen</a>
+  <ul class="collapse">
+  <li><a href="#auf-werte-zugreifen" id="toc-auf-werte-zugreifen" class="nav-link" data-scroll-target="#auf-werte-zugreifen">Auf Werte zugreifen</a></li>
+  <li><a href="#werte-ändern-und-hinzufügen" id="toc-werte-ändern-und-hinzufügen" class="nav-link" data-scroll-target="#werte-ändern-und-hinzufügen">Werte ändern und hinzufügen</a></li>
+  <li><a href="#sichere-zugriffsmethode-mit-.get" id="toc-sichere-zugriffsmethode-mit-.get" class="nav-link" data-scroll-target="#sichere-zugriffsmethode-mit-.get">Sichere Zugriffsmethode mit .get()</a></li>
+  </ul></li>
+  <li><a href="#sec-fehler" id="toc-sec-fehler" class="nav-link" data-scroll-target="#sec-fehler"><span class="header-section-number">4.6</span> Fehler abfangen</a>
+  <ul class="collapse">
+  <li><a href="#der-finally-block" id="toc-der-finally-block" class="nav-link" data-scroll-target="#der-finally-block">Der finally-Block</a></li>
+  </ul></li>
+  <li><a href="#sec-projekt-benutzerverwaltung" id="toc-sec-projekt-benutzerverwaltung" class="nav-link" data-scroll-target="#sec-projekt-benutzerverwaltung"><span class="header-section-number">4.7</span> Übung: Benutzerverwaltung</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen" id="toc-anforderungen" class="nav-link" data-scroll-target="#anforderungen">Anforderungen</a></li>
+  <li><a href="#anleitung" id="toc-anleitung" class="nav-link" data-scroll-target="#anleitung">Anleitung</a></li>
+  <li><a href="#beispiel-code-struktur" id="toc-beispiel-code-struktur" class="nav-link" data-scroll-target="#beispiel-code-struktur">Beispiel-Code-Struktur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#lösungen-zu-kapitel-4" id="toc-lösungen-zu-kapitel-4" class="nav-link" data-scroll-target="#lösungen-zu-kapitel-4"><span class="header-section-number">4.8</span> Lösungen zu Kapitel 4</a>
+  <ul class="collapse">
+  <li><a href="#sec-solution-benutzerverwaltung" id="toc-sec-solution-benutzerverwaltung" class="nav-link" data-scroll-target="#sec-solution-benutzerverwaltung">Lösung zum Projekt: Benutzerverwaltung</a></li>
+  </ul></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung"><span class="header-section-number">4.9</span> Zusammenfassung</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ppronobis/ki-python/edit/main/Kapitel 4.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ppronobis/ki-python/issues/new" class="toc-action">Problem melden</a></p><p><a href="https://github.com/ppronobis/ki-python/blob/main/Kapitel 4.qmd" class="toc-action">Quellcode anzeigen</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-datenstrukturen" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="sec-willkommen-kap4" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-willkommen-kap4"><span class="header-section-number">4.1</span> Willkommen zu Kapitel 4</h2>
+<p>Herzlich willkommen zu Kapitel 4! Nachdem wir gelernt haben, wie man den Fluss von Programmen mit Bedingungen und Schleifen steuert, wenden wir uns nun einem weiteren fundamentalen Thema zu: den Datenstrukturen.</p>
+<p>Bisher haben wir unsere Daten hauptsächlich in einzelnen Variablen gespeichert. Aber was ist, wenn wir mit einer Sammlung von zusammengehörigen Werten arbeiten müssen, wie zum Beispiel einer Liste von Studenten, einer Sammlung von Telefonnummern oder den Einstellungen für eine Anwendung? Genau hier kommen Datenstrukturen ins Spiel – sie sind spezielle Formate, um Daten zu organisieren, zu speichern und zu verwalten.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🎯 In diesem Kapitel werden Sie lernen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Was Listen sind</strong> und wie Sie damit flexible Sammlungen von Elementen verwalten</li>
+<li><strong>Was Tupel sind</strong> und wann unveränderliche Datenstrukturen sinnvoll sind</li>
+<li><strong>Was Dictionaries sind</strong> und wie Sie Daten mit Schlüssel-Wert-Paaren organisieren</li>
+<li><strong>Wie Sie mit Fehlern umgehen</strong> und robustere Programme schreiben</li>
+</ul>
+</div>
+</div>
+<p>Am Ende dieses Kapitels werden Sie in der Lage sein, komplexere Daten zu modellieren und Programme zu entwickeln, die auch bei unerwarteten Eingaben stabil laufen. Als Abschlussprojekt werden wir eine kleine Benutzerverwaltung entwickeln, die all diese Konzepte praktisch vereint.</p>
+<p>Lassen Sie uns eintauchen und lernen, wie man Daten wie ein Profi organisiert!</p>
+</section>
+<section id="sec-listen" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-listen"><span class="header-section-number">4.2</span> Listen erstellen</h2>
+<p>Eine Liste ist eine geordnete und veränderbare Sammlung von Elementen. Sie ist eine der vielseitigsten und am häufigsten verwendeten Datenstrukturen in Python. Stellen Sie sich eine Liste wie einen Einkaufszettel vor: Sie können Dinge hinzufügen, entfernen, die Reihenfolge ändern – und Sie wissen immer, welches Element an welcher Position steht.</p>
+<p>Eine Liste kann Elemente verschiedener Datentypen enthalten, aber in der Praxis enthalten Listen meist Elemente desselben Typs. Um eine Liste zu erstellen, schließen Sie eine durch Kommas getrennte Sequenz von Elementen in eckige Klammern <code>[]</code> ein:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine leere Liste</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>leere_liste <span class="op">=</span> []</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Liste von Zahlen</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>zahlen <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Liste von Strings</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Liste mit gemischten Datentypen</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>gemischte_liste <span class="op">=</span> [<span class="dv">1</span>, <span class="st">"Hallo"</span>, <span class="fl">3.14</span>, <span class="va">True</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die eckigen Klammern sind das erkennbare Merkmal einer Liste in Python. Beachten Sie, dass eine Liste auch komplett leer sein kann – das ist nützlich, wenn Sie Elemente erst später hinzufügen möchten.</p>
+<section id="auf-listenelemente-zugreifen" class="level3">
+<h3 class="anchored" data-anchor-id="auf-listenelemente-zugreifen">Auf Listenelemente zugreifen</h3>
+<p>Nachdem wir eine Liste erstellt haben, müssen wir natürlich auch auf die einzelnen Elemente zugreifen können. Dafür verwendet Python einen sogenannten Index – die Position des Elements in der Liste. <strong>Wichtig:</strong> Die Indizierung in Python beginnt bei 0, nicht bei 1! Das erste Element hat also den Index 0, das zweite den Index 1, und so weiter.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Auf das erste Element zugreifen</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruechte[<span class="dv">0</span>])  <span class="co"># Ausgabe: Apfel</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Auf das dritte Element zugreifen</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruechte[<span class="dv">2</span>])  <span class="co"># Ausgabe: Kirsche</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Diese nullbasierte Indizierung ist in den meisten Programmiersprachen Standard und wird Ihnen mit der Zeit vertraut werden. Merken Sie sich: Bei einer Liste mit drei Elementen sind die gültigen Indizes 0, 1 und 2.</p>
+</section>
+<section id="negative-indizes-und-slicing" class="level3">
+<h3 class="anchored" data-anchor-id="negative-indizes-und-slicing">Negative Indizes und Slicing</h3>
+<p>Manchmal möchten wir auf das letzte Element einer Liste zugreifen, ohne erst die Länge der Liste berechnen zu müssen. Python bietet hierfür eine elegante Lösung: negative Indizes. Der Index <code>-1</code> bezieht sich auf das letzte Element, <code>-2</code> auf das vorletzte, und so weiter:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>, <span class="st">"Mango"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Das letzte Element</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruechte[<span class="op">-</span><span class="dv">1</span>])  <span class="co"># Ausgabe: Mango</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Das vorletzte Element</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruechte[<span class="op">-</span><span class="dv">2</span>])  <span class="co"># Ausgabe: Kirsche</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Negative Indizes sind besonders praktisch, wenn Sie mit Listen arbeiten, deren Länge sich ändern kann, und Sie trotzdem zuverlässig auf das letzte Element zugreifen möchten.</p>
+<p>Neben dem Zugriff auf einzelne Elemente können wir auch ganze Abschnitte einer Liste auf einmal extrahieren. Diese Technik nennt sich <em>Slicing</em> und ist besonders praktisch, wenn Sie mit größeren Datenmengen arbeiten. Die Syntax lautet <code>liste[start:ende]</code>, wobei <code>start</code> inklusive und <code>ende</code> exklusive ist:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Elemente von Index 1 bis 3 (exklusive 4)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zahlen[<span class="dv">1</span>:<span class="dv">4</span>])  <span class="co"># Ausgabe: [1, 2, 3]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Vom Anfang bis Index 3 (exklusive)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zahlen[:<span class="dv">3</span>])   <span class="co"># Ausgabe: [0, 1, 2]</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Von Index 2 bis zum Ende</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zahlen[<span class="dv">2</span>:])   <span class="co"># Ausgabe: [2, 3, 4, 5]</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Die gesamte Liste kopieren</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>kopie <span class="op">=</span> zahlen[:]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(kopie)        <span class="co"># Ausgabe: [0, 1, 2, 3, 4, 5]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wenn Sie den Startindex weglassen, beginnt das Slice am Anfang der Liste. Wenn Sie den Endindex weglassen, geht das Slice bis zum Ende. Mit <code>[:]</code> können Sie sogar eine komplette Kopie der Liste erstellen – nützlich, wenn Sie die Originalliste unverändert lassen möchten.</p>
+</section>
+<section id="listen-sind-veränderbar" class="level3">
+<h3 class="anchored" data-anchor-id="listen-sind-veränderbar">Listen sind veränderbar</h3>
+<p>Ein entscheidender Unterschied zwischen Listen und anderen Datentypen wie Strings: Listen sind veränderbar. Das bedeutet, wir können Elemente nach der Erstellung der Liste hinzufügen, entfernen oder ändern – die ursprüngliche Liste wird direkt modifiziert. Schauen wir uns die drei grundlegenden Operationen an:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Das zweite Element ändern</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fruechte[<span class="dv">1</span>] <span class="op">=</span> <span class="st">"Orange"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruechte)  <span class="co"># Ausgabe: ["Apfel", "Orange", "Kirsche"]</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein Element am Ende hinzufügen</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>fruechte.append(<span class="st">"Mango"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruechte)  <span class="co"># Ausgabe: ["Apfel", "Orange", "Kirsche", "Mango"]</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein Element entfernen</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>fruechte.remove(<span class="st">"Apfel"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruechte)  <span class="co"># Ausgabe: ["Orange", "Kirsche", "Mango"]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Mit der Zuweisung <code>fruechte[1] = "Orange"</code> ändern wir ein bestehendes Element. Die Methode <code>append()</code> fügt ein Element am Ende hinzu, und <code>remove()</code> entfernt das erste Vorkommen eines bestimmten Werts.</p>
+<p>Python bietet eine Vielzahl von Methoden, um Listen zu manipulieren. Die folgende Tabelle gibt Ihnen einen Überblick über die wichtigsten Werkzeuge, die Sie im Alltag häufig verwenden werden.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📚 Weitere nützliche Listen-Methoden
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 42%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>len(liste)</code></td>
+<td>Gibt die Anzahl der Elemente zurück</td>
+<td><code>len([1, 2, 3])</code> → <code>3</code></td>
+</tr>
+<tr class="even">
+<td><code>liste.insert(i, x)</code></td>
+<td>Fügt <code>x</code> an Position <code>i</code> ein</td>
+<td><code>liste.insert(0, "Neu")</code></td>
+</tr>
+<tr class="odd">
+<td><code>liste.pop()</code></td>
+<td>Entfernt und gibt das letzte Element zurück</td>
+<td><code>liste.pop()</code></td>
+</tr>
+<tr class="even">
+<td><code>liste.pop(i)</code></td>
+<td>Entfernt und gibt Element an Position <code>i</code> zurück</td>
+<td><code>liste.pop(0)</code></td>
+</tr>
+<tr class="odd">
+<td><code>liste.sort()</code></td>
+<td>Sortiert die Liste aufsteigend</td>
+<td><code>[3,1,2].sort()</code> → <code>[1,2,3]</code></td>
+</tr>
+<tr class="even">
+<td><code>liste.reverse()</code></td>
+<td>Kehrt die Reihenfolge um</td>
+<td><code>[1,2,3].reverse()</code> → <code>[3,2,1]</code></td>
+</tr>
+<tr class="odd">
+<td><code>x in liste</code></td>
+<td>Prüft, ob <code>x</code> in der Liste enthalten ist</td>
+<td><code>"a" in ["a","b"]</code> → <code>True</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Länge der Liste</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(zahlen))  <span class="co"># Ausgabe: 5</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Element an Position 0 einfügen</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>zahlen.insert(<span class="dv">0</span>, <span class="dv">99</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zahlen)  <span class="co"># Ausgabe: [99, 3, 1, 4, 1, 5]</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Letztes Element entfernen und zurückgeben</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>letztes <span class="op">=</span> zahlen.pop()</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(letztes)  <span class="co"># Ausgabe: 5</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zahlen)   <span class="co"># Ausgabe: [99, 3, 1, 4, 1]</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Liste sortieren</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>zahlen.sort()</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zahlen)   <span class="co"># Ausgabe: [1, 1, 3, 4, 99]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Listen sind ein unglaublich flexibles Werkzeug, um Sammlungen von Daten zu verwalten. Mit den Methoden, die Sie gerade kennengelernt haben, können Sie Daten hinzufügen, entfernen, sortieren und durchsuchen. Im nächsten Abschnitt werden wir sehen, wie wir mit Schleifen effizient durch Listen iterieren können.</p>
+</section>
+</section>
+<section id="sec-listen-durchlaufen" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sec-listen-durchlaufen"><span class="header-section-number">4.3</span> Listen durchlaufen</h2>
+<p>Eine der häufigsten Aufgaben bei der Arbeit mit Listen ist es, jedes Element in der Liste zu durchlaufen und eine bestimmte Operation damit durchzuführen. Stellen Sie sich vor, Sie möchten alle Produkte in einem Warenkorb ausgeben oder die Summe aller Verkaufszahlen berechnen – genau hierfür eignet sich die for-Schleife perfekt:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> frucht <span class="kw">in</span> fruechte:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Ich esse gerne </span><span class="sc">{</span>frucht<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In diesem Beispiel durchläuft die Variable <code>frucht</code> nacheinander alle Elemente der Liste. Bei jedem Durchlauf nimmt sie den Wert des aktuellen Elements an. Die for-Schleife ist die natürlichste Art, alle Elemente einer Liste zu verarbeiten.</p>
+<p>Manchmal benötigen wir jedoch nicht nur das Element selbst, sondern auch seine Position in der Liste. Die <code>enumerate()</code>-Funktion ist hierfür sehr praktisch – sie gibt uns in jeder Iteration sowohl den Index als auch den Wert des Elements zurück:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fruechte <span class="op">=</span> [<span class="st">"Apfel"</span>, <span class="st">"Banane"</span>, <span class="st">"Kirsche"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, frucht <span class="kw">in</span> <span class="bu">enumerate</span>(fruechte):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"An Position </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> befindet sich die Frucht: </span><span class="sc">{</span>frucht<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beachten Sie, wie wir mit <code>index, frucht</code> zwei Variablen gleichzeitig zuweisen – Python nennt dies <em>Tuple Unpacking</em>. Die <code>enumerate()</code>-Funktion ist besonders nützlich, wenn Sie nummerierte Listen ausgeben oder den Index für weitere Berechnungen benötigen.</p>
+<p>Das Durchlaufen von Listen ist eine grundlegende Technik, die Sie immer wieder benötigen werden, sei es zur Datenverarbeitung, zur Anzeige von Informationen oder zur Durchführung von Berechnungen auf einer Sammlung von Werten.</p>
+</section>
+<section id="sec-tupel" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-tupel"><span class="header-section-number">4.4</span> Tupel erstellen</h2>
+<p>Nachdem wir Listen ausführlich behandelt haben, lernen wir nun eine eng verwandte Datenstruktur kennen: das Tupel. Auf den ersten Blick sehen Tupel sehr ähnlich aus wie Listen, aber es gibt einen entscheidenden Unterschied.</p>
+<p>Ein Tupel ist eine geordnete und unveränderliche Sammlung von Elementen. Nach der Erstellung können keine Elemente mehr hinzugefügt, entfernt oder geändert werden. Das mag zunächst wie eine Einschränkung wirken, ist aber in vielen Situationen genau das, was wir brauchen. Um ein Tupel zu erstellen, schließen Sie eine durch Kommas getrennte Sequenz von Elementen in runde Klammern <code>()</code> ein:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein Tupel von Zahlen</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>koordinaten <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein Tupel von Strings</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>farben <span class="op">=</span> (<span class="st">"Rot"</span>, <span class="st">"Grün"</span>, <span class="st">"Blau"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein Tupel mit nur einem Element (Achtung: Komma ist wichtig!)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>einzel_tupel <span class="op">=</span> (<span class="dv">42</span>,)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beachten Sie den letzten Fall: Bei einem Tupel mit nur einem Element ist das Komma am Ende zwingend erforderlich. Ohne das Komma würde Python <code>(42)</code> als einfache Klammerung interpretieren und keinen Tupel erstellen.</p>
+<p>Warum sollten Sie Tupel anstelle von Listen verwenden? Es gibt drei wichtige Gründe, die in der Praxis eine große Rolle spielen:</p>
+<p>Erstens bieten Tupel <strong>Datensicherheit</strong>. Wenn Sie eine Sammlung von Werten haben, die sich nicht ändern soll – zum Beispiel die Koordinaten eines Punktes auf einer Karte oder die Tage der Woche – schützt die Unveränderlichkeit von Tupeln vor versehentlichen Modifikationen. Stellen Sie sich vor, Sie arbeiten an einem großen Projekt mit vielen Funktionen: Bei einer Liste könnte irgendwo im Code versehentlich ein Wert geändert werden, was zu schwer auffindbaren Fehlern führt. Ein Tupel macht dies unmöglich.</p>
+<p>Zweitens sind Tupel in der Regel <strong>performanter</strong>. Da Python weiß, dass sich ein Tupel nicht ändern kann, kann es im Hintergrund optimieren: Tupel verbrauchen weniger Speicher und der Zugriff auf Elemente ist geringfügig schneller als bei Listen. Bei kleinen Datenmengen ist der Unterschied vernachlässigbar, aber bei Millionen von Datenpunkten kann es sich summieren.</p>
+<p>Drittens können Tupel als <strong>Dictionary-Schlüssel</strong> verwendet werden. Diese Eigenschaft werden wir im nächsten Abschnitt genauer betrachten – dort lernen Sie, dass Dictionaries nur unveränderliche Objekte als Schlüssel akzeptieren. Eine Liste kann niemals ein Schlüssel sein, ein Tupel schon.</p>
+<p>Der Zugriff auf Elemente eines Tupels funktioniert genauso wie bei Listen – Sie können sowohl positive als auch negative Indizes verwenden:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>farben <span class="op">=</span> (<span class="st">"Rot"</span>, <span class="st">"Grün"</span>, <span class="st">"Blau"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(farben[<span class="dv">0</span>])  <span class="co"># Ausgabe: Rot</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(farben[<span class="op">-</span><span class="dv">1</span>]) <span class="co"># Ausgabe: Blau (letztes Element)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Auch Slicing funktioniert bei Tupeln identisch zu Listen. Der große Unterschied zeigt sich erst, wenn Sie versuchen, ein Element zu ändern.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Tupel sind unveränderlich
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Der Versuch, ein Element in einem Tupel zu ändern, führt jedoch zu einem Fehler:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>farben[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"Gelb"</span>  <span class="co"># TypeError: 'tuple' object does not support item assignment</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Die Unveränderlichkeit von Tupeln mag zunächst wie eine Einschränkung wirken, ist aber in vielen Situationen ein Vorteil. Sie signalisiert anderen Entwicklern (und Ihrem zukünftigen Ich), dass diese Daten nicht verändert werden sollten, und verhindert versehentliche Modifikationen.</p>
+</section>
+<section id="sec-dictionaries" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sec-dictionaries"><span class="header-section-number">4.5</span> Dictionaries erstellen</h2>
+<p>Listen und Tupel speichern Elemente in einer geordneten Sequenz und greifen über numerische Indizes darauf zu. Aber was ist, wenn wir Daten speichern möchten, die natürlicherweise über einen beschreibenden Namen identifiziert werden? Stellen Sie sich vor, Sie möchten die Eigenschaften einer Person speichern: Name, Alter, Wohnort. Ein Dictionary ist hierfür die ideale Datenstruktur.</p>
+<p>Ein Dictionary ist eine veränderbare Sammlung von Schlüssel-Wert-Paaren. Anstatt auf Elemente über einen numerischen Index zuzugreifen, greifen wir auf Werte über einen eindeutigen Schlüssel zu. Seit Python 3.7 sind Dictionaries außerdem geordnet – sie merken sich die Reihenfolge, in der die Elemente eingefügt wurden. Um ein Dictionary zu erstellen, verwenden Sie geschweifte Klammern <code>{}</code>, wobei jedes Element aus einem Schlüssel und einem Wert besteht, getrennt durch einen Doppelpunkt:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein Dictionary, das eine Person beschreibt</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>person <span class="op">=</span> {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"vorname"</span>: <span class="st">"Max"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nachname"</span>: <span class="st">"Mustermann"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"alter"</span>: <span class="dv">30</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stadt"</span>: <span class="st">"Berlin"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Schlüssel sind hier Strings (<code>"vorname"</code>, <code>"nachname"</code>, etc.), aber auch Zahlen oder Tupel können als Schlüssel dienen. Die Werte können beliebige Python-Objekte sein – Strings, Zahlen, Listen oder sogar andere Dictionaries.</p>
+<section id="auf-werte-zugreifen" class="level3">
+<h3 class="anchored" data-anchor-id="auf-werte-zugreifen">Auf Werte zugreifen</h3>
+<p>Um auf einen Wert in einem Dictionary zuzugreifen, verwenden wir den entsprechenden Schlüssel in eckigen Klammern – ähnlich wie bei Listen, nur dass statt eines numerischen Index ein Schlüssel steht:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(person[<span class="st">"vorname"</span>])  <span class="co"># Ausgabe: Max</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(person[<span class="st">"alter"</span>])    <span class="co"># Ausgabe: 30</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Diese Art des Zugriffs macht den Code sehr lesbar: <code>person["vorname"]</code> liest sich fast wie natürliche Sprache.</p>
+</section>
+<section id="werte-ändern-und-hinzufügen" class="level3">
+<h3 class="anchored" data-anchor-id="werte-ändern-und-hinzufügen">Werte ändern und hinzufügen</h3>
+<p>Genau wie Listen sind auch Dictionaries veränderbar. Wir können bestehende Werte modifizieren und neue Schlüssel-Wert-Paare hinzufügen – die Struktur des Dictionaries passt sich dynamisch an:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Den Wert für den Schlüssel "stadt" ändern</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>person[<span class="st">"stadt"</span>] <span class="op">=</span> <span class="st">"Hamburg"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein neues Schlüssel-Wert-Paar hinzufügen</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>person[<span class="st">"beruf"</span>] <span class="op">=</span> <span class="st">"Entwickler"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(person)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: {"vorname": "Max", "nachname": "Mustermann", "alter": 30, "stadt": "Hamburg", "beruf": "Entwickler"}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beachten Sie, dass die gleiche Syntax sowohl zum Ändern eines bestehenden Werts als auch zum Hinzufügen eines neuen Schlüssel-Wert-Paars verwendet wird. Wenn der Schlüssel bereits existiert, wird der Wert überschrieben; wenn nicht, wird ein neuer Eintrag erstellt.</p>
+</section>
+<section id="sichere-zugriffsmethode-mit-.get" class="level3">
+<h3 class="anchored" data-anchor-id="sichere-zugriffsmethode-mit-.get">Sichere Zugriffsmethode mit .get()</h3>
+<p>Was passiert, wenn wir versuchen, auf einen Schlüssel zuzugreifen, der nicht existiert? Bei der direkten Zugriffsmethode mit eckigen Klammern würde Python einen <code>KeyError</code> ausgeben. Die <code>.get()</code>-Methode bietet eine sicherere Alternative – sie gibt einen Standardwert zurück, wenn der Schlüssel nicht gefunden wird:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>person <span class="op">=</span> {<span class="st">"vorname"</span>: <span class="st">"Max"</span>, <span class="st">"alter"</span>: <span class="dv">30</span>}</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Unsicher: Erzeugt KeyError, wenn der Schlüssel nicht existiert</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print(person["beruf"])  # KeyError: 'beruf'</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sicher: Gibt None zurück, wenn der Schlüssel nicht existiert</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>beruf <span class="op">=</span> person.get(<span class="st">"beruf"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beruf)  <span class="co"># Ausgabe: None</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit eigenem Standardwert</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>beruf <span class="op">=</span> person.get(<span class="st">"beruf"</span>, <span class="st">"Nicht angegeben"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beruf)  <span class="co"># Ausgabe: Nicht angegeben</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Der Schlüssel "vorname" existiert</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> person.get(<span class="st">"vorname"</span>, <span class="st">"Unbekannt"</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(name)   <span class="co"># Ausgabe: Max</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die <code>.get()</code>-Methode ist besonders nützlich, wenn Sie nicht sicher sind, ob ein Schlüssel existiert, und Sie keinen Fehler riskieren möchten. Sie werden diese Methode häufig verwenden, wenn Sie Daten aus externen Quellen verarbeiten.</p>
+<p>Dictionaries sind die perfekte Datenstruktur, wenn Sie Daten in einer “Label-Wert”-Beziehung speichern möchten. Sie sind das Äquivalent zu JSON-Objekten in JavaScript oder Hash-Maps in anderen Sprachen und ein unverzichtbares Werkzeug für jeden Python-Programmierer.</p>
+</section>
+</section>
+<section id="sec-fehler" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="sec-fehler"><span class="header-section-number">4.6</span> Fehler abfangen</h2>
+<p>Egal wie sorgfältig wir programmieren, Fehler (sogenannte Exceptions) können immer auftreten. Ein Benutzer gibt möglicherweise Text ein, wo eine Zahl erwartet wird, eine Datei, die wir öffnen wollen, existiert nicht, oder wir versuchen, auf einen Dictionary-Schlüssel zuzugreifen, den es nicht gibt.</p>
+<p>Wenn solche Fehler nicht behandelt werden, stürzt unser Programm ab – oft mit einer für den Benutzer unverständlichen Fehlermeldung. Das ist weder professionell noch benutzerfreundlich. Genau hier kommt die Fehlerbehandlung ins Spiel.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🛡️ Die try-except-Struktur
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um dies zu verhindern, können wir den <code>try-except</code>-Block verwenden, um Fehler elegant abzufangen und darauf zu reagieren.</p>
+<ul>
+<li><strong><code>try</code>-Block:</strong> Hier schreiben wir den Code, bei dem wir einen Fehler erwarten.</li>
+<li><strong><code>except</code>-Block:</strong> Dieser Code wird nur dann ausgeführt, wenn im try-Block ein Fehler auftritt.</li>
+</ul>
+</div>
+</div>
+<p>Lassen Sie uns diese Struktur an einem konkreten Beispiel betrachten. Eine Division durch Null ist mathematisch nicht definiert und führt in Python zu einem <code>ZeroDivisionError</code>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    ergebnis <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(ergebnis)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Fehler: Es kann nicht durch Null geteilt werden!"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In diesem Beispiel versucht Python, die Division durchzuführen. Da dies zu einem Fehler führt, springt die Ausführung sofort in den <code>except</code>-Block, und unsere freundliche Fehlermeldung wird ausgegeben.</p>
+<p>Ein weiterer häufiger Anwendungsfall ist die Validierung von Benutzereingaben. Wenn ein Benutzer Text eingibt, wo eine Zahl erwartet wird, erzeugt <code>int()</code> einen <code>ValueError</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    alter <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Bitte geben Sie Ihr Alter ein: "</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Sie sind </span><span class="sc">{</span>alter<span class="sc">}</span><span class="ss"> Jahre alt."</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Fehler: Das war keine gültige Zahl."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Durch diese Fehlerbehandlung kann das Programm auch bei unerwarteten Eingaben weiterlaufen, anstatt abzustürzen.</p>
+<section id="der-finally-block" class="level3">
+<h3 class="anchored" data-anchor-id="der-finally-block">Der finally-Block</h3>
+<p>Manchmal möchten wir sicherstellen, dass bestimmter Code ausgeführt wird, unabhängig davon, ob ein Fehler aufgetreten ist oder nicht. Denken Sie an das Aufräumen eines Zimmers: Egal ob Sie es erfolgreich neu dekoriert haben oder dabei etwas schief ging – am Ende müssen Sie die Werkzeuge wegräumen. Genau diese Garantie bietet der <code>finally</code>-Block in Python.</p>
+<p>Der <code>finally</code>-Block wird immer ausgeführt – egal ob der <code>try</code>-Block erfolgreich war oder ein Fehler aufgetreten ist. Das macht ihn zum perfekten Ort für Aufräumarbeiten:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    datei <span class="op">=</span> <span class="bu">open</span>(<span class="st">"beispiel.txt"</span>, <span class="st">"r"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    inhalt <span class="op">=</span> datei.read()</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(inhalt)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Fehler: Die Datei wurde nicht gefunden."</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Dieser Code wird immer ausgeführt."</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Hier könnten wir z.B. Ressourcen freigeben</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In der Praxis begegnet Ihnen der <code>finally</code>-Block häufig in folgenden Situationen: beim Schließen von Dateien, die Sie geöffnet haben; beim Beenden von Datenbankverbindungen, die Sie aufgebaut haben; oder beim Freigeben von Ressourcen, die Ihr Programm belegt. Selbst wenn mitten in Ihrer Verarbeitung ein Fehler auftritt, stellt <code>finally</code> sicher, dass diese kritischen Aufräumarbeiten durchgeführt werden.</p>
+<p>Erinnern Sie sich an die <code>.get()</code>-Methode aus dem Dictionary-Abschnitt? Sie ist ein gutes Beispiel dafür, wie Python manchmal elegantere Alternativen zur Fehlerbehandlung bietet. Vergleichen Sie diese beiden Ansätze:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>person <span class="op">=</span> {<span class="st">"name"</span>: <span class="st">"Max"</span>}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit try-except</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    beruf <span class="op">=</span> person[<span class="st">"beruf"</span>]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    beruf <span class="op">=</span> <span class="st">"Nicht angegeben"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Eleganter mit .get()</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>beruf <span class="op">=</span> person.get(<span class="st">"beruf"</span>, <span class="st">"Nicht angegeben"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beide Varianten erreichen das gleiche Ziel, aber <code>.get()</code> ist in diesem Fall kürzer und lesbarer. Generell gilt: Verwenden Sie <code>try-except</code> für echte Ausnahmesituationen, und nutzen Sie eingebaute Methoden wie <code>.get()</code>, wenn diese existieren.</p>
+<p>Durch die Verwendung von <code>try-except</code> können wir unsere Programme robuster und benutzerfreundlicher machen. Anstatt mit einer unverständlichen Fehlermeldung abzustürzen, kann das Programm eine hilfreiche Nachricht ausgeben und die Ausführung fortsetzen. Fehlerbehandlung ist ein Zeichen von professionellem Code und sollte von Anfang an Teil Ihrer Programmierpraxis sein.</p>
+</section>
+</section>
+<section id="sec-projekt-benutzerverwaltung" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="sec-projekt-benutzerverwaltung"><span class="header-section-number">4.7</span> Übung: Benutzerverwaltung</h2>
+<p>Nachdem wir die wichtigsten Datenstrukturen und die Fehlerbehandlung kennengelernt haben, ist es Zeit, unser Wissen in einem praktischen Projekt anzuwenden. Wir werden eine einfache, textbasierte Benutzerverwaltung erstellen, die alle Konzepte dieses Kapitels vereint.</p>
+<p><strong>Ziel:</strong> Erstellen Sie eine interaktive Benutzerverwaltung mit Python-Dictionaries, um Benutzerkonten zu speichern und zu verwalten.</p>
+<section id="anforderungen" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen">Anforderungen</h3>
+<ol type="1">
+<li><strong>Benutzer registrieren:</strong> Die Anwendung soll einen neuen Benutzer anlegen können:
+<ul>
+<li>Der Benutzername dient als Schlüssel im Dictionary</li>
+<li>Das Passwort wird als Wert gespeichert</li>
+<li>Falls der Benutzername bereits existiert, soll eine Fehlermeldung erscheinen</li>
+</ul></li>
+<li><strong>Benutzer einloggen:</strong> Bei Eingabe von Benutzername und Passwort soll die Anwendung prüfen:
+<ul>
+<li>Existiert der Benutzername im Dictionary?</li>
+<li>Stimmt das eingegebene Passwort mit dem gespeicherten überein?</li>
+<li>Bei Erfolg: Begrüßungsnachricht anzeigen</li>
+<li>Bei Fehler: Entsprechende Fehlermeldung ausgeben</li>
+</ul></li>
+<li><strong>Menüführung:</strong> Das Programm soll in einer Endlosschleife laufen und folgende Optionen anbieten:
+<ul>
+<li>Option 1: Neuen Benutzer anlegen</li>
+<li>Option 2: Benutzer einloggen</li>
+<li>Option 3: Programm beenden</li>
+</ul></li>
+<li><strong>Fehlerbehandlung:</strong> Ungültige Menüeingaben sollen abgefangen werden.</li>
+</ol>
+</section>
+<section id="anleitung" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung">Anleitung</h3>
+<ol type="1">
+<li>Beginnen Sie mit der Erstellung eines leeren Dictionaries für die Benutzerdaten.</li>
+<li>Implementieren Sie eine Funktion <code>neuen_benutzer_anlegen()</code>, die nach Benutzername und Passwort fragt.</li>
+<li>Implementieren Sie eine Funktion <code>benutzer_einloggen()</code>, die die Anmeldedaten überprüft.</li>
+<li>Erstellen Sie eine <code>while True</code>-Schleife, die das Menü anzeigt und die Benutzereingabe verarbeitet.</li>
+<li>Verwenden Sie <code>if-elif-else</code>, um auf die verschiedenen Menüoptionen zu reagieren.</li>
+</ol>
+</section>
+<section id="beispiel-code-struktur" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-code-struktur">Beispiel-Code-Struktur</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leeres Dictionary für Benutzerdaten initialisieren</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>benutzerdaten <span class="op">=</span> {}</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neuen_benutzer_anlegen():</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Fragt nach Benutzername und Passwort und speichert den neuen Benutzer."""</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Benutzernamen abfragen mit input()</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prüfen, ob Benutzername bereits existiert (mit 'in')</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Falls ja: Fehlermeldung ausgeben</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Falls nein: Passwort abfragen und im Dictionary speichern</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> benutzer_einloggen():</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Überprüft die Anmeldedaten eines Benutzers."""</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Benutzername und Passwort abfragen</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prüfen, ob Benutzername existiert UND Passwort übereinstimmt</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Entsprechende Meldung ausgeben</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Hauptprogramm: Menüschleife</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Menü anzeigen</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Menü ---"</span>)</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"1. Neuen Benutzer anlegen"</span>)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"2. Benutzer einloggen"</span>)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"3. Programm beenden"</span>)</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Benutzereingabe abfragen</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mit if-elif-else die passende Funktion aufrufen</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bei Option 3: break verwenden, um die Schleife zu beenden</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bei ungültiger Eingabe: Fehlermeldung ausgeben</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise">Hinweise</h3>
+<ul>
+<li>Verwenden Sie <code>benutzername in benutzerdaten</code>, um zu prüfen, ob ein Schlüssel existiert.</li>
+<li>Denken Sie daran, dass <code>input()</code> immer einen String zurückgibt – das ist hier kein Problem, da wir mit Texteingaben arbeiten.</li>
+<li>Die Bedingung für einen erfolgreichen Login lautet: Der Benutzername muss existieren UND das Passwort muss übereinstimmen.</li>
+</ul>
+<div id="exr-benutzerverwaltung" class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Testen Sie Ihr Programm, indem Sie mehrere Benutzer anlegen und sich dann ein- und ausloggen. Versuchen Sie auch, sich mit einem falschen Passwort anzumelden – Ihr Programm sollte dies erkennen und eine entsprechende Meldung ausgeben.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="lösungen-zu-kapitel-4" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="lösungen-zu-kapitel-4"><span class="header-section-number">4.8</span> Lösungen zu Kapitel 4</h2>
+<p>In diesem Abschnitt finden Sie die Lösung zum Projekt. Nutzen Sie sie, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen. Vergleichen Sie Ihre Lösung mit der hier gezeigten – wie immer gibt es mehrere richtige Ansätze zur Problemlösung. Das Wichtigste ist, dass Ihr Code funktioniert und die Anforderungen erfüllt.</p>
+<section id="sec-solution-benutzerverwaltung" class="level3">
+<h3 class="anchored" data-anchor-id="sec-solution-benutzerverwaltung">Lösung zum Projekt: Benutzerverwaltung</h3>
+<p>Die folgende Lösung zeigt eine mögliche Implementierung der Benutzerverwaltung. Beachten Sie, wie wir Funktionen verwenden, um den Code übersichtlich zu strukturieren.</p>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+👥 Lösung zum Projekt: Benutzerverwaltung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>benutzerdaten <span class="op">=</span> {}</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neuen_benutzer_anlegen():</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    benutzername <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Neuen Benutzernamen eingeben: "</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> benutzername <span class="kw">in</span> benutzerdaten:</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Dieser Benutzername ist bereits vergeben."</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        passwort <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Geben Sie ein Passwort ein: "</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        benutzerdaten[benutzername] <span class="op">=</span> passwort</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Benutzer '</span><span class="sc">{</span>benutzername<span class="sc">}</span><span class="ss">' wurde erfolgreich angelegt."</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> benutzer_einloggen():</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    benutzername <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Benutzername: "</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    passwort <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Passwort: "</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> benutzername <span class="kw">in</span> benutzerdaten <span class="kw">and</span> benutzerdaten[benutzername] <span class="op">==</span> passwort:</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Willkommen, </span><span class="sc">{</span>benutzername<span class="sc">}</span><span class="ss">! Sie sind erfolgreich eingeloggt."</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Ungültiger Benutzername oder Passwort."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Menü ---"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"1. Neuen Benutzer anlegen"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"2. Benutzer einloggen"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"3. Programm beenden"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    auswahl <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Bitte wählen Sie eine Option (1-3): "</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> auswahl <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        neuen_benutzer_anlegen()</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> auswahl <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        benutzer_einloggen()</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> auswahl <span class="op">==</span> <span class="st">"3"</span>:</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Programm wird beendet."</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Ungültige Auswahl. Bitte erneut versuchen."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="zusammenfassung" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="zusammenfassung"><span class="header-section-number">4.9</span> Zusammenfassung</h2>
+<p>Herzlichen Glückwunsch – Sie haben Kapitel 4 erfolgreich abgeschlossen! Lassen Sie uns kurz rekapitulieren, was Sie in diesem Kapitel gelernt haben und warum diese Konzepte so wichtig sind.</p>
+<p>Mit <strong>Listen</strong> haben Sie eine der vielseitigsten Datenstrukturen in Python kennengelernt. Sie können Elemente hinzufügen, entfernen, sortieren und über Indizes oder Slicing flexibel darauf zugreifen. Listen werden Sie in praktisch jedem Python-Programm verwenden – sei es für eine einfache Einkaufsliste oder für komplexe Datenverarbeitung.</p>
+<p><strong>Tupel</strong> sind die unveränderlichen Verwandten der Listen. Sie haben gelernt, wann Unveränderlichkeit ein Vorteil ist: für Datensicherheit, Performance und als Dictionary-Schlüssel. Wenn Sie Daten haben, die sich nicht ändern sollen, sind Tupel die richtige Wahl.</p>
+<p><strong>Dictionaries</strong> haben Ihnen eine völlig neue Art der Datenspeicherung eröffnet. Anstatt numerischer Indizes verwenden Sie beschreibende Schlüssel, was Ihren Code intuitiver und lesbarer macht. Die <code>.get()</code>-Methode haben Sie als elegante Alternative zur Fehlerbehandlung kennengelernt.</p>
+<p>Und schließlich haben Sie mit <strong>try-except-finally</strong> die Grundlagen der Fehlerbehandlung erlernt. Robuste Programme stürzen nicht einfach ab, wenn etwas Unerwartetes passiert – sie fangen Fehler ab und reagieren angemessen darauf.</p>
+<p>Sie sind nun in der Lage, mit den wichtigsten Datenstrukturen in Python umzugehen und robustere Programme zu schreiben. Im nächsten Kapitel werden wir uns mit Pandas beschäftigen, einer leistungsstarken Bibliothek für die Datenanalyse, die genau auf diesen Datenstrukturen aufbaut.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Kapitel 3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Kapitel 5.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">KI Python - IHK Rhein-Neckar</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">© 2026 Paul Pronobis &amp; Tobias Lämmle</div>
+  </div>
+</footer>
+
+
+
+</body></html>

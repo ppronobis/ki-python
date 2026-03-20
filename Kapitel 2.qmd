@@ -1,0 +1,581 @@
+# Funktionen {#sec-funktionen}
+
+## Willkommen zu Kapitel 2 {#sec-willkommen-kap2}
+
+Herzlich willkommen zu Kapitel 2! Nachdem wir uns in Kapitel 1 mit den grundlegenden Bausteinen von Python vertraut gemacht haben, werden wir uns in diesem Kapitel einem der wichtigsten Konzepte in der Programmierung widmen: den **Funktionen**.
+
+Funktionen sind das Herzstück jeder gut strukturierten Software. Sie können sich eine Funktion als einen benannten Block von Anweisungen vorstellen, der eine bestimmte Aufgabe erfüllt. Statt denselben Code immer wieder zu schreiben, definieren Sie ihn einmal als Funktion und rufen diese bei Bedarf auf – ähnlich wie ein Rezept in einem Kochbuch, das Sie beliebig oft nachkochen können.
+
+In Python begegnen Ihnen Funktionen überall: Von einfachen eingebauten Funktionen wie `print()` und `len()`, die Sie bereits kennen, bis hin zu komplexen selbstgeschriebenen Funktionen, die ganze Berechnungen kapseln. Das Prinzip ist dabei immer gleich: Eine Funktion nimmt optional Eingaben entgegen (sogenannte **Parameter**), verarbeitet diese und gibt optional ein Ergebnis zurück.
+
+::: {.callout-important}
+## 🎯 In diesem Kapitel werden Sie lernen
+
+- **Was Funktionen sind** und warum sie so nützlich sind
+- **Wie Sie eingebaute Funktionen** von Python nutzen können
+- **Wie Sie Ihre eigenen Funktionen** definieren und an Ihre Bedürfnisse anpassen
+- **Wie Sie Informationen** an Funktionen übergeben und Ergebnisse von ihnen zurückerhalten
+- **Wie Sie Ihre Funktionen** professionell dokumentieren
+- **Was Lambda-Funktionen sind** und wie Sie sie für kurze, einmalige Aufgaben verwenden können
+:::
+
+Am Ende dieses Kapitels werden Sie in der Lage sein, Ihren Code deutlich besser zu strukturieren und komplexere Programme zu schreiben. Lassen Sie uns also direkt eintauchen und die Welt der Funktionen entdecken!
+
+## Nutzen von Funktionen {#sec-nutzen-funktionen}
+
+Stellen Sie sich vor, Sie müssten in Ihrem Programm an zehn verschiedenen Stellen den gleichen, zehnzeiligen Codeblock ausführen. Ohne Funktionen müssten Sie diesen Codeblock zehnmal kopieren und einfügen. Das wäre nicht nur mühsam, sondern auch sehr fehleranfällig. Was passiert, wenn Sie später einen Fehler in diesem Codeblock finden? Sie müssten ihn an allen zehn Stellen korrigieren – und dabei riskieren Sie, eine Stelle zu übersehen oder einen neuen Fehler einzuführen.
+
+Genau hier kommen Funktionen ins Spiel. Sie erlauben es uns, einen Codeblock zu definieren, ihm einen Namen zu geben und ihn dann einfach durch Aufrufen dieses Namens auszuführen. Die Vorteile dieses Ansatzes sind weitreichend und machen Funktionen zu einem unverzichtbaren Werkzeug für jeden Programmierer.
+
+### Wiederverwendbarkeit
+
+Der offensichtlichste Vorteil von Funktionen ist die **Wiederverwendbarkeit**. Sie schreiben den Code einmal und können ihn beliebig oft aufrufen – nicht nur im aktuellen Programm, sondern auch in zukünftigen Projekten. Das spart nicht nur Zeit beim Schreiben, sondern reduziert auch die Gesamtmenge an Code, den Sie pflegen müssen. Stellen Sie sich vor, Sie haben eine Funktion geschrieben, die Kundendaten validiert. Diese Funktion können Sie überall dort einsetzen, wo Kundendaten eingegeben werden, ohne den Validierungscode jedes Mal neu schreiben zu müssen.
+
+### Lesbarkeit
+
+Funktionen verbessern die **Lesbarkeit** Ihres Codes erheblich. Indem Sie einem Codeblock einen aussagekräftigen Namen geben, dokumentieren Sie gleichzeitig, was dieser Code tut. Vergleichen Sie zum Beispiel `berechne_durchschnittsnote(noten)` mit zehn Zeilen arithmetischer Operationen – der Funktionsaufruf verrät sofort die Absicht. Guter Code liest sich fast wie Prosa: `if ist_gueltige_email(eingabe): sende_bestaetigung(benutzer)` ist weitgehend selbsterklärend, auch ohne Kommentare.
+
+### Modularität
+
+Funktionen ermöglichen **modulares Programmieren**. Sie zerlegen Ihr Programm in kleinere, überschaubare Einheiten, die jeweils eine spezifische Aufgabe erfüllen. Jede Funktion ist wie ein Baustein, den Sie unabhängig entwickeln, testen und verbessern können. Wenn ein Teil Ihres Programms nicht funktioniert, können Sie den Fehler auf eine bestimmte Funktion eingrenzen, anstatt durch hunderte Zeilen unstrukturierten Code suchen zu müssen.
+
+### Wartbarkeit
+
+Schließlich verbessern Funktionen die **Wartbarkeit** Ihrer Software dramatisch. Wenn Sie einen Fehler in einer Funktion finden oder eine Verbesserung vornehmen möchten, müssen Sie die Änderung nur an einer einzigen Stelle durchführen. Diese Änderung wird dann automatisch an allen Stellen wirksam, an denen die Funktion aufgerufen wird. Ohne Funktionen müssten Sie dieselbe Korrektur möglicherweise an zehn, zwanzig oder noch mehr Stellen vornehmen – und dabei riskieren Sie, eine Stelle zu übersehen.
+
+::: {.callout-note}
+## 🐍 Python's eingebaute Funktionen
+
+Python selbst bietet eine Vielzahl von eingebauten Funktionen, die wir sofort nutzen können. Die `print()`-Funktion, die wir bereits kennengelernt haben, ist ein perfektes Beispiel. Wir müssen nicht wissen, wie genau `print()` intern funktioniert. Wir wissen nur, dass wir ihr einen Wert übergeben können und sie diesen auf dem Bildschirm ausgibt.
+:::
+
+In den nächsten Abschnitten werden wir lernen, wie wir diese eingebauten Funktionen nutzen und wie wir unsere eigenen, maßgeschneiderten Funktionen erstellen können.
+
+## Import von Funktionen {#sec-import-funktionen}
+
+Python verfügt über eine riesige Sammlung von vordefinierten Funktionen, die in sogenannten **Modulen** organisiert sind. Ein Modul ist im Grunde eine Datei, die Python-Code enthält, einschließlich Funktionsdefinitionen. Um die Funktionen aus einem Modul in unserem eigenen Programm verwenden zu können, müssen wir das Modul zuerst importieren.
+
+Das Importieren eines Moduls ist sehr einfach: Wir verwenden das `import`-Schlüsselwort, gefolgt vom Namen des Moduls. Sobald wir das Modul importiert haben, können wir auf die darin enthaltenen Funktionen zugreifen, indem wir den Modulnamen, einen Punkt `.` und dann den Funktionsnamen schreiben.
+
+Schauen wir uns das am Beispiel des `math`-Moduls an, das viele nützliche mathematische Funktionen enthält:
+
+```python
+import math
+
+# Die Quadratwurzel von 25 berechnen
+wurzel = math.sqrt(25)
+print(f"Die Quadratwurzel von 25 ist {wurzel}")
+# Ausgabe: Die Quadratwurzel von 25 ist 5.0
+
+# Die Zahl Pi ausgeben
+print(f"Der Wert von Pi ist ungefähr {math.pi}")
+# Ausgabe: Der Wert von Pi ist ungefähr 3.141592653589793
+```
+
+Das `math`-Modul stellt nicht nur Funktionen wie `sqrt()` zur Berechnung der Quadratwurzel bereit, sondern auch wichtige mathematische Konstanten wie `pi` oder `e`. Durch den Punkt-Operator (`math.sqrt`, `math.pi`) machen wir deutlich, dass diese Elemente aus dem `math`-Modul stammen.
+
+### Andere Möglichkeiten des Imports
+
+::: {.callout-tip}
+## 🔀 Import-Varianten
+
+**`from ... import ...`:** Hiermit können wir eine bestimmte Funktion direkt importieren, sodass wir den Modulnamen nicht mehr voranstellen müssen.
+
+**`from ... import *`:** Hiermit importieren wir alle Funktionen aus einem Modul. Dies wird jedoch nicht empfohlen, da es zu Namenskonflikten führen kann, wenn verschiedene Module Funktionen mit demselben Namen haben.
+
+**`import ... as ...`:** Hiermit können wir einem Modul beim Import einen kürzeren Alias-Namen geben. Dies ist besonders nützlich bei langen Modulnamen.
+:::
+
+Die Python-Standardbibliothek enthält eine riesige Anzahl von Modulen für alle möglichen Aufgaben, von der Arbeit mit Texten und Daten bis hin zur Netzwerkkommunikation und dem Erstellen von grafischen Benutzeroberflächen. Das Importieren von Funktionen aus diesen Modulen ist eine grundlegende Fähigkeit, die es uns ermöglicht, auf eine Fülle von vordefinierten Funktionalitäten zuzugreifen und das Rad nicht ständig neu erfinden zu müssen.
+
+## Definieren von Funktionen {#sec-definieren-funktionen}
+
+Neben der Verwendung von eingebauten und importierten Funktionen können wir auch unsere eigenen, maßgeschneiderten Funktionen erstellen. Das Definieren eigener Funktionen ist ein entscheidender Schritt, um unseren Code zu strukturieren und wiederverwendbar zu machen.
+
+::: {.callout-important}
+## 🏗️ Die Anatomie einer Funktionsdefinition
+
+Eine Funktionsdefinition in Python hat eine klare Struktur:
+
+1. **`def`-Schlüsselwort:** Jede Funktionsdefinition beginnt mit dem Schlüsselwort `def` (kurz für "define").
+
+2. **Funktionsname:** Nach `def` folgt der Name, den wir unserer Funktion geben möchten. Für Funktionsnamen gelten dieselben Regeln wie für Variablennamen.
+
+3. **Parameterliste:** Nach dem Funktionsnamen folgt eine runde Klammer `()`, die die Parameter der Funktion enthält. Parameter sind wie Platzhalter für die Werte, die wir der Funktion übergeben, wenn wir sie aufrufen. Wenn eine Funktion keine Parameter benötigt, bleiben die Klammern leer.
+
+4. **Doppelpunkt:** Die Kopfzeile der Funktionsdefinition endet immer mit einem Doppelpunkt `:`.
+
+5. **Funktionskörper:** Nach dem Doppelpunkt folgt der Funktionskörper. Dies ist der Codeblock, der ausgeführt wird, wenn die Funktion aufgerufen wird. Der gesamte Funktionskörper muss eingerückt sein (üblicherweise mit vier Leerzeichen).
+:::
+
+Schauen wir uns ein einfaches Beispiel an – eine Begrüßungsfunktion, die keine Parameter benötigt:
+
+```python
+# Eine Funktion namens "begruessung" definieren, die keine Parameter hat
+def begruessung():
+    print("Hallo und herzlich willkommen!")
+```
+
+### Eine Funktion aufrufen
+
+Nachdem wir eine Funktion definiert haben, können wir sie an jeder beliebigen Stelle in unserem Programm aufrufen, indem wir einfach ihren Namen gefolgt von runden Klammern schreiben. Die Klammern sind dabei unverzichtbar – sie signalisieren Python, dass wir die Funktion tatsächlich ausführen möchten:
+
+```python
+# Die Funktion "begruessung" aufrufen
+begruessung()
+# Ausgabe: Hallo und herzlich willkommen!
+
+begruessung()
+# Ausgabe: Hallo und herzlich willkommen!
+```
+
+### Der pass-Platzhalter
+
+Manchmal möchten wir eine Funktion definieren, aber den Code für den Funktionskörper erst später schreiben – etwa wenn wir die Struktur unseres Programms planen. In diesem Fall können wir das `pass`-Schlüsselwort als Platzhalter verwenden. `pass` tut absolut nichts, aber es verhindert, dass Python einen Fehler ausgibt, weil der Funktionskörper leer ist:
+
+```python
+def meine_zukuenftige_funktion():
+    pass  # Hier kommt später der Code hin
+```
+
+Das Definieren eigener Funktionen ist der erste Schritt zur Erstellung von modularem und gut strukturiertem Code. In den nächsten Abschnitten werden wir sehen, wie wir unsere Funktionen noch leistungsfähiger machen können, indem wir ihnen Informationen übergeben und Ergebnisse von ihnen zurückerhalten.
+
+## Parameter und Argumente {#sec-parameter-argumente}
+
+Bisher haben unsere selbstdefinierten Funktionen immer dasselbe getan. Aber was ist, wenn wir eine Funktion erstellen möchten, die sich je nach den übergebenen Informationen unterschiedlich verhält? Hier kommen Parameter und Argumente ins Spiel.
+
+::: {.callout-note}
+## 📋 Parameter vs. Argumente
+
+**Parameter:** Ein Parameter ist eine Variable, die in der Funktionsdefinition innerhalb der runden Klammern aufgeführt wird. Er ist ein Platzhalter für einen Wert, den die Funktion erwartet.
+
+**Argument:** Ein Argument ist der tatsächliche Wert, den wir einer Funktion übergeben, wenn wir sie aufrufen.
+:::
+
+Lassen Sie uns unsere Begrüßungsfunktion so erweitern, dass sie einen Namen als Parameter akzeptiert und eine personalisierte Begrüßung ausgibt:
+
+```python
+# Die Funktion "begruesse_person" definieren, die einen Parameter namens "name" hat
+def begruesse_person(name):
+    print(f"Hallo, {name}! Schön, dich zu sehen.")
+
+# Die Funktion mit verschiedenen Argumenten aufrufen
+begruesse_person("Anna")
+# Ausgabe: Hallo, Anna! Schön, dich zu sehen.
+
+begruesse_person("Max")
+# Ausgabe: Hallo, Max! Schön, dich zu sehen.
+```
+
+In diesem Beispiel ist `name` der **Parameter** (in der Funktionsdefinition), während `"Anna"` und `"Max"` die **Argumente** sind (beim Funktionsaufruf). Der Parameter `name` nimmt beim Aufruf den Wert des übergebenen Arguments an.
+
+### Funktionen mit mehreren Parametern
+
+Eine Funktion kann auch mehrere Parameter haben. Wir listen sie einfach durch Kommas getrennt in der Funktionsdefinition auf:
+
+```python
+def addiere_zwei_zahlen(zahl1, zahl2):
+    summe = zahl1 + zahl2
+    print(f"Die Summe von {zahl1} und {zahl2} ist {summe}.")
+
+addiere_zwei_zahlen(10, 5)
+# Ausgabe: Die Summe von 10 und 5 ist 15.
+
+addiere_zwei_zahlen(100, 200)
+# Ausgabe: Die Summe von 100 und 200 ist 300.
+```
+
+### Standardwerte für Parameter
+
+Manchmal möchten wir, dass ein Parameter einen **Standardwert** hat, falls beim Aufruf der Funktion kein Argument für ihn übergeben wird. Dies ist besonders praktisch, wenn bestimmte Parameter in den meisten Fällen denselben Wert haben. Wir setzen den Standardwert, indem wir dem Parameter direkt in der Funktionsdefinition einen Wert zuweisen:
+
+```python
+def begruesse_person_mit_standard(name="Gast"):
+    print(f"Hallo, {name}! Schön, dich zu sehen.")
+
+begruesse_person_mit_standard("Julia")
+# Ausgabe: Hallo, Julia! Schön, dich zu sehen.
+
+begruesse_person_mit_standard()
+# Ausgabe: Hallo, Gast! Schön, dich zu sehen.
+```
+
+Wenn wir die Funktion ohne Argument aufrufen, wird automatisch der Standardwert `"Gast"` verwendet. Übergeben wir jedoch ein Argument, überschreibt dieses den Standardwert.
+
+Parameter und Argumente sind ein mächtiges Konzept, das unsere Funktionen flexibel und anpassungsfähig macht. Sie ermöglichen es uns, allgemeine Funktionen zu schreiben, die wir in verschiedenen Kontexten mit unterschiedlichen Daten verwenden können.
+
+## Funktionen dokumentieren {#sec-funktionen-dokumentieren}
+
+Wenn unsere Programme komplexer werden und wir mehr Funktionen schreiben, wird es immer wichtiger, unseren Code gut zu dokumentieren. Eine gute Dokumentation hilft nicht nur anderen, unseren Code zu verstehen, sondern auch uns selbst, wenn wir nach einiger Zeit zu unserem eigenen Code zurückkehren.
+
+::: {.callout-important}
+## 📝 Was ist ein Docstring?
+
+Ein Docstring ist ein String, der direkt als erste Anweisung in einer Funktionsdefinition steht. Er wird in dreifache Anführungszeichen (`"""` oder `'''`) eingeschlossen und beschreibt, was die Funktion tut, welche Parameter sie erwartet und was sie zurückgibt.
+:::
+
+Schauen wir uns ein Beispiel an:
+
+```python
+def addiere_zwei_zahlen(zahl1, zahl2):
+    """Diese Funktion addiert zwei Zahlen und gibt die Summe aus.
+
+    Args:
+        zahl1 (int or float): Die erste Zahl.
+        zahl2 (int or float): Die zweite Zahl.
+    """
+    summe = zahl1 + zahl2
+    print(f"Die Summe von {zahl1} und {zahl2} ist {summe}.")
+```
+
+### Warum sind Docstrings so nützlich?
+
+Docstrings bieten zwei wesentliche Vorteile: Erstens können viele Entwicklungsumgebungen und interaktive Python-Shells diese Docstrings automatisch auslesen und anzeigen. Wenn Sie in Python die `help()`-Funktion aufrufen – zum Beispiel `help(addiere_zwei_zahlen)` – wird Ihnen der Docstring der Funktion angezeigt. Das macht es einfach, schnell nachzuschlagen, wie eine Funktion funktioniert.
+
+Zweitens verbessern Docstrings die **Lesbarkeit und Wartbarkeit** Ihres Codes erheblich. Jeder, der die Funktion verwenden möchte, kann den Docstring lesen und weiß sofort, wie die Funktion zu verwenden ist, ohne den gesamten Code analysieren zu müssen. Das gilt auch für Sie selbst, wenn Sie nach Wochen oder Monaten zu Ihrem eigenen Code zurückkehren.
+
+### Konventionen für Docstrings
+
+Es gibt verschiedene Konventionen für das Schreiben von Docstrings. Eine weit verbreitete Konvention, die auch von Google verwendet wird, folgt dieser Struktur:
+
+1. **Eine kurze, einzeilige Zusammenfassung** dessen, was die Funktion tut.
+2. **Eine Leerzeile.**
+3. **Eine detailliertere Beschreibung** (optional).
+4. **Eine Beschreibung der Argumente** (Args:), wobei jeder Parameter in einer eigenen Zeile mit seinem Typ und einer Beschreibung aufgeführt wird.
+5. **Eine Beschreibung des Rückgabewertes** (Returns:), falls die Funktion einen Wert zurückgibt.
+
+Machen Sie es sich zur Gewohnheit, jede Funktion, die Sie schreiben, mit einem klaren und informativen Docstring zu versehen. Es ist eine kleine Investition in die Zeit, die sich auf lange Sicht um ein Vielfaches auszahlt.
+
+## Rückgabewerte in Funktionen {#sec-rueckgabewerte}
+
+Bisher haben unsere Funktionen ihre Ergebnisse immer direkt mit der `print()`-Funktion auf dem Bildschirm ausgegeben. Das ist nützlich für eine schnelle Anzeige, aber oft möchten wir das Ergebnis einer Funktion in einer Variable speichern, um es später in unserem Programm weiterzuverwenden. Hierfür benötigen wir Rückgabewerte.
+
+::: {.callout-important}
+## 🔙 Das return-Schlüsselwort
+
+Um einen Wert aus einer Funktion zurückzugeben, verwenden wir das `return`-Schlüsselwort. Sobald Python auf eine `return`-Anweisung trifft, wird die Ausführung der Funktion sofort beendet und der angegebene Wert wird an die Stelle zurückgegeben, an der die Funktion aufgerufen wurde.
+:::
+
+Lassen Sie uns unsere Additionsfunktion so umschreiben, dass sie die Summe zurückgibt, anstatt sie auszugeben:
+
+```python
+def addiere_zwei_zahlen_return(zahl1, zahl2):
+    """Diese Funktion addiert zwei Zahlen und gibt die Summe zurück.
+
+    Args:
+        zahl1 (int or float): Die erste Zahl.
+        zahl2 (int or float): Die zweite Zahl.
+
+    Returns:
+        int or float: Die Summe der beiden Zahlen.
+    """
+    summe = zahl1 + zahl2
+    return summe
+```
+
+### Den Rückgabewert verwenden
+
+Jetzt können wir das Ergebnis dieser Funktion in einer Variable speichern und damit weiterarbeiten:
+
+```python
+# Die Funktion aufrufen und den Rückgabewert in der Variable "ergebnis" speichern
+ergebnis = addiere_zwei_zahlen_return(15, 10)
+
+print(f"Das Ergebnis der Addition ist: {ergebnis}")
+# Ausgabe: Das Ergebnis der Addition ist: 25
+
+# Wir können das Ergebnis weiterverwenden
+if ergebnis > 20:
+    print("Das Ergebnis ist größer als 20!")
+# Ausgabe: Das Ergebnis ist größer als 20!
+```
+
+Der entscheidende Unterschied zur vorherigen Version: Anstatt das Ergebnis nur auf dem Bildschirm auszugeben, können wir es jetzt in einer Variable speichern und in unserem Programm weiterverarbeiten. Das macht unsere Funktionen wesentlich flexibler und wiederverwendbarer.
+
+### Rückgabe beliebiger Datentypen
+
+Eine Funktion kann jeden beliebigen Datentyp zurückgeben: Zahlen, Strings, boolesche Werte und sogar komplexere Datenstrukturen wie Listen oder Dictionaries, die wir in einem späteren Kapitel kennenlernen werden. Das macht Funktionen zu einem extrem vielseitigen Werkzeug.
+
+### Funktionen ohne return-Anweisung
+
+Ein wichtiger Hinweis: Wenn eine Funktion keine `return`-Anweisung hat, gibt sie standardmäßig den speziellen Wert `None` zurück. `None` ist ein eigener Datentyp in Python, der die Abwesenheit eines Wertes darstellt:
+
+```python
+def einfache_begruessung():
+    print("Hallo!")
+
+ergebnis = einfache_begruessung()
+print(ergebnis)
+# Ausgabe:
+# Hallo!
+# None
+```
+
+Die Funktion gibt zwar Text auf dem Bildschirm aus, aber ihr Rückgabewert ist `None`, weil keine `return`-Anweisung vorhanden ist. Das ist kein Fehler, sondern das normale Verhalten von Python.
+
+Rückgabewerte sind ein entscheidendes Konzept, um nützliche und wiederverwendbare Funktionen zu erstellen. Sie ermöglichen es uns, Funktionen zu schreiben, die Berechnungen durchführen oder Daten verarbeiten und die Ergebnisse an den Rest unseres Programms zur weiteren Verwendung übergeben.
+
+## Lambda Funktionen {#sec-lambda-funktionen}
+
+Manchmal benötigen wir eine kleine, einfache Funktion nur für eine kurze, einmalige Verwendung. Für solche Fälle bietet Python eine spezielle Art von Funktionen: die Lambda-Funktionen, auch bekannt als anonyme Funktionen.
+
+::: {.callout-note}
+## 🎭 Was ist eine Lambda-Funktion?
+
+Eine Lambda-Funktion ist eine kleine, namenlose Funktion, die in einer einzigen Zeile definiert wird. Sie kann eine beliebige Anzahl von Argumenten haben, aber nur einen einzigen Ausdruck, dessen Ergebnis sie zurückgibt.
+:::
+
+### Die Syntax einer Lambda-Funktion
+
+Die grundlegende Syntax lautet:
+
+```python
+lambda argumente: ausdruck
+```
+
+Das `lambda`-Schlüsselwort leitet die Definition ein, gefolgt von den Argumenten (durch Kommas getrennt, wie bei normalen Funktionen) und einem einzelnen Ausdruck. Das Besondere: Das `return`-Schlüsselwort ist nicht erforderlich – das Ergebnis des Ausdrucks wird automatisch zurückgegeben.
+
+Schauen wir uns ein einfaches Beispiel an – eine Lambda-Funktion, die eine Zahl quadriert:
+
+```python
+# Eine Lambda-Funktion, die ein Argument x entgegennimmt und x * x zurückgibt
+quadrat = lambda x: x * x
+
+# Die Lambda-Funktion aufrufen
+print(quadrat(5))
+# Ausgabe: 25
+```
+
+Dies ist äquivalent zu der folgenden normalen Funktionsdefinition:
+
+```python
+def quadrat_normal(x):
+    return x * x
+```
+
+### Wann sollte man Lambda-Funktionen verwenden?
+
+Lambda-Funktionen sind besonders nützlich, wenn wir eine Funktion als Argument an eine andere, höherwertige Funktion übergeben müssen. Dies ist häufig der Fall bei Funktionen wie `map()`, `filter()` und `sorted()`, die wir in späteren Kapiteln kennenlernen werden.
+
+Stellen Sie sich vor, wir haben eine Liste von Tupeln, die jeweils einen Namen und ein Alter enthalten, und wir möchten diese Liste nach dem Alter sortieren:
+
+```python
+personen = [("Anna", 28), ("Max", 22), ("Julia", 35)]
+
+# Die Liste nach dem zweiten Element jedes Tupels (dem Alter) sortieren
+sortierte_personen = sorted(personen, key=lambda person: person[1])
+
+print(sortierte_personen)
+# Ausgabe: [("Max", 22), ("Anna", 28), ("Julia", 35)]
+```
+
+Hier übergeben wir eine Lambda-Funktion als `key`-Argument an die `sorted()`-Funktion. Die Lambda-Funktion `lambda person: person[1]` nimmt ein Tupel `person` entgegen und gibt dessen zweites Element (`person[1]`, also das Alter) zurück. `sorted()` verwendet dann diesen Wert, um die Liste zu sortieren.
+
+### Sparsame Verwendung empfohlen
+
+Lambda-Funktionen sind ein kompaktes und leistungsfähiges Werkzeug für bestimmte Anwendungsfälle. Sie sollten jedoch sparsam eingesetzt werden. Wenn eine Funktion eine komplexere Logik erfordert oder an mehreren Stellen im Code wiederverwendet wird, ist eine normale, benannte Funktion mit `def` immer die bessere Wahl, da sie lesbarer, besser dokumentierbar und wartbarer ist.
+
+## Übung: Der Notenrechner {#sec-projekt-notenrechner}
+
+Jetzt ist es an der Zeit, alle Konzepte dieses Kapitels in einem praktischen Projekt zusammenzubringen! Sie werden einen Notenrechner programmieren, der verschiedene Funktionen zur Notenauswertung bereitstellt.
+
+**Ziel:** Erstellen Sie ein Programm mit mehreren Funktionen, das Schulnoten analysiert und auswertet.
+
+### Anforderungen
+
+1. **Durchschnitt berechnen:** Eine Funktion `berechne_durchschnitt(noten)`:
+   - Nimmt eine Liste von Noten als Parameter
+   - Berechnet den Durchschnitt
+   - Gibt das Ergebnis zurück
+   - Enthält einen Docstring
+
+2. **Beste Note finden:** Eine Funktion `finde_beste_note(noten)`:
+   - Nimmt eine Liste von Noten als Parameter
+   - Findet die beste (kleinste) Note
+   - Gibt das Ergebnis zurück
+
+3. **Schlechteste Note finden:** Eine Funktion `finde_schlechteste_note(noten)`:
+   - Nimmt eine Liste von Noten als Parameter
+   - Findet die schlechteste (größte) Note
+   - Gibt das Ergebnis zurück
+
+4. **Bestanden prüfen:** Eine Funktion `ist_bestanden(durchschnitt, grenze=4.0)`:
+   - Nimmt den Durchschnitt und eine optionale Grenze als Parameter
+   - Standardwert für Grenze: 4.0
+   - Gibt `True` oder `False` zurück
+
+5. **Zeugnis ausgeben:** Eine Funktion `erstelle_zeugnis(name, noten)`:
+   - Nimmt Name und Notenliste als Parameter
+   - Ruft die anderen Funktionen auf
+   - Gibt eine formatierte Zusammenfassung aus
+
+### Anleitung
+
+1. Definieren Sie die Funktion `berechne_durchschnitt()` mit Docstring.
+2. Definieren Sie die Funktion `finde_beste_note()`.
+3. Definieren Sie die Funktion `finde_schlechteste_note()`.
+4. Definieren Sie die Funktion `ist_bestanden()` mit Standardparameter.
+5. Definieren Sie die Funktion `erstelle_zeugnis()`, die alle anderen Funktionen verwendet.
+6. Testen Sie das Programm mit Beispieldaten.
+
+### Code-Struktur
+
+```python
+def berechne_durchschnitt(noten):
+    """Berechnet den Durchschnitt einer Notenliste.
+
+    Args:
+        noten (list): Eine Liste von Noten (1-6).
+
+    Returns:
+        float: Der Notendurchschnitt.
+    """
+    # Summe aller Noten berechnen
+    # Durch Anzahl der Noten teilen
+    # Ergebnis zurückgeben
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+def finde_beste_note(noten):
+    """Findet die beste (kleinste) Note in der Liste."""
+    # Die kleinste Zahl in der Liste finden
+    # Tipp: Verwenden Sie die min() Funktion
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+def finde_schlechteste_note(noten):
+    """Findet die schlechteste (größte) Note in der Liste."""
+    # Die größte Zahl in der Liste finden
+    # Tipp: Verwenden Sie die max() Funktion
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+def ist_bestanden(durchschnitt, grenze=4.0):
+    """Prüft, ob der Durchschnitt zum Bestehen reicht.
+
+    Args:
+        durchschnitt (float): Der Notendurchschnitt.
+        grenze (float): Die Bestehensgrenze (Standard: 4.0).
+
+    Returns:
+        bool: True wenn bestanden, sonst False.
+    """
+    # Prüfen ob durchschnitt <= grenze
+    # True oder False zurückgeben
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+def erstelle_zeugnis(name, noten):
+    """Erstellt eine Zeugnisübersicht für einen Schüler.
+
+    Args:
+        name (str): Name des Schülers.
+        noten (list): Liste der Noten.
+    """
+    # Durchschnitt berechnen (Funktion aufrufen)
+    # Beste und schlechteste Note finden (Funktionen aufrufen)
+    # Prüfen ob bestanden (Funktion aufrufen)
+    # Alles formatiert ausgeben mit f-Strings
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+# Hauptprogramm: Funktionen testen
+meine_noten = [2, 3, 1, 4, 2, 3]
+erstelle_zeugnis("Max Mustermann", meine_noten)
+```
+
+### Hinweise
+
+- `sum(liste)` berechnet die Summe aller Elemente einer Liste.
+- `len(liste)` gibt die Anzahl der Elemente zurück.
+- `min(liste)` findet das kleinste Element.
+- `max(liste)` findet das größte Element.
+- Bei deutschen Schulnoten ist 1 die beste und 6 die schlechteste Note.
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Testen Sie Ihr Programm mit verschiedenen Notenlisten. Bonus: Erweitern Sie das Programm um eine Funktion, die zählt, wie viele Noten besser als der Durchschnitt sind!
+:::
+
+## Lösungen zu Kapitel 2 {#sec-loesungen-kap2}
+
+In diesem Abschnitt finden Sie die Lösungen zu den Übungsaufgaben. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihre eigenen Lösungsansätze zu überprüfen.
+
+::: {.callout-note}
+## 💡 Wichtiger Hinweis
+
+Es gibt oft mehrere richtige Lösungswege in der Programmierung. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie das gewünschte Ergebnis liefert und funktioniert.
+:::
+
+### Lösung zur Übung: Der Notenrechner
+
+```python
+def berechne_durchschnitt(noten):
+    """Berechnet den Durchschnitt einer Notenliste.
+
+    Args:
+        noten (list): Eine Liste von Noten (1-6).
+
+    Returns:
+        float: Der Notendurchschnitt.
+    """
+    summe = sum(noten)
+    anzahl = len(noten)
+    return summe / anzahl
+
+def finde_beste_note(noten):
+    """Findet die beste (kleinste) Note in der Liste."""
+    return min(noten)
+
+def finde_schlechteste_note(noten):
+    """Findet die schlechteste (größte) Note in der Liste."""
+    return max(noten)
+
+def ist_bestanden(durchschnitt, grenze=4.0):
+    """Prüft, ob der Durchschnitt zum Bestehen reicht."""
+    return durchschnitt <= grenze
+
+def erstelle_zeugnis(name, noten):
+    """Erstellt eine Zeugnisübersicht für einen Schüler."""
+    durchschnitt = berechne_durchschnitt(noten)
+    beste = finde_beste_note(noten)
+    schlechteste = finde_schlechteste_note(noten)
+    bestanden = ist_bestanden(durchschnitt)
+
+    print(f"=== Zeugnis für {name} ===")
+    print(f"Noten: {noten}")
+    print(f"Durchschnitt: {durchschnitt:.2f}")
+    print(f"Beste Note: {beste}")
+    print(f"Schlechteste Note: {schlechteste}")
+    if bestanden:
+        print("Ergebnis: Bestanden!")
+    else:
+        print("Ergebnis: Nicht bestanden.")
+
+# Hauptprogramm: Funktionen testen
+meine_noten = [2, 3, 1, 4, 2, 3]
+erstelle_zeugnis("Max Mustermann", meine_noten)
+```
+
+Die Ausgabe des Programms:
+
+```
+=== Zeugnis für Max Mustermann ===
+Noten: [2, 3, 1, 4, 2, 3]
+Durchschnitt: 2.50
+Beste Note: 1
+Schlechteste Note: 4
+Ergebnis: Bestanden!
+```
+
+::: {.callout-tip icon="false"}
+## 🎉 Herzlichen Glückwunsch!
+
+Sie haben nun ein solides Verständnis für Funktionen entwickelt – eines der fundamentalen Konzepte der Programmierung. In diesem Kapitel haben Sie gelernt:
+
+- **Warum Funktionen wichtig sind**: Wiederverwendbarkeit, Lesbarkeit, Modularität und Wartbarkeit
+- **Wie Sie Module importieren**: `import`, `from ... import`, und Aliase mit `as`
+- **Wie Sie eigene Funktionen definieren**: Mit `def`, Parametern und dem Funktionskörper
+- **Parameter und Argumente**: Positionsargumente und Standardwerte
+- **Dokumentation mit Docstrings**: Professionelle Funktionsbeschreibungen nach Google-Konvention
+- **Rückgabewerte mit `return`**: Ergebnisse aus Funktionen zurückgeben und weiterverwenden
+- **Lambda-Funktionen**: Kompakte, anonyme Funktionen für einmalige Aufgaben
+
+Im nächsten Kapitel werden wir uns ansehen, wie wir den Ablauf unserer Programme mit Bedingungen und Schleifen steuern können.
+:::

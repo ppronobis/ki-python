@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KI Python - 2&nbsp; Funktionen</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Kapitel 3.html" rel="next">
+<link href="./Kapitel 1.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Kapitel 2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KI Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ppronobis/ki-python" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">KI Python lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impressum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Impressum</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#sec-willkommen-kap2" id="toc-sec-willkommen-kap2" class="nav-link active" data-scroll-target="#sec-willkommen-kap2"><span class="header-section-number">2.1</span> Willkommen zu Kapitel 2</a></li>
+  <li><a href="#sec-nutzen-funktionen" id="toc-sec-nutzen-funktionen" class="nav-link" data-scroll-target="#sec-nutzen-funktionen"><span class="header-section-number">2.2</span> Nutzen von Funktionen</a>
+  <ul class="collapse">
+  <li><a href="#wiederverwendbarkeit" id="toc-wiederverwendbarkeit" class="nav-link" data-scroll-target="#wiederverwendbarkeit">Wiederverwendbarkeit</a></li>
+  <li><a href="#lesbarkeit" id="toc-lesbarkeit" class="nav-link" data-scroll-target="#lesbarkeit">Lesbarkeit</a></li>
+  <li><a href="#modularität" id="toc-modularität" class="nav-link" data-scroll-target="#modularität">Modularität</a></li>
+  <li><a href="#wartbarkeit" id="toc-wartbarkeit" class="nav-link" data-scroll-target="#wartbarkeit">Wartbarkeit</a></li>
+  </ul></li>
+  <li><a href="#sec-import-funktionen" id="toc-sec-import-funktionen" class="nav-link" data-scroll-target="#sec-import-funktionen"><span class="header-section-number">2.3</span> Import von Funktionen</a>
+  <ul class="collapse">
+  <li><a href="#andere-möglichkeiten-des-imports" id="toc-andere-möglichkeiten-des-imports" class="nav-link" data-scroll-target="#andere-möglichkeiten-des-imports">Andere Möglichkeiten des Imports</a></li>
+  </ul></li>
+  <li><a href="#sec-definieren-funktionen" id="toc-sec-definieren-funktionen" class="nav-link" data-scroll-target="#sec-definieren-funktionen"><span class="header-section-number">2.4</span> Definieren von Funktionen</a>
+  <ul class="collapse">
+  <li><a href="#eine-funktion-aufrufen" id="toc-eine-funktion-aufrufen" class="nav-link" data-scroll-target="#eine-funktion-aufrufen">Eine Funktion aufrufen</a></li>
+  <li><a href="#der-pass-platzhalter" id="toc-der-pass-platzhalter" class="nav-link" data-scroll-target="#der-pass-platzhalter">Der pass-Platzhalter</a></li>
+  </ul></li>
+  <li><a href="#sec-parameter-argumente" id="toc-sec-parameter-argumente" class="nav-link" data-scroll-target="#sec-parameter-argumente"><span class="header-section-number">2.5</span> Parameter und Argumente</a>
+  <ul class="collapse">
+  <li><a href="#funktionen-mit-mehreren-parametern" id="toc-funktionen-mit-mehreren-parametern" class="nav-link" data-scroll-target="#funktionen-mit-mehreren-parametern">Funktionen mit mehreren Parametern</a></li>
+  <li><a href="#standardwerte-für-parameter" id="toc-standardwerte-für-parameter" class="nav-link" data-scroll-target="#standardwerte-für-parameter">Standardwerte für Parameter</a></li>
+  </ul></li>
+  <li><a href="#sec-funktionen-dokumentieren" id="toc-sec-funktionen-dokumentieren" class="nav-link" data-scroll-target="#sec-funktionen-dokumentieren"><span class="header-section-number">2.6</span> Funktionen dokumentieren</a>
+  <ul class="collapse">
+  <li><a href="#warum-sind-docstrings-so-nützlich" id="toc-warum-sind-docstrings-so-nützlich" class="nav-link" data-scroll-target="#warum-sind-docstrings-so-nützlich">Warum sind Docstrings so nützlich?</a></li>
+  <li><a href="#konventionen-für-docstrings" id="toc-konventionen-für-docstrings" class="nav-link" data-scroll-target="#konventionen-für-docstrings">Konventionen für Docstrings</a></li>
+  </ul></li>
+  <li><a href="#sec-rueckgabewerte" id="toc-sec-rueckgabewerte" class="nav-link" data-scroll-target="#sec-rueckgabewerte"><span class="header-section-number">2.7</span> Rückgabewerte in Funktionen</a>
+  <ul class="collapse">
+  <li><a href="#den-rückgabewert-verwenden" id="toc-den-rückgabewert-verwenden" class="nav-link" data-scroll-target="#den-rückgabewert-verwenden">Den Rückgabewert verwenden</a></li>
+  <li><a href="#rückgabe-beliebiger-datentypen" id="toc-rückgabe-beliebiger-datentypen" class="nav-link" data-scroll-target="#rückgabe-beliebiger-datentypen">Rückgabe beliebiger Datentypen</a></li>
+  <li><a href="#funktionen-ohne-return-anweisung" id="toc-funktionen-ohne-return-anweisung" class="nav-link" data-scroll-target="#funktionen-ohne-return-anweisung">Funktionen ohne return-Anweisung</a></li>
+  </ul></li>
+  <li><a href="#sec-lambda-funktionen" id="toc-sec-lambda-funktionen" class="nav-link" data-scroll-target="#sec-lambda-funktionen"><span class="header-section-number">2.8</span> Lambda Funktionen</a>
+  <ul class="collapse">
+  <li><a href="#die-syntax-einer-lambda-funktion" id="toc-die-syntax-einer-lambda-funktion" class="nav-link" data-scroll-target="#die-syntax-einer-lambda-funktion">Die Syntax einer Lambda-Funktion</a></li>
+  <li><a href="#wann-sollte-man-lambda-funktionen-verwenden" id="toc-wann-sollte-man-lambda-funktionen-verwenden" class="nav-link" data-scroll-target="#wann-sollte-man-lambda-funktionen-verwenden">Wann sollte man Lambda-Funktionen verwenden?</a></li>
+  <li><a href="#sparsame-verwendung-empfohlen" id="toc-sparsame-verwendung-empfohlen" class="nav-link" data-scroll-target="#sparsame-verwendung-empfohlen">Sparsame Verwendung empfohlen</a></li>
+  </ul></li>
+  <li><a href="#sec-projekt-notenrechner" id="toc-sec-projekt-notenrechner" class="nav-link" data-scroll-target="#sec-projekt-notenrechner"><span class="header-section-number">2.9</span> Übung: Der Notenrechner</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen" id="toc-anforderungen" class="nav-link" data-scroll-target="#anforderungen">Anforderungen</a></li>
+  <li><a href="#anleitung" id="toc-anleitung" class="nav-link" data-scroll-target="#anleitung">Anleitung</a></li>
+  <li><a href="#code-struktur" id="toc-code-struktur" class="nav-link" data-scroll-target="#code-struktur">Code-Struktur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#sec-loesungen-kap2" id="toc-sec-loesungen-kap2" class="nav-link" data-scroll-target="#sec-loesungen-kap2"><span class="header-section-number">2.10</span> Lösungen zu Kapitel 2</a>
+  <ul class="collapse">
+  <li><a href="#lösung-zur-übung-der-notenrechner" id="toc-lösung-zur-übung-der-notenrechner" class="nav-link" data-scroll-target="#lösung-zur-übung-der-notenrechner">Lösung zur Übung: Der Notenrechner</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ppronobis/ki-python/edit/main/Kapitel 2.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ppronobis/ki-python/issues/new" class="toc-action">Problem melden</a></p><p><a href="https://github.com/ppronobis/ki-python/blob/main/Kapitel 2.qmd" class="toc-action">Quellcode anzeigen</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-funktionen" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="sec-willkommen-kap2" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-willkommen-kap2"><span class="header-section-number">2.1</span> Willkommen zu Kapitel 2</h2>
+<p>Herzlich willkommen zu Kapitel 2! Nachdem wir uns in Kapitel 1 mit den grundlegenden Bausteinen von Python vertraut gemacht haben, werden wir uns in diesem Kapitel einem der wichtigsten Konzepte in der Programmierung widmen: den <strong>Funktionen</strong>.</p>
+<p>Funktionen sind das Herzstück jeder gut strukturierten Software. Sie können sich eine Funktion als einen benannten Block von Anweisungen vorstellen, der eine bestimmte Aufgabe erfüllt. Statt denselben Code immer wieder zu schreiben, definieren Sie ihn einmal als Funktion und rufen diese bei Bedarf auf – ähnlich wie ein Rezept in einem Kochbuch, das Sie beliebig oft nachkochen können.</p>
+<p>In Python begegnen Ihnen Funktionen überall: Von einfachen eingebauten Funktionen wie <code>print()</code> und <code>len()</code>, die Sie bereits kennen, bis hin zu komplexen selbstgeschriebenen Funktionen, die ganze Berechnungen kapseln. Das Prinzip ist dabei immer gleich: Eine Funktion nimmt optional Eingaben entgegen (sogenannte <strong>Parameter</strong>), verarbeitet diese und gibt optional ein Ergebnis zurück.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🎯 In diesem Kapitel werden Sie lernen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Was Funktionen sind</strong> und warum sie so nützlich sind</li>
+<li><strong>Wie Sie eingebaute Funktionen</strong> von Python nutzen können</li>
+<li><strong>Wie Sie Ihre eigenen Funktionen</strong> definieren und an Ihre Bedürfnisse anpassen</li>
+<li><strong>Wie Sie Informationen</strong> an Funktionen übergeben und Ergebnisse von ihnen zurückerhalten</li>
+<li><strong>Wie Sie Ihre Funktionen</strong> professionell dokumentieren</li>
+<li><strong>Was Lambda-Funktionen sind</strong> und wie Sie sie für kurze, einmalige Aufgaben verwenden können</li>
+</ul>
+</div>
+</div>
+<p>Am Ende dieses Kapitels werden Sie in der Lage sein, Ihren Code deutlich besser zu strukturieren und komplexere Programme zu schreiben. Lassen Sie uns also direkt eintauchen und die Welt der Funktionen entdecken!</p>
+</section>
+<section id="sec-nutzen-funktionen" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-nutzen-funktionen"><span class="header-section-number">2.2</span> Nutzen von Funktionen</h2>
+<p>Stellen Sie sich vor, Sie müssten in Ihrem Programm an zehn verschiedenen Stellen den gleichen, zehnzeiligen Codeblock ausführen. Ohne Funktionen müssten Sie diesen Codeblock zehnmal kopieren und einfügen. Das wäre nicht nur mühsam, sondern auch sehr fehleranfällig. Was passiert, wenn Sie später einen Fehler in diesem Codeblock finden? Sie müssten ihn an allen zehn Stellen korrigieren – und dabei riskieren Sie, eine Stelle zu übersehen oder einen neuen Fehler einzuführen.</p>
+<p>Genau hier kommen Funktionen ins Spiel. Sie erlauben es uns, einen Codeblock zu definieren, ihm einen Namen zu geben und ihn dann einfach durch Aufrufen dieses Namens auszuführen. Die Vorteile dieses Ansatzes sind weitreichend und machen Funktionen zu einem unverzichtbaren Werkzeug für jeden Programmierer.</p>
+<section id="wiederverwendbarkeit" class="level3">
+<h3 class="anchored" data-anchor-id="wiederverwendbarkeit">Wiederverwendbarkeit</h3>
+<p>Der offensichtlichste Vorteil von Funktionen ist die <strong>Wiederverwendbarkeit</strong>. Sie schreiben den Code einmal und können ihn beliebig oft aufrufen – nicht nur im aktuellen Programm, sondern auch in zukünftigen Projekten. Das spart nicht nur Zeit beim Schreiben, sondern reduziert auch die Gesamtmenge an Code, den Sie pflegen müssen. Stellen Sie sich vor, Sie haben eine Funktion geschrieben, die Kundendaten validiert. Diese Funktion können Sie überall dort einsetzen, wo Kundendaten eingegeben werden, ohne den Validierungscode jedes Mal neu schreiben zu müssen.</p>
+</section>
+<section id="lesbarkeit" class="level3">
+<h3 class="anchored" data-anchor-id="lesbarkeit">Lesbarkeit</h3>
+<p>Funktionen verbessern die <strong>Lesbarkeit</strong> Ihres Codes erheblich. Indem Sie einem Codeblock einen aussagekräftigen Namen geben, dokumentieren Sie gleichzeitig, was dieser Code tut. Vergleichen Sie zum Beispiel <code>berechne_durchschnittsnote(noten)</code> mit zehn Zeilen arithmetischer Operationen – der Funktionsaufruf verrät sofort die Absicht. Guter Code liest sich fast wie Prosa: <code>if ist_gueltige_email(eingabe): sende_bestaetigung(benutzer)</code> ist weitgehend selbsterklärend, auch ohne Kommentare.</p>
+</section>
+<section id="modularität" class="level3">
+<h3 class="anchored" data-anchor-id="modularität">Modularität</h3>
+<p>Funktionen ermöglichen <strong>modulares Programmieren</strong>. Sie zerlegen Ihr Programm in kleinere, überschaubare Einheiten, die jeweils eine spezifische Aufgabe erfüllen. Jede Funktion ist wie ein Baustein, den Sie unabhängig entwickeln, testen und verbessern können. Wenn ein Teil Ihres Programms nicht funktioniert, können Sie den Fehler auf eine bestimmte Funktion eingrenzen, anstatt durch hunderte Zeilen unstrukturierten Code suchen zu müssen.</p>
+</section>
+<section id="wartbarkeit" class="level3">
+<h3 class="anchored" data-anchor-id="wartbarkeit">Wartbarkeit</h3>
+<p>Schließlich verbessern Funktionen die <strong>Wartbarkeit</strong> Ihrer Software dramatisch. Wenn Sie einen Fehler in einer Funktion finden oder eine Verbesserung vornehmen möchten, müssen Sie die Änderung nur an einer einzigen Stelle durchführen. Diese Änderung wird dann automatisch an allen Stellen wirksam, an denen die Funktion aufgerufen wird. Ohne Funktionen müssten Sie dieselbe Korrektur möglicherweise an zehn, zwanzig oder noch mehr Stellen vornehmen – und dabei riskieren Sie, eine Stelle zu übersehen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🐍 Python’s eingebaute Funktionen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python selbst bietet eine Vielzahl von eingebauten Funktionen, die wir sofort nutzen können. Die <code>print()</code>-Funktion, die wir bereits kennengelernt haben, ist ein perfektes Beispiel. Wir müssen nicht wissen, wie genau <code>print()</code> intern funktioniert. Wir wissen nur, dass wir ihr einen Wert übergeben können und sie diesen auf dem Bildschirm ausgibt.</p>
+</div>
+</div>
+<p>In den nächsten Abschnitten werden wir lernen, wie wir diese eingebauten Funktionen nutzen und wie wir unsere eigenen, maßgeschneiderten Funktionen erstellen können.</p>
+</section>
+</section>
+<section id="sec-import-funktionen" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-import-funktionen"><span class="header-section-number">2.3</span> Import von Funktionen</h2>
+<p>Python verfügt über eine riesige Sammlung von vordefinierten Funktionen, die in sogenannten <strong>Modulen</strong> organisiert sind. Ein Modul ist im Grunde eine Datei, die Python-Code enthält, einschließlich Funktionsdefinitionen. Um die Funktionen aus einem Modul in unserem eigenen Programm verwenden zu können, müssen wir das Modul zuerst importieren.</p>
+<p>Das Importieren eines Moduls ist sehr einfach: Wir verwenden das <code>import</code>-Schlüsselwort, gefolgt vom Namen des Moduls. Sobald wir das Modul importiert haben, können wir auf die darin enthaltenen Funktionen zugreifen, indem wir den Modulnamen, einen Punkt <code>.</code> und dann den Funktionsnamen schreiben.</p>
+<p>Schauen wir uns das am Beispiel des <code>math</code>-Moduls an, das viele nützliche mathematische Funktionen enthält:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Quadratwurzel von 25 berechnen</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wurzel <span class="op">=</span> math.sqrt(<span class="dv">25</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Die Quadratwurzel von 25 ist </span><span class="sc">{</span>wurzel<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Die Quadratwurzel von 25 ist 5.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Zahl Pi ausgeben</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Der Wert von Pi ist ungefähr </span><span class="sc">{</span>math<span class="sc">.</span>pi<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Der Wert von Pi ist ungefähr 3.141592653589793</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Das <code>math</code>-Modul stellt nicht nur Funktionen wie <code>sqrt()</code> zur Berechnung der Quadratwurzel bereit, sondern auch wichtige mathematische Konstanten wie <code>pi</code> oder <code>e</code>. Durch den Punkt-Operator (<code>math.sqrt</code>, <code>math.pi</code>) machen wir deutlich, dass diese Elemente aus dem <code>math</code>-Modul stammen.</p>
+<section id="andere-möglichkeiten-des-imports" class="level3">
+<h3 class="anchored" data-anchor-id="andere-möglichkeiten-des-imports">Andere Möglichkeiten des Imports</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔀 Import-Varianten
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>from ... import ...</code>:</strong> Hiermit können wir eine bestimmte Funktion direkt importieren, sodass wir den Modulnamen nicht mehr voranstellen müssen.</p>
+<p><strong><code>from ... import *</code>:</strong> Hiermit importieren wir alle Funktionen aus einem Modul. Dies wird jedoch nicht empfohlen, da es zu Namenskonflikten führen kann, wenn verschiedene Module Funktionen mit demselben Namen haben.</p>
+<p><strong><code>import ... as ...</code>:</strong> Hiermit können wir einem Modul beim Import einen kürzeren Alias-Namen geben. Dies ist besonders nützlich bei langen Modulnamen.</p>
+</div>
+</div>
+<p>Die Python-Standardbibliothek enthält eine riesige Anzahl von Modulen für alle möglichen Aufgaben, von der Arbeit mit Texten und Daten bis hin zur Netzwerkkommunikation und dem Erstellen von grafischen Benutzeroberflächen. Das Importieren von Funktionen aus diesen Modulen ist eine grundlegende Fähigkeit, die es uns ermöglicht, auf eine Fülle von vordefinierten Funktionalitäten zuzugreifen und das Rad nicht ständig neu erfinden zu müssen.</p>
+</section>
+</section>
+<section id="sec-definieren-funktionen" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-definieren-funktionen"><span class="header-section-number">2.4</span> Definieren von Funktionen</h2>
+<p>Neben der Verwendung von eingebauten und importierten Funktionen können wir auch unsere eigenen, maßgeschneiderten Funktionen erstellen. Das Definieren eigener Funktionen ist ein entscheidender Schritt, um unseren Code zu strukturieren und wiederverwendbar zu machen.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🏗️ Die Anatomie einer Funktionsdefinition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Eine Funktionsdefinition in Python hat eine klare Struktur:</p>
+<ol type="1">
+<li><p><strong><code>def</code>-Schlüsselwort:</strong> Jede Funktionsdefinition beginnt mit dem Schlüsselwort <code>def</code> (kurz für “define”).</p></li>
+<li><p><strong>Funktionsname:</strong> Nach <code>def</code> folgt der Name, den wir unserer Funktion geben möchten. Für Funktionsnamen gelten dieselben Regeln wie für Variablennamen.</p></li>
+<li><p><strong>Parameterliste:</strong> Nach dem Funktionsnamen folgt eine runde Klammer <code>()</code>, die die Parameter der Funktion enthält. Parameter sind wie Platzhalter für die Werte, die wir der Funktion übergeben, wenn wir sie aufrufen. Wenn eine Funktion keine Parameter benötigt, bleiben die Klammern leer.</p></li>
+<li><p><strong>Doppelpunkt:</strong> Die Kopfzeile der Funktionsdefinition endet immer mit einem Doppelpunkt <code>:</code>.</p></li>
+<li><p><strong>Funktionskörper:</strong> Nach dem Doppelpunkt folgt der Funktionskörper. Dies ist der Codeblock, der ausgeführt wird, wenn die Funktion aufgerufen wird. Der gesamte Funktionskörper muss eingerückt sein (üblicherweise mit vier Leerzeichen).</p></li>
+</ol>
+</div>
+</div>
+<p>Schauen wir uns ein einfaches Beispiel an – eine Begrüßungsfunktion, die keine Parameter benötigt:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Funktion namens "begruessung" definieren, die keine Parameter hat</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> begruessung():</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hallo und herzlich willkommen!"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="eine-funktion-aufrufen" class="level3">
+<h3 class="anchored" data-anchor-id="eine-funktion-aufrufen">Eine Funktion aufrufen</h3>
+<p>Nachdem wir eine Funktion definiert haben, können wir sie an jeder beliebigen Stelle in unserem Programm aufrufen, indem wir einfach ihren Namen gefolgt von runden Klammern schreiben. Die Klammern sind dabei unverzichtbar – sie signalisieren Python, dass wir die Funktion tatsächlich ausführen möchten:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Funktion "begruessung" aufrufen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>begruessung()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Hallo und herzlich willkommen!</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>begruessung()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Hallo und herzlich willkommen!</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="der-pass-platzhalter" class="level3">
+<h3 class="anchored" data-anchor-id="der-pass-platzhalter">Der pass-Platzhalter</h3>
+<p>Manchmal möchten wir eine Funktion definieren, aber den Code für den Funktionskörper erst später schreiben – etwa wenn wir die Struktur unseres Programms planen. In diesem Fall können wir das <code>pass</code>-Schlüsselwort als Platzhalter verwenden. <code>pass</code> tut absolut nichts, aber es verhindert, dass Python einen Fehler ausgibt, weil der Funktionskörper leer ist:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> meine_zukuenftige_funktion():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Hier kommt später der Code hin</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Das Definieren eigener Funktionen ist der erste Schritt zur Erstellung von modularem und gut strukturiertem Code. In den nächsten Abschnitten werden wir sehen, wie wir unsere Funktionen noch leistungsfähiger machen können, indem wir ihnen Informationen übergeben und Ergebnisse von ihnen zurückerhalten.</p>
+</section>
+</section>
+<section id="sec-parameter-argumente" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sec-parameter-argumente"><span class="header-section-number">2.5</span> Parameter und Argumente</h2>
+<p>Bisher haben unsere selbstdefinierten Funktionen immer dasselbe getan. Aber was ist, wenn wir eine Funktion erstellen möchten, die sich je nach den übergebenen Informationen unterschiedlich verhält? Hier kommen Parameter und Argumente ins Spiel.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📋 Parameter vs.&nbsp;Argumente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Parameter:</strong> Ein Parameter ist eine Variable, die in der Funktionsdefinition innerhalb der runden Klammern aufgeführt wird. Er ist ein Platzhalter für einen Wert, den die Funktion erwartet.</p>
+<p><strong>Argument:</strong> Ein Argument ist der tatsächliche Wert, den wir einer Funktion übergeben, wenn wir sie aufrufen.</p>
+</div>
+</div>
+<p>Lassen Sie uns unsere Begrüßungsfunktion so erweitern, dass sie einen Namen als Parameter akzeptiert und eine personalisierte Begrüßung ausgibt:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Funktion "begruesse_person" definieren, die einen Parameter namens "name" hat</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> begruesse_person(name):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hallo, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">! Schön, dich zu sehen."</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Funktion mit verschiedenen Argumenten aufrufen</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>begruesse_person(<span class="st">"Anna"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Hallo, Anna! Schön, dich zu sehen.</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>begruesse_person(<span class="st">"Max"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Hallo, Max! Schön, dich zu sehen.</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In diesem Beispiel ist <code>name</code> der <strong>Parameter</strong> (in der Funktionsdefinition), während <code>"Anna"</code> und <code>"Max"</code> die <strong>Argumente</strong> sind (beim Funktionsaufruf). Der Parameter <code>name</code> nimmt beim Aufruf den Wert des übergebenen Arguments an.</p>
+<section id="funktionen-mit-mehreren-parametern" class="level3">
+<h3 class="anchored" data-anchor-id="funktionen-mit-mehreren-parametern">Funktionen mit mehreren Parametern</h3>
+<p>Eine Funktion kann auch mehrere Parameter haben. Wir listen sie einfach durch Kommas getrennt in der Funktionsdefinition auf:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> addiere_zwei_zahlen(zahl1, zahl2):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    summe <span class="op">=</span> zahl1 <span class="op">+</span> zahl2</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Die Summe von </span><span class="sc">{</span>zahl1<span class="sc">}</span><span class="ss"> und </span><span class="sc">{</span>zahl2<span class="sc">}</span><span class="ss"> ist </span><span class="sc">{</span>summe<span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>addiere_zwei_zahlen(<span class="dv">10</span>, <span class="dv">5</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Die Summe von 10 und 5 ist 15.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>addiere_zwei_zahlen(<span class="dv">100</span>, <span class="dv">200</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Die Summe von 100 und 200 ist 300.</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="standardwerte-für-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="standardwerte-für-parameter">Standardwerte für Parameter</h3>
+<p>Manchmal möchten wir, dass ein Parameter einen <strong>Standardwert</strong> hat, falls beim Aufruf der Funktion kein Argument für ihn übergeben wird. Dies ist besonders praktisch, wenn bestimmte Parameter in den meisten Fällen denselben Wert haben. Wir setzen den Standardwert, indem wir dem Parameter direkt in der Funktionsdefinition einen Wert zuweisen:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> begruesse_person_mit_standard(name<span class="op">=</span><span class="st">"Gast"</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hallo, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">! Schön, dich zu sehen."</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>begruesse_person_mit_standard(<span class="st">"Julia"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Hallo, Julia! Schön, dich zu sehen.</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>begruesse_person_mit_standard()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Hallo, Gast! Schön, dich zu sehen.</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wenn wir die Funktion ohne Argument aufrufen, wird automatisch der Standardwert <code>"Gast"</code> verwendet. Übergeben wir jedoch ein Argument, überschreibt dieses den Standardwert.</p>
+<p>Parameter und Argumente sind ein mächtiges Konzept, das unsere Funktionen flexibel und anpassungsfähig macht. Sie ermöglichen es uns, allgemeine Funktionen zu schreiben, die wir in verschiedenen Kontexten mit unterschiedlichen Daten verwenden können.</p>
+</section>
+</section>
+<section id="sec-funktionen-dokumentieren" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sec-funktionen-dokumentieren"><span class="header-section-number">2.6</span> Funktionen dokumentieren</h2>
+<p>Wenn unsere Programme komplexer werden und wir mehr Funktionen schreiben, wird es immer wichtiger, unseren Code gut zu dokumentieren. Eine gute Dokumentation hilft nicht nur anderen, unseren Code zu verstehen, sondern auch uns selbst, wenn wir nach einiger Zeit zu unserem eigenen Code zurückkehren.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📝 Was ist ein Docstring?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein Docstring ist ein String, der direkt als erste Anweisung in einer Funktionsdefinition steht. Er wird in dreifache Anführungszeichen (<code>"""</code> oder <code>'''</code>) eingeschlossen und beschreibt, was die Funktion tut, welche Parameter sie erwartet und was sie zurückgibt.</p>
+</div>
+</div>
+<p>Schauen wir uns ein Beispiel an:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> addiere_zwei_zahlen(zahl1, zahl2):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Diese Funktion addiert zwei Zahlen und gibt die Summe aus.</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">        zahl1 (int or float): Die erste Zahl.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">        zahl2 (int or float): Die zweite Zahl.</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    summe <span class="op">=</span> zahl1 <span class="op">+</span> zahl2</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Die Summe von </span><span class="sc">{</span>zahl1<span class="sc">}</span><span class="ss"> und </span><span class="sc">{</span>zahl2<span class="sc">}</span><span class="ss"> ist </span><span class="sc">{</span>summe<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="warum-sind-docstrings-so-nützlich" class="level3">
+<h3 class="anchored" data-anchor-id="warum-sind-docstrings-so-nützlich">Warum sind Docstrings so nützlich?</h3>
+<p>Docstrings bieten zwei wesentliche Vorteile: Erstens können viele Entwicklungsumgebungen und interaktive Python-Shells diese Docstrings automatisch auslesen und anzeigen. Wenn Sie in Python die <code>help()</code>-Funktion aufrufen – zum Beispiel <code>help(addiere_zwei_zahlen)</code> – wird Ihnen der Docstring der Funktion angezeigt. Das macht es einfach, schnell nachzuschlagen, wie eine Funktion funktioniert.</p>
+<p>Zweitens verbessern Docstrings die <strong>Lesbarkeit und Wartbarkeit</strong> Ihres Codes erheblich. Jeder, der die Funktion verwenden möchte, kann den Docstring lesen und weiß sofort, wie die Funktion zu verwenden ist, ohne den gesamten Code analysieren zu müssen. Das gilt auch für Sie selbst, wenn Sie nach Wochen oder Monaten zu Ihrem eigenen Code zurückkehren.</p>
+</section>
+<section id="konventionen-für-docstrings" class="level3">
+<h3 class="anchored" data-anchor-id="konventionen-für-docstrings">Konventionen für Docstrings</h3>
+<p>Es gibt verschiedene Konventionen für das Schreiben von Docstrings. Eine weit verbreitete Konvention, die auch von Google verwendet wird, folgt dieser Struktur:</p>
+<ol type="1">
+<li><strong>Eine kurze, einzeilige Zusammenfassung</strong> dessen, was die Funktion tut.</li>
+<li><strong>Eine Leerzeile.</strong></li>
+<li><strong>Eine detailliertere Beschreibung</strong> (optional).</li>
+<li><strong>Eine Beschreibung der Argumente</strong> (Args:), wobei jeder Parameter in einer eigenen Zeile mit seinem Typ und einer Beschreibung aufgeführt wird.</li>
+<li><strong>Eine Beschreibung des Rückgabewertes</strong> (Returns:), falls die Funktion einen Wert zurückgibt.</li>
+</ol>
+<p>Machen Sie es sich zur Gewohnheit, jede Funktion, die Sie schreiben, mit einem klaren und informativen Docstring zu versehen. Es ist eine kleine Investition in die Zeit, die sich auf lange Sicht um ein Vielfaches auszahlt.</p>
+</section>
+</section>
+<section id="sec-rueckgabewerte" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="sec-rueckgabewerte"><span class="header-section-number">2.7</span> Rückgabewerte in Funktionen</h2>
+<p>Bisher haben unsere Funktionen ihre Ergebnisse immer direkt mit der <code>print()</code>-Funktion auf dem Bildschirm ausgegeben. Das ist nützlich für eine schnelle Anzeige, aber oft möchten wir das Ergebnis einer Funktion in einer Variable speichern, um es später in unserem Programm weiterzuverwenden. Hierfür benötigen wir Rückgabewerte.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔙 Das return-Schlüsselwort
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um einen Wert aus einer Funktion zurückzugeben, verwenden wir das <code>return</code>-Schlüsselwort. Sobald Python auf eine <code>return</code>-Anweisung trifft, wird die Ausführung der Funktion sofort beendet und der angegebene Wert wird an die Stelle zurückgegeben, an der die Funktion aufgerufen wurde.</p>
+</div>
+</div>
+<p>Lassen Sie uns unsere Additionsfunktion so umschreiben, dass sie die Summe zurückgibt, anstatt sie auszugeben:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> addiere_zwei_zahlen_return(zahl1, zahl2):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Diese Funktion addiert zwei Zahlen und gibt die Summe zurück.</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">        zahl1 (int or float): Die erste Zahl.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">        zahl2 (int or float): Die zweite Zahl.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">        int or float: Die Summe der beiden Zahlen.</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    summe <span class="op">=</span> zahl1 <span class="op">+</span> zahl2</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> summe</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="den-rückgabewert-verwenden" class="level3">
+<h3 class="anchored" data-anchor-id="den-rückgabewert-verwenden">Den Rückgabewert verwenden</h3>
+<p>Jetzt können wir das Ergebnis dieser Funktion in einer Variable speichern und damit weiterarbeiten:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Funktion aufrufen und den Rückgabewert in der Variable "ergebnis" speichern</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ergebnis <span class="op">=</span> addiere_zwei_zahlen_return(<span class="dv">15</span>, <span class="dv">10</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Das Ergebnis der Addition ist: </span><span class="sc">{</span>ergebnis<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Das Ergebnis der Addition ist: 25</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Wir können das Ergebnis weiterverwenden</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ergebnis <span class="op">&gt;</span> <span class="dv">20</span>:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Das Ergebnis ist größer als 20!"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: Das Ergebnis ist größer als 20!</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Der entscheidende Unterschied zur vorherigen Version: Anstatt das Ergebnis nur auf dem Bildschirm auszugeben, können wir es jetzt in einer Variable speichern und in unserem Programm weiterverarbeiten. Das macht unsere Funktionen wesentlich flexibler und wiederverwendbarer.</p>
+</section>
+<section id="rückgabe-beliebiger-datentypen" class="level3">
+<h3 class="anchored" data-anchor-id="rückgabe-beliebiger-datentypen">Rückgabe beliebiger Datentypen</h3>
+<p>Eine Funktion kann jeden beliebigen Datentyp zurückgeben: Zahlen, Strings, boolesche Werte und sogar komplexere Datenstrukturen wie Listen oder Dictionaries, die wir in einem späteren Kapitel kennenlernen werden. Das macht Funktionen zu einem extrem vielseitigen Werkzeug.</p>
+</section>
+<section id="funktionen-ohne-return-anweisung" class="level3">
+<h3 class="anchored" data-anchor-id="funktionen-ohne-return-anweisung">Funktionen ohne return-Anweisung</h3>
+<p>Ein wichtiger Hinweis: Wenn eine Funktion keine <code>return</code>-Anweisung hat, gibt sie standardmäßig den speziellen Wert <code>None</code> zurück. <code>None</code> ist ein eigener Datentyp in Python, der die Abwesenheit eines Wertes darstellt:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> einfache_begruessung():</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hallo!"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ergebnis <span class="op">=</span> einfache_begruessung()</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ergebnis)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe:</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Hallo!</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># None</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Funktion gibt zwar Text auf dem Bildschirm aus, aber ihr Rückgabewert ist <code>None</code>, weil keine <code>return</code>-Anweisung vorhanden ist. Das ist kein Fehler, sondern das normale Verhalten von Python.</p>
+<p>Rückgabewerte sind ein entscheidendes Konzept, um nützliche und wiederverwendbare Funktionen zu erstellen. Sie ermöglichen es uns, Funktionen zu schreiben, die Berechnungen durchführen oder Daten verarbeiten und die Ergebnisse an den Rest unseres Programms zur weiteren Verwendung übergeben.</p>
+</section>
+</section>
+<section id="sec-lambda-funktionen" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="sec-lambda-funktionen"><span class="header-section-number">2.8</span> Lambda Funktionen</h2>
+<p>Manchmal benötigen wir eine kleine, einfache Funktion nur für eine kurze, einmalige Verwendung. Für solche Fälle bietet Python eine spezielle Art von Funktionen: die Lambda-Funktionen, auch bekannt als anonyme Funktionen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🎭 Was ist eine Lambda-Funktion?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Eine Lambda-Funktion ist eine kleine, namenlose Funktion, die in einer einzigen Zeile definiert wird. Sie kann eine beliebige Anzahl von Argumenten haben, aber nur einen einzigen Ausdruck, dessen Ergebnis sie zurückgibt.</p>
+</div>
+</div>
+<section id="die-syntax-einer-lambda-funktion" class="level3">
+<h3 class="anchored" data-anchor-id="die-syntax-einer-lambda-funktion">Die Syntax einer Lambda-Funktion</h3>
+<p>Die grundlegende Syntax lautet:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">lambda</span> argumente: ausdruck</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Das <code>lambda</code>-Schlüsselwort leitet die Definition ein, gefolgt von den Argumenten (durch Kommas getrennt, wie bei normalen Funktionen) und einem einzelnen Ausdruck. Das Besondere: Das <code>return</code>-Schlüsselwort ist nicht erforderlich – das Ergebnis des Ausdrucks wird automatisch zurückgegeben.</p>
+<p>Schauen wir uns ein einfaches Beispiel an – eine Lambda-Funktion, die eine Zahl quadriert:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Lambda-Funktion, die ein Argument x entgegennimmt und x * x zurückgibt</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>quadrat <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">*</span> x</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Lambda-Funktion aufrufen</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(quadrat(<span class="dv">5</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: 25</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dies ist äquivalent zu der folgenden normalen Funktionsdefinition:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadrat_normal(x):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="wann-sollte-man-lambda-funktionen-verwenden" class="level3">
+<h3 class="anchored" data-anchor-id="wann-sollte-man-lambda-funktionen-verwenden">Wann sollte man Lambda-Funktionen verwenden?</h3>
+<p>Lambda-Funktionen sind besonders nützlich, wenn wir eine Funktion als Argument an eine andere, höherwertige Funktion übergeben müssen. Dies ist häufig der Fall bei Funktionen wie <code>map()</code>, <code>filter()</code> und <code>sorted()</code>, die wir in späteren Kapiteln kennenlernen werden.</p>
+<p>Stellen Sie sich vor, wir haben eine Liste von Tupeln, die jeweils einen Namen und ein Alter enthalten, und wir möchten diese Liste nach dem Alter sortieren:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>personen <span class="op">=</span> [(<span class="st">"Anna"</span>, <span class="dv">28</span>), (<span class="st">"Max"</span>, <span class="dv">22</span>), (<span class="st">"Julia"</span>, <span class="dv">35</span>)]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Liste nach dem zweiten Element jedes Tupels (dem Alter) sortieren</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>sortierte_personen <span class="op">=</span> <span class="bu">sorted</span>(personen, key<span class="op">=</span><span class="kw">lambda</span> person: person[<span class="dv">1</span>])</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sortierte_personen)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe: [("Max", 22), ("Anna", 28), ("Julia", 35)]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Hier übergeben wir eine Lambda-Funktion als <code>key</code>-Argument an die <code>sorted()</code>-Funktion. Die Lambda-Funktion <code>lambda person: person[1]</code> nimmt ein Tupel <code>person</code> entgegen und gibt dessen zweites Element (<code>person[1]</code>, also das Alter) zurück. <code>sorted()</code> verwendet dann diesen Wert, um die Liste zu sortieren.</p>
+</section>
+<section id="sparsame-verwendung-empfohlen" class="level3">
+<h3 class="anchored" data-anchor-id="sparsame-verwendung-empfohlen">Sparsame Verwendung empfohlen</h3>
+<p>Lambda-Funktionen sind ein kompaktes und leistungsfähiges Werkzeug für bestimmte Anwendungsfälle. Sie sollten jedoch sparsam eingesetzt werden. Wenn eine Funktion eine komplexere Logik erfordert oder an mehreren Stellen im Code wiederverwendet wird, ist eine normale, benannte Funktion mit <code>def</code> immer die bessere Wahl, da sie lesbarer, besser dokumentierbar und wartbarer ist.</p>
+</section>
+</section>
+<section id="sec-projekt-notenrechner" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="sec-projekt-notenrechner"><span class="header-section-number">2.9</span> Übung: Der Notenrechner</h2>
+<p>Jetzt ist es an der Zeit, alle Konzepte dieses Kapitels in einem praktischen Projekt zusammenzubringen! Sie werden einen Notenrechner programmieren, der verschiedene Funktionen zur Notenauswertung bereitstellt.</p>
+<p><strong>Ziel:</strong> Erstellen Sie ein Programm mit mehreren Funktionen, das Schulnoten analysiert und auswertet.</p>
+<section id="anforderungen" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen">Anforderungen</h3>
+<ol type="1">
+<li><strong>Durchschnitt berechnen:</strong> Eine Funktion <code>berechne_durchschnitt(noten)</code>:
+<ul>
+<li>Nimmt eine Liste von Noten als Parameter</li>
+<li>Berechnet den Durchschnitt</li>
+<li>Gibt das Ergebnis zurück</li>
+<li>Enthält einen Docstring</li>
+</ul></li>
+<li><strong>Beste Note finden:</strong> Eine Funktion <code>finde_beste_note(noten)</code>:
+<ul>
+<li>Nimmt eine Liste von Noten als Parameter</li>
+<li>Findet die beste (kleinste) Note</li>
+<li>Gibt das Ergebnis zurück</li>
+</ul></li>
+<li><strong>Schlechteste Note finden:</strong> Eine Funktion <code>finde_schlechteste_note(noten)</code>:
+<ul>
+<li>Nimmt eine Liste von Noten als Parameter</li>
+<li>Findet die schlechteste (größte) Note</li>
+<li>Gibt das Ergebnis zurück</li>
+</ul></li>
+<li><strong>Bestanden prüfen:</strong> Eine Funktion <code>ist_bestanden(durchschnitt, grenze=4.0)</code>:
+<ul>
+<li>Nimmt den Durchschnitt und eine optionale Grenze als Parameter</li>
+<li>Standardwert für Grenze: 4.0</li>
+<li>Gibt <code>True</code> oder <code>False</code> zurück</li>
+</ul></li>
+<li><strong>Zeugnis ausgeben:</strong> Eine Funktion <code>erstelle_zeugnis(name, noten)</code>:
+<ul>
+<li>Nimmt Name und Notenliste als Parameter</li>
+<li>Ruft die anderen Funktionen auf</li>
+<li>Gibt eine formatierte Zusammenfassung aus</li>
+</ul></li>
+</ol>
+</section>
+<section id="anleitung" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung">Anleitung</h3>
+<ol type="1">
+<li>Definieren Sie die Funktion <code>berechne_durchschnitt()</code> mit Docstring.</li>
+<li>Definieren Sie die Funktion <code>finde_beste_note()</code>.</li>
+<li>Definieren Sie die Funktion <code>finde_schlechteste_note()</code>.</li>
+<li>Definieren Sie die Funktion <code>ist_bestanden()</code> mit Standardparameter.</li>
+<li>Definieren Sie die Funktion <code>erstelle_zeugnis()</code>, die alle anderen Funktionen verwendet.</li>
+<li>Testen Sie das Programm mit Beispieldaten.</li>
+</ol>
+</section>
+<section id="code-struktur" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur">Code-Struktur</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> berechne_durchschnitt(noten):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Berechnet den Durchschnitt einer Notenliste.</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">        noten (list): Eine Liste von Noten (1-6).</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">        float: Der Notendurchschnitt.</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Summe aller Noten berechnen</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Durch Anzahl der Noten teilen</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ergebnis zurückgeben</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> finde_beste_note(noten):</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Findet die beste (kleinste) Note in der Liste."""</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Die kleinste Zahl in der Liste finden</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: Verwenden Sie die min() Funktion</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> finde_schlechteste_note(noten):</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Findet die schlechteste (größte) Note in der Liste."""</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Die größte Zahl in der Liste finden</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: Verwenden Sie die max() Funktion</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ist_bestanden(durchschnitt, grenze<span class="op">=</span><span class="fl">4.0</span>):</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Prüft, ob der Durchschnitt zum Bestehen reicht.</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">        durchschnitt (float): Der Notendurchschnitt.</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">        grenze (float): Die Bestehensgrenze (Standard: 4.0).</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">        bool: True wenn bestanden, sonst False.</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prüfen ob durchschnitt &lt;= grenze</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># True oder False zurückgeben</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> erstelle_zeugnis(name, noten):</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Erstellt eine Zeugnisübersicht für einen Schüler.</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="co">        name (str): Name des Schülers.</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co">        noten (list): Liste der Noten.</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Durchschnitt berechnen (Funktion aufrufen)</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Beste und schlechteste Note finden (Funktionen aufrufen)</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prüfen ob bestanden (Funktion aufrufen)</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Alles formatiert ausgeben mit f-Strings</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Hauptprogramm: Funktionen testen</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>meine_noten <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>erstelle_zeugnis(<span class="st">"Max Mustermann"</span>, meine_noten)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise">Hinweise</h3>
+<ul>
+<li><code>sum(liste)</code> berechnet die Summe aller Elemente einer Liste.</li>
+<li><code>len(liste)</code> gibt die Anzahl der Elemente zurück.</li>
+<li><code>min(liste)</code> findet das kleinste Element.</li>
+<li><code>max(liste)</code> findet das größte Element.</li>
+<li>Bei deutschen Schulnoten ist 1 die beste und 6 die schlechteste Note.</li>
+</ul>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Testen Sie Ihr Programm mit verschiedenen Notenlisten. Bonus: Erweitern Sie das Programm um eine Funktion, die zählt, wie viele Noten besser als der Durchschnitt sind!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-loesungen-kap2" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="sec-loesungen-kap2"><span class="header-section-number">2.10</span> Lösungen zu Kapitel 2</h2>
+<p>In diesem Abschnitt finden Sie die Lösungen zu den Übungsaufgaben. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihre eigenen Lösungsansätze zu überprüfen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💡 Wichtiger Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es gibt oft mehrere richtige Lösungswege in der Programmierung. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie das gewünschte Ergebnis liefert und funktioniert.</p>
+</div>
+</div>
+<section id="lösung-zur-übung-der-notenrechner" class="level3">
+<h3 class="anchored" data-anchor-id="lösung-zur-übung-der-notenrechner">Lösung zur Übung: Der Notenrechner</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> berechne_durchschnitt(noten):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Berechnet den Durchschnitt einer Notenliste.</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">        noten (list): Eine Liste von Noten (1-6).</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">        float: Der Notendurchschnitt.</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    summe <span class="op">=</span> <span class="bu">sum</span>(noten)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    anzahl <span class="op">=</span> <span class="bu">len</span>(noten)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> summe <span class="op">/</span> anzahl</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> finde_beste_note(noten):</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Findet die beste (kleinste) Note in der Liste."""</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">min</span>(noten)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> finde_schlechteste_note(noten):</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Findet die schlechteste (größte) Note in der Liste."""</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(noten)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ist_bestanden(durchschnitt, grenze<span class="op">=</span><span class="fl">4.0</span>):</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Prüft, ob der Durchschnitt zum Bestehen reicht."""</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> durchschnitt <span class="op">&lt;=</span> grenze</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> erstelle_zeugnis(name, noten):</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Erstellt eine Zeugnisübersicht für einen Schüler."""</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    durchschnitt <span class="op">=</span> berechne_durchschnitt(noten)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    beste <span class="op">=</span> finde_beste_note(noten)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    schlechteste <span class="op">=</span> finde_schlechteste_note(noten)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    bestanden <span class="op">=</span> ist_bestanden(durchschnitt)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"=== Zeugnis für </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> ==="</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Noten: </span><span class="sc">{</span>noten<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Durchschnitt: </span><span class="sc">{</span>durchschnitt<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Beste Note: </span><span class="sc">{</span>beste<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Schlechteste Note: </span><span class="sc">{</span>schlechteste<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> bestanden:</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Ergebnis: Bestanden!"</span>)</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Ergebnis: Nicht bestanden."</span>)</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Hauptprogramm: Funktionen testen</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>meine_noten <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>erstelle_zeugnis(<span class="st">"Max Mustermann"</span>, meine_noten)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Ausgabe des Programms:</p>
+<pre><code>=== Zeugnis für Max Mustermann ===
+Noten: [2, 3, 1, 4, 2, 3]
+Durchschnitt: 2.50
+Beste Note: 1
+Schlechteste Note: 4
+Ergebnis: Bestanden!</code></pre>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🎉 Herzlichen Glückwunsch!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sie haben nun ein solides Verständnis für Funktionen entwickelt – eines der fundamentalen Konzepte der Programmierung. In diesem Kapitel haben Sie gelernt:</p>
+<ul>
+<li><strong>Warum Funktionen wichtig sind</strong>: Wiederverwendbarkeit, Lesbarkeit, Modularität und Wartbarkeit</li>
+<li><strong>Wie Sie Module importieren</strong>: <code>import</code>, <code>from ... import</code>, und Aliase mit <code>as</code></li>
+<li><strong>Wie Sie eigene Funktionen definieren</strong>: Mit <code>def</code>, Parametern und dem Funktionskörper</li>
+<li><strong>Parameter und Argumente</strong>: Positionsargumente und Standardwerte</li>
+<li><strong>Dokumentation mit Docstrings</strong>: Professionelle Funktionsbeschreibungen nach Google-Konvention</li>
+<li><strong>Rückgabewerte mit <code>return</code></strong>: Ergebnisse aus Funktionen zurückgeben und weiterverwenden</li>
+<li><strong>Lambda-Funktionen</strong>: Kompakte, anonyme Funktionen für einmalige Aufgaben</li>
+</ul>
+<p>Im nächsten Kapitel werden wir uns ansehen, wie wir den Ablauf unserer Programme mit Bedingungen und Schleifen steuern können.</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Kapitel 1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">KI Python lernen</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Kapitel 3.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">KI Python - IHK Rhein-Neckar</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">© 2026 Paul Pronobis &amp; Tobias Lämmle</div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1800, height=2700">
+    <title>KI mit Python - Backcover</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cover backcover">
+        <!-- Code-Hintergrund (subtiler als Frontcover) -->
+        <div class="code-background" style="opacity: 0.08;">import openai
+from transformers import pipeline
+import pandas as pd
+import numpy as np
+
+class NeuralNetwork:
+    def __init__(self, layers):
+        self.layers = layers
+        self.weights = []
+
+    def forward(self, x):
+        for layer in self.layers:
+            x = layer.forward(x)
+        return x
+
+def analyze_data(df):
+    results = df.describe()
+    correlation = df.corr()
+    return results
+
+# GPT Integration
+client = openai.OpenAI()
+response = client.chat.completions
+
+if __name__ == "__main__":
+    model = NeuralNetwork([
+        Dense(128),
+        Dense(64),
+        Dense(10)
+    ])
+
+    predictions = model.predict(X_test)
+    accuracy = evaluate(predictions)
+    print(f"Accuracy: {accuracy:.2%}")</div>
+
+        <!-- Hauptinhalt -->
+        <div class="content">
+            <!-- Klappentext -->
+            <p class="blurb">
+                Künstliche Intelligenz verstehen und selbst programmieren – in nur 4 Wochen.
+                Dieses praxisorientierte Lehrbuch führt Sie Schritt für Schritt von Ihrem ersten
+                Python-Programm bis zur Integration von GPT in eigene Anwendungen. Entwickelt
+                aus dem erfolgreichen IHK-Zertifikatskurs „KI lernen in 4 Wochen".
+            </p>
+
+            <!-- Was Sie lernen werden -->
+            <div class="section">
+                <h2 class="section-title">Was Sie lernen werden:</h2>
+                <ul class="bullet-list">
+                    <li>Python-Grundlagen: Variablen, Funktionen, Datenstrukturen</li>
+                    <li>Datenanalyse mit Pandas</li>
+                    <li>GPT-APIs in eigene Anwendungen integrieren</li>
+                    <li>KI als Lernpartner effektiv nutzen</li>
+                    <li>Praktische Projekte: vom Python-Spiel bis zum KI-Aufgabenmanager</li>
+                </ul>
+            </div>
+
+            <!-- Für wen ist dieses Buch? -->
+            <div class="section">
+                <h2 class="section-title">Für wen ist dieses Buch?</h2>
+                <ul class="bullet-list">
+                    <li>Berufstätige, die zukunftssichere KI-Kompetenzen aufbauen wollen</li>
+                    <li>Studierende mit Interesse an praktischer Programmierung</li>
+                    <li>Einsteiger ohne Vorkenntnisse</li>
+                    <li>IHK-Kursteilnehmer als Begleitwerk</li>
+                </ul>
+            </div>
+
+            <!-- Über die Autoren -->
+            <div class="author-bio">
+                <h2 class="author-bio-title">Über die Autoren:</h2>
+                <p class="author-bio-text">
+                    <strong>Prof. Dr. Paul Pronobis</strong> ist ordentlicher Professor an der Freien
+                    Universität Bozen und verbindet als international anerkannter Wissenschaftler
+                    fundierte betriebswirtschaftliche Expertise mit innovativen KI-Anwendungen.
+                    Seine Forschung und Lehre konzentrieren sich auf die Schnittstelle zwischen
+                    Rechnungswesen, Datenanalyse und künstlicher Intelligenz.
+                </p>
+                <p class="author-bio-text">
+                    <strong>Tobias Lämmle</strong> ist Software-Architekt und Senior Software Engineer
+                    bei der Finanz Informatik Solutions Plus GmbH mit über 20 Jahren Erfahrung in
+                    der Entwicklung skalierbarer Softwarelösungen und KI-Systeme. Als gefragter
+                    Dozent lehrt er Machine Learning und Natural Language Processing an der Freien
+                    Universität Bozen und der ESCP Business School Paris.
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div class="backcover-footer">
+                <div class="footer-left">
+                    <p class="footer-publisher-large">© Business Data Professional Media</p>
+                    <p class="footer-community-prominent">Werde Teil unserer Community:</p>
+                    <p class="footer-community-url">skool.com/business-data-professional</p>
+                </div>
+
+                <div class="footer-right">
+                    <!-- QR Code zur Community -->
+                    <div class="qr-code">
+                        <img src="../QR code.png" alt="QR-Code zur Community">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

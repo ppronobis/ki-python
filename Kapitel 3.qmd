@@ -1,0 +1,687 @@
+# Bedingungen & Schleifen {#sec-bedingungen-schleifen}
+
+## Willkommen zu Kapitel 3 {#sec-willkommen-kap3}
+
+Herzlich willkommen zu Kapitel 3! Nachdem wir uns in Kapitel 1 mit den grundlegenden Bausteinen von Python vertraut gemacht und in Kapitel 2 gelernt haben, wie wir unseren Code mit Funktionen strukturieren können, ist es nun an der Zeit, unseren Programmen echte Intelligenz zu verleihen.
+
+Stellen Sie sich vor, Sie möchten ein Programm schreiben, das auf unterschiedliche Situationen unterschiedlich reagiert – etwa einen Benutzer begrüßt, wenn er sich erfolgreich anmeldet, aber eine Fehlermeldung zeigt, wenn das Passwort falsch ist. Oder denken Sie an ein Programm, das automatisch alle Dateien in einem Ordner durchgeht und bestimmte Aktionen ausführt. Genau für solche Aufgaben benötigen wir die Kontrollstrukturen, die wir in diesem Kapitel kennenlernen werden.
+
+::: {.callout-important}
+## 🎯 In diesem Kapitel lernen Sie zwei fundamentale Konzepte
+
+**1. 🤔 Bedingungen:** Sie ermöglichen es Ihrem Programm, Entscheidungen zu treffen. Basierend auf bestimmten Bedingungen kann das Programm unterschiedliche Wege einschlagen. Dies ist die Grundlage für jede Art von intelligenter Logik.
+
+**2. 🔄 Schleifen:** Sie ermöglichen es Ihrem Programm, Codeblöcke wiederholt auszuführen. Anstatt denselben Code immer wieder zu schreiben, können Sie eine Schleife verwenden, um eine Aufgabe so oft wie nötig zu wiederholen.
+:::
+
+Diese beiden Konzepte sind das Herzstück praktisch jedes Programms. Ohne sie könnten unsere Programme nur stumpf eine Anweisung nach der anderen ausführen, ohne jemals auf verschiedene Situationen zu reagieren oder repetitive Aufgaben zu automatisieren.
+
+Am Ende dieses Kapitels werden Sie in der Lage sein, Programme zu schreiben, die auf Benutzereingaben reagieren, Daten verarbeiten und komplexe, sich wiederholende Aufgaben automatisieren können. Als krönenden Abschluss werden wir gemeinsam ein kleines Python-Spiel entwickeln – Ihr erstes richtiges Projekt, bei dem Sie alle gelernten Konzepte in der Praxis anwenden können!
+
+Lassen Sie uns beginnen und lernen, wie wir unseren Programmen Logik und Intelligenz verleihen können.
+
+## If-Else Anweisungen {#sec-if-else}
+
+Die if-else-Anweisung ist die grundlegendste Form der bedingten Anweisung in Python. Sie erlaubt es uns, einen Codeblock nur dann auszuführen, wenn eine bestimmte Bedingung wahr (True) ist. Optional können wir einen anderen Codeblock ausführen, wenn die Bedingung falsch (False) ist.
+
+Stellen Sie sich vor, Sie stehen an einer Weggabelung: Je nachdem, welchen Weg Sie wählen, erleben Sie etwas anderes. Genau so funktioniert die if-Anweisung – sie lässt Ihr Programm basierend auf einer Bedingung unterschiedliche Pfade einschlagen. Ohne bedingte Anweisungen würde ein Programm immer denselben linearen Ablauf durchführen – mit ihnen kann es auf verschiedene Situationen unterschiedlich reagieren.
+
+### Die if-Anweisung
+
+Die einfachste Form der bedingten Anweisung ist die reine if-Anweisung. Der Codeblock innerhalb der if-Anweisung wird nur dann ausgeführt, wenn die angegebene Bedingung erfüllt ist. Ist die Bedingung nicht erfüllt, wird der gesamte Block übersprungen und das Programm läuft normal weiter.
+
+Die Syntax einer if-Anweisung folgt einem klaren Muster: Zuerst kommt das Schlüsselwort `if`, gefolgt von einer Bedingung, die zu `True` oder `False` ausgewertet wird. Nach der Bedingung steht ein Doppelpunkt, und der auszuführende Code muss eingerückt sein – üblicherweise mit vier Leerzeichen. Diese Einrückung ist in Python nicht nur Stilfrage, sondern syntaktisch erforderlich.
+
+Hier ein einfaches Beispiel:
+
+```python
+alter = 18
+
+if alter >= 18:
+    print("Sie sind volljährig.")
+```
+
+In diesem Beispiel prüft Python, ob der Wert der Variable `alter` größer oder gleich 18 ist. Da dies der Fall ist (18 >= 18 ergibt `True`), wird die eingerückte Zeile ausgeführt und "Sie sind volljährig." ausgegeben. Wäre `alter` beispielsweise 16, würde die Bedingung `False` ergeben und die print-Anweisung würde übersprungen.
+
+### Die if-else-Anweisung
+
+Oft möchten wir nicht nur etwas tun, wenn eine Bedingung erfüllt ist, sondern auch eine Alternative anbieten für den Fall, dass sie nicht erfüllt ist. Ein Programm zur Altersüberprüfung sollte beispielsweise nicht einfach nichts tun, wenn jemand minderjährig ist – es sollte eine entsprechende Rückmeldung geben.
+
+Genau hier kommt die if-else-Anweisung ins Spiel. Der `else`-Block definiert, was passieren soll, wenn die Bedingung im `if`-Teil nicht erfüllt ist. Es gibt immer genau einen der beiden Wege – nie beide und nie keinen.
+
+```python
+alter = 16
+
+if alter >= 18:
+    print("Sie sind volljährig.")
+else:
+    print("Sie sind minderjährig.")
+```
+
+Da `alter` hier den Wert 16 hat, ergibt die Bedingung `16 >= 18` den Wert `False`. Python überspringt daher den if-Block und führt stattdessen den else-Block aus: "Sie sind minderjährig." wird ausgegeben.
+
+### Die if-elif-else-Anweisung
+
+Was aber, wenn wir mehr als zwei Möglichkeiten haben? Stellen Sie sich ein Notensystem vor: Je nach Punktzahl gibt es verschiedene Noten, nicht nur "bestanden" oder "nicht bestanden". Für solche Fälle bietet Python die `elif`-Anweisung (kurz für "else if").
+
+Mit `elif` können Sie beliebig viele zusätzliche Bedingungen zwischen `if` und `else` einfügen. Python prüft diese Bedingungen von oben nach unten und führt den Codeblock der ersten wahren Bedingung aus. Sobald eine Bedingung zutrifft, werden alle weiteren übersprungen – auch wenn sie ebenfalls wahr wären. Wenn keine der Bedingungen wahr ist, wird der `else`-Block ausgeführt (falls vorhanden).
+
+```python
+punktzahl = 85
+
+if punktzahl >= 90:
+    note = "Sehr Gut"
+elif punktzahl >= 80:
+    note = "Gut"
+elif punktzahl >= 70:
+    note = "Befriedigend"
+else:
+    note = "Nicht bestanden"
+
+print(f"Ihre Note ist: {note}")
+```
+
+Bei einer Punktzahl von 85 prüft Python zuerst `85 >= 90` (False), dann `85 >= 80` (True). Da diese Bedingung erfüllt ist, wird `note = "Gut"` ausgeführt und alle weiteren elif- und else-Blöcke werden übersprungen.
+
+::: {.callout-tip}
+## 💡 Die Reihenfolge der Bedingungen ist entscheidend
+
+Achten Sie bei elif-Ketten darauf, die Bedingungen in der richtigen Reihenfolge zu schreiben. Hätten wir im Notenbeispiel zuerst `>= 70` geprüft, würde eine Punktzahl von 85 bereits dort als "wahr" erkannt und fälschlicherweise als "Befriedigend" eingestuft werden.
+:::
+
+Bedingte Anweisungen sind das Rückgrat der Entscheidungsfindung in der Programmierung. Sie ermöglichen es uns, flexible und intelligente Programme zu schreiben, die auf unterschiedliche Situationen angemessen reagieren können. Im nächsten Abschnitt werden wir uns ansehen, wie wir die Bedingungen selbst formulieren – mit Hilfe von Vergleichsoperatoren.
+
+## Vergleichsoperatoren {#sec-vergleichsoperatoren-kap3}
+
+Nachdem wir nun wissen, wie if-Anweisungen strukturiert sind, stellt sich die Frage: Wie formulieren wir eigentlich die Bedingungen selbst? Genau hier kommen die Vergleichsoperatoren ins Spiel.
+
+Vergleichsoperatoren ermöglichen es uns, zwei Werte miteinander zu vergleichen. Das Ergebnis eines solchen Vergleichs ist immer ein boolescher Wert – also entweder `True` (wahr) oder `False` (falsch). Diese Operatoren haben wir bereits in @sec-ki-python-lernen kennengelernt, aber hier werden wir ihre Anwendung im Kontext von if-Anweisungen vertiefen.
+
+Python bietet sechs grundlegende Vergleichsoperatoren, die Sie in der folgenden Tabelle sehen:
+
+| Operator | Beschreibung | Beispiel | Ergebnis |
+|----------|-------------|----------|----------|
+| `==` | Gleich | `10 == 5` | `False` |
+| `!=` | Ungleich | `10 != 5` | `True` |
+| `>` | Größer als | `10 > 5` | `True` |
+| `<` | Kleiner als | `10 < 5` | `False` |
+| `>=` | Größer oder gleich als | `10 >= 10` | `True` |
+| `<=` | Kleiner oder gleich als | `10 <= 5` | `False` |
+
+: Vergleichsoperatoren in Python {#tbl-vergleichsoperatoren-kap3}
+
+Besonders wichtig ist der Unterschied zwischen dem Gleichheitsoperator `==` und dem Zuweisungsoperator `=`. Während `=` einen Wert in einer Variable speichert (`alter = 18`), prüft `==` ob zwei Werte gleich sind (`alter == 18`). Diese Verwechslung ist einer der häufigsten Anfängerfehler.
+
+::: {.callout-warning}
+## ⚠️ Häufiger Fehler: = statt ==
+
+```python
+# FALSCH - Dies ist eine Zuweisung, kein Vergleich!
+if alter = 18:  # SyntaxError!
+    print("Volljährig")
+
+# RICHTIG - Doppeltes Gleichheitszeichen für Vergleich
+if alter == 18:
+    print("Genau 18 Jahre alt")
+```
+:::
+
+Lassen Sie uns diese Operatoren nun in praktischen Beispielen anwenden. Ein typischer Anwendungsfall ist die Überprüfung von Benutzereingaben:
+
+```python
+# Beispiel 1: Überprüfen, ob ein Benutzername korrekt ist
+korrekter_benutzername = "admin"
+eingegebener_benutzername = "admin"
+
+if eingegebener_benutzername == korrekter_benutzername:
+    print("Benutzername korrekt. Zugriff gewährt.")
+else:
+    print("Benutzername falsch. Zugriff verweigert.")
+```
+
+In diesem Beispiel verwenden wir `==`, um zu prüfen, ob der eingegebene Benutzername mit dem korrekten übereinstimmt. Da beide Strings identisch sind, ergibt der Vergleich `True` und der Zugriff wird gewährt.
+
+Ein weiterer häufiger Anwendungsfall ist das Prüfen von Wertebereichen:
+
+```python
+# Beispiel 2: Überprüfen, ob eine Zahl in einem bestimmten Bereich liegt
+temperatur = 25
+
+if temperatur > 20 and temperatur < 30:
+    print("Die Temperatur ist angenehm.")
+```
+
+Das Beherrschen der Vergleichsoperatoren ist entscheidend, um sinnvolle und effektive Bedingungen in Ihren Programmen zu formulieren. Im zweiten Beispiel haben Sie vielleicht das Wort `and` bemerkt – damit können wir mehrere Bedingungen verknüpfen. Genau darum geht es im nächsten Abschnitt.
+
+## Logische Operatoren {#sec-logische-operatoren-kap3}
+
+In der Praxis müssen wir oft mehrere Bedingungen gleichzeitig prüfen. Denken Sie an eine Autovermietung: Ein Kunde darf nur ein Auto mieten, wenn er mindestens 18 Jahre alt ist UND einen gültigen Führerschein besitzt. Oder an einen Online-Shop: Versandkostenfrei ist eine Bestellung, wenn der Warenwert über 50 Euro liegt ODER der Kunde ein Premium-Mitglied ist.
+
+Für solche Fälle bietet Python die logischen Operatoren `and`, `or` und `not`, die wir bereits in @sec-ki-python-lernen kennengelernt haben. Mit ihnen können wir mehrere Bedingungen zu einer komplexeren Gesamtbedingung verknüpfen.
+
+Die folgende Tabelle gibt einen Überblick über die drei logischen Operatoren:
+
+| Operator | Beschreibung | Beispiel |
+|----------|-------------|----------|
+| `and` | Beide Bedingungen müssen wahr sein | `alter >= 18 and hat_ausweis` |
+| `or` | Mindestens eine Bedingung muss wahr sein | `ist_student or ist_rentner` |
+| `not` | Kehrt den Wahrheitswert um | `not ist_gesperrt` |
+
+: Logische Operatoren in Python {#tbl-logische-operatoren-kap3}
+
+### Der and-Operator
+
+Der `and`-Operator verknüpft zwei Bedingungen und ergibt nur dann `True`, wenn beide Bedingungen wahr sind. Sobald eine der Bedingungen falsch ist, ist das Gesamtergebnis `False`. Dies entspricht dem deutschen "UND" – beide Teile müssen zutreffen.
+
+```python
+# Prüfen, ob jemand ein Auto mieten darf
+alter = 25
+hat_fuehrerschein = True
+
+if alter >= 18 and hat_fuehrerschein:
+    print("Sie dürfen ein Auto mieten.")
+else:
+    print("Leider können Sie kein Auto mieten.")
+```
+
+In diesem Beispiel müssen beide Bedingungen erfüllt sein: Das Alter muss mindestens 18 sein UND die Person muss einen Führerschein haben. Nur wenn beides zutrifft, wird das Auto vermietet.
+
+### Der or-Operator
+
+Der `or`-Operator ergibt `True`, wenn mindestens eine der beiden Bedingungen wahr ist. Nur wenn beide Bedingungen falsch sind, ist das Gesamtergebnis `False`. Dies entspricht dem deutschen "ODER" – es reicht, wenn ein Teil zutrifft.
+
+```python
+# Rabatt für Studenten oder Rentner
+ist_student = False
+ist_rentner = True
+
+if ist_student or ist_rentner:
+    print("Sie erhalten 20% Rabatt!")
+```
+
+Hier erhält man den Rabatt, wenn man Student ist ODER Rentner ist – oder sogar beides. Die Person ist kein Student, aber Rentner, also wird der Rabatt gewährt.
+
+### Der not-Operator
+
+Der `not`-Operator kehrt einen Wahrheitswert um: Aus `True` wird `False` und umgekehrt. Dies ist nützlich, wenn Sie prüfen möchten, ob etwas NICHT der Fall ist.
+
+```python
+# Zugang nur wenn nicht gesperrt
+ist_gesperrt = False
+
+if not ist_gesperrt:
+    print("Zugang gewährt.")
+```
+
+Da `ist_gesperrt` den Wert `False` hat, ergibt `not ist_gesperrt` den Wert `True`, und der Zugang wird gewährt.
+
+### Kombinieren von logischen Operatoren
+
+Ein wichtiger Aspekt bei der Verwendung logischer Operatoren ist die Reihenfolge, in der Python sie auswertet. Bei komplexen Bedingungen ist es wichtig zu wissen, dass `not` vor `and` ausgewertet wird, und `and` vor `or`.
+
+::: {.callout-warning}
+## ⚠️ Verwenden Sie Klammern für Klarheit
+
+Wenn Sie mehrere logische Operatoren kombinieren, können Klammern Missverständnisse vermeiden:
+
+```python
+# Ohne Klammern: and wird vor or ausgewertet
+if alter >= 18 and hat_ausweis or ist_vip:
+    pass  # VIPs kommen immer rein, andere brauchen Alter + Ausweis
+
+# Mit Klammern: Ihre Absicht ist klar
+if (alter >= 18 and hat_ausweis) or ist_vip:
+    pass  # Gleiche Logik, aber besser lesbar
+```
+
+Auch wenn Python die erste Variante korrekt auswertet, macht die zweite Variante die Intention des Codes sofort deutlich.
+:::
+
+Logische Operatoren sind ein mächtiges Werkzeug, um komplexe Entscheidungslogik elegant auszudrücken. Manchmal führen sehr komplexe Bedingungen jedoch zu schwer lesbarem Code. In solchen Fällen kann es sinnvoll sein, verschachtelte Bedingungen zu verwenden – unser nächstes Thema.
+
+## Verschachtelte Bedingungen {#sec-verschachtelte-bedingungen}
+
+Manchmal reicht eine einzelne Ebene von Bedingungen nicht aus, um unsere Logik abzubilden. Stellen Sie sich einen Ticketautomaten vor: Zuerst muss geprüft werden, ob die Person volljährig ist – und nur wenn das der Fall ist, wird zusätzlich geprüft, ob sie einen Studentenausweis hat, um einen Rabatt zu erhalten.
+
+Für solche Szenarien können wir if-Anweisungen ineinander verschachteln. Das bedeutet, dass wir innerhalb eines if-, elif- oder else-Blocks weitere Bedingungen prüfen können. Die innere Bedingung wird nur dann überhaupt geprüft, wenn die äußere Bedingung bereits erfüllt ist.
+
+Hier ein Beispiel für einen Ticketautomaten:
+
+```python
+alter = 20
+ist_student = True
+
+if alter >= 18:
+    print("Person ist volljährig.")
+    if ist_student:
+        print("Studentenrabatt wird gewährt. Ticketpreis: 5 Euro.")
+    else:
+        print("Kein Studentenrabatt. Ticketpreis: 10 Euro.")
+else:
+    print("Person ist minderjährig. Kein Zutritt.")
+```
+
+Beachten Sie die Einrückung: Die innere if-else-Anweisung ist Teil des äußeren if-Blocks und wird daher weiter eingerückt. Python verwendet die Einrückung, um zu erkennen, welcher Code zu welchem Block gehört. In diesem Beispiel wird die Prüfung auf Studentenstatus nur durchgeführt, wenn die Person bereits als volljährig erkannt wurde.
+
+Der Ablauf ist wie folgt: Zuerst prüft Python `alter >= 18`. Da 20 größer oder gleich 18 ist, wird "Person ist volljährig." ausgegeben und die innere if-Anweisung ausgeführt. Dort wird `ist_student` geprüft – da es `True` ist, wird der Studentenrabatt gewährt.
+
+### Verschachtelungstiefe begrenzen
+
+Verschachtelte Bedingungen können jedoch schnell unübersichtlich werden. Bei mehr als zwei oder drei Verschachtelungsebenen wird der Code schwer lesbar und fehleranfällig. Jede zusätzliche Ebene erfordert mehr Einrückung und macht es schwieriger, den Überblick zu behalten.
+
+::: {.callout-warning}
+## ⚠️ Alternativen zu tiefen Verschachtelungen
+
+Wenn Sie merken, dass Ihre Verschachtelungen zu tief werden, gibt es zwei bewährte Alternativen:
+
+1. **Logische Operatoren verwenden:** Kombinieren Sie mehrere Bedingungen mit `and` und `or`
+2. **Code in Funktionen auslagern:** Teilen Sie komplexe Logik in kleinere, benannte Funktionen auf
+:::
+
+Tatsächlich lässt sich das obige Ticketautomaten-Beispiel auch flacher schreiben, indem wir logische Operatoren verwenden:
+
+```python
+alter = 20
+ist_student = True
+
+if alter >= 18 and ist_student:
+    print("Volljährig und Student. Ticketpreis: 5 Euro.")
+elif alter >= 18 and not ist_student:
+    print("Volljährig, aber kein Student. Ticketpreis: 10 Euro.")
+else:
+    print("Minderjährig. Kein Zutritt.")
+```
+
+Diese Version ist flacher und oft leichter zu lesen, da alle Bedingungen auf derselben Ebene stehen. Welche Variante Sie wählen, hängt davon ab, welche die Logik am klarsten ausdrückt. Wenn eine hierarchische Struktur vorliegt (erst A prüfen, dann je nach Ergebnis B oder C), können verschachtelte Bedingungen die Logik besser abbilden. Wenn alle Fälle gleichwertig nebeneinander stehen, ist eine flache if-elif-else-Kette oft übersichtlicher.
+
+Mit dem Wissen über Bedingungen haben Sie nun alle Werkzeuge, um Ihren Programmen Entscheidungsfähigkeit zu verleihen. Im nächsten Teil des Kapitels werden wir uns dem zweiten großen Thema widmen: den Schleifen, mit denen wir Code wiederholt ausführen können.
+
+## For-Schleifen {#sec-for-schleifen}
+
+Stellen Sie sich vor, Sie möchten jeden Namen in einer Kundenliste begrüßen oder jede Zahl von 1 bis 100 auf Teilbarkeit prüfen. Ohne Schleifen müssten Sie denselben Code hundertmal schreiben – eine mühsame und fehleranfällige Aufgabe. Genau hier kommen Schleifen ins Spiel.
+
+Die for-Schleife ist eine der am häufigsten verwendeten Schleifen in Python. Sie ermöglicht es uns, über eine Sequenz von Elementen zu "iterieren" – das bedeutet, jedes Element der Reihe nach zu bearbeiten. Diese Sequenz kann eine Liste, ein String oder ein Zahlenbereich sein. Die Grundstruktur ist dabei immer gleich: `for element in sequenz:` – für jedes Element in der Sequenz führe den folgenden Code aus.
+
+### Die for-Schleife mit range()
+
+Der häufigste Anwendungsfall ist das Durchlaufen einer bestimmten Anzahl von Wiederholungen. Hierfür verwenden wir die `range()`-Funktion, die eine Sequenz von Zahlen erzeugt. Die einfachste Form ist `range(n)`, die die Zahlen von 0 bis n-1 erzeugt:
+
+```python
+# Eine Schleife, die von 0 bis 4 läuft
+for i in range(5):
+    print(i)
+# Ausgabe: 0, 1, 2, 3, 4
+```
+
+Beachten Sie: `range(5)` erzeugt die Zahlen 0, 1, 2, 3, 4 – also fünf Zahlen, aber nicht die 5 selbst. Der Endwert ist immer ausgeschlossen. Dies mag zunächst verwirrend erscheinen, ist aber in der Programmierung eine gängige Konvention, die sich als praktisch erweist.
+
+Wenn Sie einen anderen Startwert als 0 verwenden möchten, können Sie `range(start, ende)` verwenden:
+
+```python
+# Eine Schleife, die von 1 bis 5 läuft
+for i in range(1, 6):
+    print(i)
+# Ausgabe: 1, 2, 3, 4, 5
+```
+
+Um die Zahlen 1 bis 5 zu erhalten, müssen wir also `range(1, 6)` schreiben – der Startwert ist inklusive, der Endwert exklusiv.
+
+### Die for-Schleife mit Listen
+
+Besonders elegant ist Python beim Iterieren über Listen. Anstatt mit Indizes zu arbeiten, können wir direkt über die Elemente selbst iterieren:
+
+```python
+fruechte = ["Apfel", "Banane", "Kirsche"]
+
+for frucht in fruechte:
+    print(frucht)
+# Ausgabe: Apfel, Banane, Kirsche
+```
+
+In jeder Iteration der Schleife nimmt die Variable `frucht` den Wert des nächsten Elements in der Liste `fruechte` an. Diese Schreibweise ist nicht nur kürzer, sondern auch leichter zu lesen als das Arbeiten mit Indizes. Der Variablenname `frucht` ist dabei frei wählbar – er sollte aber beschreiben, was jedes einzelne Element repräsentiert.
+
+### Erweiterte Möglichkeiten mit range()
+
+Die `range()`-Funktion bietet noch mehr Flexibilität: Mit einem dritten Parameter können Sie die Schrittweite festlegen – zum Beispiel um nur jede zweite Zahl zu durchlaufen oder rückwärts zu zählen.
+
+```python
+# Nur gerade Zahlen von 0 bis 10
+for i in range(0, 11, 2):
+    print(i)
+# Ausgabe: 0, 2, 4, 6, 8, 10
+
+# Countdown von 10 bis 1
+for i in range(10, 0, -1):
+    print(i)
+# Ausgabe: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+```
+
+Im ersten Beispiel startet die Schleife bei 0, geht bis 10 (11 ist exklusiv) und erhöht den Zähler jeweils um 2. Im zweiten Beispiel zählen wir rückwärts, indem wir eine negative Schrittweite (-1) verwenden.
+
+### Iteration über Strings
+
+Ein interessanter Aspekt von Python: Auch Strings sind Sequenzen – nämlich Sequenzen von einzelnen Zeichen. Daher können wir mit einer for-Schleife auch jeden Buchstaben eines Wortes einzeln durchgehen:
+
+```python
+wort = "Python"
+
+for buchstabe in wort:
+    print(buchstabe)
+# Ausgabe: P, y, t, h, o, n
+```
+
+Dies ist besonders nützlich, wenn Sie Texte analysieren möchten – zum Beispiel um zu zählen, wie oft ein bestimmter Buchstabe vorkommt, oder um jeden Buchstaben einzeln zu verarbeiten.
+
+### Index und Wert mit enumerate()
+
+Manchmal benötigen wir beim Iterieren nicht nur das Element selbst, sondern auch dessen Position in der Sequenz. Dafür bietet Python die praktische `enumerate()`-Funktion, die beides gleichzeitig liefert:
+
+```python
+fruechte = ["Apfel", "Banane", "Kirsche"]
+
+for index, frucht in enumerate(fruechte):
+    print(f"Position {index}: {frucht}")
+# Ausgabe:
+# Position 0: Apfel
+# Position 1: Banane
+# Position 2: Kirsche
+```
+
+Der Index beginnt standardmäßig bei 0. Wenn Sie lieber bei 1 beginnen möchten (etwa für eine nummerierte Ausgabe), können Sie den Startwert anpassen:
+
+```python
+for nummer, frucht in enumerate(fruechte, start=1):
+    print(f"{nummer}. {frucht}")
+# Ausgabe:
+# 1. Apfel
+# 2. Banane
+# 3. Kirsche
+```
+
+::: {.callout-tip}
+## 💡 Wann enumerate() verwenden?
+
+Verwenden Sie `enumerate()`, wenn Sie sowohl den Index als auch den Wert benötigen. Wenn Sie nur den Wert brauchen, iterieren Sie direkt über die Liste. Wenn Sie nur den Index brauchen, verwenden Sie `range(len(liste))`.
+:::
+
+for-Schleifen sind unglaublich mächtig, um sich wiederholende Aufgaben zu automatisieren, sei es die Verarbeitung von Elementen in einer Liste, das Einlesen von Zeilen aus einer Datei oder das Durchführen von Berechnungen für eine Reihe von Werten. Doch was tun wir, wenn wir nicht im Voraus wissen, wie oft eine Schleife laufen soll? Dafür gibt es die while-Schleife.
+
+## While-Schleifen {#sec-while-schleifen}
+
+Die for-Schleife ist ideal, wenn wir im Voraus wissen, wie oft wir etwas wiederholen möchten – zum Beispiel "für jedes Element in dieser Liste" oder "genau zehnmal". Aber was ist, wenn wir nicht wissen, wie oft die Schleife laufen soll?
+
+Stellen Sie sich ein Spiel vor, bei dem der Benutzer so lange raten darf, bis er die richtige Zahl errät. Oder ein Programm, das Daten von einem Server abruft, bis keine weiteren Daten mehr verfügbar sind. Für solche Szenarien gibt es die while-Schleife.
+
+Eine while-Schleife führt ihren Codeblock so lange aus, wie eine bestimmte Bedingung wahr (True) ist. Sobald die Bedingung falsch wird, endet die Schleife und das Programm läuft weiter. Die grundlegende Syntax sieht so aus:
+
+```python
+while bedingung:
+    # Code, der wiederholt ausgeführt wird
+```
+
+Die Bedingung wird vor jeder Iteration geprüft – das ist wichtig zu verstehen. Ist sie von Anfang an `False`, wird der Schleifenkörper gar nicht erst ausgeführt. Ist sie `True`, wird der Code im Schleifenkörper ausgeführt, und danach wird die Bedingung erneut geprüft.
+
+Schauen wir uns ein klassisches Beispiel an: einen Countdown. Die Schleife läuft, solange der Zähler größer als 0 ist, und in jeder Iteration wird der Zähler um 1 verringert:
+
+```python
+zaehler = 5
+
+while zaehler > 0:
+    print(zaehler)
+    zaehler = zaehler - 1
+
+print("Start!")
+# Ausgabe: 5, 4, 3, 2, 1, Start!
+```
+
+Lassen Sie uns den Ablauf Schritt für Schritt durchgehen: Zu Beginn ist `zaehler` gleich 5. Die Bedingung `5 > 0` ist `True`, also wird der Schleifenkörper ausgeführt: "5" wird ausgegeben und `zaehler` wird auf 4 reduziert. Dann wird die Bedingung erneut geprüft: `4 > 0` ist immer noch `True`. Dies wiederholt sich, bis `zaehler` den Wert 0 erreicht. Dann ist `0 > 0` gleich `False`, die Schleife endet, und "Start!" wird ausgegeben.
+
+### Die Gefahr von Endlosschleifen
+
+Ein entscheidender Punkt bei while-Schleifen ist die Verantwortung, die Sie als Programmierer tragen: Sie müssen sicherstellen, dass die Bedingung irgendwann `False` wird. Im Countdown-Beispiel geschieht dies durch die Zeile `zaehler = zaehler - 1`, die den Zähler in jeder Iteration verringert.
+
+::: {.callout-warning}
+## ⚠️ Achtung: Endlosschleifen!
+
+Wenn die Bedingung niemals `False` wird, gerät das Programm in eine Endlosschleife – es läuft für immer (oder bis Sie es manuell beenden). Ein typischer Anfängerfehler ist, die Veränderung der Schleifenvariable zu vergessen:
+
+```python
+zaehler = 5
+while zaehler > 0:
+    print(zaehler)
+    # FEHLER: zaehler wird nie verändert!
+    # Diese Schleife gibt endlos "5" aus
+```
+
+Fügen Sie immer eine Anweisung ein, die die Schleifenbedingung irgendwann falsch werden lässt.
+:::
+
+### Typische Anwendungsfälle
+
+while-Schleifen sind besonders nützlich in folgenden Situationen:
+
+- **Benutzereingaben:** Wiederhole eine Abfrage, bis der Benutzer eine gültige Eingabe macht
+- **Spielschleifen:** Lasse ein Spiel laufen, bis der Spieler gewinnt, verliert oder aufgibt
+- **Datenverarbeitung:** Verarbeite Daten, bis keine weiteren Daten mehr verfügbar sind
+- **Warten auf Ereignisse:** Wiederhole eine Prüfung, bis ein bestimmtes Ereignis eintritt
+
+Im Projekt am Ende dieses Kapitels werden Sie sehen, wie eine while-Schleife das Herzstück eines kleinen Spiels bildet – sie hält das Spiel am Laufen, solange der Spieler noch Versuche übrig hat und die Zahl noch nicht erraten wurde.
+
+## Break & Continue {#sec-break-continue}
+
+Bisher haben unsere Schleifen immer ihren vollständigen Ablauf durchgeführt – jede Iteration wurde komplett ausgeführt und die Schleife endete erst, wenn ihre Bedingung nicht mehr erfüllt war. Aber was ist, wenn wir eine Schleife vorzeitig beenden möchten, weil wir gefunden haben, wonach wir gesucht haben? Oder wenn wir bestimmte Elemente überspringen möchten?
+
+Python bietet hierfür zwei spezielle Anweisungen: `break` zum vollständigen Beenden einer Schleife und `continue` zum Überspringen der aktuellen Iteration. Beide Anweisungen geben Ihnen feinere Kontrolle über den Ablauf Ihrer Schleifen.
+
+### Die break-Anweisung
+
+Stellen Sie sich vor, Sie durchsuchen eine lange Liste nach einem bestimmten Wert. Sobald Sie ihn gefunden haben, macht es keinen Sinn, den Rest der Liste weiter zu durchsuchen – das wäre Zeitverschwendung. Genau hier kommt `break` ins Spiel.
+
+Die `break`-Anweisung beendet die aktuelle Schleife sofort, unabhängig davon, ob die Schleifenbedingung noch erfüllt ist. Die Ausführung des Programms wird direkt nach der Schleife fortgesetzt.
+
+Sehen wir uns ein praktisches Beispiel an: Wir suchen eine bestimmte Zahl in einer Liste und möchten aufhören, sobald wir sie gefunden haben:
+
+```python
+zahlen = [1, 5, 10, 15, 20, 25]
+
+for zahl in zahlen:
+    if zahl == 15:
+        print("Die Zahl 15 wurde gefunden!")
+        break
+    print(f"Aktuelle Zahl: {zahl}")
+```
+
+Die Ausgabe dieses Codes ist:
+```
+Aktuelle Zahl: 1
+Aktuelle Zahl: 5
+Aktuelle Zahl: 10
+Die Zahl 15 wurde gefunden!
+```
+
+Sobald die Zahl 15 erreicht wird, gibt das Programm die Erfolgsmeldung aus und beendet die Schleife mit `break`. Die Zahlen 20 und 25 werden gar nicht mehr geprüft. Bei großen Datenmengen kann dies einen erheblichen Geschwindigkeitsvorteil bringen.
+
+### Die continue-Anweisung
+
+Manchmal möchten wir nicht die gesamte Schleife beenden, sondern nur bestimmte Elemente überspringen und mit dem nächsten weitermachen. Dafür gibt es `continue`.
+
+Die `continue`-Anweisung beendet nicht die gesamte Schleife, sondern nur die aktuelle Iteration. Die Ausführung springt sofort zum Anfang der nächsten Iteration – der restliche Code im Schleifenkörper wird für dieses Element übersprungen.
+
+Ein typisches Beispiel ist das Filtern von Elementen: Wir möchten nur bestimmte Elemente verarbeiten und alle anderen ignorieren:
+
+```python
+for i in range(1, 11):
+    if i % 2 == 0:  # Wenn die Zahl gerade ist
+        continue      # Überspringe den Rest der Iteration
+    print(i)
+```
+
+Die Ausgabe ist: 1, 3, 5, 7, 9. Die geraden Zahlen (2, 4, 6, 8, 10) werden übersprungen – sobald Python erkennt, dass eine Zahl gerade ist, springt es mit `continue` direkt zur nächsten Zahl, ohne die `print`-Anweisung auszuführen.
+
+### Wann break und continue verwenden?
+
+`break` und `continue` sind nützliche Werkzeuge, um die Steuerung innerhalb von Schleifen zu verfeinern. Hier einige typische Anwendungsfälle:
+
+**break verwenden Sie, wenn:**
+- Sie einen gesuchten Wert gefunden haben und nicht weitersuchen müssen
+- Eine Abbruchbedingung eintritt (z.B. Benutzer gibt "quit" ein)
+- Ein Fehler aufgetreten ist und die Schleife beendet werden soll
+
+**continue verwenden Sie, wenn:**
+- Sie bestimmte Elemente überspringen möchten (z.B. ungültige Eingaben)
+- Sie nur Elemente verarbeiten möchten, die bestimmte Kriterien erfüllen
+- Sie den restlichen Schleifencode für bestimmte Fälle nicht ausführen möchten
+
+::: {.callout-tip}
+## 💡 Sparsam einsetzen
+
+Verwenden Sie `break` und `continue` sparsam. Zu viele dieser Anweisungen können den Code schwer verständlich machen, da sie den normalen Kontrollfluss unterbrechen. Oft lässt sich derselbe Effekt auch mit gut strukturierten if-Anweisungen erreichen.
+:::
+
+## Übung: Python Game {#sec-projekt-game}
+
+Jetzt ist es an der Zeit, alles zusammenzubringen! Wir haben Bedingungen gelernt, um Entscheidungen zu treffen, und Schleifen, um Code zu wiederholen. In diesem Projekt werden Sie sehen, wie diese Konzepte zusammenspielen, um ein vollständiges, interaktives Programm zu erstellen.
+
+Wir werden ein klassisches Ratespiel entwickeln: Der Computer denkt sich eine Zahl aus, und Sie müssen sie erraten. Nach jedem Versuch bekommen Sie einen Hinweis, ob Ihre Zahl zu hoch oder zu niedrig war.
+
+**Ziel:** Erstellen Sie ein interaktives Zahlen-Ratespiel, bei dem der Computer eine zufällige Zahl generiert und der Spieler diese mit Hilfe von Hinweisen erraten muss.
+
+### Anforderungen
+
+1. **Zufallszahl generieren:** Der Computer soll sich eine Zahl "ausdenken":
+   - Die Zahl liegt zwischen 1 und 100 (beide inklusive)
+   - Verwenden Sie `random.randint()` aus dem `random`-Modul
+
+2. **Spielschleife:** Das Spiel soll in einer Schleife laufen:
+   - Die Schleife läuft, solange Versuche übrig sind UND die Zahl nicht erraten wurde
+   - Verwenden Sie eine `while`-Schleife
+
+3. **Benutzereingabe:** Der Spieler soll raten können:
+   - Nach jeder Runde eine Zahl vom Spieler abfragen
+   - Kombinieren Sie `input()` und `int()` zur Umwandlung
+
+4. **Hinweise geben:** Das Programm soll dem Spieler helfen:
+   - Wenn die geratene Zahl zu hoch ist: "Zu hoch!" ausgeben
+   - Wenn die geratene Zahl zu niedrig ist: "Zu niedrig!" ausgeben
+   - Bei richtigem Tipp: Glückwunsch-Nachricht anzeigen
+
+5. **Spielende:** Das Spiel soll korrekt enden:
+   - Bei richtigem Tipp: Schleife mit `break` sofort beenden
+   - Bei 0 verbleibenden Versuchen: Verlierer-Nachricht mit der Lösung anzeigen
+
+### Anleitung
+
+1. Importieren Sie das `random`-Modul am Anfang der Datei.
+2. Generieren Sie eine Zufallszahl mit `random.randint(1, 100)` und speichern Sie diese in einer Variable.
+3. Legen Sie eine Variable für die Anzahl der Versuche fest (z.B. 7).
+4. Erstellen Sie eine `while`-Schleife, die läuft solange `versuche > 0`.
+5. Fragen Sie innerhalb der Schleife die Benutzereingabe ab und wandeln Sie sie in eine Ganzzahl um.
+6. Prüfen Sie mit `if-elif-else`, ob die Zahl richtig, zu hoch oder zu niedrig ist.
+7. Reduzieren Sie die Versuche nach jedem Tipp um 1.
+8. Verwenden Sie `break`, um die Schleife bei richtigem Tipp vorzeitig zu beenden.
+
+### Beispiel-Code-Struktur
+
+```python
+import random
+
+# Zufallszahl zwischen 1 und 100 generieren
+zufallszahl = random.randint(1, 100)
+
+# Anzahl der Versuche festlegen
+versuche = 7
+
+print("Willkommen beim Zahlen-Raten-Spiel!")
+print(f"Ich denke an eine Zahl zwischen 1 und 100. Du hast {versuche} Versuche.")
+
+# Spielschleife: Läuft solange Versuche > 0
+while versuche > 0:
+    # Benutzereingabe abfragen und in Integer umwandeln
+    # Tipp: input() gibt einen String zurück, int() wandelt ihn um
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # Prüfen: Ist die geratene Zahl gleich der Zufallszahl?
+    # Falls ja: Glückwunsch ausgeben und Schleife mit break beenden
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # Prüfen: Ist die geratene Zahl kleiner als die Zufallszahl?
+    # Falls ja: "Zu niedrig!" ausgeben
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # Ansonsten (else): "Zu hoch!" ausgeben
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # Versuche um 1 reduzieren und verbleibende Versuche anzeigen
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+# Nach der Schleife: Prüfen ob Versuche aufgebraucht sind
+# Falls ja: Verlierer-Nachricht mit der gesuchten Zahl ausgeben
+pass  # Ersetzen Sie dies durch Ihren Code
+```
+
+### Hinweise
+
+- `random.randint(1, 100)` erzeugt eine zufällige Ganzzahl zwischen 1 und 100 (beide inklusive).
+- `int(input("Text: "))` kombiniert Eingabe und Umwandlung in einem Schritt.
+- Denken Sie daran, `versuche` nach jedem Tipp zu reduzieren – sonst entsteht eine Endlosschleife!
+- Die Bedingung `versuche > 0` wird VOR jeder Iteration geprüft.
+
+::: {#exr-zahlenraten .callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Testen Sie Ihr Spiel mit verschiedenen Strategien – versuchen Sie zum Beispiel die binäre Suche: Raten Sie immer die Mitte des verbleibenden Bereichs! Die Lösung finden Sie weiter unten in diesem Kapitel, aber versuchen Sie es zuerst selbst.
+:::
+
+{{< pagebreak >}}
+
+## Lösungen zu Kapitel 3 {#sec-loesungen-kap3}
+
+In diesem Abschnitt finden Sie die Lösung zum Projekt. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen. Bedenken Sie dabei: In der Programmierung gibt es oft mehrere richtige Wege zur Lösung eines Problems. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie die Spiellogik korrekt umsetzt und funktioniert.
+
+### Lösung zum Projekt: Python Game "Zahlen raten"
+
+Die folgende Lösung verwendet alle Konzepte, die wir in diesem Kapitel gelernt haben: eine while-Schleife als Hauptstruktur, if-elif-else für die Spiellogik, `break` zum vorzeitigen Beenden bei Erfolg und `continue` zum Überspringen ungültiger Eingaben.
+
+::: {.callout-tip icon="false"}
+## 🛡️ Vorschau: Fehlerbehandlung mit try-except
+
+In der folgenden Lösung verwenden wir `try-except`, um fehlerhafte Benutzereingaben abzufangen. Wenn der Spieler statt einer Zahl zum Beispiel einen Buchstaben eingibt, würde das Programm normalerweise mit einem Fehler abstürzen. Mit `try-except` können wir solche Fehler elegant behandeln.
+
+Dieses Konzept werden wir in einem späteren Kapitel ausführlich behandeln. Für den Moment reicht es zu wissen: Der Code im `try`-Block wird versucht auszuführen, und falls ein Fehler auftritt, springt Python zum `except`-Block, anstatt abzustürzen.
+:::
+
+```python
+import random
+
+# Der Computer denkt sich eine Zahl aus
+zufallszahl = random.randint(1, 100)
+versuche = 7
+
+print("Willkommen beim Zahlen-Raten-Spiel!")
+print(f"Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht. Du hast {versuche} Versuche.")
+
+while versuche > 0:
+    try:
+        geratene_zahl = int(input("Gib deine Zahl ein: "))
+    except ValueError:
+        print("Das war keine gültige Zahl. Bitte versuche es erneut.")
+        continue
+
+    if geratene_zahl == zufallszahl:
+        print(f"Herzlichen Glückwunsch! Du hast die Zahl {zufallszahl} erraten!")
+        break
+    elif geratene_zahl < zufallszahl:
+        print("Deine Zahl ist zu niedrig.")
+    else:
+        print("Deine Zahl ist zu hoch.")
+
+    versuche = versuche - 1
+    print(f"Du hast noch {versuche} Versuche übrig.")
+
+if versuche == 0:
+    print(f"Leider verloren! Die gesuchte Zahl war {zufallszahl}.")
+```
+
+Analysieren Sie die Lösung Zeile für Zeile und vergleichen Sie sie mit Ihrem eigenen Ansatz. Achten Sie besonders darauf, wie die verschiedenen Konzepte – while-Schleife, if-elif-else, break und continue – zusammenspielen, um das gewünschte Spielverhalten zu erzeugen.
+
+**Herzlichen Glückwunsch!** Sie haben Kapitel 3 erfolgreich abgeschlossen und beherrschen nun zwei der wichtigsten Konzepte der Programmierung. Mit **Bedingungen** (if, elif, else) können Sie Ihrem Programm beibringen, Entscheidungen zu treffen. Mit **Schleifen** (for und while) können Sie Code wiederholt ausführen und so repetitive Aufgaben automatisieren. Und mit **break** und **continue** können Sie den Ablauf von Schleifen fein steuern. Im nächsten Kapitel werden wir uns mit Datenstrukturen beschäftigen, um mehrere Werte effizient zu speichern und zu verwalten. Damit werden Ihre Programme noch mächtiger!

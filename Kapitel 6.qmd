@@ -1,0 +1,510 @@
+# Arbeiten mit GPT {#sec-gpt}
+
+## Willkommen zu Kapitel 6
+
+Herzlich willkommen zum letzten und vielleicht spannendsten Kapitel unseres Kurses! Nachdem wir nun eine solide Grundlage in Python und der Datenanalyse mit Pandas haben, werden wir uns nun der direkten Interaktion mit großen Sprachmodellen (Large Language Models, LLMs) wie GPT widmen.
+
+::: {.callout-important}
+## 🤖 In diesem Kapitel werden Sie lernen
+
+- **Was APIs sind** und wie sie die Kommunikation zwischen verschiedenen Softwareanwendungen ermöglichen
+- **Wie Sie die OpenAI-API verwenden**, um Anfragen an das GPT-Modell zu senden
+- **Wie Sie die Parameter der API** steuern können, um das Verhalten des Modells anzupassen
+- **Wie Sie mit komplexeren Aufgaben** umgehen und Fehler bei API-Aufrufen abfangen können
+- **Welche ethischen Aspekte** im Umgang mit LLMs zu beachten sind
+:::
+
+Als Abschlussprojekt werden wir einen KI-gestützten Aufgaben-Manager entwickeln, der natürliche Sprache versteht. Außerdem werfen wir einen Blick darauf, wie man Sprachmodelle auch lokal auf dem eigenen Computer betreiben kann – eine spannende Alternative zu Cloud-APIs.
+
+Lassen Sie uns eintauchen und lernen, wie man die Kraft von GPT in die eigenen Python-Anwendungen integriert!
+
+## Einführung in APIs und GPT-4 {#sec-api-intro}
+
+### Was ist eine API?
+
+Bevor wir mit dem Code beginnen, klären wir zunächst einen wichtigen Begriff: die API. Wenn Sie ein Sprachmodell wie GPT nutzen möchten, kommunizieren Sie nicht direkt mit dem Modell selbst – Sie kommunizieren über eine Schnittstelle, die Ihre Anfragen entgegennimmt und die Antworten zurückliefert.
+
+Eine API (Application Programming Interface) ist genau diese Schnittstelle, die es zwei verschiedenen Softwareanwendungen ermöglicht, miteinander zu kommunizieren. Stellen Sie es sich wie einen Kellner in einem Restaurant vor: Sie (Ihre Anwendung) müssen nicht wissen, wie die Küche (die andere Anwendung, z.B. der GPT-Server) funktioniert. Sie geben Ihre Bestellung (eine Anfrage) einfach an den Kellner (die API), und dieser bringt Ihnen das fertige Gericht (die Antwort).
+
+### Die OpenAI-API
+
+OpenAI stellt eine API zur Verfügung, die es uns ermöglicht, von unseren eigenen Programmen aus auf ihre leistungsstarken Sprachmodelle wie GPT-4o und GPT-4o-mini zuzugreifen. Wir senden eine Anfrage mit unserem Text (dem sogenannten Prompt) an die API und erhalten eine vom Modell generierte Textantwort zurück.
+
+::: {.callout-warning}
+## 🔐 Exkurs: API-Schlüssel erstellen und einrichten
+
+Um die OpenAI-API nutzen zu können, benötigen Sie einen API-Schlüssel. Dieser Schlüssel ist wie ein geheimes Passwort, das Sie bei jeder Anfrage mitsenden müssen, um sich zu authentifizieren. Die Einrichtung erfolgt in zwei Schritten:
+
+**Schritt 1: API-Schlüssel bei OpenAI generieren**
+
+1. Besuchen Sie [platform.openai.com](https://platform.openai.com) und erstellen Sie ein Konto (falls noch nicht vorhanden).
+2. Navigieren Sie zu **API Keys** im Menü (oder direkt zu [platform.openai.com/api-keys](https://platform.openai.com/api-keys)).
+3. Klicken Sie auf **"Create new secret key"**.
+4. Geben Sie dem Schlüssel einen Namen (z.B. "KI-Python-Kurs") und klicken Sie auf **"Create"**.
+5. **Wichtig:** Kopieren Sie den Schlüssel sofort und speichern Sie ihn sicher ab! Er wird nur einmal angezeigt und beginnt mit `sk-`.
+
+**Schritt 2: API-Schlüssel als Umgebungsvariable speichern**
+
+Umgebungsvariablen sind systemweite Einstellungen, die Programme auslesen können. So müssen Sie Ihren geheimen Schlüssel nicht direkt im Code speichern (was ein Sicherheitsrisiko wäre).
+
+*Für Windows:*
+
+1. Drücken Sie `Windows + R`, geben Sie `sysdm.cpl` ein und drücken Sie Enter.
+2. Wählen Sie den Tab **"Erweitert"** und klicken Sie auf **"Umgebungsvariablen"**.
+3. Unter "Benutzervariablen" klicken Sie auf **"Neu"**.
+4. Geben Sie als Name `OPENAI_API_KEY` ein und als Wert Ihren kopierten API-Schlüssel.
+5. Bestätigen Sie mit OK und starten Sie Jupyter Notebook neu.
+
+*Für macOS/Linux:*
+
+1. Öffnen Sie das Terminal.
+2. Bearbeiten Sie Ihre Shell-Konfiguration (z.B. `~/.zshrc` oder `~/.bashrc`):
+   ```bash
+   echo 'export OPENAI_API_KEY="sk-Ihr-Schlüssel-hier"' >> ~/.zshrc
+   ```
+3. Laden Sie die Konfiguration neu: `source ~/.zshrc`
+4. Starten Sie Jupyter Notebook neu.
+
+**Überprüfen der Einrichtung:**
+
+Sie können testen, ob die Variable korrekt gesetzt ist:
+
+```python
+import os
+print(os.environ.get("OPENAI_API_KEY", "Nicht gefunden"))
+```
+
+Wenn alles korrekt eingerichtet ist, sollte Ihr Schlüssel (oder zumindest die ersten Zeichen) angezeigt werden.
+:::
+
+### Die openai-Bibliothek
+
+Nachdem wir nun verstanden haben, was eine API ist und wie die Authentifizierung funktioniert, können wir mit der praktischen Umsetzung beginnen. OpenAI bietet eine offizielle Python-Bibliothek namens `openai`, die die Interaktion mit der API erheblich vereinfacht.
+
+Wir müssen diese Bibliothek zunächst installieren:
+
+```bash
+pip install openai
+```
+
+Anschließend können wir die Bibliothek importieren und unseren ersten API-Aufruf durchführen:
+
+```python
+from openai import OpenAI
+
+# Der Client liest den API-Schlüssel automatisch aus der
+# Umgebungsvariable OPENAI_API_KEY
+client = OpenAI()
+
+# Eine einfache Anfrage an die API senden
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "user", "content": "Schreibe einen kurzen Satz über die Vorteile von Python."}
+    ],
+    max_tokens=50
+)
+
+print(response.choices[0].message.content)
+```
+
+Dieses Beispiel zeigt die grundlegende Struktur eines API-Aufrufs. Wir erstellen einen Client, definieren das gewünschte Modell und übergeben unsere Nachricht in einem spezifischen Format. In den nächsten Abschnitten werden wir uns die verschiedenen Parameter dieser Anfrage genauer ansehen und lernen, wie wir die Antworten des Modells steuern können.
+
+## API Parameter {#sec-api-params}
+
+Wenn wir eine Anfrage an die OpenAI-API senden, können wir verschiedene Parameter angeben, um das Verhalten des Modells zu steuern. Diese Parameter ermöglichen es uns, die Ausgabe präzise anzupassen – von der Wahl des Modells bis hin zur "Kreativität" der Antworten.
+
+Die wichtigsten Parameter sind:
+
+- **`model`:** Das zu verwendende Sprachmodell (z.B. "gpt-4o", "gpt-4o-mini"). Die "mini"-Varianten sind kostengünstiger und schneller, während die Vollversionen leistungsfähiger sind.
+- **`messages`:** Eine Liste von Nachrichten, die die Konversation darstellen. Dies ist die bevorzugte Methode für die neueren Chat-Modelle.
+- **`temperature`:** Ein Wert zwischen 0 und 2, der die "Kreativität" oder "Zufälligkeit" der Antwort steuert. Ein höherer Wert (z.B. 0.8) führt zu kreativeren, aber möglicherweise weniger konsistenten Antworten. Ein niedrigerer Wert (z.B. 0.2) führt zu deterministischeren und fokussierteren Antworten.
+- **`max_tokens`:** Die maximale Anzahl von Tokens (Wortteilen), die in der Antwort generiert werden sollen. Dies hilft, die Länge der Antwort und die Kosten zu kontrollieren.
+
+### Beispiel mit dem Chat-Format
+
+Alle aktuellen GPT-Modelle verwenden ein Chat-Format, bei dem die Konversation als eine Liste von Nachrichten übergeben wird. Jede Nachricht hat eine `role` und einen `content`. Die drei möglichen Rollen sind:
+
+- **`system`:** Definiert das Verhalten und die Persönlichkeit des Assistenten
+- **`user`:** Enthält die Fragen oder Anweisungen des Benutzers
+- **`assistant`:** Enthält frühere Antworten des Modells (für Konversationen)
+
+Hier ein vollständiges Beispiel:
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "Du bist ein hilfreicher Assistent."},
+        {"role": "user", "content": "Wer hat die Relativitätstheorie entdeckt?"}
+    ],
+    temperature=0.2,
+    max_tokens=100
+)
+
+print(response.choices[0].message.content)
+```
+
+Durch das Experimentieren mit diesen Parametern können Sie die Antworten des Modells feinabstimmen, um sie an Ihre spezifischen Anforderungen anzupassen.
+
+## Arbeiten mit komplexen Aufgaben {#sec-complex-tasks}
+
+Für einfache Fragen mag ein einzelner Prompt ausreichen. Bei komplexeren Aufgaben ist es jedoch oft besser, die Aufgabe in kleinere Schritte zu zerlegen und eine Konversation mit dem Modell zu führen. Dies wird als Chain-of-Thought-Prompting oder Multi-Turn-Conversation bezeichnet.
+
+::: {.callout-tip}
+## 🗺️ Beispiel: Einen Reiseplan erstellen
+
+Anstatt zu fragen: "Erstelle mir einen 3-tägigen Reiseplan für Paris", können wir die Aufgabe in Schritte unterteilen:
+
+1. **User:** "Ich möchte für 3 Tage nach Paris reisen. Kannst du mir helfen, einen Plan zu erstellen? Ich interessiere mich für Kunst und Geschichte."
+
+2. **Assistant:** "Gerne! An Tag 1 könnten Sie den Louvre und die Kathedrale Notre-Dame besuchen. Möchten Sie, dass ich Details für diesen Tag ausarbeite?"
+
+3. **User:** "Ja, bitte. Gib mir auch eine Restaurantempfehlung für das Mittagessen in der Nähe des Louvre."
+:::
+
+Dieser dialogorientierte Ansatz ermöglicht es, die Anfrage zu verfeinern und ein genaueres und relevanteres Ergebnis zu erhalten. In Python würden wir dies umsetzen, indem wir die Konversationshistorie in der `messages`-Liste bei jeder neuen Anfrage erweitern:
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+# Die Konversationshistorie als Liste speichern
+konversation = [
+    {"role": "system", "content": "Du bist ein hilfreicher Reiseberater."}
+]
+
+def chat(user_nachricht):
+    # Neue Benutzernachricht zur Historie hinzufügen
+    konversation.append({"role": "user", "content": user_nachricht})
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=konversation,
+        temperature=0.7
+    )
+
+    # Antwort des Assistenten zur Historie hinzufügen
+    assistant_nachricht = response.choices[0].message.content
+    konversation.append({"role": "assistant", "content": assistant_nachricht})
+
+    return assistant_nachricht
+
+# Beispiel einer Multi-Turn-Konversation
+print(chat("Ich möchte für 3 Tage nach Paris. Was empfiehlst du?"))
+print(chat("Gib mir Details für Tag 1 und eine Restaurantempfehlung."))
+```
+
+## Fehler bei API-Aufrufen abfangen {#sec-error-handling}
+
+Bei der Arbeit mit externen APIs können verschiedene Fehler auftreten: Das Netzwerk ist möglicherweise nicht verfügbar, die API ist überlastet, oder unser API-Schlüssel ist ungültig. Es ist wichtig, diese potenziellen Fehler in unserem Code abzufangen, um zu verhindern, dass unser Programm abstürzt.
+
+Die `openai`-Bibliothek definiert spezifische Exception-Klassen für verschiedene Fehlerarten:
+
+- **`AuthenticationError`:** Der API-Schlüssel ist ungültig oder fehlt
+- **`RateLimitError`:** Sie haben zu viele Anfragen in kurzer Zeit gesendet
+- **`APIError`:** Ein allgemeiner Fehler auf Seiten der API (z.B. Serverprobleme)
+
+Mit einem `try-except`-Block können wir diese Fehler gezielt behandeln und dem Benutzer hilfreiche Rückmeldungen geben:
+
+```python
+from openai import OpenAI, AuthenticationError, RateLimitError, APIError
+
+client = OpenAI()
+
+try:
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "user", "content": "Ein Prompt, der einen Fehler verursachen könnte"}
+        ]
+    )
+    print(response.choices[0].message.content)
+except AuthenticationError as e:
+    print(f"Fehler bei der Authentifizierung: {e}")
+except RateLimitError as e:
+    print(f"Rate Limit überschritten. Bitte versuchen Sie es später erneut. Fehler: {e}")
+except APIError as e:
+    print(f"Ein API-Fehler ist aufgetreten: {e}")
+except Exception as e:
+    print(f"Ein unerwarteter Fehler ist aufgetreten: {e}")
+```
+
+Durch das Abfangen dieser Fehler können wir unser Programm robuster machen und dem Benutzer aussagekräftige Fehlermeldungen geben. Der allgemeine `Exception`-Block am Ende fängt alle unerwarteten Fehler ab, die nicht zu den spezifischen API-Exceptions gehören.
+
+## Ethik im Umgang mit LLMs {#sec-ethics}
+
+Die Arbeit mit großen Sprachmodellen bringt eine große Verantwortung mit sich. Es ist wichtig, sich der ethischen Implikationen bewusst zu sein und diese Technologien verantwortungsvoll einzusetzen. Im Folgenden betrachten wir vier zentrale Aspekte, die Sie bei der Arbeit mit LLMs berücksichtigen sollten.
+
+**Bias (Voreingenommenheit):** Sprachmodelle werden mit riesigen Mengen an Text aus dem Internet trainiert. Diese Texte können menschliche Vorurteile und Stereotypen enthalten, die das Modell lernen und reproduzieren kann. Es ist wichtig, die Ausgaben des Modells kritisch zu hinterfragen und Maßnahmen zu ergreifen, um schädliche Vorurteile zu minimieren.
+
+**Fehlinformation:** LLMs können überzeugend klingende, aber sachlich falsche Informationen generieren (sogenannte "Halluzinationen"). Verlassen Sie sich niemals blind auf die Aussagen eines Modells, insbesondere bei wichtigen oder sensiblen Themen. Überprüfen Sie Fakten immer mit vertrauenswürdigen Quellen.
+
+**Datenschutz:** Senden Sie keine sensiblen oder persönlichen Informationen an die API, es sei denn, Sie sind sich der Datenschutzrichtlinien des Anbieters voll bewusst. Bedenken Sie, dass Ihre Eingaben möglicherweise für das Training zukünftiger Modelle verwendet werden könnten.
+
+**Missbrauch:** LLMs können für schädliche Zwecke missbraucht werden, wie z.B. die Erstellung von Propaganda, Spam oder Phishing-E-Mails. Seien Sie sich dieser Risiken bewusst und setzen Sie die Technologie für positive und konstruktive Zwecke ein.
+
+Ein verantwortungsvoller Umgang mit KI ist entscheidend, um das Vertrauen der Öffentlichkeit zu gewinnen und sicherzustellen, dass diese leistungsstarken Werkzeuge zum Wohle der Gesellschaft eingesetzt werden.
+
+## Übung: Aufgaben-Manager {#sec-projekt-aufgabenmanager}
+
+In diesem Abschlussprojekt werden wir einen intelligenten Aufgaben-Manager erstellen, der natürliche Spracheingaben verarbeiten kann. Anstatt Befehle wie "add --task ..." einzugeben, kann der Benutzer einfach schreiben: "Füge morgen um 10 Uhr ein Meeting mit Anna hinzu".
+
+**Ziel:** Erstellen Sie einen KI-gestützten Aufgaben-Manager, der natürliche Spracheingaben versteht und in strukturierte Daten umwandelt.
+
+### Anforderungen
+
+1. **Aufgabendetails extrahieren:** Eine Funktion `extrahiere_aufgabendetails(text_eingabe)`:
+   - Nimmt eine Texteingabe in natürlicher Sprache entgegen
+   - Sendet den Text an die GPT-API mit einem geeigneten Prompt
+   - Extrahiert Aufgabe, Datum und Uhrzeit aus dem Text
+   - Gibt die Daten als strukturiertes Dictionary (JSON) zurück
+
+2. **Prompt Engineering:** Der Prompt an die API soll:
+   - Das Modell anweisen, die Informationen im JSON-Format zurückzugeben
+   - Ein Beispiel enthalten, um das gewünschte Ausgabeformat zu demonstrieren
+   - Eine niedrige `temperature` (z.B. 0) verwenden für konsistente Ergebnisse
+
+3. **Fehlerbehandlung:** Das Programm soll:
+   - API-Fehler mit `try-except` abfangen
+   - Bei Fehlern eine hilfreiche Meldung ausgeben
+   - Das JSON-Ergebnis sicher parsen
+
+4. **Benutzerinteraktion:** Das Programm soll in einer Schleife laufen:
+   - Nach neuen Aufgaben fragen
+   - Bei Eingabe von "exit" das Programm beenden
+   - Erfolgreich hinzugefügte Aufgaben bestätigen
+
+### Anleitung
+
+1. Importieren Sie die `openai`-Bibliothek und das `json`-Modul.
+2. Erstellen Sie einen OpenAI-Client und eine leere Liste für die Aufgaben.
+3. Schreiben Sie die Funktion `extrahiere_aufgabendetails()` mit einem geeigneten Prompt.
+4. Der Prompt sollte ein Beispiel enthalten (Few-Shot-Prompting).
+5. Verwenden Sie `json.loads()`, um die API-Antwort in ein Python-Dictionary umzuwandeln.
+6. Erstellen Sie eine `while True`-Schleife für die Benutzereingabe.
+7. Fügen Sie extrahierte Aufgaben zur Liste hinzu und zeigen Sie diese an.
+
+### Code-Struktur
+
+```python
+from openai import OpenAI
+import json
+
+# Client erstellen (liest API-Schlüssel aus OPENAI_API_KEY)
+client = OpenAI()
+
+# Leere Liste für die Aufgaben
+aufgabenliste = []
+
+def extrahiere_aufgabendetails(text_eingabe):
+    """Extrahiert Aufgabendetails aus natürlicher Sprache mittels GPT.
+
+    Args:
+        text_eingabe (str): Die Benutzereingabe in natürlicher Sprache.
+
+    Returns:
+        dict: Ein Dictionary mit 'aufgabe', 'datum' und 'uhrzeit'.
+    """
+    # Prompt erstellen mit Beispiel (Few-Shot-Prompting)
+    # Tipp: Zeigen Sie dem Modell ein Beispiel für Input und Output
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # API-Aufruf mit try-except absichern
+    # Tipp: Verwenden Sie temperature=0 für konsistente Ergebnisse
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # JSON-Antwort parsen und zurückgeben
+    # Tipp: json.loads() wandelt einen JSON-String in ein Dictionary um
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+# Hauptschleife für Benutzereingaben
+while True:
+    # Benutzereingabe abfragen
+    # Tipp: Bei "exit" die Schleife mit break beenden
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # Aufgabendetails extrahieren
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+    # Bei Erfolg: Aufgabe zur Liste hinzufügen und Liste anzeigen
+    pass  # Ersetzen Sie dies durch Ihren Code
+```
+
+### Hinweise
+
+- `json.loads(string)` wandelt einen JSON-String in ein Python-Dictionary um.
+- Verwenden Sie `temperature=0` für deterministische, konsistente API-Antworten.
+- Few-Shot-Prompting (ein Beispiel im Prompt) verbessert die Qualität der Extraktion erheblich.
+- Die System-Nachricht kann dem Modell eine klare Rolle zuweisen (z.B. "Du bist ein Assistent, der Text in JSON umwandelt").
+- Testen Sie mit verschiedenen Eingaben wie "Morgen um 14 Uhr Zahnarzt" oder "Meeting mit Team am Freitag".
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Dieses Projekt zeigt eindrucksvoll, wie man die Lücke zwischen unstrukturierter menschlicher Sprache und strukturierter Computerverarbeitung mit Hilfe von LLMs schließen kann. Bonus: Erweitern Sie den Manager um eine Funktion, die alle Aufgaben nach Datum sortiert anzeigt!
+:::
+
+## Wie geht es weiter?
+
+Herzlichen Glückwunsch! Sie haben den Kurs "KI Python" erfolgreich abgeschlossen. Sie haben eine beeindruckende Reise hinter sich, von den Grundlagen der Programmierung bis hin zur Integration von hochmodernen KI-Modellen in Ihre eigenen Anwendungen. Doch dies ist erst der Anfang Ihrer Reise in die Welt der KI.
+
+Hier sind einige Empfehlungen für Ihre nächsten Schritte:
+
+- **Vertiefen Sie Ihr Wissen:** Spezialisieren Sie sich auf ein bestimmtes Gebiet, das Sie besonders interessiert, z.B. maschinelles Lernen, Computer Vision oder Natural Language Processing.
+
+- **Bauen Sie eigene Projekte:** Der beste Weg, um zu lernen, ist die praktische Anwendung. Suchen Sie sich ein Problem, das Sie lösen möchten, und entwickeln Sie eine KI-gestützte Lösung dafür.
+
+- **Bleiben Sie auf dem Laufenden:** Die Welt der KI entwickelt sich rasant. Folgen Sie Blogs, nehmen Sie an Konferenzen teil und bleiben Sie neugierig.
+
+## BONUS: Modell lokal betreiben {#sec-local-llm}
+
+Die Verwendung von Cloud-APIs wie der von OpenAI ist bequem und leistungsstark, aber sie hat auch Nachteile (Kosten, Datenschutz, Abhängigkeit). Eine spannende Alternative ist der Betrieb von Open-Source-Sprachmodellen auf Ihrem eigenen Computer.
+
+### Werkzeuge wie Ollama und LM Studio
+
+Tools wie Ollama und LM Studio machen es einfach, eine Vielzahl von Open-Source-Modellen (z.B. von Mistral, Llama, etc.) mit nur wenigen Klicks herunterzuladen und lokal auszuführen. Das Besondere: Diese Tools stellen oft eine lokale API zur Verfügung, die mit der OpenAI-API kompatibel ist. Das bedeutet, Sie können Ihren vorhandenen Code mit nur minimalen Änderungen weiterverwenden, indem Sie einfach die Basis-URL der API auf Ihre lokale Adresse ändern.
+
+::: {.callout-note}
+## 🔧 Exkurs: Ollama installieren und einrichten
+
+Ollama ist ein kostenloses Tool, das die Installation und Ausführung von Open-Source-Sprachmodellen auf Ihrem eigenen Computer vereinfacht. Die Einrichtung erfolgt in wenigen Schritten:
+
+**Schritt 1: Ollama herunterladen und installieren**
+
+1. Besuchen Sie [ollama.com](https://ollama.com) und klicken Sie auf **"Download"**.
+2. Wählen Sie die Version für Ihr Betriebssystem (Windows, macOS oder Linux).
+3. Führen Sie das Installationsprogramm aus und folgen Sie den Anweisungen.
+4. Nach der Installation läuft Ollama als Hintergrunddienst auf Ihrem Computer.
+
+**Schritt 2: Ein Sprachmodell herunterladen**
+
+Öffnen Sie ein Terminal (Windows: Eingabeaufforderung oder PowerShell) und laden Sie ein Modell herunter:
+
+```bash
+ollama pull llama3.2
+```
+
+Dieser Befehl lädt das Llama 3.2 Modell herunter (ca. 2-4 GB je nach Variante). Weitere beliebte Modelle sind:
+
+- `ollama pull mistral` – Mistral 7B, schnell und effizient
+- `ollama pull codellama` – Spezialisiert auf Code-Generierung
+- `ollama pull gemma2` – Googles Gemma 2 Modell
+
+**Schritt 3: Installation testen**
+
+Testen Sie, ob alles funktioniert, indem Sie im Terminal eingeben:
+
+```bash
+ollama run llama3.2
+```
+
+Sie können nun direkt im Terminal mit dem Modell chatten. Mit `Strg+D` (oder `/bye`) beenden Sie die Sitzung.
+
+**Hinweis zur Hardware:** Für eine flüssige Nutzung empfehlen wir mindestens 8 GB RAM. Eine dedizierte Grafikkarte (GPU) beschleunigt die Verarbeitung erheblich, ist aber nicht zwingend erforderlich.
+:::
+
+### Beispiel mit Ollama
+
+Nach der Installation von Ollama können Sie ein Modell herunterladen und dann Ihren bestehenden Code mit nur zwei Änderungen verwenden:
+
+```python
+from openai import OpenAI
+
+# Verbindung zum lokalen Ollama-Server statt zu OpenAI
+client = OpenAI(
+    base_url="http://localhost:11434/v1",
+    api_key="ollama"  # Ollama benötigt keinen echten API-Schlüssel
+)
+
+response = client.chat.completions.create(
+    model="llama3.2",  # Name des lokal installierten Modells
+    messages=[
+        {"role": "user", "content": "Was sind die Vorteile von Python?"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+Der große Vorteil: Ihr gesamter Code bleibt gleich – Sie ändern nur die `base_url` und den `model`-Namen!
+
+::: {.callout-tip}
+## ✨ Vorteile des lokalen Betriebs
+
+**Datenschutz:** Ihre Daten verlassen niemals Ihren Computer.
+
+**Kosten:** Nach der Anschaffung der Hardware fallen keine weiteren Kosten pro Anfrage an.
+
+**Anpassbarkeit:** Sie haben die volle Kontrolle über das Modell und können es für Ihre spezifischen Anforderungen feinabstimmen.
+:::
+
+Der lokale Betrieb von LLMs erfordert zwar eine leistungsfähige Hardware (insbesondere eine gute Grafikkarte mit viel VRAM), aber er wird immer zugänglicher und ist eine spannende Entwicklung für die Zukunft der KI.
+
+## Lösungen zu Kapitel 6 {#sec-loesungen-kap6}
+
+In diesem Abschnitt finden Sie die Lösung zur Übung. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen.
+
+::: {.callout-note}
+## 💡 Wichtiger Hinweis
+
+Es gibt oft mehrere richtige Lösungswege in der Programmierung. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie das gewünschte Ergebnis liefert und funktioniert.
+:::
+
+### Lösung zur Übung: Aufgaben-Manager
+
+```python
+from openai import OpenAI
+import json
+
+client = OpenAI()  # Liest API-Schlüssel aus OPENAI_API_KEY
+
+aufgabenliste = []
+
+def extrahiere_aufgabendetails(text_eingabe):
+    prompt = f"""
+    Extrahiere aus dem folgenden Text die Aufgabendetails (Aufgabe, Datum, Uhrzeit) und gib sie als JSON-Objekt zurück.
+    Beispiel:
+    Text: Füge morgen um 10 Uhr ein Meeting mit Anna hinzu
+    JSON: {{"aufgabe": "Meeting mit Anna", "datum": "morgen", "uhrzeit": "10:00"}}
+
+    Text: {text_eingabe}
+    JSON:
+    """
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Du bist ein Assistent, der Text in strukturierte JSON-Daten umwandelt."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0
+        )
+        json_output = response.choices[0].message.content
+        return json.loads(json_output)
+    except Exception as e:
+        print(f"Fehler bei der Extraktion: {e}")
+        return None
+
+while True:
+    eingabe = input("Neue Aufgabe eingeben (oder 'exit' zum Beenden): ")
+    if eingabe.lower() == 'exit':
+        break
+
+    details = extrahiere_aufgabendetails(eingabe)
+
+    if details:
+        aufgabenliste.append(details)
+        print("Aufgabe erfolgreich hinzugefügt!")
+        print("Aktuelle Aufgabenliste:", aufgabenliste)
+```
+
+---
+
+**Herzlichen Glückwunsch!** Sie haben eine solide Grundlage in Python, Datenanalyse und der Arbeit mit KI-Modellen erworben. Die Welt der KI steht Ihnen nun offen!

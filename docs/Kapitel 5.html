@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KI Python - 5&nbsp; Pandas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Kapitel 6.html" rel="next">
+<link href="./Kapitel 4.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Kapitel 5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KI Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ppronobis/ki-python" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">KI Python lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impressum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Impressum</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#sec-willkommen-kap5" id="toc-sec-willkommen-kap5" class="nav-link active" data-scroll-target="#sec-willkommen-kap5"><span class="header-section-number">5.1</span> Willkommen zu Kapitel 5</a></li>
+  <li><a href="#sec-pandas-installieren" id="toc-sec-pandas-installieren" class="nav-link" data-scroll-target="#sec-pandas-installieren"><span class="header-section-number">5.2</span> Pandas installieren</a>
+  <ul class="collapse">
+  <li><a href="#sec-pandas-importieren" id="toc-sec-pandas-importieren" class="nav-link" data-scroll-target="#sec-pandas-importieren">Pandas importieren</a></li>
+  </ul></li>
+  <li><a href="#sec-daten-laden" id="toc-sec-daten-laden" class="nav-link" data-scroll-target="#sec-daten-laden"><span class="header-section-number">5.3</span> Daten laden</a>
+  <ul class="collapse">
+  <li><a href="#sec-erster-blick" id="toc-sec-erster-blick" class="nav-link" data-scroll-target="#sec-erster-blick">Einen ersten Blick auf die Daten werfen</a></li>
+  </ul></li>
+  <li><a href="#sec-dataframes-verstehen" id="toc-sec-dataframes-verstehen" class="nav-link" data-scroll-target="#sec-dataframes-verstehen"><span class="header-section-number">5.4</span> DataFrames verstehen</a>
+  <ul class="collapse">
+  <li><a href="#sec-series" id="toc-sec-series" class="nav-link" data-scroll-target="#sec-series">Eine weitere wichtige Datenstruktur: Series</a></li>
+  </ul></li>
+  <li><a href="#sec-daten-selektieren" id="toc-sec-daten-selektieren" class="nav-link" data-scroll-target="#sec-daten-selektieren"><span class="header-section-number">5.5</span> Daten selektieren &amp; filtern</a>
+  <ul class="collapse">
+  <li><a href="#spalten-auswählen" id="toc-spalten-auswählen" class="nav-link" data-scroll-target="#spalten-auswählen">Spalten auswählen</a></li>
+  <li><a href="#werte-zählen" id="toc-werte-zählen" class="nav-link" data-scroll-target="#werte-zählen">Werte zählen</a></li>
+  <li><a href="#zeilen-auswählen" id="toc-zeilen-auswählen" class="nav-link" data-scroll-target="#zeilen-auswählen">Zeilen auswählen</a></li>
+  <li><a href="#sec-daten-filtern" id="toc-sec-daten-filtern" class="nav-link" data-scroll-target="#sec-daten-filtern">Daten filtern (Bedingte Auswahl)</a></li>
+  </ul></li>
+  <li><a href="#sec-daten-bearbeiten" id="toc-sec-daten-bearbeiten" class="nav-link" data-scroll-target="#sec-daten-bearbeiten"><span class="header-section-number">5.6</span> Daten bearbeiten</a>
+  <ul class="collapse">
+  <li><a href="#fehlende-werte-behandeln" id="toc-fehlende-werte-behandeln" class="nav-link" data-scroll-target="#fehlende-werte-behandeln">Fehlende Werte behandeln</a></li>
+  <li><a href="#sec-neue-spalten" id="toc-sec-neue-spalten" class="nav-link" data-scroll-target="#sec-neue-spalten">Neue Spalten erstellen</a></li>
+  <li><a href="#sec-apply" id="toc-sec-apply" class="nav-link" data-scroll-target="#sec-apply">Funktionen auf Spalten anwenden</a></li>
+  </ul></li>
+  <li><a href="#sec-daten-sortieren" id="toc-sec-daten-sortieren" class="nav-link" data-scroll-target="#sec-daten-sortieren"><span class="header-section-number">5.7</span> Daten sortieren</a></li>
+  <li><a href="#sec-daten-zusammenfuegen" id="toc-sec-daten-zusammenfuegen" class="nav-link" data-scroll-target="#sec-daten-zusammenfuegen"><span class="header-section-number">5.8</span> Daten zusammenfügen</a></li>
+  <li><a href="#sec-statistiken" id="toc-sec-statistiken" class="nav-link" data-scroll-target="#sec-statistiken"><span class="header-section-number">5.9</span> Grundlegende Statistiken mit Pandas</a>
+  <ul class="collapse">
+  <li><a href="#sec-groupby" id="toc-sec-groupby" class="nav-link" data-scroll-target="#sec-groupby">groupby(): Gruppieren und Aggregieren</a></li>
+  </ul></li>
+  <li><a href="#sec-projekt-datenanalyse" id="toc-sec-projekt-datenanalyse" class="nav-link" data-scroll-target="#sec-projekt-datenanalyse"><span class="header-section-number">5.10</span> Übung: Datenanalyse</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen" id="toc-anforderungen" class="nav-link" data-scroll-target="#anforderungen">Anforderungen</a></li>
+  <li><a href="#anleitung" id="toc-anleitung" class="nav-link" data-scroll-target="#anleitung">Anleitung</a></li>
+  <li><a href="#code-struktur" id="toc-code-struktur" class="nav-link" data-scroll-target="#code-struktur">Code-Struktur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#sec-loesungen-kap5" id="toc-sec-loesungen-kap5" class="nav-link" data-scroll-target="#sec-loesungen-kap5"><span class="header-section-number">5.11</span> Lösungen zu Kapitel 5</a>
+  <ul class="collapse">
+  <li><a href="#lösung-zur-übung-datenanalyse" id="toc-lösung-zur-übung-datenanalyse" class="nav-link" data-scroll-target="#lösung-zur-übung-datenanalyse">Lösung zur Übung: Datenanalyse</a></li>
+  <li><a href="#interpretation-der-ergebnisse" id="toc-interpretation-der-ergebnisse" class="nav-link" data-scroll-target="#interpretation-der-ergebnisse">Interpretation der Ergebnisse</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ppronobis/ki-python/edit/main/Kapitel 5.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ppronobis/ki-python/issues/new" class="toc-action">Problem melden</a></p><p><a href="https://github.com/ppronobis/ki-python/blob/main/Kapitel 5.qmd" class="toc-action">Quellcode anzeigen</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-pandas" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="sec-willkommen-kap5" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sec-willkommen-kap5"><span class="header-section-number">5.1</span> Willkommen zu Kapitel 5</h2>
+<p>Herzlich willkommen zu Kapitel 5! Nachdem wir uns in den vorherigen Kapiteln mit den Grundlagen von Python vertraut gemacht haben, werden wir uns in diesem Kapitel einem der mächtigsten Werkzeuge für die Datenanalyse widmen: der Pandas-Bibliothek.</p>
+<p>Stellen Sie sich vor, Sie hätten eine Tabellenkalkulation wie Excel, aber mit der vollen Kraft einer Programmiersprache dahinter. Genau das ist Pandas. Es ermöglicht uns, große Datenmengen zu laden, zu bereinigen, zu transformieren und zu analysieren – alles mit wenigen Zeilen Python-Code. Ob Sie Verkaufsdaten auswerten, wissenschaftliche Messreihen analysieren oder Kundenverhalten untersuchen möchten – Pandas ist das Werkzeug der Wahl für Datenwissenschaftler und Analysten weltweit.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🎯 In diesem Kapitel werden Sie lernen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Was Pandas ist</strong> und wie man es installiert</li>
+<li><strong>Die grundlegenden Datenstrukturen</strong> von Pandas: Series und DataFrames</li>
+<li><strong>Wie man Daten</strong> aus verschiedenen Quellen (z.B. CSV-Dateien) lädt</li>
+<li><strong>Wie man Daten</strong> in DataFrames selektiert, filtert und bearbeitet</li>
+<li><strong>Wie man Daten</strong> aus verschiedenen Quellen zusammenführt</li>
+<li><strong>Wie man grundlegende</strong> statistische Analysen durchführt</li>
+</ul>
+</div>
+</div>
+<p>Am Ende dieses Kapitels werden Sie in der Lage sein, reale Datensätze zu analysieren und wertvolle Einblicke aus ihnen zu gewinnen. Als Abschlussprojekt werden wir eine umfassende Datenanalyse eines echten Datensatzes durchführen. Lassen Sie uns also direkt eintauchen und die Welt der Datenanalyse entdecken!</p>
+</section>
+<section id="sec-pandas-installieren" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-pandas-installieren"><span class="header-section-number">5.2</span> Pandas installieren</h2>
+<p>Bevor wir mit Pandas arbeiten können, müssen wir die Bibliothek zunächst installieren. Anders als die eingebauten Python-Funktionen, die wir bisher verwendet haben, ist Pandas ein externes Paket, das von einer aktiven Community entwickelt und gepflegt wird. Diese externen Pakete erweitern die Möglichkeiten von Python enorm – und Pandas ist eines der beliebtesten davon.</p>
+<p>Die Installation erfolgt über pip, den Paketmanager von Python. Pip ist ein Kommandozeilen-Werkzeug, das automatisch Pakete aus dem Python Package Index (PyPI) herunterlädt und installiert. Wenn Sie Python installiert haben, ist pip normalerweise bereits dabei.</p>
+<p>Das Gute an Google Colab ist, dass die wichtigsten Datenanalyse-Bibliotheken, einschließlich Pandas, bereits vorinstalliert sind. Wenn Sie in Colab arbeiten, können Sie diesen Abschnitt überspringen und direkt mit dem Import beginnen.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💻 Installation auf einem lokalen Computer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn Sie Python auf Ihrem eigenen Computer installiert haben, öffnen Sie eine Kommandozeile (Terminal auf macOS/Linux, Eingabeaufforderung oder PowerShell auf Windows) und geben Sie den folgenden Befehl ein:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="sec-pandas-importieren" class="level3">
+<h3 class="anchored" data-anchor-id="sec-pandas-importieren">Pandas importieren</h3>
+<p>Nach der Installation müssen wir Pandas in unserem Python-Skript importieren, um es verwenden zu können. Hier hat sich in der Python-Community eine Konvention etabliert, die Sie in praktisch jedem Datenanalyse-Projekt wiederfinden werden: Pandas wird unter dem Alias <code>pd</code> importiert. Dieser kurze Alias spart Tipparbeit und macht den Code übersichtlicher.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ab jetzt können wir alle Pandas-Funktionen über <code>pd.</code> aufrufen. Diese Konvention ist so verbreitet, dass Sie sie in praktisch jedem Tutorial, jeder Dokumentation und jedem professionellen Projekt finden werden.</p>
+</section>
+</section>
+<section id="sec-daten-laden" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-daten-laden"><span class="header-section-number">5.3</span> Daten laden</h2>
+<p>Ein typischer erster Schritt in der Datenanalyse ist das Laden von Daten aus einer externen Quelle. Stellen Sie sich vor, Sie haben eine Excel-Datei mit Verkaufszahlen, eine Datenbank mit Kundeninformationen oder eine CSV-Datei mit Messwerten – wie bekommen wir diese Daten in Python, um sie analysieren zu können?</p>
+<p>Pandas macht dies unglaublich einfach und unterstützt eine Vielzahl von Dateiformaten: CSV, Excel, JSON, SQL-Datenbanken und viele mehr. Das am häufigsten verwendete Format für tabellarische Daten ist CSV (Comma-Separated Values) – eine einfache Textdatei, in der die Werte durch Kommas getrennt sind. CSV-Dateien können von praktisch jeder Software geöffnet und erstellt werden, was sie zum universellen Austauschformat für Daten macht.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📁 Eine CSV-Datei in ein DataFrame laden
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pandas bietet die Funktion <code>read_csv()</code>, um Daten aus einer CSV-Datei direkt in ein DataFrame zu laden. Das funktioniert sowohl mit lokalen Dateien als auch mit URLs.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine CSV-Datei von einer URL laden</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine lokale CSV-Datei laden</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"meine_daten.csv"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit vollständigem Pfad</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"/pfad/zum/ordner/meine_daten.csv"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="sec-erster-blick" class="level3">
+<h3 class="anchored" data-anchor-id="sec-erster-blick">Einen ersten Blick auf die Daten werfen</h3>
+<p>Nachdem wir die Daten geladen haben, möchten wir uns meist einen ersten Überblick verschaffen. Wie viele Zeilen hat unser Datensatz? Welche Spalten gibt es? Gibt es fehlende Werte? Welche Datentypen haben die einzelnen Spalten? Diese Fragen sollten wir beantworten, bevor wir mit der eigentlichen Analyse beginnen.</p>
+<p>Pandas bietet hierfür einige nützliche Methoden, die uns diese Fragen schnell beantworten. Mit <code>head()</code> und <code>tail()</code> können wir uns die ersten bzw. letzten Zeilen anschauen, um ein Gefühl für die Daten zu bekommen. Die Methode <code>info()</code> gibt uns einen technischen Überblick über die Struktur des DataFrames, während <code>describe()</code> automatisch statistische Kennzahlen für alle numerischen Spalten berechnet.</p>
+<p>Die wichtigsten Methoden für diesen ersten Überblick sind <code>head()</code>, <code>tail()</code>, <code>info()</code> und <code>describe()</code>. Mit <code>df.head()</code> sehen Sie die ersten fünf Zeilen Ihrer Daten – ideal, um die Struktur und den Inhalt zu verstehen. Entsprechend zeigt <code>df.tail()</code> die letzten fünf Zeilen, was hilfreich ist, um zu prüfen, ob die Daten vollständig geladen wurden.</p>
+<p>Besonders wertvoll ist die <code>info()</code>-Methode: Sie liefert eine technische Zusammenfassung mit der Anzahl der Zeilen, allen Spaltennamen, den Datentypen jeder Spalte und der Anzahl der nicht-leeren Werte. So erkennen Sie auf einen Blick, wo fehlende Werte vorliegen. Die <code>describe()</code>-Methode ergänzt dies durch eine statistische Zusammenfassung aller numerischen Spalten – Anzahl, Mittelwert, Standardabweichung, Minimum, Maximum und die Quartile.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Die ersten 5 Zeilen anzeigen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Informationen über das DataFrame anzeigen</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.info())</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistische Zusammenfassung der numerischen Spalten</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.describe())</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Das Laden und erste Erkunden von Daten ist der Ausgangspunkt für jede Datenanalyse. Mit Pandas können wir diesen Schritt schnell und effizient durchführen, um uns auf die eigentliche Analyse zu konzentrieren.</p>
+</section>
+</section>
+<section id="sec-dataframes-verstehen" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-dataframes-verstehen"><span class="header-section-number">5.4</span> DataFrames verstehen</h2>
+<p>Um effektiv mit Pandas arbeiten zu können, müssen wir zunächst verstehen, wie Pandas Daten organisiert. Wenn Sie schon einmal mit Excel oder Google Sheets gearbeitet haben, werden Ihnen die Konzepte vertraut vorkommen. Das DataFrame ist die zentrale Datenstruktur in Pandas – man kann es sich am besten als eine Tabelle vorstellen, ähnlich wie ein Arbeitsblatt in Excel, aber mit deutlich mehr Möglichkeiten zur programmatischen Bearbeitung.</p>
+<p>Ein DataFrame besteht aus Zeilen und Spalten. Jede Zeile repräsentiert einen Datensatz (z.B. einen Kunden, eine Messung, eine Transaktion), und jede Spalte repräsentiert ein Merkmal oder eine Variable (z.B. Name, Alter, Umsatz). Diese tabellarische Struktur ist intuitiv und entspricht der Art, wie wir Menschen Daten natürlicherweise organisieren.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🏗️ Die Anatomie eines DataFrames
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein DataFrame besteht aus drei wesentlichen Komponenten:</p>
+<ul>
+<li><strong>Index:</strong> Jede Zeile hat einen eindeutigen Index (standardmäßig von 0 an aufsteigend). Dies ist vergleichbar mit der Zeilennummer in Excel.</li>
+<li><strong>Spalten:</strong> Jede Spalte hat einen Namen und enthält Daten eines bestimmten Typs (z.B. Zahlen, Text, Datum).</li>
+<li><strong>Daten:</strong> Die eigentlichen Werte, die in den Zellen der Tabelle gespeichert sind.</li>
+</ul>
+</div>
+</div>
+<section id="sec-series" class="level3">
+<h3 class="anchored" data-anchor-id="sec-series">Eine weitere wichtige Datenstruktur: Series</h3>
+<p>Neben dem DataFrame gibt es noch eine weitere wichtige Datenstruktur, die Sie kennen sollten. Wenn Sie eine einzelne Spalte aus einem DataFrame extrahieren, erhalten Sie keine weitere Tabelle, sondern eine <strong>Series</strong>. Eine Series ist im Grunde eine eindimensionale, beschriftete Anordnung von Daten – man kann sie sich wie eine einzelne Spalte in einer Excel-Tabelle vorstellen, die auch ohne den Rest der Tabelle existieren kann.</p>
+<p>Um eine Series zu erhalten, wählen Sie einfach eine Spalte mit eckigen Klammern aus. Der folgende Code zeigt, wie Sie die “Age”-Spalte extrahieren und überprüfen können, dass es sich tatsächlich um eine Series handelt:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine einzelne Spalte (eine Series) auswählen</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>alter_spalte <span class="op">=</span> df[<span class="st">"Age"</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(alter_spalte))  <span class="co"># &lt;class 'pandas.core.series.Series'&gt;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Eine Series hat wie ein DataFrame einen Index, aber nur eine einzige Spalte mit Werten. Viele der Methoden, die Sie für DataFrames kennenlernen werden – wie <code>mean()</code>, <code>sum()</code> oder <code>value_counts()</code> – funktionieren auch auf einer Series.</p>
+<p>Das Verständnis der DataFrame- und Series-Strukturen ist die Grundlage für die effektive Nutzung von Pandas. Viele Operationen, die wir auf DataFrames anwenden, funktionieren auch auf Series – und umgekehrt. In den nächsten Abschnitten werden wir lernen, wie wir diese Strukturen manipulieren können, um unsere Daten zu analysieren.</p>
+</section>
+</section>
+<section id="sec-daten-selektieren" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-daten-selektieren"><span class="header-section-number">5.5</span> Daten selektieren &amp; filtern</h2>
+<p>Eine der häufigsten Aufgaben in der Datenanalyse ist das Auswählen von bestimmten Teilen unserer Daten. Stellen Sie sich vor, Sie haben einen Datensatz mit tausenden von Zeilen und dutzenden von Spalten – wie finden Sie genau die Informationen, die Sie brauchen? Vielleicht interessieren Sie sich nur für Kunden aus einer bestimmten Region, oder Sie möchten nur die Verkäufe des letzten Quartals analysieren.</p>
+<p>Pandas bietet flexible und leistungsstarke Möglichkeiten, um Daten in einem DataFrame zu selektieren und zu filtern. Diese Fähigkeiten sind fundamental für die Datenanalyse, denn sie erlauben uns, aus großen Datenmengen genau die Teilmenge zu extrahieren, die für unsere Fragestellung relevant ist.</p>
+<section id="spalten-auswählen" class="level3">
+<h3 class="anchored" data-anchor-id="spalten-auswählen">Spalten auswählen</h3>
+<p>Lassen Sie uns mit dem Einfachsten beginnen: dem Auswählen von Spalten. Die Syntax ist intuitiv und erinnert an das Arbeiten mit Dictionaries in Python. Um eine einzelne Spalte auszuwählen, verwenden wir eckige Klammern mit dem Spaltennamen: <code>df["Spaltenname"]</code>. Für mehrere Spalten übergeben wir eine Liste von Spaltennamen: <code>df[["Spalte1", "Spalte2"]]</code>.</p>
+</section>
+<section id="werte-zählen" class="level3">
+<h3 class="anchored" data-anchor-id="werte-zählen">Werte zählen</h3>
+<p>Manchmal möchten wir nicht nur eine Spalte auswählen, sondern auch wissen, wie oft bestimmte Werte darin vorkommen. Die Methode <code>value_counts()</code> ist hierfür besonders nützlich – sie zählt automatisch, wie oft jeder eindeutige Wert in einer Spalte vorkommt. Das ist ideal für kategorische Daten wie Geschlecht, Produktkategorien oder Regionen.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Wie viele Passagiere gibt es pro Klasse?</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Pclass"</span>].value_counts())</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Wie viele Passagiere sind in welchem Hafen eingestiegen?</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Embarked"</span>].value_counts())</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="zeilen-auswählen" class="level3">
+<h3 class="anchored" data-anchor-id="zeilen-auswählen">Zeilen auswählen</h3>
+<p>Neben dem Auswählen von Spalten können wir auch gezielt bestimmte Zeilen auswählen. Hierfür bietet Pandas zwei wichtige Methoden, deren Unterschied Sie verstehen sollten: <code>.loc</code> und <code>.iloc</code>.</p>
+<p><strong><code>.loc</code> (Label-basiert)</strong> wählt Zeilen und Spalten basierend auf ihren Labels aus – also den Indexnamen und Spaltennamen. Wenn Ihr Index aus den Standardnummern 0, 1, 2, … besteht, sind diese Nummern die Labels. Bei <code>.loc</code> ist der Endwert <em>inklusiv</em>, d.h. <code>df.loc[0:4]</code> gibt die Zeilen 0, 1, 2, 3 und 4 zurück.</p>
+<p><strong><code>.iloc</code> (Integer-basiert)</strong> hingegen wählt Zeilen und Spalten basierend auf ihrer Position aus – immer von 0 an gezählt, unabhängig von den tatsächlichen Index-Labels. Bei <code>.iloc</code> ist der Endwert <em>exklusiv</em> (wie bei Python-Listen), d.h. <code>df.iloc[0:5]</code> gibt die Zeilen an Position 0, 1, 2, 3 und 4 zurück.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># .loc: Zeilen 0 bis 4, Spalten "Name" und "Age"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>:<span class="dv">4</span>, [<span class="st">"Name"</span>, <span class="st">"Age"</span>]]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># .iloc: Zeilen 0 bis 4, Spalten 2 und 4 (nach Position)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">0</span>:<span class="dv">5</span>, [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine einzelne Zeile mit .loc</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">0</span>]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine einzelne Zeile mit .iloc</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">0</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In der Praxis werden Sie <code>.loc</code> häufiger verwenden, wenn Sie mit Spaltennamen arbeiten, und <code>.iloc</code>, wenn Sie gezielt auf bestimmte Positionen zugreifen möchten – etwa die ersten 10 Zeilen oder jede zweite Zeile.</p>
+</section>
+<section id="sec-daten-filtern" class="level3">
+<h3 class="anchored" data-anchor-id="sec-daten-filtern">Daten filtern (Bedingte Auswahl)</h3>
+<p>Das Auswählen von Zeilen nach Position ist nützlich, aber oft möchten wir Zeilen basierend auf bestimmten Bedingungen filtern. Zum Beispiel: “Zeige mir alle Kunden, die mehr als 100 Euro ausgegeben haben” oder “Finde alle Produkte, die ausverkauft sind”. Diese Art der bedingten Auswahl ist eines der mächtigsten Werkzeuge in Pandas.</p>
+<div style="page-break-after: always;"></div>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔍 Filtern mit booleschen Bedingungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wir können boolesche Bedingungen verwenden, um Zeilen zu filtern, die bestimmte Kriterien erfüllen. Die Syntax mag zunächst ungewöhnlich aussehen, aber sie ist sehr mächtig.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Alle Passagiere auswählen, die älter als 30 sind</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>aelter_als_30 <span class="op">=</span> df[df[<span class="st">"Age"</span>] <span class="op">&gt;</span> <span class="dv">30</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Alle weiblichen Passagiere in der 1. Klasse auswählen</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>weiblich_1_klasse <span class="op">=</span> df[(df[<span class="st">"Sex"</span>] <span class="op">==</span> <span class="st">"female"</span>) <span class="op">&amp;</span> (df[<span class="st">"Pclass"</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weiblich_1_klasse.head())</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><strong>Wichtig:</strong> Wenn Sie mehrere Bedingungen kombinieren, müssen Sie jede Bedingung in Klammern setzen und die Operatoren <code>&amp;</code> (und) oder <code>|</code> (oder) verwenden – nicht die Python-Schlüsselwörter <code>and</code> und <code>or</code>. Ohne die Klammern erhalten Sie einen Fehler, da Python die Operatorrangfolge anders interpretiert als erwartet.</p>
+<p>Das Selektieren und Filtern von Daten ist ein entscheidender Schritt, um die für unsere Analyse relevanten Daten zu isolieren. Mit diesen Techniken können Sie aus großen Datensätzen genau die Informationen extrahieren, die Sie benötigen.</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="sec-daten-bearbeiten" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-daten-bearbeiten"><span class="header-section-number">5.6</span> Daten bearbeiten</h2>
+<p>Rohdaten sind selten perfekt. In der Praxis müssen wir unsere Daten fast immer vor der Analyse bereinigen oder transformieren – fehlende Werte auffüllen, neue Spalten berechnen oder Daten in ein anderes Format umwandeln. Dieser Prozess, oft als “Data Wrangling” oder “Data Cleaning” bezeichnet, nimmt in realen Projekten oft 60-80% der Zeit in Anspruch. Pandas bietet eine Vielzahl von Werkzeugen für diese Aufgaben.</p>
+<section id="fehlende-werte-behandeln" class="level3">
+<h3 class="anchored" data-anchor-id="fehlende-werte-behandeln">Fehlende Werte behandeln</h3>
+<p>Ein häufiges Problem in realen Datensätzen sind fehlende Werte. Vielleicht hat ein Sensor zeitweise nicht funktioniert, ein Kunde hat ein Formularfeld nicht ausgefüllt, oder Daten wurden bei der Übertragung verloren. Diese fehlenden Werte (in Pandas als <code>NaN</code> – “Not a Number” – dargestellt) können die Analyse verfälschen oder sogar zum Absturz unseres Codes führen, wenn wir sie nicht behandeln.</p>
+<p>Pandas bietet zwei grundlegende Strategien für den Umgang mit fehlenden Werten: Wir können Zeilen oder Spalten mit fehlenden Werten entfernen (<code>df.dropna()</code>), oder wir können die fehlenden Werte mit einem sinnvollen Ersatzwert füllen (<code>df.fillna(wert)</code>). Welche Strategie die richtige ist, hängt vom konkreten Anwendungsfall ab – manchmal ist es besser, unvollständige Daten zu entfernen, manchmal ist es besser, sie zu ergänzen.</p>
+</section>
+<section id="sec-neue-spalten" class="level3">
+<h3 class="anchored" data-anchor-id="sec-neue-spalten">Neue Spalten erstellen</h3>
+<p>Oft möchten wir aus vorhandenen Daten neue Informationen ableiten. Zum Beispiel könnten wir aus dem Geburtsdatum das Alter berechnen, aus Länge und Breite die Fläche ermitteln, oder mehrere Spalten zu einer neuen kombinieren. Das Erstellen neuer Spalten ist in Pandas sehr intuitiv – wir weisen einfach einem neuen Spaltennamen einen Wert zu:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine neue Spalte "Familienmitglieder" erstellen</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Familienmitglieder"</span>] <span class="op">=</span> df[<span class="st">"SibSp"</span>] <span class="op">+</span> df[<span class="st">"Parch"</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="sec-apply" class="level3">
+<h3 class="anchored" data-anchor-id="sec-apply">Funktionen auf Spalten anwenden</h3>
+<p>Manchmal reichen einfache arithmetische Operationen nicht aus, und wir müssen komplexere Transformationen durchführen. Vielleicht möchten wir Werte in Kategorien einteilen, Text bereinigen oder eine komplexe Berechnung durchführen. Genau hier kommt die <code>.apply()</code>-Methode ins Spiel, die es uns ermöglicht, beliebige Python-Funktionen auf unsere Daten anzuwenden.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔧 Die .apply()-Methode
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mit der <code>.apply()</code>-Methode können wir eine Funktion auf jedes Element einer Spalte anwenden. Das ist besonders nützlich, wenn wir Daten kategorisieren oder komplexe Berechnungen durchführen möchten.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Funktion, die das Alter in Kategorien einteilt</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> alterskategorie(alter):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> alter <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Kind"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> alter <span class="op">&lt;</span> <span class="dv">65</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Erwachsener"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Senior"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Funktion auf die "Age"-Spalte anwenden</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Alterskategorie"</span>] <span class="op">=</span> df[<span class="st">"Age"</span>].<span class="bu">apply</span>(alterskategorie)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Die Datenbereinigung und -transformation ist oft der zeitaufwändigste Teil der Datenanalyse, aber auch einer der wichtigsten. Nur mit sauberen, gut strukturierten Daten können wir genaue und zuverlässige Ergebnisse erzielen.</p>
+</section>
+</section>
+<section id="sec-daten-sortieren" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="sec-daten-sortieren"><span class="header-section-number">5.7</span> Daten sortieren</h2>
+<p>Das Sortieren von Daten ist eine häufige Operation, um Muster zu erkennen oder die größten bzw. kleinsten Werte zu finden. Wer sind unsere Top-10-Kunden? Welche Produkte haben die schlechtesten Bewertungen? Welche Mitarbeiter haben die meisten Überstunden? Sortierung hilft uns, solche Fragen schnell zu beantworten und die interessantesten Datenpunkte zu identifizieren.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔢 Die sort_values()-Methode
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mit <code>sort_values()</code> können wir ein DataFrame nach einer oder mehreren Spalten sortieren. Standardmäßig wird aufsteigend sortiert, aber das lässt sich leicht ändern.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach Alter sortieren (aufsteigend)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>df_sortiert <span class="op">=</span> df.sort_values(<span class="st">"Age"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach Alter sortieren (absteigend)</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>df_sortiert <span class="op">=</span> df.sort_values(<span class="st">"Age"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach mehreren Spalten sortieren</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>df_sortiert <span class="op">=</span> df.sort_values([<span class="st">"Pclass"</span>, <span class="st">"Age"</span>], ascending<span class="op">=</span>[<span class="va">True</span>, <span class="va">False</span>])</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_sortiert.head())</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Im letzten Beispiel sehen Sie, wie wir nach mehreren Spalten sortieren können – zuerst nach Klasse (aufsteigend), dann innerhalb jeder Klasse nach Alter (absteigend). Diese Technik ist besonders nützlich, wenn Sie Ranglisten oder Berichte erstellen möchten.</p>
+</section>
+<section id="sec-daten-zusammenfuegen" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="sec-daten-zusammenfuegen"><span class="header-section-number">5.8</span> Daten zusammenfügen</h2>
+<p>In der Praxis liegen unsere Daten oft nicht in einer einzelnen Tabelle vor. Stellen Sie sich vor, Sie haben eine Tabelle mit Kundeninformationen (Name, Adresse, Kundennummer) und eine separate Tabelle mit Bestellungen (Bestellnummer, Kundennummer, Produkt, Preis). Um herauszufinden, welcher Kunde was bestellt hat, müssen wir diese Tabellen zusammenführen – eine Operation, die in der Datenbankwelt als “JOIN” bekannt ist.</p>
+<p>Pandas bietet verschiedene Möglichkeiten, um DataFrames zu kombinieren. Die zwei wichtigsten sind <code>pd.concat()</code> und <code>pd.merge()</code>. Mit <code>concat()</code> fügen wir DataFrames entlang einer Achse zusammen – wie das Stapeln von Tabellen übereinander oder nebeneinander. Mit <code>merge()</code> kombinieren wir DataFrames basierend auf gemeinsamen Spalten, ähnlich wie ein SQL-JOIN, bei dem Zeilen aus verschiedenen Tabellen anhand eines gemeinsamen Schlüssels verknüpft werden.</p>
+<p>Lassen Sie uns die <code>merge()</code>-Funktion an einem praktischen Beispiel betrachten, um zu verstehen, wie sie funktioniert.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔄 Beispiel: merge()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Stellen Sie sich vor, wir haben zwei DataFrames: eines mit Bestelldaten und eines mit Kundendaten. Wir können sie über die gemeinsame Spalte KundenID zusammenführen.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>bestellungen <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BestellID"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"KundenID"</span>: [<span class="dv">101</span>, <span class="dv">102</span>, <span class="dv">101</span>, <span class="dv">103</span>],</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Produkt"</span>: [<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>kunden <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"KundenID"</span>: [<span class="dv">101</span>, <span class="dv">102</span>, <span class="dv">103</span>],</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Name"</span>: [<span class="st">"Anna"</span>, <span class="st">"Max"</span>, <span class="st">"Julia"</span>]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Die beiden DataFrames zusammenführen</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(bestellungen, kunden, on<span class="op">=</span><span class="st">"KundenID"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged_df)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Das Ergebnis ist ein neues DataFrame, in dem jede Bestellung mit den entsprechenden Kundeninformationen verknüpft ist. Das Zusammenfügen von Daten aus verschiedenen Quellen ist eine wesentliche Fähigkeit, um ein vollständiges Bild Ihrer Daten zu erhalten.</p>
+</section>
+<section id="sec-statistiken" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="sec-statistiken"><span class="header-section-number">5.9</span> Grundlegende Statistiken mit Pandas</h2>
+<p>Der wahre Wert der Datenanalyse liegt darin, aus Zahlen Erkenntnisse zu gewinnen. Rohdaten allein sagen uns wenig – erst wenn wir sie zusammenfassen, vergleichen und Muster erkennen, werden sie wertvoll. Pandas macht es sehr einfach, grundlegende statistische Kennzahlen für unsere Daten zu berechnen. Diese Kennzahlen geben uns einen schnellen Überblick über die Verteilung und die zentralen Tendenzen unserer Daten.</p>
+<p>Die wichtigsten statistischen Methoden in Pandas sind:</p>
+<ul>
+<li><strong><code>.mean()</code>:</strong> Berechnet den Mittelwert (Durchschnitt)</li>
+<li><strong><code>.median()</code>:</strong> Berechnet den Median (mittlerer Wert)</li>
+<li><strong><code>.std()</code>:</strong> Berechnet die Standardabweichung (Streuung der Werte)</li>
+<li><strong><code>.min()</code> und <code>.max()</code>:</strong> Finden den kleinsten und größten Wert</li>
+<li><strong><code>.sum()</code>:</strong> Berechnet die Summe aller Werte</li>
+<li><strong><code>.count()</code>:</strong> Zählt die Anzahl der nicht-leeren Werte</li>
+</ul>
+<p>Jede dieser Methoden kann auf eine einzelne Spalte oder das gesamte DataFrame angewendet werden. Diese Methoden sind nützlich für einen schnellen Überblick, aber oft möchten wir Statistiken für verschiedene Gruppen berechnen – zum Beispiel den Durchschnittsumsatz pro Region oder das Durchschnittsalter pro Geschlecht.</p>
+<section id="sec-groupby" class="level3">
+<h3 class="anchored" data-anchor-id="sec-groupby">groupby(): Gruppieren und Aggregieren</h3>
+<p>Die <code>groupby()</code>-Funktion ist eines der mächtigsten Werkzeuge in Pandas. Sie ermöglicht es uns, Daten nach Kategorien zu gruppieren und dann Berechnungen auf jede Gruppe anzuwenden – ähnlich wie eine Pivot-Tabelle in Excel. Mit <code>groupby()</code> können Sie Fragen beantworten wie “Wie hoch ist der durchschnittliche Bestellwert pro Kundengruppe?” oder “Wie viele Verkäufe gab es pro Monat?”</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔄 Die mächtige groupby()-Funktion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Das Durchschnittsalter nach Geschlecht gruppieren</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>durchschnittsalter_pro_geschlecht <span class="op">=</span> df.groupby(<span class="st">"Sex"</span>)[<span class="st">"Age"</span>].mean()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(durchschnittsalter_pro_geschlecht)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Statistische Analysen sind der Kern der Datenanalyse. Mit den grundlegenden Methoden und der <code>groupby()</code>-Funktion haben Sie bereits ein mächtiges Werkzeugset, um aus Ihren Daten wertvolle Erkenntnisse zu gewinnen.</p>
+</section>
+</section>
+<section id="sec-projekt-datenanalyse" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="sec-projekt-datenanalyse"><span class="header-section-number">5.10</span> Übung: Datenanalyse</h2>
+<p>Jetzt ist es Zeit, alles Gelernte in die Praxis umzusetzen! In diesem Abschlussprojekt für das Pandas-Kapitel werden Sie eine umfassende Analyse des Titanic-Datensatzes durchführen. Dieser berühmte Datensatz enthält Informationen über die Passagiere der Titanic und ob sie das Unglück überlebt haben.</p>
+<p><strong>Ziel:</strong> Führen Sie eine vollständige Datenanalyse durch, um interessante Einblicke in die Überlebensraten der Passagiere zu gewinnen.</p>
+<section id="anforderungen" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen">Anforderungen</h3>
+<ol type="1">
+<li><strong>Daten laden:</strong> Der Titanic-Datensatz soll geladen werden:
+<ul>
+<li>Verwenden Sie <code>pd.read_csv()</code> mit der URL</li>
+<li>Speichern Sie das DataFrame in einer Variable <code>df</code></li>
+</ul></li>
+<li><strong>Daten vorbereiten:</strong> Fehlende Werte in der Spalte “Age” behandeln:
+<ul>
+<li>Berechnen Sie den Median des Alters</li>
+<li>Füllen Sie fehlende Werte mit <code>fillna()</code></li>
+</ul></li>
+<li><strong>Analyse durchführen:</strong> Beantworten Sie folgende Fragen:
+<ul>
+<li>Wie hoch war die allgemeine Überlebensrate?</li>
+<li>Hatten Frauen eine höhere Überlebensrate als Männer?</li>
+<li>Hatten Passagiere der 1. Klasse eine höhere Überlebensrate?</li>
+<li>Gibt es einen Zusammenhang zwischen Alter und Überlebensrate?</li>
+</ul></li>
+<li><strong>Ergebnisse ausgeben:</strong> Alle Ergebnisse formatiert mit <code>print()</code> ausgeben.</li>
+</ol>
+</section>
+<section id="anleitung" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung">Anleitung</h3>
+<ol type="1">
+<li>Importieren Sie Pandas als <code>pd</code>.</li>
+<li>Laden Sie den Datensatz von der URL.</li>
+<li>Berechnen Sie den Median der “Age”-Spalte mit <code>df["Age"].median()</code>.</li>
+<li>Füllen Sie fehlende Werte mit <code>df["Age"].fillna(median_age)</code>.</li>
+<li>Berechnen Sie die allgemeine Überlebensrate mit <code>df["Survived"].mean()</code>.</li>
+<li>Gruppieren Sie nach Geschlecht mit <code>df.groupby("Sex")["Survived"].mean()</code>.</li>
+<li>Gruppieren Sie nach Klasse mit <code>df.groupby("Pclass")["Survived"].mean()</code>.</li>
+<li>Erstellen Sie Altersgruppen mit <code>pd.cut()</code> und analysieren Sie diese.</li>
+</ol>
+</section>
+<section id="code-struktur" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur">Code-Struktur</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Daten laden</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame laden mit pd.read_csv()</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Fehlende Alterswerte behandeln</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Median berechnen mit df["Age"].median()</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fehlende Werte füllen mit df["Age"].fillna()</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Analyse</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 1: Allgemeine Überlebensrate berechnen</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: df["Survived"].mean() gibt den Anteil der Überlebenden</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 2: Überlebensrate nach Geschlecht</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: df.groupby("Sex")["Survived"].mean()</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 3: Überlebensrate nach Klasse</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: df.groupby("Pclass")["Survived"].mean()</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 4: Überlebensrate nach Altersgruppe</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipp: pd.cut() erstellt Kategorien aus numerischen Werten</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Altersgruppen erstellen: [0-18], [18-35], [35-60], [60-100]</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise">Hinweise</h3>
+<ul>
+<li><code>df["Spalte"].mean()</code> berechnet den Durchschnitt einer Spalte.</li>
+<li><code>df.groupby("Spalte")["Andere_Spalte"].mean()</code> gruppiert und berechnet den Durchschnitt.</li>
+<li><code>pd.cut(df["Age"], bins=[0, 18, 35, 60, 100], labels=["Kind", "Junger Erwachsener", "Erwachsener", "Senior"])</code> erstellt Altersgruppen.</li>
+<li>Die “Survived”-Spalte enthält 0 (nicht überlebt) und 1 (überlebt) – der Mittelwert entspricht der Überlebensrate.</li>
+</ul>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Interpretieren Sie Ihre Ergebnisse: Welche Faktoren beeinflussten die Überlebenschancen am stärksten? Bonus: Analysieren Sie, ob es einen Unterschied in der Überlebensrate zwischen Passagieren mit und ohne Geschwister/Partner an Bord gab (Spalte “SibSp”)!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-loesungen-kap5" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="sec-loesungen-kap5"><span class="header-section-number">5.11</span> Lösungen zu Kapitel 5</h2>
+<p>In diesem Abschnitt finden Sie die Lösung zur Übung. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💡 Wichtiger Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es gibt oft mehrere richtige Lösungswege in der Datenanalyse. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie die gestellten Fragen korrekt beantwortet und die Ergebnisse richtig interpretiert.</p>
+</div>
+</div>
+<section id="lösung-zur-übung-datenanalyse" class="level3">
+<h3 class="anchored" data-anchor-id="lösung-zur-übung-datenanalyse">Lösung zur Übung: Datenanalyse</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Daten laden</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">"datasciencedojo/datasets/master/titanic.csv"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Fehlende Alterswerte mit dem Median füllen</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>median_age <span class="op">=</span> df[<span class="st">"Age"</span>].median()</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Age"</span>] <span class="op">=</span> df[<span class="st">"Age"</span>].fillna(median_age)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Analyse</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 1: Allgemeine Überlebensrate</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>allgemeine_ueberlebensrate <span class="op">=</span> df[<span class="st">"Survived"</span>].mean()</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Allgemeine Überlebensrate: </span><span class="sc">{</span>allgemeine_ueberlebensrate<span class="sc">:.2%}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 2: Überlebensrate nach Geschlecht</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ueberlebensrate_geschlecht <span class="op">=</span> df.groupby(<span class="st">"Sex"</span>)[<span class="st">"Survived"</span>].mean()</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Überlebensrate nach Geschlecht:"</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ueberlebensrate_geschlecht)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 3: Überlebensrate nach Klasse</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>ueberlebensrate_klasse <span class="op">=</span> df.groupby(<span class="st">"Pclass"</span>)[<span class="st">"Survived"</span>].mean()</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Überlebensrate nach Klasse:"</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ueberlebensrate_klasse)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Frage 4: Zusammenhang zwischen Alter und Überleben</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen von Altersgruppen</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>altersgruppen <span class="op">=</span> pd.cut(df[<span class="st">"Age"</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">18</span>, <span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">100</span>], labels<span class="op">=</span>[<span class="st">"Kind"</span>, <span class="st">"Junger Erwachsener"</span>, <span class="st">"Erwachsener"</span>, <span class="st">"Senior"</span>])</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>ueberlebensrate_alter <span class="op">=</span> df.groupby(altersgruppen)[<span class="st">"Survived"</span>].mean()</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Überlebensrate nach Altersgruppe:"</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ueberlebensrate_alter)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interpretation-der-ergebnisse" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-der-ergebnisse">Interpretation der Ergebnisse</h3>
+<p>Was sagen uns diese Zahlen? Die Analyse liefert aufschlussreiche Erkenntnisse über die Überlebensraten auf der Titanic.</p>
+<p><strong>Die allgemeine Überlebensrate</strong> lag bei etwa 38% – nur etwa jeder dritte Passagier überlebte das Unglück. Das zeigt bereits, wie verheerend die Katastrophe war.</p>
+<p><strong>Der Faktor Geschlecht</strong> war entscheidend: Frauen hatten eine deutlich höhere Überlebensrate von etwa 74%, während nur etwa 19% der Männer überlebten. Dies spiegelt die “Frauen und Kinder zuerst”-Politik bei der Evakuierung wider, die offensichtlich konsequent umgesetzt wurde.</p>
+<p><strong>Der soziale Status</strong> spielte ebenfalls eine erhebliche Rolle: Passagiere der 1. Klasse hatten die höchste Überlebensrate mit etwa 63%, gefolgt von der 2. Klasse mit etwa 47% und der 3. Klasse mit nur etwa 24%. Die Kabinen der 1. Klasse lagen näher an den Rettungsbooten, und wohlhabendere Passagiere hatten vermutlich besseren Zugang zu Informationen und Rettungsmitteln.</p>
+<p><strong>Das Alter</strong> zeigt ebenfalls interessante Muster: Kinder hatten eine höhere Überlebensrate als die anderen Altersgruppen, was die Beobachtung unterstützt, dass Kinder bei der Evakuierung bevorzugt wurden.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🎉 Herzlichen Glückwunsch!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sie haben nun die Grundlagen der Datenanalyse mit Pandas gemeistert! In diesem Kapitel haben Sie gelernt:</p>
+<ul>
+<li><strong>Wie Sie Pandas installieren und importieren</strong>: Die Grundlage für alle Datenanalyse-Projekte</li>
+<li><strong>Was DataFrames und Series sind</strong>: Die zentralen Datenstrukturen von Pandas</li>
+<li><strong>Wie Sie Daten laden und erkunden</strong>: Mit <code>read_csv()</code>, <code>head()</code>, <code>info()</code> und <code>describe()</code></li>
+<li><strong>Wie Sie Daten selektieren und filtern</strong>: Mit Spaltenauswahl, <code>loc</code>, <code>iloc</code> und booleschen Bedingungen</li>
+<li><strong>Wie Sie Daten bearbeiten</strong>: Fehlende Werte behandeln, neue Spalten erstellen und Funktionen anwenden</li>
+<li><strong>Wie Sie Daten sortieren und zusammenfügen</strong>: Mit <code>sort_values()</code> und <code>merge()</code></li>
+<li><strong>Wie Sie statistische Analysen durchführen</strong>: Mit grundlegenden Statistik-Methoden und <code>groupby()</code></li>
+</ul>
+<p>Im nächsten Kapitel werden wir lernen, wie wir mit externen APIs und KI-Modellen interagieren können, um intelligente Anwendungen zu entwickeln.</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Kapitel 4.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Kapitel 6.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">KI Python - IHK Rhein-Neckar</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">© 2026 Paul Pronobis &amp; Tobias Lämmle</div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,496 @@
+# Abschlusstest KI Python
+
+## Willkommen zum finalen Test
+
+Herzlichen Glückwunsch! Sie haben eine beeindruckende Reise von den ersten Python-Variablen bis hin zur KI-Integration und Datenanalyse gemeistert. Jetzt ist es Zeit, Ihr erworbenes Wissen in einem umfassenden Abschlusstest unter Beweis zu stellen.
+
+Denken Sie einen Moment zurück an alles, was Sie in den vergangenen Wochen gelernt haben: Sie beherrschen nun die **Python-Grundlagen** mit Variablen, Datentypen und Operatoren. Sie können **eigene Funktionen** erstellen und wissen, wie Sie Code wiederverwendbar gestalten. Mit **Bedingungen und Schleifen** kontrollieren Sie den Programmfluss, und **Datenstrukturen** wie Listen, Tupel und Dictionaries sind Ihnen vertraut geworden. Darüber hinaus haben Sie erste Erfahrungen mit **Pandas** für die Datenanalyse gesammelt und sogar **GPT-Modelle über APIs** in Ihre Programme integriert.
+
+Diese Fähigkeiten bilden das Fundament für Ihre weitere Entwicklung als Python-Programmierer. Der folgende Test gibt Ihnen die Gelegenheit, dieses Wissen unter Beweis zu stellen und selbst zu sehen, wie weit Sie gekommen sind.
+
+## Testformat und Anforderungen
+
+Der Abschlusstest ist als praktisches Jupyter Notebook konzipiert, das Sie eigenständig bearbeiten. Insgesamt erwarten Sie 23 Aufgaben, die in fünf thematische Sets unterteilt sind: Sie beginnen mit den Grundlagen zu Variablen und Datentypen, arbeiten dann mit Listen, lösen algorithmische Aufgaben mit Schleifen und Bedingungen, wenden Ihr Wissen in einem praktischen Geschäftsszenario an und schließen mit einem umfassenden Sentiment-Analyse-Projekt ab.
+
+Um den Test zu bestehen, benötigen Sie mindestens 80% korrekte Antworten. Das klingt vielleicht anspruchsvoll, aber wenn Sie die Kapitel durchgearbeitet haben, sind Sie bestens vorbereitet.
+
+::: {.callout-tip icon="false"}
+## 📝 So funktioniert der Test
+
+1. **Download:** Laden Sie das Jupyter Notebook aus dem [Kursbereich](https://www.skool.com/business-data-professional/) herunter
+2. **Bearbeitung:** Lösen Sie alle 23 Aufgaben sorgfältig
+3. **Abgabe:** Senden Sie das fertige Notebook an Ihre Dozenten
+4. **Bestehen:** 80% korrekte Antworten erforderlich
+:::
+
+Im Folgenden werden wir jedes Aufgabenset im Detail betrachten. Nutzen Sie diese Übersicht, um sich gezielt auf die verschiedenen Themenbereiche vorzubereiten und eventuelle Wissenslücken noch vor dem Test zu schließen.
+
+## Übung 1: Grundlagen-Check {#sec-uebung1-grundlagen}
+
+Das erste Aufgabenset testet Ihre Grundkenntnisse aus Kapitel 1. Sie werden mit den verschiedenen Datentypen arbeiten, die wir zu Beginn des Kurses kennengelernt haben: Strings für Text, Integer für ganze Zahlen und Booleans für Wahrheitswerte. Diese drei Grundtypen begegnen Ihnen in nahezu jedem Python-Programm, weshalb ein sicherer Umgang mit ihnen essentiell ist.
+
+**Ziel:** Erstellen Sie ein Python-Programm, das persönliche Daten in Variablen speichert, diese in einem Dictionary organisiert und die Datentypen analysiert.
+
+### Anforderungen
+
+1. **Variablen erstellen:** Drei Variablen mit unterschiedlichen Datentypen:
+   - `name` – ein String mit Ihrem Namen
+   - `age` – ein Integer mit Ihrem Alter
+   - `has_android_phone` – ein Boolean (True oder False)
+
+2. **Werte überprüfen:** Alle drei Variablen mit `print()` ausgeben
+
+3. **Dictionary erstellen:** Ein Dictionary `person` mit den Schlüsseln:
+   - `"Name"` → Wert von `name`
+   - `"Age"` → Wert von `age`
+   - `"HasAndroidPhone"` → Wert von `has_android_phone`
+
+4. **Dictionary verwenden:** Die Werte aus dem Dictionary in einer formatierten Ausgabe nutzen
+
+5. **Datentypen analysieren:** Mit einer `for`-Schleife jeden Schlüssel und den Typ des zugehörigen Wertes ausgeben
+
+### Anleitung
+
+1. Erstellen Sie die Variable `name` und weisen Sie einen String zu.
+2. Erstellen Sie die Variable `age` und weisen Sie eine Ganzzahl zu.
+3. Erstellen Sie die Variable `has_android_phone` und weisen Sie `True` oder `False` zu.
+4. Geben Sie alle drei Variablen mit `print()` aus.
+5. Erstellen Sie das Dictionary `person` mit den drei Schlüssel-Wert-Paaren.
+6. Erstellen Sie eine formatierte Ausgabe mit den Dictionary-Werten.
+7. Durchlaufen Sie das Dictionary mit einer `for`-Schleife und geben Sie für jeden Schlüssel den Typ des Wertes aus.
+
+### Code-Struktur
+
+```python
+# Aufgabe 1-3: Variablen erstellen
+name = pass  # Ersetzen Sie pass durch Ihren Namen als String
+age = pass  # Ersetzen Sie pass durch Ihr Alter als Integer
+has_android_phone = pass  # Ersetzen Sie pass durch True oder False
+
+# Aufgabe 4: Werte überprüfen
+print(name)
+print(age)
+print(has_android_phone)
+
+# Aufgabe 5: Dictionary erstellen
+person = {
+    "Name": pass,  # Ersetzen Sie pass durch die Variable name
+    "Age": pass,  # Ersetzen Sie pass durch die Variable age
+    "HasAndroidPhone": pass  # Ersetzen Sie pass durch die Variable has_android_phone
+}
+
+# Aufgabe 6: Dictionary-Werte in einer Ausgabe verwenden
+# Tipp: Greifen Sie mit person["Name"] auf die Werte zu
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# Aufgabe 7: Datentypen mit for-Schleife analysieren
+# Tipp: Verwenden Sie person.items() und type()
+for schluessel, wert in person.items():
+    pass  # Ersetzen Sie dies durch Ihren Code
+```
+
+### Hinweise
+
+- Strings werden in Anführungszeichen geschrieben: `"Max"` oder `'Max'`
+- Integer sind Ganzzahlen ohne Anführungszeichen: `25`
+- Booleans sind `True` oder `False` (Groß-/Kleinschreibung beachten!)
+- Dictionary-Zugriff erfolgt mit eckigen Klammern: `person["Name"]`
+- Die `type()`-Funktion gibt den Datentyp zurück: `type(variable)`
+- Mit `person.items()` erhalten Sie Schlüssel-Wert-Paare zum Durchlaufen
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Achten Sie besonders darauf, die Variablennamen exakt wie angegeben zu verwenden (`name`, nicht `Name`), da dies für die Bewertung wichtig ist.
+:::
+
+## Übung 2: Listen-Meister {#sec-uebung2-listen}
+
+Im zweiten Aufgabenset vertiefen Sie Ihre Kenntnisse über Listen – eine der wichtigsten und vielseitigsten Datenstrukturen in Python. Listen ermöglichen es Ihnen, mehrere Werte in einer geordneten Sammlung zu speichern und diese flexibel zu manipulieren.
+
+**Ziel:** Demonstrieren Sie Ihre Fähigkeiten im Umgang mit Listen durch Erstellung, Zugriff auf Elemente und Manipulation mit Listenmethoden.
+
+### Anforderungen
+
+1. **Liste erstellen:** Eine Liste `my_list` mit drei Elementen:
+   - Ihre Lieblingsfarbe (String)
+   - Anzahl Ihrer Haustiere (Integer)
+   - Boolean für vorhandene Programmiererfahrung
+
+2. **Listenzugriff:** Auf einzelne Elemente über den Index zugreifen und diese in Ausgaben verwenden
+
+3. **Element hinzufügen:** Mit `append()` ein neues Element ans Ende der Liste anfügen
+
+4. **Element entfernen:** Mit `pop()` das erste Element der Liste entfernen
+
+5. **Listenlänge ermitteln:** Mit `len()` die Anzahl der Elemente ausgeben
+
+### Anleitung
+
+1. Erstellen Sie die Liste `my_list` mit drei Elementen verschiedener Datentypen.
+2. Verwenden Sie `my_list[0]` für das erste Element, `my_list[1]` für das zweite, etc.
+3. Fügen Sie mit `my_list.append(wert)` ein viertes Element hinzu.
+4. Entfernen Sie mit `my_list.pop(0)` das erste Element.
+5. Ermitteln Sie mit `len(my_list)` die aktuelle Länge der Liste.
+
+### Code-Struktur
+
+```python
+# Aufgabe 8: Liste erstellen
+my_list = [
+    pass,  # Ersetzen: Ihre Lieblingsfarbe als String
+    pass,  # Ersetzen: Anzahl Ihrer Haustiere als Integer
+    pass   # Ersetzen: True oder False für Programmiererfahrung
+]
+
+# Aufgabe 9: Listenzugriff über Index
+# Tipp: Index beginnt bei 0!
+print('Meine Lieblingsfarbe ist', pass)  # Ersetzen: my_list[?]
+print('Ich habe {} Tier(e).'.format(pass))  # Ersetzen: my_list[?]
+if pass:  # Ersetzen: my_list[?]
+    print("Ich habe Programmiererfahrung")
+
+# Aufgabe 10: Element hinzufügen
+# Tipp: Verwenden Sie .append() mit Ihrer Lieblings-Einerzahl (0-9)
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# Aufgabe 11: Erstes Element entfernen
+# Tipp: Verwenden Sie .pop(0) für das erste Element
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# Aufgabe 12: Listenlänge ausgeben
+# Tipp: Verwenden Sie len()
+print("Die Liste hat {} Elemente.".format(pass))  # Ersetzen: len(?)
+```
+
+### Hinweise
+
+- **Indexierung beginnt bei 0:** Das erste Element hat Index 0, das zweite Index 1, usw.
+- `my_list[0]` → erstes Element (Lieblingsfarbe)
+- `my_list[1]` → zweites Element (Anzahl Haustiere)
+- `my_list[2]` → drittes Element (Programmiererfahrung)
+- `append(wert)` fügt ein Element am Ende hinzu
+- `pop(index)` entfernt das Element am angegebenen Index und gibt es zurück
+- `len(liste)` gibt die Anzahl der Elemente zurück
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Achten Sie besonders auf die korrekte Indexierung – ein häufiger Fehler ist es, `my_list[1]` zu verwenden, wenn man eigentlich das erste Element meint (das wäre `my_list[0]`).
+:::
+
+## Übung 3: Algorithmus-Challenge {#sec-uebung3-algorithmus}
+
+Das dritte Aufgabenset fordert Sie heraus, Ihr Wissen über Kontrollstrukturen in einem algorithmischen Problem anzuwenden. Hier kombinieren Sie `for`-Schleifen mit Bedingungen, um eine mathematische Berechnung durchzuführen.
+
+**Ziel:** Berechnen Sie die Summe aller Zahlen in einem bestimmten Bereich, die durch 7 teilbar sind.
+
+### Anforderungen
+
+1. **Zahlenbereich definieren:** Alle Zahlen von 18 bis einschließlich 534 betrachten
+
+2. **Teilbarkeit prüfen:** Für jede Zahl prüfen, ob sie durch 7 teilbar ist
+
+3. **Summe berechnen:** Alle teilbaren Zahlen aufsummieren
+
+4. **Ergebnis ausgeben:** Die berechnete Summe mit `print()` anzeigen
+
+### Anleitung
+
+1. Initialisieren Sie eine Variable `summe` mit dem Wert 0.
+2. Erstellen Sie eine `for`-Schleife, die alle Zahlen von 18 bis 534 durchläuft.
+3. Prüfen Sie mit dem Modulo-Operator `%`, ob die Zahl durch 7 teilbar ist.
+4. Wenn ja, addieren Sie die Zahl zur Summe.
+5. Geben Sie nach der Schleife das Ergebnis aus.
+
+### Code-Struktur
+
+```python
+# Aufgabe 13: Summe aller durch 7 teilbaren Zahlen zwischen 18 und 534
+
+# Schritt 1: Summenvariable initialisieren
+summe = pass  # Ersetzen: Startwert für die Summe
+
+# Schritt 2: Alle Zahlen im Bereich durchlaufen
+# Tipp: range(start, ende) - ende ist NICHT inklusiv!
+for zahl in range(pass, pass):  # Ersetzen: Start- und Endwert
+
+    # Schritt 3: Prüfen, ob die Zahl durch 7 teilbar ist
+    # Tipp: zahl % 7 == 0 bedeutet "kein Rest bei Division durch 7"
+    if pass:  # Ersetzen: Bedingung für Teilbarkeit
+
+        # Schritt 4: Zahl zur Summe addieren
+        summe = pass  # Ersetzen: summe + zahl
+
+# Schritt 5: Ergebnis ausgeben
+print('Die Summe beträgt:', summe)
+```
+
+### Hinweise
+
+- **Modulo-Operator `%`:** Gibt den Rest einer Division zurück
+  - `21 % 7` ergibt `0` → 21 ist durch 7 teilbar
+  - `22 % 7` ergibt `1` → 22 ist NICHT durch 7 teilbar
+- **Teilbarkeitsbedingung:** `zahl % 7 == 0` ist `True`, wenn `zahl` durch 7 teilbar ist
+- **range()-Funktion:** `range(18, 535)` erzeugt Zahlen von 18 bis 534 (obere Grenze nicht inklusive!)
+- **Summe aktualisieren:** `summe = summe + zahl` oder kürzer `summe += zahl`
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Denken Sie daran: `range()` schließt die obere Grenze nicht ein – wenn Sie alle Zahlen bis einschließlich 534 prüfen möchten, müssen Sie `range(18, 535)` verwenden.
+:::
+
+## Übung 4: Geschäftsrechner {#sec-uebung4-geschaeft}
+
+Im vierten Aufgabenset wenden Sie Ihre Python-Kenntnisse auf ein realistisches Geschäftsszenario an. Stellen Sie sich vor, Sie arbeiten für ein Reiseunternehmen und müssen berechnen, ob eine geplante Flugreise profitabel ist.
+
+**Ziel:** Berechnen Sie Gewinn oder Verlust eines Reiseunternehmens basierend auf Flugkosten und Ticketverkäufen.
+
+### Anforderungen
+
+1. **Variablen definieren:** Die gegebenen Geschäftsdaten in Variablen speichern:
+   - Flugkosten: 5000 Euro pro Flug
+   - Teilnehmer Hinflug: 29 Personen
+   - Ticketpreis: 200 Euro pro Person
+   - Teilnehmer Rückflug: 12 Personen
+
+2. **Gewinn Hinflug berechnen:** Einnahmen minus Kosten für den Hinflug
+
+3. **Gesamtgewinn berechnen:** Beide Flüge (Hin- und Rückflug) berücksichtigen
+
+4. **Ergebnis bewerten:** Mit einer `if`-Anweisung prüfen, ob Gewinn oder Verlust vorliegt
+
+### Anleitung
+
+1. Speichern Sie alle gegebenen Werte in Variablen.
+2. Berechnen Sie die Einnahmen für den Hinflug (Teilnehmer × Ticketpreis).
+3. Berechnen Sie den Gewinn für den Hinflug (Einnahmen - Flugkosten).
+4. Berechnen Sie die Gesamteinnahmen (Hinflug + Rückflug).
+5. Berechnen Sie die Gesamtkosten (2 × Flugkosten).
+6. Berechnen Sie den Gesamtgewinn und prüfen Sie mit `if`, ob er positiv ist.
+
+### Code-Struktur
+
+```python
+# Aufgabe 14: Gewinn für den Hinflug berechnen
+
+# Gegebene Werte als Variablen
+flugkosten = 5000
+teilnehmer_hinflug = 29
+ticketpreis = 200
+teilnehmer_rueckflug = 12
+
+# Einnahmen Hinflug berechnen
+einnahmen_hinflug = pass  # Ersetzen: teilnehmer_hinflug * ticketpreis
+
+# Gewinn Hinflug berechnen
+gewinn_hinflug = pass  # Ersetzen: einnahmen_hinflug - flugkosten
+
+print(f"Gewinn Hinflug: {gewinn_hinflug} Euro")
+
+# Aufgabe 15: Gesamtgewinn berechnen und bewerten
+
+# Einnahmen Rückflug berechnen
+einnahmen_rueckflug = pass  # Ersetzen: teilnehmer_rueckflug * ticketpreis
+
+# Gesamteinnahmen und Gesamtkosten
+gesamteinnahmen = pass  # Ersetzen: einnahmen_hinflug + einnahmen_rueckflug
+gesamtkosten = pass  # Ersetzen: flugkosten * 2 (Hin- UND Rückflug!)
+
+# Gesamtgewinn berechnen
+gesamtgewinn = pass  # Ersetzen: gesamteinnahmen - gesamtkosten
+
+# Mit if-Anweisung bewerten
+if pass:  # Ersetzen: Bedingung für Gewinn (gesamtgewinn > 0)
+    print(f"Das Unternehmen macht Gewinn: {gesamtgewinn} Euro")
+else:
+    print(f"Das Unternehmen macht Verlust: {gesamtgewinn} Euro")
+```
+
+### Hinweise
+
+- **Wichtig:** Sowohl Hinflug als auch Rückflug kosten jeweils 5000 Euro!
+- Einnahmen = Anzahl Teilnehmer × Ticketpreis
+- Gewinn = Einnahmen - Kosten
+- Mit `if gesamtgewinn > 0:` prüfen Sie auf Gewinn
+- Mit `if gesamtgewinn < 0:` prüfen Sie auf Verlust
+- f-Strings ermöglichen formatierte Ausgaben: `f"Text {variable} Text"`
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Denken Sie daran: Beide Flüge verursachen Kosten, aber die Teilnehmerzahlen sind unterschiedlich. Strukturieren Sie Ihre Berechnung sorgfältig!
+:::
+
+## Übung 5: Sentiment-Analyse {#sec-uebung5-sentiment}
+
+Das finale Projekt ist das anspruchsvollste Aufgabenset und bringt alles zusammen, was Sie in diesem Kurs gelernt haben. Sie führen eine vereinfachte Sentiment-Analyse durch – eine Technik, die in der Praxis häufig verwendet wird, um die Stimmung in Texten automatisch zu analysieren.
+
+**Ziel:** Führen Sie eine vollständige Sentiment-Analyse eines Nachrichtendatensatzes durch, indem Sie positive, negative und neutrale Nachrichten identifizieren und den Gesamtstimmungswert berechnen.
+
+### Anforderungen
+
+1. **Datensatz analysieren:** Die Anzahl der Nachrichten im Datensatz ermitteln
+
+2. **Positive Nachrichten:**
+   - Zählen, wie viele Nachrichten mindestens ein positives Wort enthalten
+   - Den Anteil positiver Nachrichten berechnen
+
+3. **Negative Nachrichten:**
+   - Zählen, wie viele Nachrichten mindestens ein negatives Wort enthalten
+   - Den Anteil negativer Nachrichten berechnen
+
+4. **Stimmungswert berechnen:** Anteil positiv minus Anteil negativ
+
+5. **Gesamtstimmung bewerten:** Mit `if`-Anweisung die Stimmung als positiv, negativ oder neutral einordnen
+
+6. **Neutrale Nachrichten:** Den Anteil neutraler Nachrichten berechnen
+
+### Anleitung
+
+1. Verwenden Sie `len()`, um die Anzahl der Nachrichten zu ermitteln.
+2. Erstellen Sie eine verschachtelte Schleife: äußere Schleife für Nachrichten, innere für Wörter.
+3. Prüfen Sie mit `if wort in nachricht`, ob ein Schlüsselwort enthalten ist.
+4. Zählen Sie positive und negative Nachrichten separat.
+5. Berechnen Sie Anteile durch Division: `anzahl / gesamtanzahl`.
+6. Der Stimmungswert ist: `anteil_positiv - anteil_negativ`.
+7. Neutrale Nachrichten sind weder positiv noch negativ kategorisiert.
+
+### Code-Struktur
+
+```python
+# Gegebene Daten (werden im Notebook bereitgestellt)
+# nachrichten = [...]  # Liste mit 10 Nachrichten
+# positive_wörter = [...]  # Liste mit 14 positiven Begriffen
+# negative_wörter = [...]  # Liste mit 6 negativen Begriffen
+
+# Aufgabe 16: Anzahl der Nachrichten bestimmen
+anzahl_nachrichten = pass  # Ersetzen: len(nachrichten)
+print(f"Anzahl Nachrichten: {anzahl_nachrichten}")
+
+# Aufgabe 17-18: Positive Nachrichten analysieren
+positive_count = 0
+for nachricht in nachrichten:
+    ist_positiv = False
+    for wort in positive_wörter:
+        if pass:  # Ersetzen: wort in nachricht
+            ist_positiv = True
+            break  # Schleife beenden, sobald ein Wort gefunden wurde
+    if ist_positiv:
+        positive_count = pass  # Ersetzen: positive_count + 1
+
+anteil_positiv = pass  # Ersetzen: positive_count / anzahl_nachrichten
+print(f"Positive Nachrichten: {positive_count} ({anteil_positiv:.2%})")
+
+# Aufgabe 19-20: Negative Nachrichten analysieren
+negative_count = 0
+for nachricht in nachrichten:
+    ist_negativ = False
+    for wort in negative_wörter:
+        if pass:  # Ersetzen: wort in nachricht
+            ist_negativ = True
+            break
+    if ist_negativ:
+        negative_count = pass  # Ersetzen: negative_count + 1
+
+anteil_negativ = pass  # Ersetzen: negative_count / anzahl_nachrichten
+print(f"Negative Nachrichten: {negative_count} ({anteil_negativ:.2%})")
+
+# Aufgabe 21: Stimmungswert berechnen
+stimmungswert = pass  # Ersetzen: anteil_positiv - anteil_negativ
+print(f"Stimmungswert: {stimmungswert:.2f}")
+
+# Aufgabe 22: Gesamtstimmung bewerten
+if pass:  # Ersetzen: stimmungswert > 0
+    print("Die Gesamtstimmung ist POSITIV")
+elif pass:  # Ersetzen: stimmungswert < 0
+    print("Die Gesamtstimmung ist NEGATIV")
+else:
+    print("Die Gesamtstimmung ist NEUTRAL")
+
+# Aufgabe 23: Anteil neutraler Nachrichten
+# Hinweis: Neutral = weder positiv noch negativ kategorisiert
+# Dies erfordert eine kombinierte Prüfung oder Berechnung
+pass  # Ersetzen Sie dies durch Ihren Code
+```
+
+### Hinweise
+
+- **Verschachtelte Schleifen:** Eine äußere Schleife für Nachrichten, eine innere für Wörter
+- **`in`-Operator:** `"gut" in "Das ist gut"` ergibt `True`
+- **`break`:** Beendet die innere Schleife vorzeitig, wenn ein Wort gefunden wurde
+- **Anteil berechnen:** `anzahl / gesamtanzahl` (ergibt eine Dezimalzahl zwischen 0 und 1)
+- **Formatierung:** `{wert:.2%}` zeigt den Wert als Prozent mit 2 Dezimalstellen
+- **Stimmungswert:** Positiv wenn > 0, negativ wenn < 0, neutral wenn = 0
+
+### Der Algorithmus im Detail
+
+Der grundlegende Ansatz für die Wortsuche:
+
+1. Zähler auf 0 setzen
+2. Jede Nachricht durchlaufen
+3. Für jede Nachricht: Hilfsvariable `ist_positiv` auf `False` setzen
+4. Alle Schlüsselwörter prüfen
+5. Wenn ein Wort gefunden wird: `ist_positiv = True` und `break`
+6. Nach der inneren Schleife: Wenn `ist_positiv`, Zähler erhöhen
+7. Am Ende: Anteil = Zähler / Gesamtanzahl
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Dies ist das anspruchsvollste Aufgabenset – nehmen Sie sich Zeit, den Algorithmus zu verstehen, bevor Sie mit dem Coden beginnen. Bei der Berechnung neutraler Nachrichten müssen Sie überlegen, wie Sie Nachrichten identifizieren, die weder positiv noch negativ sind.
+:::
+
+## Erfolgsstrategien
+
+Eine gute Vorbereitung ist der halbe Erfolg. Bevor Sie mit dem Test beginnen, möchte ich Ihnen einige bewährte Strategien mit auf den Weg geben, die Ihnen helfen werden, die Aufgaben erfolgreich zu meistern.
+
+**Bei der Vorbereitung** sollten Sie jede Aufgabe zunächst sorgfältig durchlesen, bevor Sie mit dem Coden beginnen. Nehmen Sie sich Zeit, die Aufgabenstellung wirklich zu verstehen. Planen Sie Ihre Lösung gedanklich oder auf Papier, bevor Sie sie in Code umsetzen. Und verwenden Sie von Anfang an aussagekräftige Variablennamen – das macht Ihren Code lesbarer und hilft Ihnen, Fehler zu vermeiden.
+
+**Während der Bearbeitung** ist es wichtig, dass Sie Ihren Code in jeder Zelle testen, bevor Sie zur nächsten Aufgabe übergehen. Nutzen Sie `print()`-Statements, um Zwischenergebnisse zu überprüfen und Fehler zu finden. Wenn eine Berechnung nicht das erwartete Ergebnis liefert, können Sie so schnell herausfinden, wo das Problem liegt. Bei komplexeren Code-Abschnitten kann es auch hilfreich sein, kurze Kommentare hinzuzufügen, die erklären, was der Code tut.
+
+**Bei Problemen** hilft es oft, einen Schritt zurückzutreten und das Problem in kleinere Teilschritte zu zerlegen. Wenn Sie bei einer Aufgabe feststecken, nutzen Sie die Community, um Fragen zu stellen – andere Teilnehmer haben vielleicht ähnliche Schwierigkeiten gehabt und können Ihnen helfen. Und überprüfen Sie Ihre Syntax sorgfältig: Ein fehlendes Komma oder eine falsche Einrückung kann dazu führen, dass Ihr Code nicht funktioniert.
+
+::: {.callout-warning icon="false"}
+## ⚠️ Häufige Fallstricke
+
+- **Indentation:** Achten Sie auf korrekte Einrückungen – Python nutzt Einrückungen, um Codeblöcke zu definieren
+- **Variablennamen:** Verwenden Sie die exakt angegebenen Namen, auch bei Groß- und Kleinschreibung
+- **Datentypen:** Beachten Sie Integer vs. String Konvertierungen
+- **Listenzugriff:** Index beginnt bei 0, nicht bei 1
+- **Modulo-Operator:** `%` gibt den Rest einer Division zurück
+- **Verschachtelte Schleifen:** Bei der Sentiment-Analyse benötigen Sie eine Schleife in einer Schleife
+:::
+
+Mit diesem Wissen sind Sie bestens gerüstet, um den Test erfolgreich zu meistern. Nehmen Sie sich die Zeit, die Sie brauchen, und arbeiten Sie die Aufgaben sorgfältig durch. Es gibt keinen Zeitdruck – Qualität geht vor Schnelligkeit.
+
+## Nach dem Test
+
+Unabhängig davon, ob Sie den Test beim ersten Versuch bestehen oder nicht – Sie haben bereits einen großen Schritt in Ihrer Programmierreise gemacht. Das Wichtigste ist, dass Sie dranbleiben und weiter lernen.
+
+Bei erfolgreichem Abschluss können Sie stolz auf sich sein und Ihren Erfolg in der Community feiern. Nutzen Sie das Momentum und entwickeln Sie eigene kleine Projekte, um Ihre neuen Fähigkeiten anzuwenden und zu festigen. Je mehr Sie programmieren, desto natürlicher wird es sich anfühlen.
+
+### Ihre Weiterbildungsmöglichkeit: Business Data Analyst (IHK)
+
+Wenn Sie Ihre Python-Kenntnisse vertiefen und professionell im Bereich Datenanalyse arbeiten möchten, ist der **[Business Data Analyst (IHK) Kurs](https://www.ihk.de/rhein-neckar/system/veranstaltungssuche/vstdetail-antrago/5232590/94998?terminId=94998)** der ideale nächste Schritt. Dieser 8-wöchige Blended-Learning-Kurs baut direkt auf den Grundlagen auf, die Sie hier erworben haben.
+
+In den **Wochen 1-2** lernen Sie die Rolle des Data Analysts kennen und vertiefen Ihre statistischen Grundlagen. Sie beschäftigen sich mit Kennzahlen, Stichproben, dem Unterschied zwischen Korrelation und Kausalität sowie professioneller Datenvisualisierung.
+
+Die **Wochen 3-4** widmen sich der Python-Vertiefung und der Datenanalyse mit Pandas. Sie arbeiten intensiv mit DataFrames, lernen Datenmanipulation, Filterung und statistische Auswertung.
+
+In den **Wochen 5-6** erstellen Sie professionelle Diagramme mit Matplotlib – von Linien- und Streudiagrammen bis hin zu Balken- und Kuchendiagrammen. Sie lernen auch, Fehler in Visualisierungen zu erkennen und den richtigen Diagrammtyp für Ihre Daten zu wählen.
+
+Die **Wochen 7-8** führen Sie in Tableau ein, ein mächtiges Tool für interaktive Dashboards. Sie lernen sowohl Grundlagen als auch fortgeschrittene Techniken und erstellen anspruchsvolle Dashboards für datenbasierte Erkenntnisse.
+
+Als Bonus erhalten Sie einen Projektleitfaden zur erfolgreichen Umsetzung von Datenanalyse-Projekten in der Praxis.
+
+Das Format umfasst 78 Unterrichtsstunden (20 UE Live-Online + 58 UE Selbstlernstudium) und schließt mit einem Abschlussprojekt und IHK-Zertifikat ab.
+
+### Bleiben Sie Teil der Community
+
+Vergessen Sie nicht, auch nach dem Kurs Teil unserer aktiven Lerngemeinschaft zu bleiben. In der [Business Data Professional Community](https://www.skool.com/business-data-professional) können Sie sich mit anderen Teilnehmern austauschen, Fragen stellen und von den Erfahrungen anderer lernen. Gemeinsam lernt es sich leichter!
+
+---
+
+Egal, welchen Weg Sie nach diesem Kurs einschlagen – Sie haben alle notwendigen Fähigkeiten erworben, um diesen Test erfolgreich zu bestehen. Vertrauen Sie auf Ihr Wissen und zeigen Sie, was Sie in den letzten Wochen gelernt haben!

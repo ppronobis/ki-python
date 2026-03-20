@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KI Python - 6&nbsp; Arbeiten mit GPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Kapitel 7.html" rel="next">
+<link href="./Kapitel 5.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Kapitel 6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KI Python</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ppronobis/ki-python" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">KI Python lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bedingungen &amp; Schleifen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Datenstrukturen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 6.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Kapitel 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impressum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Impressum</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#willkommen-zu-kapitel-6" id="toc-willkommen-zu-kapitel-6" class="nav-link active" data-scroll-target="#willkommen-zu-kapitel-6"><span class="header-section-number">6.1</span> Willkommen zu Kapitel 6</a></li>
+  <li><a href="#sec-api-intro" id="toc-sec-api-intro" class="nav-link" data-scroll-target="#sec-api-intro"><span class="header-section-number">6.2</span> Einführung in APIs und GPT-4</a>
+  <ul class="collapse">
+  <li><a href="#was-ist-eine-api" id="toc-was-ist-eine-api" class="nav-link" data-scroll-target="#was-ist-eine-api">Was ist eine API?</a></li>
+  <li><a href="#die-openai-api" id="toc-die-openai-api" class="nav-link" data-scroll-target="#die-openai-api">Die OpenAI-API</a></li>
+  <li><a href="#die-openai-bibliothek" id="toc-die-openai-bibliothek" class="nav-link" data-scroll-target="#die-openai-bibliothek">Die openai-Bibliothek</a></li>
+  </ul></li>
+  <li><a href="#sec-api-params" id="toc-sec-api-params" class="nav-link" data-scroll-target="#sec-api-params"><span class="header-section-number">6.3</span> API Parameter</a>
+  <ul class="collapse">
+  <li><a href="#beispiel-mit-dem-chat-format" id="toc-beispiel-mit-dem-chat-format" class="nav-link" data-scroll-target="#beispiel-mit-dem-chat-format">Beispiel mit dem Chat-Format</a></li>
+  </ul></li>
+  <li><a href="#sec-complex-tasks" id="toc-sec-complex-tasks" class="nav-link" data-scroll-target="#sec-complex-tasks"><span class="header-section-number">6.4</span> Arbeiten mit komplexen Aufgaben</a></li>
+  <li><a href="#sec-error-handling" id="toc-sec-error-handling" class="nav-link" data-scroll-target="#sec-error-handling"><span class="header-section-number">6.5</span> Fehler bei API-Aufrufen abfangen</a></li>
+  <li><a href="#sec-ethics" id="toc-sec-ethics" class="nav-link" data-scroll-target="#sec-ethics"><span class="header-section-number">6.6</span> Ethik im Umgang mit LLMs</a></li>
+  <li><a href="#sec-projekt-aufgabenmanager" id="toc-sec-projekt-aufgabenmanager" class="nav-link" data-scroll-target="#sec-projekt-aufgabenmanager"><span class="header-section-number">6.7</span> Übung: Aufgaben-Manager</a>
+  <ul class="collapse">
+  <li><a href="#anforderungen" id="toc-anforderungen" class="nav-link" data-scroll-target="#anforderungen">Anforderungen</a></li>
+  <li><a href="#anleitung" id="toc-anleitung" class="nav-link" data-scroll-target="#anleitung">Anleitung</a></li>
+  <li><a href="#code-struktur" id="toc-code-struktur" class="nav-link" data-scroll-target="#code-struktur">Code-Struktur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise">Hinweise</a></li>
+  </ul></li>
+  <li><a href="#wie-geht-es-weiter" id="toc-wie-geht-es-weiter" class="nav-link" data-scroll-target="#wie-geht-es-weiter"><span class="header-section-number">6.8</span> Wie geht es weiter?</a></li>
+  <li><a href="#sec-local-llm" id="toc-sec-local-llm" class="nav-link" data-scroll-target="#sec-local-llm"><span class="header-section-number">6.9</span> BONUS: Modell lokal betreiben</a>
+  <ul class="collapse">
+  <li><a href="#werkzeuge-wie-ollama-und-lm-studio" id="toc-werkzeuge-wie-ollama-und-lm-studio" class="nav-link" data-scroll-target="#werkzeuge-wie-ollama-und-lm-studio">Werkzeuge wie Ollama und LM Studio</a></li>
+  <li><a href="#beispiel-mit-ollama" id="toc-beispiel-mit-ollama" class="nav-link" data-scroll-target="#beispiel-mit-ollama">Beispiel mit Ollama</a></li>
+  </ul></li>
+  <li><a href="#sec-loesungen-kap6" id="toc-sec-loesungen-kap6" class="nav-link" data-scroll-target="#sec-loesungen-kap6"><span class="header-section-number">6.10</span> Lösungen zu Kapitel 6</a>
+  <ul class="collapse">
+  <li><a href="#lösung-zur-übung-aufgaben-manager" id="toc-lösung-zur-übung-aufgaben-manager" class="nav-link" data-scroll-target="#lösung-zur-übung-aufgaben-manager">Lösung zur Übung: Aufgaben-Manager</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ppronobis/ki-python/edit/main/Kapitel 6.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ppronobis/ki-python/issues/new" class="toc-action">Problem melden</a></p><p><a href="https://github.com/ppronobis/ki-python/blob/main/Kapitel 6.qmd" class="toc-action">Quellcode anzeigen</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-gpt" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Arbeiten mit GPT</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="willkommen-zu-kapitel-6" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="willkommen-zu-kapitel-6"><span class="header-section-number">6.1</span> Willkommen zu Kapitel 6</h2>
+<p>Herzlich willkommen zum letzten und vielleicht spannendsten Kapitel unseres Kurses! Nachdem wir nun eine solide Grundlage in Python und der Datenanalyse mit Pandas haben, werden wir uns nun der direkten Interaktion mit großen Sprachmodellen (Large Language Models, LLMs) wie GPT widmen.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤖 In diesem Kapitel werden Sie lernen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Was APIs sind</strong> und wie sie die Kommunikation zwischen verschiedenen Softwareanwendungen ermöglichen</li>
+<li><strong>Wie Sie die OpenAI-API verwenden</strong>, um Anfragen an das GPT-Modell zu senden</li>
+<li><strong>Wie Sie die Parameter der API</strong> steuern können, um das Verhalten des Modells anzupassen</li>
+<li><strong>Wie Sie mit komplexeren Aufgaben</strong> umgehen und Fehler bei API-Aufrufen abfangen können</li>
+<li><strong>Welche ethischen Aspekte</strong> im Umgang mit LLMs zu beachten sind</li>
+</ul>
+</div>
+</div>
+<p>Als Abschlussprojekt werden wir einen KI-gestützten Aufgaben-Manager entwickeln, der natürliche Sprache versteht. Außerdem werfen wir einen Blick darauf, wie man Sprachmodelle auch lokal auf dem eigenen Computer betreiben kann – eine spannende Alternative zu Cloud-APIs.</p>
+<p>Lassen Sie uns eintauchen und lernen, wie man die Kraft von GPT in die eigenen Python-Anwendungen integriert!</p>
+</section>
+<section id="sec-api-intro" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-api-intro"><span class="header-section-number">6.2</span> Einführung in APIs und GPT-4</h2>
+<section id="was-ist-eine-api" class="level3">
+<h3 class="anchored" data-anchor-id="was-ist-eine-api">Was ist eine API?</h3>
+<p>Bevor wir mit dem Code beginnen, klären wir zunächst einen wichtigen Begriff: die API. Wenn Sie ein Sprachmodell wie GPT nutzen möchten, kommunizieren Sie nicht direkt mit dem Modell selbst – Sie kommunizieren über eine Schnittstelle, die Ihre Anfragen entgegennimmt und die Antworten zurückliefert.</p>
+<p>Eine API (Application Programming Interface) ist genau diese Schnittstelle, die es zwei verschiedenen Softwareanwendungen ermöglicht, miteinander zu kommunizieren. Stellen Sie es sich wie einen Kellner in einem Restaurant vor: Sie (Ihre Anwendung) müssen nicht wissen, wie die Küche (die andere Anwendung, z.B. der GPT-Server) funktioniert. Sie geben Ihre Bestellung (eine Anfrage) einfach an den Kellner (die API), und dieser bringt Ihnen das fertige Gericht (die Antwort).</p>
+</section>
+<section id="die-openai-api" class="level3">
+<h3 class="anchored" data-anchor-id="die-openai-api">Die OpenAI-API</h3>
+<p>OpenAI stellt eine API zur Verfügung, die es uns ermöglicht, von unseren eigenen Programmen aus auf ihre leistungsstarken Sprachmodelle wie GPT-4o und GPT-4o-mini zuzugreifen. Wir senden eine Anfrage mit unserem Text (dem sogenannten Prompt) an die API und erhalten eine vom Modell generierte Textantwort zurück.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔐 Exkurs: API-Schlüssel erstellen und einrichten
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um die OpenAI-API nutzen zu können, benötigen Sie einen API-Schlüssel. Dieser Schlüssel ist wie ein geheimes Passwort, das Sie bei jeder Anfrage mitsenden müssen, um sich zu authentifizieren. Die Einrichtung erfolgt in zwei Schritten:</p>
+<p><strong>Schritt 1: API-Schlüssel bei OpenAI generieren</strong></p>
+<ol type="1">
+<li>Besuchen Sie <a href="https://platform.openai.com">platform.openai.com</a> und erstellen Sie ein Konto (falls noch nicht vorhanden).</li>
+<li>Navigieren Sie zu <strong>API Keys</strong> im Menü (oder direkt zu <a href="https://platform.openai.com/api-keys">platform.openai.com/api-keys</a>).</li>
+<li>Klicken Sie auf <strong>“Create new secret key”</strong>.</li>
+<li>Geben Sie dem Schlüssel einen Namen (z.B. “KI-Python-Kurs”) und klicken Sie auf <strong>“Create”</strong>.</li>
+<li><strong>Wichtig:</strong> Kopieren Sie den Schlüssel sofort und speichern Sie ihn sicher ab! Er wird nur einmal angezeigt und beginnt mit <code>sk-</code>.</li>
+</ol>
+<p><strong>Schritt 2: API-Schlüssel als Umgebungsvariable speichern</strong></p>
+<p>Umgebungsvariablen sind systemweite Einstellungen, die Programme auslesen können. So müssen Sie Ihren geheimen Schlüssel nicht direkt im Code speichern (was ein Sicherheitsrisiko wäre).</p>
+<p><em>Für Windows:</em></p>
+<ol type="1">
+<li>Drücken Sie <code>Windows + R</code>, geben Sie <code>sysdm.cpl</code> ein und drücken Sie Enter.</li>
+<li>Wählen Sie den Tab <strong>“Erweitert”</strong> und klicken Sie auf <strong>“Umgebungsvariablen”</strong>.</li>
+<li>Unter “Benutzervariablen” klicken Sie auf <strong>“Neu”</strong>.</li>
+<li>Geben Sie als Name <code>OPENAI_API_KEY</code> ein und als Wert Ihren kopierten API-Schlüssel.</li>
+<li>Bestätigen Sie mit OK und starten Sie Jupyter Notebook neu.</li>
+</ol>
+<p><em>Für macOS/Linux:</em></p>
+<ol type="1">
+<li><p>Öffnen Sie das Terminal.</p></li>
+<li><p>Bearbeiten Sie Ihre Shell-Konfiguration (z.B. <code>~/.zshrc</code> oder <code>~/.bashrc</code>):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export OPENAI_API_KEY="sk-Ihr-Schlüssel-hier"'</span> <span class="op">&gt;&gt;</span> ~/.zshrc</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Laden Sie die Konfiguration neu: <code>source ~/.zshrc</code></p></li>
+<li><p>Starten Sie Jupyter Notebook neu.</p></li>
+</ol>
+<p><strong>Überprüfen der Einrichtung:</strong></p>
+<p>Sie können testen, ob die Variable korrekt gesetzt ist:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.environ.get(<span class="st">"OPENAI_API_KEY"</span>, <span class="st">"Nicht gefunden"</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wenn alles korrekt eingerichtet ist, sollte Ihr Schlüssel (oder zumindest die ersten Zeichen) angezeigt werden.</p>
+</div>
+</div>
+</section>
+<section id="die-openai-bibliothek" class="level3">
+<h3 class="anchored" data-anchor-id="die-openai-bibliothek">Die openai-Bibliothek</h3>
+<p>Nachdem wir nun verstanden haben, was eine API ist und wie die Authentifizierung funktioniert, können wir mit der praktischen Umsetzung beginnen. OpenAI bietet eine offizielle Python-Bibliothek namens <code>openai</code>, die die Interaktion mit der API erheblich vereinfacht.</p>
+<p>Wir müssen diese Bibliothek zunächst installieren:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install openai</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Anschließend können wir die Bibliothek importieren und unseren ersten API-Aufruf durchführen:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Der Client liest den API-Schlüssel automatisch aus der</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Umgebungsvariable OPENAI_API_KEY</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine einfache Anfrage an die API senden</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Schreibe einen kurzen Satz über die Vorteile von Python."</span>}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">50</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dieses Beispiel zeigt die grundlegende Struktur eines API-Aufrufs. Wir erstellen einen Client, definieren das gewünschte Modell und übergeben unsere Nachricht in einem spezifischen Format. In den nächsten Abschnitten werden wir uns die verschiedenen Parameter dieser Anfrage genauer ansehen und lernen, wie wir die Antworten des Modells steuern können.</p>
+</section>
+</section>
+<section id="sec-api-params" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-api-params"><span class="header-section-number">6.3</span> API Parameter</h2>
+<p>Wenn wir eine Anfrage an die OpenAI-API senden, können wir verschiedene Parameter angeben, um das Verhalten des Modells zu steuern. Diese Parameter ermöglichen es uns, die Ausgabe präzise anzupassen – von der Wahl des Modells bis hin zur “Kreativität” der Antworten.</p>
+<p>Die wichtigsten Parameter sind:</p>
+<ul>
+<li><strong><code>model</code>:</strong> Das zu verwendende Sprachmodell (z.B. “gpt-4o”, “gpt-4o-mini”). Die “mini”-Varianten sind kostengünstiger und schneller, während die Vollversionen leistungsfähiger sind.</li>
+<li><strong><code>messages</code>:</strong> Eine Liste von Nachrichten, die die Konversation darstellen. Dies ist die bevorzugte Methode für die neueren Chat-Modelle.</li>
+<li><strong><code>temperature</code>:</strong> Ein Wert zwischen 0 und 2, der die “Kreativität” oder “Zufälligkeit” der Antwort steuert. Ein höherer Wert (z.B. 0.8) führt zu kreativeren, aber möglicherweise weniger konsistenten Antworten. Ein niedrigerer Wert (z.B. 0.2) führt zu deterministischeren und fokussierteren Antworten.</li>
+<li><strong><code>max_tokens</code>:</strong> Die maximale Anzahl von Tokens (Wortteilen), die in der Antwort generiert werden sollen. Dies hilft, die Länge der Antwort und die Kosten zu kontrollieren.</li>
+</ul>
+<section id="beispiel-mit-dem-chat-format" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-mit-dem-chat-format">Beispiel mit dem Chat-Format</h3>
+<p>Alle aktuellen GPT-Modelle verwenden ein Chat-Format, bei dem die Konversation als eine Liste von Nachrichten übergeben wird. Jede Nachricht hat eine <code>role</code> und einen <code>content</code>. Die drei möglichen Rollen sind:</p>
+<ul>
+<li><strong><code>system</code>:</strong> Definiert das Verhalten und die Persönlichkeit des Assistenten</li>
+<li><strong><code>user</code>:</strong> Enthält die Fragen oder Anweisungen des Benutzers</li>
+<li><strong><code>assistant</code>:</strong> Enthält frühere Antworten des Modells (für Konversationen)</li>
+</ul>
+<p>Hier ein vollständiges Beispiel:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"Du bist ein hilfreicher Assistent."</span>},</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Wer hat die Relativitätstheorie entdeckt?"</span>}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Durch das Experimentieren mit diesen Parametern können Sie die Antworten des Modells feinabstimmen, um sie an Ihre spezifischen Anforderungen anzupassen.</p>
+</section>
+</section>
+<section id="sec-complex-tasks" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-complex-tasks"><span class="header-section-number">6.4</span> Arbeiten mit komplexen Aufgaben</h2>
+<p>Für einfache Fragen mag ein einzelner Prompt ausreichen. Bei komplexeren Aufgaben ist es jedoch oft besser, die Aufgabe in kleinere Schritte zu zerlegen und eine Konversation mit dem Modell zu führen. Dies wird als Chain-of-Thought-Prompting oder Multi-Turn-Conversation bezeichnet.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🗺️ Beispiel: Einen Reiseplan erstellen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Anstatt zu fragen: “Erstelle mir einen 3-tägigen Reiseplan für Paris”, können wir die Aufgabe in Schritte unterteilen:</p>
+<ol type="1">
+<li><p><strong>User:</strong> “Ich möchte für 3 Tage nach Paris reisen. Kannst du mir helfen, einen Plan zu erstellen? Ich interessiere mich für Kunst und Geschichte.”</p></li>
+<li><p><strong>Assistant:</strong> “Gerne! An Tag 1 könnten Sie den Louvre und die Kathedrale Notre-Dame besuchen. Möchten Sie, dass ich Details für diesen Tag ausarbeite?”</p></li>
+<li><p><strong>User:</strong> “Ja, bitte. Gib mir auch eine Restaurantempfehlung für das Mittagessen in der Nähe des Louvre.”</p></li>
+</ol>
+</div>
+</div>
+<p>Dieser dialogorientierte Ansatz ermöglicht es, die Anfrage zu verfeinern und ein genaueres und relevanteres Ergebnis zu erhalten. In Python würden wir dies umsetzen, indem wir die Konversationshistorie in der <code>messages</code>-Liste bei jeder neuen Anfrage erweitern:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Konversationshistorie als Liste speichern</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>konversation <span class="op">=</span> [</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"Du bist ein hilfreicher Reiseberater."</span>}</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chat(user_nachricht):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Neue Benutzernachricht zur Historie hinzufügen</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    konversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: user_nachricht})</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>konversation,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.7</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Antwort des Assistenten zur Historie hinzufügen</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    assistant_nachricht <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    konversation.append({<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: assistant_nachricht})</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> assistant_nachricht</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Beispiel einer Multi-Turn-Konversation</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chat(<span class="st">"Ich möchte für 3 Tage nach Paris. Was empfiehlst du?"</span>))</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chat(<span class="st">"Gib mir Details für Tag 1 und eine Restaurantempfehlung."</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sec-error-handling" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="sec-error-handling"><span class="header-section-number">6.5</span> Fehler bei API-Aufrufen abfangen</h2>
+<p>Bei der Arbeit mit externen APIs können verschiedene Fehler auftreten: Das Netzwerk ist möglicherweise nicht verfügbar, die API ist überlastet, oder unser API-Schlüssel ist ungültig. Es ist wichtig, diese potenziellen Fehler in unserem Code abzufangen, um zu verhindern, dass unser Programm abstürzt.</p>
+<p>Die <code>openai</code>-Bibliothek definiert spezifische Exception-Klassen für verschiedene Fehlerarten:</p>
+<ul>
+<li><strong><code>AuthenticationError</code>:</strong> Der API-Schlüssel ist ungültig oder fehlt</li>
+<li><strong><code>RateLimitError</code>:</strong> Sie haben zu viele Anfragen in kurzer Zeit gesendet</li>
+<li><strong><code>APIError</code>:</strong> Ein allgemeiner Fehler auf Seiten der API (z.B. Serverprobleme)</li>
+</ul>
+<p>Mit einem <code>try-except</code>-Block können wir diese Fehler gezielt behandeln und dem Benutzer hilfreiche Rückmeldungen geben:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI, AuthenticationError, RateLimitError, APIError</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Ein Prompt, der einen Fehler verursachen könnte"</span>}</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> AuthenticationError <span class="im">as</span> e:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Fehler bei der Authentifizierung: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> RateLimitError <span class="im">as</span> e:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Rate Limit überschritten. Bitte versuchen Sie es später erneut. Fehler: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> APIError <span class="im">as</span> e:</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Ein API-Fehler ist aufgetreten: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Ein unerwarteter Fehler ist aufgetreten: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Durch das Abfangen dieser Fehler können wir unser Programm robuster machen und dem Benutzer aussagekräftige Fehlermeldungen geben. Der allgemeine <code>Exception</code>-Block am Ende fängt alle unerwarteten Fehler ab, die nicht zu den spezifischen API-Exceptions gehören.</p>
+</section>
+<section id="sec-ethics" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="sec-ethics"><span class="header-section-number">6.6</span> Ethik im Umgang mit LLMs</h2>
+<p>Die Arbeit mit großen Sprachmodellen bringt eine große Verantwortung mit sich. Es ist wichtig, sich der ethischen Implikationen bewusst zu sein und diese Technologien verantwortungsvoll einzusetzen. Im Folgenden betrachten wir vier zentrale Aspekte, die Sie bei der Arbeit mit LLMs berücksichtigen sollten.</p>
+<p><strong>Bias (Voreingenommenheit):</strong> Sprachmodelle werden mit riesigen Mengen an Text aus dem Internet trainiert. Diese Texte können menschliche Vorurteile und Stereotypen enthalten, die das Modell lernen und reproduzieren kann. Es ist wichtig, die Ausgaben des Modells kritisch zu hinterfragen und Maßnahmen zu ergreifen, um schädliche Vorurteile zu minimieren.</p>
+<p><strong>Fehlinformation:</strong> LLMs können überzeugend klingende, aber sachlich falsche Informationen generieren (sogenannte “Halluzinationen”). Verlassen Sie sich niemals blind auf die Aussagen eines Modells, insbesondere bei wichtigen oder sensiblen Themen. Überprüfen Sie Fakten immer mit vertrauenswürdigen Quellen.</p>
+<p><strong>Datenschutz:</strong> Senden Sie keine sensiblen oder persönlichen Informationen an die API, es sei denn, Sie sind sich der Datenschutzrichtlinien des Anbieters voll bewusst. Bedenken Sie, dass Ihre Eingaben möglicherweise für das Training zukünftiger Modelle verwendet werden könnten.</p>
+<p><strong>Missbrauch:</strong> LLMs können für schädliche Zwecke missbraucht werden, wie z.B. die Erstellung von Propaganda, Spam oder Phishing-E-Mails. Seien Sie sich dieser Risiken bewusst und setzen Sie die Technologie für positive und konstruktive Zwecke ein.</p>
+<p>Ein verantwortungsvoller Umgang mit KI ist entscheidend, um das Vertrauen der Öffentlichkeit zu gewinnen und sicherzustellen, dass diese leistungsstarken Werkzeuge zum Wohle der Gesellschaft eingesetzt werden.</p>
+</section>
+<section id="sec-projekt-aufgabenmanager" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="sec-projekt-aufgabenmanager"><span class="header-section-number">6.7</span> Übung: Aufgaben-Manager</h2>
+<p>In diesem Abschlussprojekt werden wir einen intelligenten Aufgaben-Manager erstellen, der natürliche Spracheingaben verarbeiten kann. Anstatt Befehle wie “add –task …” einzugeben, kann der Benutzer einfach schreiben: “Füge morgen um 10 Uhr ein Meeting mit Anna hinzu”.</p>
+<p><strong>Ziel:</strong> Erstellen Sie einen KI-gestützten Aufgaben-Manager, der natürliche Spracheingaben versteht und in strukturierte Daten umwandelt.</p>
+<section id="anforderungen" class="level3">
+<h3 class="anchored" data-anchor-id="anforderungen">Anforderungen</h3>
+<ol type="1">
+<li><strong>Aufgabendetails extrahieren:</strong> Eine Funktion <code>extrahiere_aufgabendetails(text_eingabe)</code>:
+<ul>
+<li>Nimmt eine Texteingabe in natürlicher Sprache entgegen</li>
+<li>Sendet den Text an die GPT-API mit einem geeigneten Prompt</li>
+<li>Extrahiert Aufgabe, Datum und Uhrzeit aus dem Text</li>
+<li>Gibt die Daten als strukturiertes Dictionary (JSON) zurück</li>
+</ul></li>
+<li><strong>Prompt Engineering:</strong> Der Prompt an die API soll:
+<ul>
+<li>Das Modell anweisen, die Informationen im JSON-Format zurückzugeben</li>
+<li>Ein Beispiel enthalten, um das gewünschte Ausgabeformat zu demonstrieren</li>
+<li>Eine niedrige <code>temperature</code> (z.B. 0) verwenden für konsistente Ergebnisse</li>
+</ul></li>
+<li><strong>Fehlerbehandlung:</strong> Das Programm soll:
+<ul>
+<li>API-Fehler mit <code>try-except</code> abfangen</li>
+<li>Bei Fehlern eine hilfreiche Meldung ausgeben</li>
+<li>Das JSON-Ergebnis sicher parsen</li>
+</ul></li>
+<li><strong>Benutzerinteraktion:</strong> Das Programm soll in einer Schleife laufen:
+<ul>
+<li>Nach neuen Aufgaben fragen</li>
+<li>Bei Eingabe von “exit” das Programm beenden</li>
+<li>Erfolgreich hinzugefügte Aufgaben bestätigen</li>
+</ul></li>
+</ol>
+</section>
+<section id="anleitung" class="level3">
+<h3 class="anchored" data-anchor-id="anleitung">Anleitung</h3>
+<ol type="1">
+<li>Importieren Sie die <code>openai</code>-Bibliothek und das <code>json</code>-Modul.</li>
+<li>Erstellen Sie einen OpenAI-Client und eine leere Liste für die Aufgaben.</li>
+<li>Schreiben Sie die Funktion <code>extrahiere_aufgabendetails()</code> mit einem geeigneten Prompt.</li>
+<li>Der Prompt sollte ein Beispiel enthalten (Few-Shot-Prompting).</li>
+<li>Verwenden Sie <code>json.loads()</code>, um die API-Antwort in ein Python-Dictionary umzuwandeln.</li>
+<li>Erstellen Sie eine <code>while True</code>-Schleife für die Benutzereingabe.</li>
+<li>Fügen Sie extrahierte Aufgaben zur Liste hinzu und zeigen Sie diese an.</li>
+</ol>
+</section>
+<section id="code-struktur" class="level3">
+<h3 class="anchored" data-anchor-id="code-struktur">Code-Struktur</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Client erstellen (liest API-Schlüssel aus OPENAI_API_KEY)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Leere Liste für die Aufgaben</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>aufgabenliste <span class="op">=</span> []</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extrahiere_aufgabendetails(text_eingabe):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Extrahiert Aufgabendetails aus natürlicher Sprache mittels GPT.</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">        text_eingabe (str): Die Benutzereingabe in natürlicher Sprache.</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">        dict: Ein Dictionary mit 'aufgabe', 'datum' und 'uhrzeit'.</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prompt erstellen mit Beispiel (Few-Shot-Prompting)</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: Zeigen Sie dem Modell ein Beispiel für Input und Output</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># API-Aufruf mit try-except absichern</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: Verwenden Sie temperature=0 für konsistente Ergebnisse</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># JSON-Antwort parsen und zurückgeben</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: json.loads() wandelt einen JSON-String in ein Dictionary um</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Hauptschleife für Benutzereingaben</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Benutzereingabe abfragen</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tipp: Bei "exit" die Schleife mit break beenden</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Aufgabendetails extrahieren</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bei Erfolg: Aufgabe zur Liste hinzufügen und Liste anzeigen</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span>  <span class="co"># Ersetzen Sie dies durch Ihren Code</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hinweise" class="level3">
+<h3 class="anchored" data-anchor-id="hinweise">Hinweise</h3>
+<ul>
+<li><code>json.loads(string)</code> wandelt einen JSON-String in ein Python-Dictionary um.</li>
+<li>Verwenden Sie <code>temperature=0</code> für deterministische, konsistente API-Antworten.</li>
+<li>Few-Shot-Prompting (ein Beispiel im Prompt) verbessert die Qualität der Extraktion erheblich.</li>
+<li>Die System-Nachricht kann dem Modell eine klare Rolle zuweisen (z.B. “Du bist ein Assistent, der Text in JSON umwandelt”).</li>
+<li>Testen Sie mit verschiedenen Eingaben wie “Morgen um 14 Uhr Zahnarzt” oder “Meeting mit Team am Freitag”.</li>
+</ul>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💪 Ihre Herausforderung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vervollständigen Sie die Code-Struktur oben, indem Sie die <code>pass</code>-Platzhalter durch funktionierenden Code ersetzen. Dieses Projekt zeigt eindrucksvoll, wie man die Lücke zwischen unstrukturierter menschlicher Sprache und strukturierter Computerverarbeitung mit Hilfe von LLMs schließen kann. Bonus: Erweitern Sie den Manager um eine Funktion, die alle Aufgaben nach Datum sortiert anzeigt!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="wie-geht-es-weiter" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="wie-geht-es-weiter"><span class="header-section-number">6.8</span> Wie geht es weiter?</h2>
+<p>Herzlichen Glückwunsch! Sie haben den Kurs “KI Python” erfolgreich abgeschlossen. Sie haben eine beeindruckende Reise hinter sich, von den Grundlagen der Programmierung bis hin zur Integration von hochmodernen KI-Modellen in Ihre eigenen Anwendungen. Doch dies ist erst der Anfang Ihrer Reise in die Welt der KI.</p>
+<p>Hier sind einige Empfehlungen für Ihre nächsten Schritte:</p>
+<ul>
+<li><p><strong>Vertiefen Sie Ihr Wissen:</strong> Spezialisieren Sie sich auf ein bestimmtes Gebiet, das Sie besonders interessiert, z.B. maschinelles Lernen, Computer Vision oder Natural Language Processing.</p></li>
+<li><p><strong>Bauen Sie eigene Projekte:</strong> Der beste Weg, um zu lernen, ist die praktische Anwendung. Suchen Sie sich ein Problem, das Sie lösen möchten, und entwickeln Sie eine KI-gestützte Lösung dafür.</p></li>
+<li><p><strong>Bleiben Sie auf dem Laufenden:</strong> Die Welt der KI entwickelt sich rasant. Folgen Sie Blogs, nehmen Sie an Konferenzen teil und bleiben Sie neugierig.</p></li>
+</ul>
+</section>
+<section id="sec-local-llm" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="sec-local-llm"><span class="header-section-number">6.9</span> BONUS: Modell lokal betreiben</h2>
+<p>Die Verwendung von Cloud-APIs wie der von OpenAI ist bequem und leistungsstark, aber sie hat auch Nachteile (Kosten, Datenschutz, Abhängigkeit). Eine spannende Alternative ist der Betrieb von Open-Source-Sprachmodellen auf Ihrem eigenen Computer.</p>
+<section id="werkzeuge-wie-ollama-und-lm-studio" class="level3">
+<h3 class="anchored" data-anchor-id="werkzeuge-wie-ollama-und-lm-studio">Werkzeuge wie Ollama und LM Studio</h3>
+<p>Tools wie Ollama und LM Studio machen es einfach, eine Vielzahl von Open-Source-Modellen (z.B. von Mistral, Llama, etc.) mit nur wenigen Klicks herunterzuladen und lokal auszuführen. Das Besondere: Diese Tools stellen oft eine lokale API zur Verfügung, die mit der OpenAI-API kompatibel ist. Das bedeutet, Sie können Ihren vorhandenen Code mit nur minimalen Änderungen weiterverwenden, indem Sie einfach die Basis-URL der API auf Ihre lokale Adresse ändern.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔧 Exkurs: Ollama installieren und einrichten
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ollama ist ein kostenloses Tool, das die Installation und Ausführung von Open-Source-Sprachmodellen auf Ihrem eigenen Computer vereinfacht. Die Einrichtung erfolgt in wenigen Schritten:</p>
+<p><strong>Schritt 1: Ollama herunterladen und installieren</strong></p>
+<ol type="1">
+<li>Besuchen Sie <a href="https://ollama.com">ollama.com</a> und klicken Sie auf <strong>“Download”</strong>.</li>
+<li>Wählen Sie die Version für Ihr Betriebssystem (Windows, macOS oder Linux).</li>
+<li>Führen Sie das Installationsprogramm aus und folgen Sie den Anweisungen.</li>
+<li>Nach der Installation läuft Ollama als Hintergrunddienst auf Ihrem Computer.</li>
+</ol>
+<p><strong>Schritt 2: Ein Sprachmodell herunterladen</strong></p>
+<p>Öffnen Sie ein Terminal (Windows: Eingabeaufforderung oder PowerShell) und laden Sie ein Modell herunter:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull llama3.2</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dieser Befehl lädt das Llama 3.2 Modell herunter (ca. 2-4 GB je nach Variante). Weitere beliebte Modelle sind:</p>
+<ul>
+<li><code>ollama pull mistral</code> – Mistral 7B, schnell und effizient</li>
+<li><code>ollama pull codellama</code> – Spezialisiert auf Code-Generierung</li>
+<li><code>ollama pull gemma2</code> – Googles Gemma 2 Modell</li>
+</ul>
+<p><strong>Schritt 3: Installation testen</strong></p>
+<p>Testen Sie, ob alles funktioniert, indem Sie im Terminal eingeben:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> run llama3.2</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sie können nun direkt im Terminal mit dem Modell chatten. Mit <code>Strg+D</code> (oder <code>/bye</code>) beenden Sie die Sitzung.</p>
+<p><strong>Hinweis zur Hardware:</strong> Für eine flüssige Nutzung empfehlen wir mindestens 8 GB RAM. Eine dedizierte Grafikkarte (GPU) beschleunigt die Verarbeitung erheblich, ist aber nicht zwingend erforderlich.</p>
+</div>
+</div>
+</section>
+<section id="beispiel-mit-ollama" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-mit-ollama">Beispiel mit Ollama</h3>
+<p>Nach der Installation von Ollama können Sie ein Modell herunterladen und dann Ihren bestehenden Code mit nur zwei Änderungen verwenden:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Verbindung zum lokalen Ollama-Server statt zu OpenAI</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">"http://localhost:11434/v1"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span><span class="st">"ollama"</span>  <span class="co"># Ollama benötigt keinen echten API-Schlüssel</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"llama3.2"</span>,  <span class="co"># Name des lokal installierten Modells</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Was sind die Vorteile von Python?"</span>}</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Der große Vorteil: Ihr gesamter Code bleibt gleich – Sie ändern nur die <code>base_url</code> und den <code>model</code>-Namen!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+✨ Vorteile des lokalen Betriebs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Datenschutz:</strong> Ihre Daten verlassen niemals Ihren Computer.</p>
+<p><strong>Kosten:</strong> Nach der Anschaffung der Hardware fallen keine weiteren Kosten pro Anfrage an.</p>
+<p><strong>Anpassbarkeit:</strong> Sie haben die volle Kontrolle über das Modell und können es für Ihre spezifischen Anforderungen feinabstimmen.</p>
+</div>
+</div>
+<p>Der lokale Betrieb von LLMs erfordert zwar eine leistungsfähige Hardware (insbesondere eine gute Grafikkarte mit viel VRAM), aber er wird immer zugänglicher und ist eine spannende Entwicklung für die Zukunft der KI.</p>
+</section>
+</section>
+<section id="sec-loesungen-kap6" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="sec-loesungen-kap6"><span class="header-section-number">6.10</span> Lösungen zu Kapitel 6</h2>
+<p>In diesem Abschnitt finden Sie die Lösung zur Übung. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+💡 Wichtiger Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es gibt oft mehrere richtige Lösungswege in der Programmierung. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie das gewünschte Ergebnis liefert und funktioniert.</p>
+</div>
+</div>
+<section id="lösung-zur-übung-aufgaben-manager" class="level3">
+<h3 class="anchored" data-anchor-id="lösung-zur-übung-aufgaben-manager">Lösung zur Übung: Aufgaben-Manager</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()  <span class="co"># Liest API-Schlüssel aus OPENAI_API_KEY</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>aufgabenliste <span class="op">=</span> []</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extrahiere_aufgabendetails(text_eingabe):</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ss">    Extrahiere aus dem folgenden Text die Aufgabendetails (Aufgabe, Datum, Uhrzeit) und gib sie als JSON-Objekt zurück.</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ss">    Beispiel:</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="ss">    Text: Füge morgen um 10 Uhr ein Meeting mit Anna hinzu</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ss">    JSON: </span><span class="ch">{{</span><span class="ss">"aufgabe": "Meeting mit Anna", "datum": "morgen", "uhrzeit": "10:00"</span><span class="ch">}}</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    Text: </span><span class="sc">{</span>text_eingabe<span class="sc">}</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">    JSON:</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>            model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>            messages<span class="op">=</span>[</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"Du bist ein Assistent, der Text in strukturierte JSON-Daten umwandelt."</span>},</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>            temperature<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        json_output <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> json.loads(json_output)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Fehler bei der Extraktion: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    eingabe <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Neue Aufgabe eingeben (oder 'exit' zum Beenden): "</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> eingabe.lower() <span class="op">==</span> <span class="st">'exit'</span>:</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    details <span class="op">=</span> extrahiere_aufgabendetails(eingabe)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> details:</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>        aufgabenliste.append(details)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Aufgabe erfolgreich hinzugefügt!"</span>)</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Aktuelle Aufgabenliste:"</span>, aufgabenliste)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><strong>Herzlichen Glückwunsch!</strong> Sie haben eine solide Grundlage in Python, Datenanalyse und der Arbeit mit KI-Modellen erworben. Die Welt der KI steht Ihnen nun offen!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Kapitel 5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Kapitel 7.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abschlusstest KI Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">KI Python - IHK Rhein-Neckar</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">© 2026 Paul Pronobis &amp; Tobias Lämmle</div>
+  </div>
+</footer>
+
+
+
+</body></html>

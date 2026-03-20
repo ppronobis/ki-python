@@ -1,0 +1,158 @@
+# KI mit Python: Von den Grundlagen bis zur GPT-Integration
+
+Basierend auf dem Kurs "KI lernen in 4 Wochen" der IHK Rhein-Neckar
+
+## Vorwort der Autoren
+
+Liebe Leserin, lieber Leser,
+
+herzlich willkommen in der faszinierenden Welt der Künstlichen Intelligenz und Python! Sie halten nicht nur ein Buch in den Händen, sondern den Schlüssel zu einer der gefragtesten Kompetenzen unserer Zeit. Die Idee zu diesem Lehrbuch entstand direkt aus unserem IHK-Zertifikatskurs "KI lernen in 4 Wochen", den wir mit der IHK Rhein-Neckar entwickelt haben. Unser Ziel war es von Anfang an, ein Lern-Erlebnis zu schaffen, das sowohl praxisorientiert als auch für absolute Einsteiger verständlich ist.
+
+Wir glauben fest daran, dass Programmieren heute anders gelernt wird als noch vor wenigen Jahren. Anstatt alleine vor dem Bildschirm zu sitzen und über komplexen Code zu grübeln, nutzen wir die Kraft der KI, um den Lernprozess zu beschleunigen. In diesem Buch werden Sie lernen, wie Sie KI-gestützte Werkzeuge wie Chatbots als Ihre persönlichen Tutoren einsetzen können, die Ihnen rund um die Uhr mit Rat und Tat zur Seite stehen.
+
+Dieses Buch folgt exakt der Struktur unseres IHK-Kurses und führt Sie Schritt für Schritt von den Grundlagen der Programmierung bis hin zur Entwicklung eigener KI-Anwendungen. Jedes Kapitel ist eine Lerneinheit aus dem Kurs, angereichert mit praktischen Beispielen, Übungen und Projekten, die Ihnen helfen, das Gelernte direkt anzuwenden und zu festigen.
+
+Wir möchten Sie ermutigen, aktiv mit diesem Buch zu arbeiten. Programmieren lernt man am besten durch Ausprobieren, Experimentieren und ja, auch durch Fehler. Sehen Sie dieses Buch als Ihren persönlichen Coach, der Sie auf Ihrer Reise begleitet und Ihnen die Werkzeuge an die Hand gibt, um die digitale Zukunft aktiv mitzugestalten.
+
+Wir wünschen Ihnen viel Erfolg und vor allem viel Freude beim Entdecken der Welt von KI und Python!
+
+Herzliche Grüße,
+
+Paul Pronobis & Tobias Lämmle
+
+## Über die Autoren
+
+### Paul Pronobis (Professor)
+
+[Profil auf LinkedIn](https://www.linkedin.com/in/paul-pronobis/?originalSubdomain=de)
+
+Paul Pronobis ist Professor für Rechnungswesen und eine treibende Kraft in der Verknüpfung von traditioneller Betriebswirtschaftslehre mit modernster künstlicher Intelligenz. Seine beeindruckende akademische und berufliche Laufbahn macht ihn zu einem der führenden Experten auf diesem Gebiet.
+
+**Akademische Laufbahn:**
+- Full Professor an der Free University of Bozen-Bolzano (seit 2024)
+- Full Professor & Academic Director an der EBS Universität für Wirtschaft und Recht (2021 - 2024)
+- Associate Professor of Accounting an der ESCP Europe in Paris (2018 - 2022)
+- Visiting & Assistant Professor an der Indiana University, Freie Universität Berlin und dem Rollins College (2011 - 2017)
+
+**Berufserfahrung:** Vor seiner akademischen Karriere sammelte Paul Pronobis wertvolle Praxiserfahrung als Senior Manager Accounting bei Harman/Becker Automotive Systems und als Senior Audit Assistant bei Ernst & Young. Diese Kombination aus tiefgreifender Industrie- und Forschungsexpertise ermöglicht es ihm, komplexe Inhalte praxisnah und verständlich zu vermitteln.
+
+### Tobias Lämmle
+
+[Profil auf LinkedIn](https://www.linkedin.com/in/tobias-laemmle/?originalSubdomain=de)
+
+Tobias Lämmle ist ein erfahrener Software-Architekt, Dozent und Machine-Learning-Experte mit einer Leidenschaft für sauberen Code und intelligente Datenlösungen. Seit über 9 Jahren ist er eine feste Größe bei der Finanz Informatik Solutions Plus GmbH, wo er als Software-Architekt und Senior Software Ingenieur tätig ist.
+
+**Lehrtätigkeit & Expertise:** Seine Expertise gibt er als gefragter Dozent an renommierten Institutionen weiter:
+- Freie Universität Bozen: Data Science, Generative KI, NLP, LLMOps
+- IHK Rhein-Neckar & Karlsruhe: Business Analysis, Docker, Generative KI, Maschinelles Lernen, Microsoft Azure, OpenAI, Python, Web Scraping
+- ESCP Business School: Dozent für KI-Themen
+
+**Praktische Erfahrung:** Neben seiner Tätigkeit als Architekt und Dozent bringt Tobias Lämmle langjährige Erfahrung als Consultant bei der Dymatrix Consulting Group und als Analyst bei DB Schenker mit. Diese breite Erfahrung aus der Praxis, kombiniert mit seiner über 20-jährigen Tätigkeit als DJ, verleiht ihm eine einzigartige Fähigkeit, komplexe technische Zusammenhänge kreativ und verständlich zu erklären.
+
+## Einleitung: Der IHK-Kurs als Buch
+
+Dieses Buch ist mehr als nur ein Lehrbuch – es ist Ihr persönlicher IHK-Zertifikatskurs im Buchformat. Wir haben die bewährte Struktur und die praxisorientierten Inhalte unseres erfolgreichen Kurses "KI lernen in 4 Wochen" direkt in dieses Buch übertragen, um Ihnen ein flexibles und effektives Lernerlebnis zu ermöglichen.
+
+### Für wen ist dieses Buch?
+
+Dieses Buch richtet sich an alle, die den Einstieg in die Welt der Künstlichen Intelligenz und Programmierung suchen, unabhängig von ihren Vorkenntnissen. Sie sind hier genau richtig, wenn Sie:
+
+- Berufstätig sind und sich zukunftssichere Kompetenzen in den Bereichen Datenanalyse und KI aneignen möchten.
+- Studierende sind und Ihr theoretisches Wissen durch praktische Programmierkenntnisse ergänzen wollen.
+- Neugierig sind und verstehen möchten, wie KI-Systeme funktionieren und wie Sie diese selbst gestalten können.
+- Teilnehmer des IHK-Kurses sind und ein umfassendes Nachschlagewerk suchen, das Sie während und nach dem Kurs begleitet.
+
+### Überblick über die 7 Kapitel
+
+Ihre Lernreise ist in sieben aufeinander aufbauende Kapitel strukturiert, die Sie systematisch von den Grundlagen zur praktischen KI-Anwendung führen:
+
+**Kapitel 1: KI Python lernen**  
+Ihr Einstieg in die Programmierung beginnt hier. Sie lernen die Python-Grundlagen kennen: Variablen, Datentypen, Text-Verarbeitung und die ersten Schritte mit Code. Das berühmte "Hello World!"-Programm wird Ihr erster Erfolg sein.
+
+**Kapitel 2: Funktionen**  
+Hier entdecken Sie, wie Sie Ihren Code organisieren und wiederverwendbar machen. Sie lernen, eigene Funktionen zu schreiben, Parameter zu verwenden und Code professionell zu dokumentieren. Lambda-Funktionen runden das Kapitel ab.
+
+**Kapitel 3: Bedingungen & Schleifen**  
+Die Logik Ihrer Programme kommt ins Spiel. Sie meistern if-else-Anweisungen, Vergleichsoperatoren und Schleifen. Als Höhepunkt entwickeln Sie Ihr erstes vollständiges Python-Spiel.
+
+**Kapitel 4: Datenstrukturen**  
+Listen, Tupel und Dictionaries werden zu Ihren Werkzeugen für komplexere Datenverarbeitung. Sie lernen auch, mit Fehlern umzugehen und entwickeln eine praktische Benutzerverwaltung.
+
+**Kapitel 5: Pandas**  
+Der Einstieg in die professionelle Datenanalyse. Sie lernen, wie Sie CSV-Dateien laden, Daten filtern und bearbeiten, sowie grundlegende Statistiken berechnen. Eine vollständige Analyse des Titanic-Datensatzes zeigt Ihnen, was möglich ist.
+
+**Kapitel 6: Arbeiten mit GPT**  
+Das Herzstück der KI-Integration. Sie lernen APIs kennen, arbeiten mit OpenAI's GPT-Modellen und entwickeln einen intelligenten Aufgaben-Manager. Ethische Aspekte im Umgang mit KI werden ebenfalls behandelt.
+
+**Kapitel 7: Abschlusstest**  
+Ihr Wissen wird in einem umfassenden Test mit 23 Aufgaben geprüft. Von Grundlagen bis zur Sentiment-Analyse zeigen Sie, was Sie gelernt haben. Bei erfolgreichem Abschluss erhalten Sie wertvolle Hinweise für Ihre weitere Laufbahn.
+
+### Wie dieses Buch funktioniert
+
+Wir haben dieses Buch so strukturiert, dass es Sie systematisch vom Anfänger zum kompetenten Anwender führt. Jedes Kapitel baut auf dem vorherigen auf und ist in überschaubare Lerneinheiten unterteilt, sodass Sie Ihr Lerntempo individuell anpassen können.
+
+**Die vier Säulen unseres Lernkonzepts:**
+
+1. **KI-gestütztes Lernen:** Wir zeigen Ihnen, wie Sie KI-Chatbots als Ihre persönlichen Lernbegleiter nutzen können. Diese helfen Ihnen, Fehler zu finden, Konzepte zu verstehen und kreative Lösungen zu entwickeln.
+
+2. **Praxisorientierung:** In jedem Kapitel arbeiten Sie an praktischen Projekten, die Ihnen helfen, das Gelernte direkt anzuwenden. Von einem einfachen Python-Spiel bis hin zu einem KI-gestützten Aufgaben-Manager – Sie werden von Anfang an echte Ergebnisse sehen.
+
+3. **Community-Ansatz:** Wir ermutigen Sie, sich mit anderen Lernenden auszutauschen und gemeinsam an Lösungen zu arbeiten. Die Community-Übungen in diesem Buch sind so konzipiert, dass sie den Austausch und das Peer-Learning fördern.
+
+4. **Strukturierte Lernprogression:** Jedes Kapitel baut auf dem vorherigen auf und führt Sie schrittweise in neue Konzepte ein. So stellen wir sicher, dass Sie den roten Faden nicht verlieren und kontinuierlich Fortschritte machen.
+
+### Verstehen der Call-Out-Boxen
+
+Zur optimalen Orientierung während des Lernprozesses verwenden wir verschiedene farbige Informationsboxen (Call-Outs), die Ihnen unterschiedliche Arten von Inhalten signalisieren:
+
+::: {.callout-note}
+## 📚 Note (Blaue Boxen)
+Enthalten wichtige Grundkonzepte, Definitionen und Erklärungen. Diese Informationen sind zentral für das Verständnis des jeweiligen Themas.
+:::
+
+::: {.callout-tip}
+## 💡 Tip (Grüne Boxen)
+Bieten praktische Empfehlungen, Best Practices und hilfreiche Hinweise, die Ihnen das Lernen erleichtern und Ihre Programmierfähigkeiten verbessern.
+:::
+
+::: {.callout-important}
+## ⚡ Important (Rote Boxen)
+Heben besonders wichtige Punkte hervor, die Sie unbedingt beachten sollten. Hier finden Sie zentrale Lernziele und entscheidende Konzepte.
+:::
+
+::: {.callout-warning}
+## ⚠️ Warning (Gelbe Boxen)
+Warnen vor häufigen Fehlern und Problemen. Diese Hinweise helfen Ihnen, typische Stolpersteine zu vermeiden.
+:::
+
+::: {.callout-caution}
+## 💪 Caution (Orange Boxen)
+Markieren Übungsaufgaben, Projekte und praktische Herausforderungen. Hier können Sie Ihr Wissen aktiv anwenden und vertiefen.
+:::
+
+### Treten Sie unserer Community bei!
+
+Lernen wird noch effektiver, wenn Sie sich mit Gleichgesinnten austauschen können. Deshalb laden wir Sie herzlich ein, Teil unserer aktiven Lerngemeinschaft zu werden:
+
+**[Business Data Professional Community](https://www.skool.com/business-data-professional)**
+
+In unserer Community finden Sie:
+- **Direkten Austausch** mit anderen Lernenden und Experten
+- **Hilfe bei Problemen** durch erfahrene Community-Mitglieder
+- **Zusätzliche Ressourcen** und Materialien zum Kurs
+- **Networking-Möglichkeiten** für Ihre berufliche Entwicklung
+- **Updates und News** zu neuen Entwicklungen in KI und Python
+- **Projektgalerien** wo Sie Ihre eigenen Arbeiten präsentieren können
+
+Die Community ist kostenlos und steht allen Lesern dieses Buches offen. Zögern Sie nicht, Fragen zu stellen, Ihre Fortschritte zu teilen oder anderen bei ihren Herausforderungen zu helfen.
+
+### Was Sie am Ende können werden
+
+Nachdem Sie dieses Buch durchgearbeitet haben, werden Sie in der Lage sein:
+
+- Python-Skripte zu schreiben, um Aufgaben zu automatisieren.
+- Daten zu analysieren und wertvolle Einblicke zu gewinnen.
+- KI-Modelle wie GPT in Ihre eigenen Anwendungen zu integrieren.
+- Eigene KI-gestützte Lösungen für reale Probleme zu entwickeln.
+
+Wir sind davon überzeugt, dass dieses Buch Ihnen nicht nur das nötige Wissen vermitteln, sondern auch die Begeisterung für die unendlichen Möglichkeiten von KI und Python wecken wird. Lassen Sie uns gemeinsam diese spannende Reise beginnen!

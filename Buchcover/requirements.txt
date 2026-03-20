@@ -1,0 +1,2 @@
+# Buchcover Renderer - Dependencies
+playwright>=1.40.0

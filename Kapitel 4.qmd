@@ -1,0 +1,534 @@
+# Datenstrukturen {#sec-datenstrukturen}
+
+## Willkommen zu Kapitel 4 {#sec-willkommen-kap4}
+
+Herzlich willkommen zu Kapitel 4! Nachdem wir gelernt haben, wie man den Fluss von Programmen mit Bedingungen und Schleifen steuert, wenden wir uns nun einem weiteren fundamentalen Thema zu: den Datenstrukturen.
+
+Bisher haben wir unsere Daten hauptsächlich in einzelnen Variablen gespeichert. Aber was ist, wenn wir mit einer Sammlung von zusammengehörigen Werten arbeiten müssen, wie zum Beispiel einer Liste von Studenten, einer Sammlung von Telefonnummern oder den Einstellungen für eine Anwendung? Genau hier kommen Datenstrukturen ins Spiel – sie sind spezielle Formate, um Daten zu organisieren, zu speichern und zu verwalten.
+
+::: {.callout-important}
+## 🎯 In diesem Kapitel werden Sie lernen
+
+- **Was Listen sind** und wie Sie damit flexible Sammlungen von Elementen verwalten
+- **Was Tupel sind** und wann unveränderliche Datenstrukturen sinnvoll sind
+- **Was Dictionaries sind** und wie Sie Daten mit Schlüssel-Wert-Paaren organisieren
+- **Wie Sie mit Fehlern umgehen** und robustere Programme schreiben
+:::
+
+Am Ende dieses Kapitels werden Sie in der Lage sein, komplexere Daten zu modellieren und Programme zu entwickeln, die auch bei unerwarteten Eingaben stabil laufen. Als Abschlussprojekt werden wir eine kleine Benutzerverwaltung entwickeln, die all diese Konzepte praktisch vereint.
+
+Lassen Sie uns eintauchen und lernen, wie man Daten wie ein Profi organisiert!
+
+## Listen erstellen {#sec-listen}
+
+Eine Liste ist eine geordnete und veränderbare Sammlung von Elementen. Sie ist eine der vielseitigsten und am häufigsten verwendeten Datenstrukturen in Python. Stellen Sie sich eine Liste wie einen Einkaufszettel vor: Sie können Dinge hinzufügen, entfernen, die Reihenfolge ändern – und Sie wissen immer, welches Element an welcher Position steht.
+
+Eine Liste kann Elemente verschiedener Datentypen enthalten, aber in der Praxis enthalten Listen meist Elemente desselben Typs. Um eine Liste zu erstellen, schließen Sie eine durch Kommas getrennte Sequenz von Elementen in eckige Klammern `[]` ein:
+
+```python
+# Eine leere Liste
+leere_liste = []
+
+# Eine Liste von Zahlen
+zahlen = [1, 2, 3, 4, 5]
+
+# Eine Liste von Strings
+fruechte = ["Apfel", "Banane", "Kirsche"]
+
+# Eine Liste mit gemischten Datentypen
+gemischte_liste = [1, "Hallo", 3.14, True]
+```
+
+Die eckigen Klammern sind das erkennbare Merkmal einer Liste in Python. Beachten Sie, dass eine Liste auch komplett leer sein kann – das ist nützlich, wenn Sie Elemente erst später hinzufügen möchten.
+
+### Auf Listenelemente zugreifen
+
+Nachdem wir eine Liste erstellt haben, müssen wir natürlich auch auf die einzelnen Elemente zugreifen können. Dafür verwendet Python einen sogenannten Index – die Position des Elements in der Liste. **Wichtig:** Die Indizierung in Python beginnt bei 0, nicht bei 1! Das erste Element hat also den Index 0, das zweite den Index 1, und so weiter.
+
+```python
+fruechte = ["Apfel", "Banane", "Kirsche"]
+
+# Auf das erste Element zugreifen
+print(fruechte[0])  # Ausgabe: Apfel
+
+# Auf das dritte Element zugreifen
+print(fruechte[2])  # Ausgabe: Kirsche
+```
+
+Diese nullbasierte Indizierung ist in den meisten Programmiersprachen Standard und wird Ihnen mit der Zeit vertraut werden. Merken Sie sich: Bei einer Liste mit drei Elementen sind die gültigen Indizes 0, 1 und 2.
+
+### Negative Indizes und Slicing
+
+Manchmal möchten wir auf das letzte Element einer Liste zugreifen, ohne erst die Länge der Liste berechnen zu müssen. Python bietet hierfür eine elegante Lösung: negative Indizes. Der Index `-1` bezieht sich auf das letzte Element, `-2` auf das vorletzte, und so weiter:
+
+```python
+fruechte = ["Apfel", "Banane", "Kirsche", "Mango"]
+
+# Das letzte Element
+print(fruechte[-1])  # Ausgabe: Mango
+
+# Das vorletzte Element
+print(fruechte[-2])  # Ausgabe: Kirsche
+```
+
+Negative Indizes sind besonders praktisch, wenn Sie mit Listen arbeiten, deren Länge sich ändern kann, und Sie trotzdem zuverlässig auf das letzte Element zugreifen möchten.
+
+Neben dem Zugriff auf einzelne Elemente können wir auch ganze Abschnitte einer Liste auf einmal extrahieren. Diese Technik nennt sich *Slicing* und ist besonders praktisch, wenn Sie mit größeren Datenmengen arbeiten. Die Syntax lautet `liste[start:ende]`, wobei `start` inklusive und `ende` exklusive ist:
+
+```python
+zahlen = [0, 1, 2, 3, 4, 5]
+
+# Elemente von Index 1 bis 3 (exklusive 4)
+print(zahlen[1:4])  # Ausgabe: [1, 2, 3]
+
+# Vom Anfang bis Index 3 (exklusive)
+print(zahlen[:3])   # Ausgabe: [0, 1, 2]
+
+# Von Index 2 bis zum Ende
+print(zahlen[2:])   # Ausgabe: [2, 3, 4, 5]
+
+# Die gesamte Liste kopieren
+kopie = zahlen[:]
+print(kopie)        # Ausgabe: [0, 1, 2, 3, 4, 5]
+```
+
+Wenn Sie den Startindex weglassen, beginnt das Slice am Anfang der Liste. Wenn Sie den Endindex weglassen, geht das Slice bis zum Ende. Mit `[:]` können Sie sogar eine komplette Kopie der Liste erstellen – nützlich, wenn Sie die Originalliste unverändert lassen möchten.
+
+### Listen sind veränderbar
+
+Ein entscheidender Unterschied zwischen Listen und anderen Datentypen wie Strings: Listen sind veränderbar. Das bedeutet, wir können Elemente nach der Erstellung der Liste hinzufügen, entfernen oder ändern – die ursprüngliche Liste wird direkt modifiziert. Schauen wir uns die drei grundlegenden Operationen an:
+
+```python
+fruechte = ["Apfel", "Banane", "Kirsche"]
+
+# Das zweite Element ändern
+fruechte[1] = "Orange"
+print(fruechte)  # Ausgabe: ["Apfel", "Orange", "Kirsche"]
+
+# Ein Element am Ende hinzufügen
+fruechte.append("Mango")
+print(fruechte)  # Ausgabe: ["Apfel", "Orange", "Kirsche", "Mango"]
+
+# Ein Element entfernen
+fruechte.remove("Apfel")
+print(fruechte)  # Ausgabe: ["Orange", "Kirsche", "Mango"]
+```
+
+Mit der Zuweisung `fruechte[1] = "Orange"` ändern wir ein bestehendes Element. Die Methode `append()` fügt ein Element am Ende hinzu, und `remove()` entfernt das erste Vorkommen eines bestimmten Werts.
+
+Python bietet eine Vielzahl von Methoden, um Listen zu manipulieren. Die folgende Tabelle gibt Ihnen einen Überblick über die wichtigsten Werkzeuge, die Sie im Alltag häufig verwenden werden.
+
+::: {.callout-tip}
+## 📚 Weitere nützliche Listen-Methoden
+
+| Methode | Beschreibung | Beispiel |
+|---------|--------------|----------|
+| `len(liste)` | Gibt die Anzahl der Elemente zurück | `len([1, 2, 3])` → `3` |
+| `liste.insert(i, x)` | Fügt `x` an Position `i` ein | `liste.insert(0, "Neu")` |
+| `liste.pop()` | Entfernt und gibt das letzte Element zurück | `liste.pop()` |
+| `liste.pop(i)` | Entfernt und gibt Element an Position `i` zurück | `liste.pop(0)` |
+| `liste.sort()` | Sortiert die Liste aufsteigend | `[3,1,2].sort()` → `[1,2,3]` |
+| `liste.reverse()` | Kehrt die Reihenfolge um | `[1,2,3].reverse()` → `[3,2,1]` |
+| `x in liste` | Prüft, ob `x` in der Liste enthalten ist | `"a" in ["a","b"]` → `True` |
+
+```python
+zahlen = [3, 1, 4, 1, 5]
+
+# Länge der Liste
+print(len(zahlen))  # Ausgabe: 5
+
+# Element an Position 0 einfügen
+zahlen.insert(0, 99)
+print(zahlen)  # Ausgabe: [99, 3, 1, 4, 1, 5]
+
+# Letztes Element entfernen und zurückgeben
+letztes = zahlen.pop()
+print(letztes)  # Ausgabe: 5
+print(zahlen)   # Ausgabe: [99, 3, 1, 4, 1]
+
+# Liste sortieren
+zahlen.sort()
+print(zahlen)   # Ausgabe: [1, 1, 3, 4, 99]
+```
+:::
+
+Listen sind ein unglaublich flexibles Werkzeug, um Sammlungen von Daten zu verwalten. Mit den Methoden, die Sie gerade kennengelernt haben, können Sie Daten hinzufügen, entfernen, sortieren und durchsuchen. Im nächsten Abschnitt werden wir sehen, wie wir mit Schleifen effizient durch Listen iterieren können.
+
+## Listen durchlaufen {#sec-listen-durchlaufen}
+
+Eine der häufigsten Aufgaben bei der Arbeit mit Listen ist es, jedes Element in der Liste zu durchlaufen und eine bestimmte Operation damit durchzuführen. Stellen Sie sich vor, Sie möchten alle Produkte in einem Warenkorb ausgeben oder die Summe aller Verkaufszahlen berechnen – genau hierfür eignet sich die for-Schleife perfekt:
+
+```python
+fruechte = ["Apfel", "Banane", "Kirsche"]
+
+for frucht in fruechte:
+    print(f"Ich esse gerne {frucht}.")
+```
+
+In diesem Beispiel durchläuft die Variable `frucht` nacheinander alle Elemente der Liste. Bei jedem Durchlauf nimmt sie den Wert des aktuellen Elements an. Die for-Schleife ist die natürlichste Art, alle Elemente einer Liste zu verarbeiten.
+
+Manchmal benötigen wir jedoch nicht nur das Element selbst, sondern auch seine Position in der Liste. Die `enumerate()`-Funktion ist hierfür sehr praktisch – sie gibt uns in jeder Iteration sowohl den Index als auch den Wert des Elements zurück:
+
+```python
+fruechte = ["Apfel", "Banane", "Kirsche"]
+
+for index, frucht in enumerate(fruechte):
+    print(f"An Position {index} befindet sich die Frucht: {frucht}")
+```
+
+Beachten Sie, wie wir mit `index, frucht` zwei Variablen gleichzeitig zuweisen – Python nennt dies *Tuple Unpacking*. Die `enumerate()`-Funktion ist besonders nützlich, wenn Sie nummerierte Listen ausgeben oder den Index für weitere Berechnungen benötigen.
+
+Das Durchlaufen von Listen ist eine grundlegende Technik, die Sie immer wieder benötigen werden, sei es zur Datenverarbeitung, zur Anzeige von Informationen oder zur Durchführung von Berechnungen auf einer Sammlung von Werten.
+
+## Tupel erstellen {#sec-tupel}
+
+Nachdem wir Listen ausführlich behandelt haben, lernen wir nun eine eng verwandte Datenstruktur kennen: das Tupel. Auf den ersten Blick sehen Tupel sehr ähnlich aus wie Listen, aber es gibt einen entscheidenden Unterschied.
+
+Ein Tupel ist eine geordnete und unveränderliche Sammlung von Elementen. Nach der Erstellung können keine Elemente mehr hinzugefügt, entfernt oder geändert werden. Das mag zunächst wie eine Einschränkung wirken, ist aber in vielen Situationen genau das, was wir brauchen. Um ein Tupel zu erstellen, schließen Sie eine durch Kommas getrennte Sequenz von Elementen in runde Klammern `()` ein:
+
+```python
+# Ein Tupel von Zahlen
+koordinaten = (10, 20)
+
+# Ein Tupel von Strings
+farben = ("Rot", "Grün", "Blau")
+
+# Ein Tupel mit nur einem Element (Achtung: Komma ist wichtig!)
+einzel_tupel = (42,)
+```
+
+Beachten Sie den letzten Fall: Bei einem Tupel mit nur einem Element ist das Komma am Ende zwingend erforderlich. Ohne das Komma würde Python `(42)` als einfache Klammerung interpretieren und keinen Tupel erstellen.
+
+Warum sollten Sie Tupel anstelle von Listen verwenden? Es gibt drei wichtige Gründe, die in der Praxis eine große Rolle spielen:
+
+Erstens bieten Tupel **Datensicherheit**. Wenn Sie eine Sammlung von Werten haben, die sich nicht ändern soll – zum Beispiel die Koordinaten eines Punktes auf einer Karte oder die Tage der Woche – schützt die Unveränderlichkeit von Tupeln vor versehentlichen Modifikationen. Stellen Sie sich vor, Sie arbeiten an einem großen Projekt mit vielen Funktionen: Bei einer Liste könnte irgendwo im Code versehentlich ein Wert geändert werden, was zu schwer auffindbaren Fehlern führt. Ein Tupel macht dies unmöglich.
+
+Zweitens sind Tupel in der Regel **performanter**. Da Python weiß, dass sich ein Tupel nicht ändern kann, kann es im Hintergrund optimieren: Tupel verbrauchen weniger Speicher und der Zugriff auf Elemente ist geringfügig schneller als bei Listen. Bei kleinen Datenmengen ist der Unterschied vernachlässigbar, aber bei Millionen von Datenpunkten kann es sich summieren.
+
+Drittens können Tupel als **Dictionary-Schlüssel** verwendet werden. Diese Eigenschaft werden wir im nächsten Abschnitt genauer betrachten – dort lernen Sie, dass Dictionaries nur unveränderliche Objekte als Schlüssel akzeptieren. Eine Liste kann niemals ein Schlüssel sein, ein Tupel schon.
+
+Der Zugriff auf Elemente eines Tupels funktioniert genauso wie bei Listen – Sie können sowohl positive als auch negative Indizes verwenden:
+
+```python
+farben = ("Rot", "Grün", "Blau")
+print(farben[0])  # Ausgabe: Rot
+print(farben[-1]) # Ausgabe: Blau (letztes Element)
+```
+
+Auch Slicing funktioniert bei Tupeln identisch zu Listen. Der große Unterschied zeigt sich erst, wenn Sie versuchen, ein Element zu ändern.
+
+::: {.callout-warning}
+## ⚠️ Tupel sind unveränderlich
+
+Der Versuch, ein Element in einem Tupel zu ändern, führt jedoch zu einem Fehler:
+
+```python
+farben[0] = "Gelb"  # TypeError: 'tuple' object does not support item assignment
+```
+:::
+
+Die Unveränderlichkeit von Tupeln mag zunächst wie eine Einschränkung wirken, ist aber in vielen Situationen ein Vorteil. Sie signalisiert anderen Entwicklern (und Ihrem zukünftigen Ich), dass diese Daten nicht verändert werden sollten, und verhindert versehentliche Modifikationen.
+
+## Dictionaries erstellen {#sec-dictionaries}
+
+Listen und Tupel speichern Elemente in einer geordneten Sequenz und greifen über numerische Indizes darauf zu. Aber was ist, wenn wir Daten speichern möchten, die natürlicherweise über einen beschreibenden Namen identifiziert werden? Stellen Sie sich vor, Sie möchten die Eigenschaften einer Person speichern: Name, Alter, Wohnort. Ein Dictionary ist hierfür die ideale Datenstruktur.
+
+Ein Dictionary ist eine veränderbare Sammlung von Schlüssel-Wert-Paaren. Anstatt auf Elemente über einen numerischen Index zuzugreifen, greifen wir auf Werte über einen eindeutigen Schlüssel zu. Seit Python 3.7 sind Dictionaries außerdem geordnet – sie merken sich die Reihenfolge, in der die Elemente eingefügt wurden. Um ein Dictionary zu erstellen, verwenden Sie geschweifte Klammern `{}`, wobei jedes Element aus einem Schlüssel und einem Wert besteht, getrennt durch einen Doppelpunkt:
+
+```python
+# Ein Dictionary, das eine Person beschreibt
+person = {
+    "vorname": "Max",
+    "nachname": "Mustermann",
+    "alter": 30,
+    "stadt": "Berlin"
+}
+```
+
+Die Schlüssel sind hier Strings (`"vorname"`, `"nachname"`, etc.), aber auch Zahlen oder Tupel können als Schlüssel dienen. Die Werte können beliebige Python-Objekte sein – Strings, Zahlen, Listen oder sogar andere Dictionaries.
+
+### Auf Werte zugreifen
+
+Um auf einen Wert in einem Dictionary zuzugreifen, verwenden wir den entsprechenden Schlüssel in eckigen Klammern – ähnlich wie bei Listen, nur dass statt eines numerischen Index ein Schlüssel steht:
+
+```python
+print(person["vorname"])  # Ausgabe: Max
+print(person["alter"])    # Ausgabe: 30
+```
+
+Diese Art des Zugriffs macht den Code sehr lesbar: `person["vorname"]` liest sich fast wie natürliche Sprache.
+
+### Werte ändern und hinzufügen
+
+Genau wie Listen sind auch Dictionaries veränderbar. Wir können bestehende Werte modifizieren und neue Schlüssel-Wert-Paare hinzufügen – die Struktur des Dictionaries passt sich dynamisch an:
+
+```python
+# Den Wert für den Schlüssel "stadt" ändern
+person["stadt"] = "Hamburg"
+
+# Ein neues Schlüssel-Wert-Paar hinzufügen
+person["beruf"] = "Entwickler"
+
+print(person)
+# Ausgabe: {"vorname": "Max", "nachname": "Mustermann", "alter": 30, "stadt": "Hamburg", "beruf": "Entwickler"}
+```
+
+Beachten Sie, dass die gleiche Syntax sowohl zum Ändern eines bestehenden Werts als auch zum Hinzufügen eines neuen Schlüssel-Wert-Paars verwendet wird. Wenn der Schlüssel bereits existiert, wird der Wert überschrieben; wenn nicht, wird ein neuer Eintrag erstellt.
+
+### Sichere Zugriffsmethode mit .get()
+
+Was passiert, wenn wir versuchen, auf einen Schlüssel zuzugreifen, der nicht existiert? Bei der direkten Zugriffsmethode mit eckigen Klammern würde Python einen `KeyError` ausgeben. Die `.get()`-Methode bietet eine sicherere Alternative – sie gibt einen Standardwert zurück, wenn der Schlüssel nicht gefunden wird:
+
+```python
+person = {"vorname": "Max", "alter": 30}
+
+# Unsicher: Erzeugt KeyError, wenn der Schlüssel nicht existiert
+# print(person["beruf"])  # KeyError: 'beruf'
+
+# Sicher: Gibt None zurück, wenn der Schlüssel nicht existiert
+beruf = person.get("beruf")
+print(beruf)  # Ausgabe: None
+
+# Mit eigenem Standardwert
+beruf = person.get("beruf", "Nicht angegeben")
+print(beruf)  # Ausgabe: Nicht angegeben
+
+# Der Schlüssel "vorname" existiert
+name = person.get("vorname", "Unbekannt")
+print(name)   # Ausgabe: Max
+```
+
+Die `.get()`-Methode ist besonders nützlich, wenn Sie nicht sicher sind, ob ein Schlüssel existiert, und Sie keinen Fehler riskieren möchten. Sie werden diese Methode häufig verwenden, wenn Sie Daten aus externen Quellen verarbeiten.
+
+Dictionaries sind die perfekte Datenstruktur, wenn Sie Daten in einer "Label-Wert"-Beziehung speichern möchten. Sie sind das Äquivalent zu JSON-Objekten in JavaScript oder Hash-Maps in anderen Sprachen und ein unverzichtbares Werkzeug für jeden Python-Programmierer.
+
+## Fehler abfangen {#sec-fehler}
+
+Egal wie sorgfältig wir programmieren, Fehler (sogenannte Exceptions) können immer auftreten. Ein Benutzer gibt möglicherweise Text ein, wo eine Zahl erwartet wird, eine Datei, die wir öffnen wollen, existiert nicht, oder wir versuchen, auf einen Dictionary-Schlüssel zuzugreifen, den es nicht gibt.
+
+Wenn solche Fehler nicht behandelt werden, stürzt unser Programm ab – oft mit einer für den Benutzer unverständlichen Fehlermeldung. Das ist weder professionell noch benutzerfreundlich. Genau hier kommt die Fehlerbehandlung ins Spiel.
+
+::: {.callout-important}
+## 🛡️ Die try-except-Struktur
+
+Um dies zu verhindern, können wir den `try-except`-Block verwenden, um Fehler elegant abzufangen und darauf zu reagieren.
+
+- **`try`-Block:** Hier schreiben wir den Code, bei dem wir einen Fehler erwarten.
+- **`except`-Block:** Dieser Code wird nur dann ausgeführt, wenn im try-Block ein Fehler auftritt.
+:::
+
+Lassen Sie uns diese Struktur an einem konkreten Beispiel betrachten. Eine Division durch Null ist mathematisch nicht definiert und führt in Python zu einem `ZeroDivisionError`:
+
+```python
+try:
+    ergebnis = 10 / 0
+    print(ergebnis)
+except ZeroDivisionError:
+    print("Fehler: Es kann nicht durch Null geteilt werden!")
+```
+
+In diesem Beispiel versucht Python, die Division durchzuführen. Da dies zu einem Fehler führt, springt die Ausführung sofort in den `except`-Block, und unsere freundliche Fehlermeldung wird ausgegeben.
+
+Ein weiterer häufiger Anwendungsfall ist die Validierung von Benutzereingaben. Wenn ein Benutzer Text eingibt, wo eine Zahl erwartet wird, erzeugt `int()` einen `ValueError`:
+
+```python
+try:
+    alter = int(input("Bitte geben Sie Ihr Alter ein: "))
+    print(f"Sie sind {alter} Jahre alt.")
+except ValueError:
+    print("Fehler: Das war keine gültige Zahl.")
+```
+
+Durch diese Fehlerbehandlung kann das Programm auch bei unerwarteten Eingaben weiterlaufen, anstatt abzustürzen.
+
+### Der finally-Block
+
+Manchmal möchten wir sicherstellen, dass bestimmter Code ausgeführt wird, unabhängig davon, ob ein Fehler aufgetreten ist oder nicht. Denken Sie an das Aufräumen eines Zimmers: Egal ob Sie es erfolgreich neu dekoriert haben oder dabei etwas schief ging – am Ende müssen Sie die Werkzeuge wegräumen. Genau diese Garantie bietet der `finally`-Block in Python.
+
+Der `finally`-Block wird immer ausgeführt – egal ob der `try`-Block erfolgreich war oder ein Fehler aufgetreten ist. Das macht ihn zum perfekten Ort für Aufräumarbeiten:
+
+```python
+try:
+    datei = open("beispiel.txt", "r")
+    inhalt = datei.read()
+    print(inhalt)
+except FileNotFoundError:
+    print("Fehler: Die Datei wurde nicht gefunden.")
+finally:
+    print("Dieser Code wird immer ausgeführt.")
+    # Hier könnten wir z.B. Ressourcen freigeben
+```
+
+In der Praxis begegnet Ihnen der `finally`-Block häufig in folgenden Situationen: beim Schließen von Dateien, die Sie geöffnet haben; beim Beenden von Datenbankverbindungen, die Sie aufgebaut haben; oder beim Freigeben von Ressourcen, die Ihr Programm belegt. Selbst wenn mitten in Ihrer Verarbeitung ein Fehler auftritt, stellt `finally` sicher, dass diese kritischen Aufräumarbeiten durchgeführt werden.
+
+Erinnern Sie sich an die `.get()`-Methode aus dem Dictionary-Abschnitt? Sie ist ein gutes Beispiel dafür, wie Python manchmal elegantere Alternativen zur Fehlerbehandlung bietet. Vergleichen Sie diese beiden Ansätze:
+
+```python
+person = {"name": "Max"}
+
+# Mit try-except
+try:
+    beruf = person["beruf"]
+except KeyError:
+    beruf = "Nicht angegeben"
+
+# Eleganter mit .get()
+beruf = person.get("beruf", "Nicht angegeben")
+```
+
+Beide Varianten erreichen das gleiche Ziel, aber `.get()` ist in diesem Fall kürzer und lesbarer. Generell gilt: Verwenden Sie `try-except` für echte Ausnahmesituationen, und nutzen Sie eingebaute Methoden wie `.get()`, wenn diese existieren.
+
+Durch die Verwendung von `try-except` können wir unsere Programme robuster und benutzerfreundlicher machen. Anstatt mit einer unverständlichen Fehlermeldung abzustürzen, kann das Programm eine hilfreiche Nachricht ausgeben und die Ausführung fortsetzen. Fehlerbehandlung ist ein Zeichen von professionellem Code und sollte von Anfang an Teil Ihrer Programmierpraxis sein.
+
+
+## Übung: Benutzerverwaltung {#sec-projekt-benutzerverwaltung}
+
+Nachdem wir die wichtigsten Datenstrukturen und die Fehlerbehandlung kennengelernt haben, ist es Zeit, unser Wissen in einem praktischen Projekt anzuwenden. Wir werden eine einfache, textbasierte Benutzerverwaltung erstellen, die alle Konzepte dieses Kapitels vereint.
+
+**Ziel:** Erstellen Sie eine interaktive Benutzerverwaltung mit Python-Dictionaries, um Benutzerkonten zu speichern und zu verwalten.
+
+### Anforderungen
+
+1. **Benutzer registrieren:** Die Anwendung soll einen neuen Benutzer anlegen können:
+   - Der Benutzername dient als Schlüssel im Dictionary
+   - Das Passwort wird als Wert gespeichert
+   - Falls der Benutzername bereits existiert, soll eine Fehlermeldung erscheinen
+
+2. **Benutzer einloggen:** Bei Eingabe von Benutzername und Passwort soll die Anwendung prüfen:
+   - Existiert der Benutzername im Dictionary?
+   - Stimmt das eingegebene Passwort mit dem gespeicherten überein?
+   - Bei Erfolg: Begrüßungsnachricht anzeigen
+   - Bei Fehler: Entsprechende Fehlermeldung ausgeben
+
+3. **Menüführung:** Das Programm soll in einer Endlosschleife laufen und folgende Optionen anbieten:
+   - Option 1: Neuen Benutzer anlegen
+   - Option 2: Benutzer einloggen
+   - Option 3: Programm beenden
+
+4. **Fehlerbehandlung:** Ungültige Menüeingaben sollen abgefangen werden.
+
+### Anleitung
+
+1. Beginnen Sie mit der Erstellung eines leeren Dictionaries für die Benutzerdaten.
+2. Implementieren Sie eine Funktion `neuen_benutzer_anlegen()`, die nach Benutzername und Passwort fragt.
+3. Implementieren Sie eine Funktion `benutzer_einloggen()`, die die Anmeldedaten überprüft.
+4. Erstellen Sie eine `while True`-Schleife, die das Menü anzeigt und die Benutzereingabe verarbeitet.
+5. Verwenden Sie `if-elif-else`, um auf die verschiedenen Menüoptionen zu reagieren.
+
+### Beispiel-Code-Struktur
+
+```python
+# Leeres Dictionary für Benutzerdaten initialisieren
+benutzerdaten = {}
+
+def neuen_benutzer_anlegen():
+    """Fragt nach Benutzername und Passwort und speichert den neuen Benutzer."""
+    # Benutzernamen abfragen mit input()
+    # Prüfen, ob Benutzername bereits existiert (mit 'in')
+    # Falls ja: Fehlermeldung ausgeben
+    # Falls nein: Passwort abfragen und im Dictionary speichern
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+def benutzer_einloggen():
+    """Überprüft die Anmeldedaten eines Benutzers."""
+    # Benutzername und Passwort abfragen
+    # Prüfen, ob Benutzername existiert UND Passwort übereinstimmt
+    # Entsprechende Meldung ausgeben
+    pass  # Ersetzen Sie dies durch Ihren Code
+
+# Hauptprogramm: Menüschleife
+while True:
+    # Menü anzeigen
+    print("\n--- Menü ---")
+    print("1. Neuen Benutzer anlegen")
+    print("2. Benutzer einloggen")
+    print("3. Programm beenden")
+
+    # Benutzereingabe abfragen
+    # Mit if-elif-else die passende Funktion aufrufen
+    # Bei Option 3: break verwenden, um die Schleife zu beenden
+    # Bei ungültiger Eingabe: Fehlermeldung ausgeben
+    pass  # Ersetzen Sie dies durch Ihren Code
+```
+
+### Hinweise
+
+- Verwenden Sie `benutzername in benutzerdaten`, um zu prüfen, ob ein Schlüssel existiert.
+- Denken Sie daran, dass `input()` immer einen String zurückgibt – das ist hier kein Problem, da wir mit Texteingaben arbeiten.
+- Die Bedingung für einen erfolgreichen Login lautet: Der Benutzername muss existieren UND das Passwort muss übereinstimmen.
+
+::: {#exr-benutzerverwaltung .callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Testen Sie Ihr Programm, indem Sie mehrere Benutzer anlegen und sich dann ein- und ausloggen. Versuchen Sie auch, sich mit einem falschen Passwort anzumelden – Ihr Programm sollte dies erkennen und eine entsprechende Meldung ausgeben.
+:::
+
+## Lösungen zu Kapitel 4
+
+In diesem Abschnitt finden Sie die Lösung zum Projekt. Nutzen Sie sie, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen. Vergleichen Sie Ihre Lösung mit der hier gezeigten – wie immer gibt es mehrere richtige Ansätze zur Problemlösung. Das Wichtigste ist, dass Ihr Code funktioniert und die Anforderungen erfüllt.
+
+### Lösung zum Projekt: Benutzerverwaltung {#sec-solution-benutzerverwaltung}
+
+Die folgende Lösung zeigt eine mögliche Implementierung der Benutzerverwaltung. Beachten Sie, wie wir Funktionen verwenden, um den Code übersichtlich zu strukturieren.
+
+::: {.callout-caution icon="false"}
+## 👥 Lösung zum Projekt: Benutzerverwaltung
+
+```python
+benutzerdaten = {}
+
+def neuen_benutzer_anlegen():
+    benutzername = input("Neuen Benutzernamen eingeben: ")
+    if benutzername in benutzerdaten:
+        print("Dieser Benutzername ist bereits vergeben.")
+    else:
+        passwort = input("Geben Sie ein Passwort ein: ")
+        benutzerdaten[benutzername] = passwort
+        print(f"Benutzer '{benutzername}' wurde erfolgreich angelegt.")
+
+def benutzer_einloggen():
+    benutzername = input("Benutzername: ")
+    passwort = input("Passwort: ")
+
+    if benutzername in benutzerdaten and benutzerdaten[benutzername] == passwort:
+        print(f"Willkommen, {benutzername}! Sie sind erfolgreich eingeloggt.")
+    else:
+        print("Ungültiger Benutzername oder Passwort.")
+```
+
+{{< pagebreak >}}
+
+```python
+while True:
+    print("\n--- Menü ---")
+    print("1. Neuen Benutzer anlegen")
+    print("2. Benutzer einloggen")
+    print("3. Programm beenden")
+
+    auswahl = input("Bitte wählen Sie eine Option (1-3): ")
+
+    if auswahl == "1":
+        neuen_benutzer_anlegen()
+    elif auswahl == "2":
+        benutzer_einloggen()
+    elif auswahl == "3":
+        print("Programm wird beendet.")
+        break
+    else:
+        print("Ungültige Auswahl. Bitte erneut versuchen.")
+```
+:::
+
+## Zusammenfassung
+
+Herzlichen Glückwunsch – Sie haben Kapitel 4 erfolgreich abgeschlossen! Lassen Sie uns kurz rekapitulieren, was Sie in diesem Kapitel gelernt haben und warum diese Konzepte so wichtig sind.
+
+Mit **Listen** haben Sie eine der vielseitigsten Datenstrukturen in Python kennengelernt. Sie können Elemente hinzufügen, entfernen, sortieren und über Indizes oder Slicing flexibel darauf zugreifen. Listen werden Sie in praktisch jedem Python-Programm verwenden – sei es für eine einfache Einkaufsliste oder für komplexe Datenverarbeitung.
+
+**Tupel** sind die unveränderlichen Verwandten der Listen. Sie haben gelernt, wann Unveränderlichkeit ein Vorteil ist: für Datensicherheit, Performance und als Dictionary-Schlüssel. Wenn Sie Daten haben, die sich nicht ändern sollen, sind Tupel die richtige Wahl.
+
+**Dictionaries** haben Ihnen eine völlig neue Art der Datenspeicherung eröffnet. Anstatt numerischer Indizes verwenden Sie beschreibende Schlüssel, was Ihren Code intuitiver und lesbarer macht. Die `.get()`-Methode haben Sie als elegante Alternative zur Fehlerbehandlung kennengelernt.
+
+Und schließlich haben Sie mit **try-except-finally** die Grundlagen der Fehlerbehandlung erlernt. Robuste Programme stürzen nicht einfach ab, wenn etwas Unerwartetes passiert – sie fangen Fehler ab und reagieren angemessen darauf.
+
+Sie sind nun in der Lage, mit den wichtigsten Datenstrukturen in Python umzugehen und robustere Programme zu schreiben. Im nächsten Kapitel werden wir uns mit Pandas beschäftigen, einer leistungsstarken Bibliothek für die Datenanalyse, die genau auf diesen Datenstrukturen aufbaut.

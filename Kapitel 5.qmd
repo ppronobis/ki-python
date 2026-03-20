@@ -1,0 +1,542 @@
+# Pandas {#sec-pandas}
+
+## Willkommen zu Kapitel 5 {#sec-willkommen-kap5}
+
+Herzlich willkommen zu Kapitel 5! Nachdem wir uns in den vorherigen Kapiteln mit den Grundlagen von Python vertraut gemacht haben, werden wir uns in diesem Kapitel einem der mächtigsten Werkzeuge für die Datenanalyse widmen: der Pandas-Bibliothek.
+
+Stellen Sie sich vor, Sie hätten eine Tabellenkalkulation wie Excel, aber mit der vollen Kraft einer Programmiersprache dahinter. Genau das ist Pandas. Es ermöglicht uns, große Datenmengen zu laden, zu bereinigen, zu transformieren und zu analysieren – alles mit wenigen Zeilen Python-Code. Ob Sie Verkaufsdaten auswerten, wissenschaftliche Messreihen analysieren oder Kundenverhalten untersuchen möchten – Pandas ist das Werkzeug der Wahl für Datenwissenschaftler und Analysten weltweit.
+
+::: {.callout-important icon="false"}
+## 🎯 In diesem Kapitel werden Sie lernen
+
+- **Was Pandas ist** und wie man es installiert
+- **Die grundlegenden Datenstrukturen** von Pandas: Series und DataFrames
+- **Wie man Daten** aus verschiedenen Quellen (z.B. CSV-Dateien) lädt
+- **Wie man Daten** in DataFrames selektiert, filtert und bearbeitet
+- **Wie man Daten** aus verschiedenen Quellen zusammenführt
+- **Wie man grundlegende** statistische Analysen durchführt
+:::
+
+Am Ende dieses Kapitels werden Sie in der Lage sein, reale Datensätze zu analysieren und wertvolle Einblicke aus ihnen zu gewinnen. Als Abschlussprojekt werden wir eine umfassende Datenanalyse eines echten Datensatzes durchführen. Lassen Sie uns also direkt eintauchen und die Welt der Datenanalyse entdecken!
+
+## Pandas installieren {#sec-pandas-installieren}
+
+Bevor wir mit Pandas arbeiten können, müssen wir die Bibliothek zunächst installieren. Anders als die eingebauten Python-Funktionen, die wir bisher verwendet haben, ist Pandas ein externes Paket, das von einer aktiven Community entwickelt und gepflegt wird. Diese externen Pakete erweitern die Möglichkeiten von Python enorm – und Pandas ist eines der beliebtesten davon.
+
+Die Installation erfolgt über pip, den Paketmanager von Python. Pip ist ein Kommandozeilen-Werkzeug, das automatisch Pakete aus dem Python Package Index (PyPI) herunterlädt und installiert. Wenn Sie Python installiert haben, ist pip normalerweise bereits dabei.
+
+Das Gute an Google Colab ist, dass die wichtigsten Datenanalyse-Bibliotheken, einschließlich Pandas, bereits vorinstalliert sind. Wenn Sie in Colab arbeiten, können Sie diesen Abschnitt überspringen und direkt mit dem Import beginnen.
+
+::: {.callout-note icon="false"}
+## 💻 Installation auf einem lokalen Computer
+
+Wenn Sie Python auf Ihrem eigenen Computer installiert haben, öffnen Sie eine Kommandozeile (Terminal auf macOS/Linux, Eingabeaufforderung oder PowerShell auf Windows) und geben Sie den folgenden Befehl ein:
+
+```bash
+pip install pandas
+```
+:::
+
+### Pandas importieren {#sec-pandas-importieren}
+
+Nach der Installation müssen wir Pandas in unserem Python-Skript importieren, um es verwenden zu können. Hier hat sich in der Python-Community eine Konvention etabliert, die Sie in praktisch jedem Datenanalyse-Projekt wiederfinden werden: Pandas wird unter dem Alias `pd` importiert. Dieser kurze Alias spart Tipparbeit und macht den Code übersichtlicher.
+
+```python
+import pandas as pd
+```
+
+Ab jetzt können wir alle Pandas-Funktionen über `pd.` aufrufen. Diese Konvention ist so verbreitet, dass Sie sie in praktisch jedem Tutorial, jeder Dokumentation und jedem professionellen Projekt finden werden.
+
+## Daten laden {#sec-daten-laden}
+
+Ein typischer erster Schritt in der Datenanalyse ist das Laden von Daten aus einer externen Quelle. Stellen Sie sich vor, Sie haben eine Excel-Datei mit Verkaufszahlen, eine Datenbank mit Kundeninformationen oder eine CSV-Datei mit Messwerten – wie bekommen wir diese Daten in Python, um sie analysieren zu können?
+
+Pandas macht dies unglaublich einfach und unterstützt eine Vielzahl von Dateiformaten: CSV, Excel, JSON, SQL-Datenbanken und viele mehr. Das am häufigsten verwendete Format für tabellarische Daten ist CSV (Comma-Separated Values) – eine einfache Textdatei, in der die Werte durch Kommas getrennt sind. CSV-Dateien können von praktisch jeder Software geöffnet und erstellt werden, was sie zum universellen Austauschformat für Daten macht.
+
+::: {.callout-tip icon="false"}
+## 📁 Eine CSV-Datei in ein DataFrame laden
+
+Pandas bietet die Funktion `read_csv()`, um Daten aus einer CSV-Datei direkt in ein DataFrame zu laden. Das funktioniert sowohl mit lokalen Dateien als auch mit URLs.
+
+```python
+import pandas as pd
+
+# Eine CSV-Datei von einer URL laden
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# Eine lokale CSV-Datei laden
+df = pd.read_csv("meine_daten.csv")
+
+# Mit vollständigem Pfad
+df = pd.read_csv("/pfad/zum/ordner/meine_daten.csv")
+```
+:::
+
+### Einen ersten Blick auf die Daten werfen {#sec-erster-blick}
+
+Nachdem wir die Daten geladen haben, möchten wir uns meist einen ersten Überblick verschaffen. Wie viele Zeilen hat unser Datensatz? Welche Spalten gibt es? Gibt es fehlende Werte? Welche Datentypen haben die einzelnen Spalten? Diese Fragen sollten wir beantworten, bevor wir mit der eigentlichen Analyse beginnen.
+
+Pandas bietet hierfür einige nützliche Methoden, die uns diese Fragen schnell beantworten. Mit `head()` und `tail()` können wir uns die ersten bzw. letzten Zeilen anschauen, um ein Gefühl für die Daten zu bekommen. Die Methode `info()` gibt uns einen technischen Überblick über die Struktur des DataFrames, während `describe()` automatisch statistische Kennzahlen für alle numerischen Spalten berechnet.
+
+Die wichtigsten Methoden für diesen ersten Überblick sind `head()`, `tail()`, `info()` und `describe()`. Mit `df.head()` sehen Sie die ersten fünf Zeilen Ihrer Daten – ideal, um die Struktur und den Inhalt zu verstehen. Entsprechend zeigt `df.tail()` die letzten fünf Zeilen, was hilfreich ist, um zu prüfen, ob die Daten vollständig geladen wurden.
+
+Besonders wertvoll ist die `info()`-Methode: Sie liefert eine technische Zusammenfassung mit der Anzahl der Zeilen, allen Spaltennamen, den Datentypen jeder Spalte und der Anzahl der nicht-leeren Werte. So erkennen Sie auf einen Blick, wo fehlende Werte vorliegen. Die `describe()`-Methode ergänzt dies durch eine statistische Zusammenfassung aller numerischen Spalten – Anzahl, Mittelwert, Standardabweichung, Minimum, Maximum und die Quartile.
+
+```python
+# Die ersten 5 Zeilen anzeigen
+print(df.head())
+
+# Informationen über das DataFrame anzeigen
+print(df.info())
+
+# Statistische Zusammenfassung der numerischen Spalten
+print(df.describe())
+```
+
+Das Laden und erste Erkunden von Daten ist der Ausgangspunkt für jede Datenanalyse. Mit Pandas können wir diesen Schritt schnell und effizient durchführen, um uns auf die eigentliche Analyse zu konzentrieren.
+
+## DataFrames verstehen {#sec-dataframes-verstehen}
+
+Um effektiv mit Pandas arbeiten zu können, müssen wir zunächst verstehen, wie Pandas Daten organisiert. Wenn Sie schon einmal mit Excel oder Google Sheets gearbeitet haben, werden Ihnen die Konzepte vertraut vorkommen. Das DataFrame ist die zentrale Datenstruktur in Pandas – man kann es sich am besten als eine Tabelle vorstellen, ähnlich wie ein Arbeitsblatt in Excel, aber mit deutlich mehr Möglichkeiten zur programmatischen Bearbeitung.
+
+Ein DataFrame besteht aus Zeilen und Spalten. Jede Zeile repräsentiert einen Datensatz (z.B. einen Kunden, eine Messung, eine Transaktion), und jede Spalte repräsentiert ein Merkmal oder eine Variable (z.B. Name, Alter, Umsatz). Diese tabellarische Struktur ist intuitiv und entspricht der Art, wie wir Menschen Daten natürlicherweise organisieren.
+
+::: {.callout-important icon="false"}
+## 🏗️ Die Anatomie eines DataFrames
+
+Ein DataFrame besteht aus drei wesentlichen Komponenten:
+
+- **Index:** Jede Zeile hat einen eindeutigen Index (standardmäßig von 0 an aufsteigend). Dies ist vergleichbar mit der Zeilennummer in Excel.
+- **Spalten:** Jede Spalte hat einen Namen und enthält Daten eines bestimmten Typs (z.B. Zahlen, Text, Datum).
+- **Daten:** Die eigentlichen Werte, die in den Zellen der Tabelle gespeichert sind.
+:::
+
+### Eine weitere wichtige Datenstruktur: Series {#sec-series}
+
+Neben dem DataFrame gibt es noch eine weitere wichtige Datenstruktur, die Sie kennen sollten. Wenn Sie eine einzelne Spalte aus einem DataFrame extrahieren, erhalten Sie keine weitere Tabelle, sondern eine **Series**. Eine Series ist im Grunde eine eindimensionale, beschriftete Anordnung von Daten – man kann sie sich wie eine einzelne Spalte in einer Excel-Tabelle vorstellen, die auch ohne den Rest der Tabelle existieren kann.
+
+Um eine Series zu erhalten, wählen Sie einfach eine Spalte mit eckigen Klammern aus. Der folgende Code zeigt, wie Sie die "Age"-Spalte extrahieren und überprüfen können, dass es sich tatsächlich um eine Series handelt:
+
+```python
+import pandas as pd
+
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# Eine einzelne Spalte (eine Series) auswählen
+alter_spalte = df["Age"]
+print(type(alter_spalte))  # <class 'pandas.core.series.Series'>
+```
+
+Eine Series hat wie ein DataFrame einen Index, aber nur eine einzige Spalte mit Werten. Viele der Methoden, die Sie für DataFrames kennenlernen werden – wie `mean()`, `sum()` oder `value_counts()` – funktionieren auch auf einer Series.
+
+Das Verständnis der DataFrame- und Series-Strukturen ist die Grundlage für die effektive Nutzung von Pandas. Viele Operationen, die wir auf DataFrames anwenden, funktionieren auch auf Series – und umgekehrt. In den nächsten Abschnitten werden wir lernen, wie wir diese Strukturen manipulieren können, um unsere Daten zu analysieren.
+
+## Daten selektieren & filtern {#sec-daten-selektieren}
+
+Eine der häufigsten Aufgaben in der Datenanalyse ist das Auswählen von bestimmten Teilen unserer Daten. Stellen Sie sich vor, Sie haben einen Datensatz mit tausenden von Zeilen und dutzenden von Spalten – wie finden Sie genau die Informationen, die Sie brauchen? Vielleicht interessieren Sie sich nur für Kunden aus einer bestimmten Region, oder Sie möchten nur die Verkäufe des letzten Quartals analysieren.
+
+Pandas bietet flexible und leistungsstarke Möglichkeiten, um Daten in einem DataFrame zu selektieren und zu filtern. Diese Fähigkeiten sind fundamental für die Datenanalyse, denn sie erlauben uns, aus großen Datenmengen genau die Teilmenge zu extrahieren, die für unsere Fragestellung relevant ist.
+
+### Spalten auswählen
+
+Lassen Sie uns mit dem Einfachsten beginnen: dem Auswählen von Spalten. Die Syntax ist intuitiv und erinnert an das Arbeiten mit Dictionaries in Python. Um eine einzelne Spalte auszuwählen, verwenden wir eckige Klammern mit dem Spaltennamen: `df["Spaltenname"]`. Für mehrere Spalten übergeben wir eine Liste von Spaltennamen: `df[["Spalte1", "Spalte2"]]`.
+
+### Werte zählen
+
+Manchmal möchten wir nicht nur eine Spalte auswählen, sondern auch wissen, wie oft bestimmte Werte darin vorkommen. Die Methode `value_counts()` ist hierfür besonders nützlich – sie zählt automatisch, wie oft jeder eindeutige Wert in einer Spalte vorkommt. Das ist ideal für kategorische Daten wie Geschlecht, Produktkategorien oder Regionen.
+
+```python
+import pandas as pd
+
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# Wie viele Passagiere gibt es pro Klasse?
+print(df["Pclass"].value_counts())
+
+# Wie viele Passagiere sind in welchem Hafen eingestiegen?
+print(df["Embarked"].value_counts())
+```
+
+### Zeilen auswählen
+
+Neben dem Auswählen von Spalten können wir auch gezielt bestimmte Zeilen auswählen. Hierfür bietet Pandas zwei wichtige Methoden, deren Unterschied Sie verstehen sollten: `.loc` und `.iloc`.
+
+**`.loc` (Label-basiert)** wählt Zeilen und Spalten basierend auf ihren Labels aus – also den Indexnamen und Spaltennamen. Wenn Ihr Index aus den Standardnummern 0, 1, 2, ... besteht, sind diese Nummern die Labels. Bei `.loc` ist der Endwert *inklusiv*, d.h. `df.loc[0:4]` gibt die Zeilen 0, 1, 2, 3 und 4 zurück.
+
+**`.iloc` (Integer-basiert)** hingegen wählt Zeilen und Spalten basierend auf ihrer Position aus – immer von 0 an gezählt, unabhängig von den tatsächlichen Index-Labels. Bei `.iloc` ist der Endwert *exklusiv* (wie bei Python-Listen), d.h. `df.iloc[0:5]` gibt die Zeilen an Position 0, 1, 2, 3 und 4 zurück.
+
+```python
+import pandas as pd
+
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# .loc: Zeilen 0 bis 4, Spalten "Name" und "Age"
+df.loc[0:4, ["Name", "Age"]]
+
+# .iloc: Zeilen 0 bis 4, Spalten 2 und 4 (nach Position)
+df.iloc[0:5, [2, 4]]
+
+# Eine einzelne Zeile mit .loc
+df.loc[0]
+
+# Eine einzelne Zeile mit .iloc
+df.iloc[0]
+```
+
+In der Praxis werden Sie `.loc` häufiger verwenden, wenn Sie mit Spaltennamen arbeiten, und `.iloc`, wenn Sie gezielt auf bestimmte Positionen zugreifen möchten – etwa die ersten 10 Zeilen oder jede zweite Zeile.
+
+### Daten filtern (Bedingte Auswahl) {#sec-daten-filtern}
+
+Das Auswählen von Zeilen nach Position ist nützlich, aber oft möchten wir Zeilen basierend auf bestimmten Bedingungen filtern. Zum Beispiel: "Zeige mir alle Kunden, die mehr als 100 Euro ausgegeben haben" oder "Finde alle Produkte, die ausverkauft sind". Diese Art der bedingten Auswahl ist eines der mächtigsten Werkzeuge in Pandas.
+
+{{< pagebreak >}}
+
+::: {.callout-important icon="false"}
+## 🔍 Filtern mit booleschen Bedingungen
+
+Wir können boolesche Bedingungen verwenden, um Zeilen zu filtern, die bestimmte Kriterien erfüllen. Die Syntax mag zunächst ungewöhnlich aussehen, aber sie ist sehr mächtig.
+
+```python
+import pandas as pd
+
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# Alle Passagiere auswählen, die älter als 30 sind
+aelter_als_30 = df[df["Age"] > 30]
+
+# Alle weiblichen Passagiere in der 1. Klasse auswählen
+weiblich_1_klasse = df[(df["Sex"] == "female") & (df["Pclass"] == 1)]
+
+print(weiblich_1_klasse.head())
+```
+:::
+
+**Wichtig:** Wenn Sie mehrere Bedingungen kombinieren, müssen Sie jede Bedingung in Klammern setzen und die Operatoren `&` (und) oder `|` (oder) verwenden – nicht die Python-Schlüsselwörter `and` und `or`. Ohne die Klammern erhalten Sie einen Fehler, da Python die Operatorrangfolge anders interpretiert als erwartet.
+
+Das Selektieren und Filtern von Daten ist ein entscheidender Schritt, um die für unsere Analyse relevanten Daten zu isolieren. Mit diesen Techniken können Sie aus großen Datensätzen genau die Informationen extrahieren, die Sie benötigen.
+
+{{< pagebreak >}}
+
+## Daten bearbeiten {#sec-daten-bearbeiten}
+
+Rohdaten sind selten perfekt. In der Praxis müssen wir unsere Daten fast immer vor der Analyse bereinigen oder transformieren – fehlende Werte auffüllen, neue Spalten berechnen oder Daten in ein anderes Format umwandeln. Dieser Prozess, oft als "Data Wrangling" oder "Data Cleaning" bezeichnet, nimmt in realen Projekten oft 60-80% der Zeit in Anspruch. Pandas bietet eine Vielzahl von Werkzeugen für diese Aufgaben.
+
+### Fehlende Werte behandeln
+
+Ein häufiges Problem in realen Datensätzen sind fehlende Werte. Vielleicht hat ein Sensor zeitweise nicht funktioniert, ein Kunde hat ein Formularfeld nicht ausgefüllt, oder Daten wurden bei der Übertragung verloren. Diese fehlenden Werte (in Pandas als `NaN` – "Not a Number" – dargestellt) können die Analyse verfälschen oder sogar zum Absturz unseres Codes führen, wenn wir sie nicht behandeln.
+
+Pandas bietet zwei grundlegende Strategien für den Umgang mit fehlenden Werten: Wir können Zeilen oder Spalten mit fehlenden Werten entfernen (`df.dropna()`), oder wir können die fehlenden Werte mit einem sinnvollen Ersatzwert füllen (`df.fillna(wert)`). Welche Strategie die richtige ist, hängt vom konkreten Anwendungsfall ab – manchmal ist es besser, unvollständige Daten zu entfernen, manchmal ist es besser, sie zu ergänzen.
+
+### Neue Spalten erstellen {#sec-neue-spalten}
+
+Oft möchten wir aus vorhandenen Daten neue Informationen ableiten. Zum Beispiel könnten wir aus dem Geburtsdatum das Alter berechnen, aus Länge und Breite die Fläche ermitteln, oder mehrere Spalten zu einer neuen kombinieren. Das Erstellen neuer Spalten ist in Pandas sehr intuitiv – wir weisen einfach einem neuen Spaltennamen einen Wert zu:
+
+```python
+# Eine neue Spalte "Familienmitglieder" erstellen
+df["Familienmitglieder"] = df["SibSp"] + df["Parch"]
+```
+
+{{< pagebreak >}}
+
+### Funktionen auf Spalten anwenden {#sec-apply}
+
+Manchmal reichen einfache arithmetische Operationen nicht aus, und wir müssen komplexere Transformationen durchführen. Vielleicht möchten wir Werte in Kategorien einteilen, Text bereinigen oder eine komplexe Berechnung durchführen. Genau hier kommt die `.apply()`-Methode ins Spiel, die es uns ermöglicht, beliebige Python-Funktionen auf unsere Daten anzuwenden.
+
+::: {.callout-note icon="false"}
+## 🔧 Die .apply()-Methode
+
+Mit der `.apply()`-Methode können wir eine Funktion auf jedes Element einer Spalte anwenden. Das ist besonders nützlich, wenn wir Daten kategorisieren oder komplexe Berechnungen durchführen möchten.
+
+```python
+# Eine Funktion, die das Alter in Kategorien einteilt
+def alterskategorie(alter):
+    if alter < 18:
+        return "Kind"
+    elif alter < 65:
+        return "Erwachsener"
+    else:
+        return "Senior"
+
+# Die Funktion auf die "Age"-Spalte anwenden
+df["Alterskategorie"] = df["Age"].apply(alterskategorie)
+```
+:::
+
+Die Datenbereinigung und -transformation ist oft der zeitaufwändigste Teil der Datenanalyse, aber auch einer der wichtigsten. Nur mit sauberen, gut strukturierten Daten können wir genaue und zuverlässige Ergebnisse erzielen.
+
+## Daten sortieren {#sec-daten-sortieren}
+
+Das Sortieren von Daten ist eine häufige Operation, um Muster zu erkennen oder die größten bzw. kleinsten Werte zu finden. Wer sind unsere Top-10-Kunden? Welche Produkte haben die schlechtesten Bewertungen? Welche Mitarbeiter haben die meisten Überstunden? Sortierung hilft uns, solche Fragen schnell zu beantworten und die interessantesten Datenpunkte zu identifizieren.
+
+::: {.callout-tip icon="false"}
+## 🔢 Die sort_values()-Methode
+
+Mit `sort_values()` können wir ein DataFrame nach einer oder mehreren Spalten sortieren. Standardmäßig wird aufsteigend sortiert, aber das lässt sich leicht ändern.
+
+```python
+import pandas as pd
+
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# Nach Alter sortieren (aufsteigend)
+df_sortiert = df.sort_values("Age")
+
+# Nach Alter sortieren (absteigend)
+df_sortiert = df.sort_values("Age", ascending=False)
+
+# Nach mehreren Spalten sortieren
+df_sortiert = df.sort_values(["Pclass", "Age"], ascending=[True, False])
+
+print(df_sortiert.head())
+```
+:::
+
+Im letzten Beispiel sehen Sie, wie wir nach mehreren Spalten sortieren können – zuerst nach Klasse (aufsteigend), dann innerhalb jeder Klasse nach Alter (absteigend). Diese Technik ist besonders nützlich, wenn Sie Ranglisten oder Berichte erstellen möchten.
+
+## Daten zusammenfügen {#sec-daten-zusammenfuegen}
+
+In der Praxis liegen unsere Daten oft nicht in einer einzelnen Tabelle vor. Stellen Sie sich vor, Sie haben eine Tabelle mit Kundeninformationen (Name, Adresse, Kundennummer) und eine separate Tabelle mit Bestellungen (Bestellnummer, Kundennummer, Produkt, Preis). Um herauszufinden, welcher Kunde was bestellt hat, müssen wir diese Tabellen zusammenführen – eine Operation, die in der Datenbankwelt als "JOIN" bekannt ist.
+
+Pandas bietet verschiedene Möglichkeiten, um DataFrames zu kombinieren. Die zwei wichtigsten sind `pd.concat()` und `pd.merge()`. Mit `concat()` fügen wir DataFrames entlang einer Achse zusammen – wie das Stapeln von Tabellen übereinander oder nebeneinander. Mit `merge()` kombinieren wir DataFrames basierend auf gemeinsamen Spalten, ähnlich wie ein SQL-JOIN, bei dem Zeilen aus verschiedenen Tabellen anhand eines gemeinsamen Schlüssels verknüpft werden.
+
+Lassen Sie uns die `merge()`-Funktion an einem praktischen Beispiel betrachten, um zu verstehen, wie sie funktioniert.
+
+::: {.callout-note icon="false"}
+## 🔄 Beispiel: merge()
+
+Stellen Sie sich vor, wir haben zwei DataFrames: eines mit Bestelldaten und eines mit Kundendaten. Wir können sie über die gemeinsame Spalte KundenID zusammenführen.
+
+```python
+import pandas as pd
+
+bestellungen = pd.DataFrame({
+    "BestellID": [1, 2, 3, 4],
+    "KundenID": [101, 102, 101, 103],
+    "Produkt": ["A", "B", "C", "A"]
+})
+
+kunden = pd.DataFrame({
+    "KundenID": [101, 102, 103],
+    "Name": ["Anna", "Max", "Julia"]
+})
+
+# Die beiden DataFrames zusammenführen
+merged_df = pd.merge(bestellungen, kunden, on="KundenID")
+
+print(merged_df)
+```
+:::
+
+Das Ergebnis ist ein neues DataFrame, in dem jede Bestellung mit den entsprechenden Kundeninformationen verknüpft ist. Das Zusammenfügen von Daten aus verschiedenen Quellen ist eine wesentliche Fähigkeit, um ein vollständiges Bild Ihrer Daten zu erhalten.
+
+## Grundlegende Statistiken mit Pandas {#sec-statistiken}
+
+Der wahre Wert der Datenanalyse liegt darin, aus Zahlen Erkenntnisse zu gewinnen. Rohdaten allein sagen uns wenig – erst wenn wir sie zusammenfassen, vergleichen und Muster erkennen, werden sie wertvoll. Pandas macht es sehr einfach, grundlegende statistische Kennzahlen für unsere Daten zu berechnen. Diese Kennzahlen geben uns einen schnellen Überblick über die Verteilung und die zentralen Tendenzen unserer Daten.
+
+Die wichtigsten statistischen Methoden in Pandas sind:
+
+- **`.mean()`:** Berechnet den Mittelwert (Durchschnitt)
+- **`.median()`:** Berechnet den Median (mittlerer Wert)
+- **`.std()`:** Berechnet die Standardabweichung (Streuung der Werte)
+- **`.min()` und `.max()`:** Finden den kleinsten und größten Wert
+- **`.sum()`:** Berechnet die Summe aller Werte
+- **`.count()`:** Zählt die Anzahl der nicht-leeren Werte
+
+Jede dieser Methoden kann auf eine einzelne Spalte oder das gesamte DataFrame angewendet werden. Diese Methoden sind nützlich für einen schnellen Überblick, aber oft möchten wir Statistiken für verschiedene Gruppen berechnen – zum Beispiel den Durchschnittsumsatz pro Region oder das Durchschnittsalter pro Geschlecht.
+
+### groupby(): Gruppieren und Aggregieren {#sec-groupby}
+
+Die `groupby()`-Funktion ist eines der mächtigsten Werkzeuge in Pandas. Sie ermöglicht es uns, Daten nach Kategorien zu gruppieren und dann Berechnungen auf jede Gruppe anzuwenden – ähnlich wie eine Pivot-Tabelle in Excel. Mit `groupby()` können Sie Fragen beantworten wie "Wie hoch ist der durchschnittliche Bestellwert pro Kundengruppe?" oder "Wie viele Verkäufe gab es pro Monat?"
+
+::: {.callout-important icon="false"}
+## 🔄 Die mächtige groupby()-Funktion
+
+```python
+import pandas as pd
+
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# Das Durchschnittsalter nach Geschlecht gruppieren
+durchschnittsalter_pro_geschlecht = df.groupby("Sex")["Age"].mean()
+
+print(durchschnittsalter_pro_geschlecht)
+```
+:::
+
+Statistische Analysen sind der Kern der Datenanalyse. Mit den grundlegenden Methoden und der `groupby()`-Funktion haben Sie bereits ein mächtiges Werkzeugset, um aus Ihren Daten wertvolle Erkenntnisse zu gewinnen.
+
+## Übung: Datenanalyse {#sec-projekt-datenanalyse}
+
+Jetzt ist es Zeit, alles Gelernte in die Praxis umzusetzen! In diesem Abschlussprojekt für das Pandas-Kapitel werden Sie eine umfassende Analyse des Titanic-Datensatzes durchführen. Dieser berühmte Datensatz enthält Informationen über die Passagiere der Titanic und ob sie das Unglück überlebt haben.
+
+**Ziel:** Führen Sie eine vollständige Datenanalyse durch, um interessante Einblicke in die Überlebensraten der Passagiere zu gewinnen.
+
+### Anforderungen
+
+1. **Daten laden:** Der Titanic-Datensatz soll geladen werden:
+   - Verwenden Sie `pd.read_csv()` mit der URL
+   - Speichern Sie das DataFrame in einer Variable `df`
+
+2. **Daten vorbereiten:** Fehlende Werte in der Spalte "Age" behandeln:
+   - Berechnen Sie den Median des Alters
+   - Füllen Sie fehlende Werte mit `fillna()`
+
+3. **Analyse durchführen:** Beantworten Sie folgende Fragen:
+   - Wie hoch war die allgemeine Überlebensrate?
+   - Hatten Frauen eine höhere Überlebensrate als Männer?
+   - Hatten Passagiere der 1. Klasse eine höhere Überlebensrate?
+   - Gibt es einen Zusammenhang zwischen Alter und Überlebensrate?
+
+4. **Ergebnisse ausgeben:** Alle Ergebnisse formatiert mit `print()` ausgeben.
+
+### Anleitung
+
+1. Importieren Sie Pandas als `pd`.
+2. Laden Sie den Datensatz von der URL.
+3. Berechnen Sie den Median der "Age"-Spalte mit `df["Age"].median()`.
+4. Füllen Sie fehlende Werte mit `df["Age"].fillna(median_age)`.
+5. Berechnen Sie die allgemeine Überlebensrate mit `df["Survived"].mean()`.
+6. Gruppieren Sie nach Geschlecht mit `df.groupby("Sex")["Survived"].mean()`.
+7. Gruppieren Sie nach Klasse mit `df.groupby("Pclass")["Survived"].mean()`.
+8. Erstellen Sie Altersgruppen mit `pd.cut()` und analysieren Sie diese.
+
+### Code-Struktur
+
+```python
+import pandas as pd
+
+# 1. Daten laden
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+# DataFrame laden mit pd.read_csv()
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# 2. Fehlende Alterswerte behandeln
+# Median berechnen mit df["Age"].median()
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# Fehlende Werte füllen mit df["Age"].fillna()
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# 3. Analyse
+# Frage 1: Allgemeine Überlebensrate berechnen
+# Tipp: df["Survived"].mean() gibt den Anteil der Überlebenden
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# Frage 2: Überlebensrate nach Geschlecht
+# Tipp: df.groupby("Sex")["Survived"].mean()
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# Frage 3: Überlebensrate nach Klasse
+# Tipp: df.groupby("Pclass")["Survived"].mean()
+pass  # Ersetzen Sie dies durch Ihren Code
+
+# Frage 4: Überlebensrate nach Altersgruppe
+# Tipp: pd.cut() erstellt Kategorien aus numerischen Werten
+# Altersgruppen erstellen: [0-18], [18-35], [35-60], [60-100]
+pass  # Ersetzen Sie dies durch Ihren Code
+```
+
+### Hinweise
+
+- `df["Spalte"].mean()` berechnet den Durchschnitt einer Spalte.
+- `df.groupby("Spalte")["Andere_Spalte"].mean()` gruppiert und berechnet den Durchschnitt.
+- `pd.cut(df["Age"], bins=[0, 18, 35, 60, 100], labels=["Kind", "Junger Erwachsener", "Erwachsener", "Senior"])` erstellt Altersgruppen.
+- Die "Survived"-Spalte enthält 0 (nicht überlebt) und 1 (überlebt) – der Mittelwert entspricht der Überlebensrate.
+
+::: {.callout-caution icon="false"}
+## 💪 Ihre Herausforderung
+
+Vervollständigen Sie die Code-Struktur oben, indem Sie die `pass`-Platzhalter durch funktionierenden Code ersetzen. Interpretieren Sie Ihre Ergebnisse: Welche Faktoren beeinflussten die Überlebenschancen am stärksten? Bonus: Analysieren Sie, ob es einen Unterschied in der Überlebensrate zwischen Passagieren mit und ohne Geschwister/Partner an Bord gab (Spalte "SibSp")!
+:::
+
+## Lösungen zu Kapitel 5 {#sec-loesungen-kap5}
+
+In diesem Abschnitt finden Sie die Lösung zur Übung. Nutzen Sie diese, um Ihr Verständnis zu vertiefen und Ihren eigenen Lösungsansatz zu überprüfen.
+
+::: {.callout-note}
+## 💡 Wichtiger Hinweis
+
+Es gibt oft mehrere richtige Lösungswege in der Datenanalyse. Ihre Lösung muss nicht exakt mit der hier gezeigten übereinstimmen, solange sie die gestellten Fragen korrekt beantwortet und die Ergebnisse richtig interpretiert.
+:::
+
+### Lösung zur Übung: Datenanalyse
+
+```python
+import pandas as pd
+
+# 1. Daten laden
+url = ("https://raw.githubusercontent.com/"
+       "datasciencedojo/datasets/master/titanic.csv")
+df = pd.read_csv(url)
+
+# 2. Fehlende Alterswerte mit dem Median füllen
+median_age = df["Age"].median()
+df["Age"] = df["Age"].fillna(median_age)
+
+# 3. Analyse
+# Frage 1: Allgemeine Überlebensrate
+allgemeine_ueberlebensrate = df["Survived"].mean()
+print(f"Allgemeine Überlebensrate: {allgemeine_ueberlebensrate:.2%}\n")
+
+# Frage 2: Überlebensrate nach Geschlecht
+ueberlebensrate_geschlecht = df.groupby("Sex")["Survived"].mean()
+print("Überlebensrate nach Geschlecht:")
+print(ueberlebensrate_geschlecht)
+print("\n")
+
+# Frage 3: Überlebensrate nach Klasse
+ueberlebensrate_klasse = df.groupby("Pclass")["Survived"].mean()
+print("Überlebensrate nach Klasse:")
+print(ueberlebensrate_klasse)
+print("\n")
+
+# Frage 4: Zusammenhang zwischen Alter und Überleben
+# Erstellen von Altersgruppen
+altersgruppen = pd.cut(df["Age"], bins=[0, 18, 35, 60, 100], labels=["Kind", "Junger Erwachsener", "Erwachsener", "Senior"])
+ueberlebensrate_alter = df.groupby(altersgruppen)["Survived"].mean()
+print("Überlebensrate nach Altersgruppe:")
+print(ueberlebensrate_alter)
+```
+
+### Interpretation der Ergebnisse
+
+Was sagen uns diese Zahlen? Die Analyse liefert aufschlussreiche Erkenntnisse über die Überlebensraten auf der Titanic.
+
+**Die allgemeine Überlebensrate** lag bei etwa 38% – nur etwa jeder dritte Passagier überlebte das Unglück. Das zeigt bereits, wie verheerend die Katastrophe war.
+
+**Der Faktor Geschlecht** war entscheidend: Frauen hatten eine deutlich höhere Überlebensrate von etwa 74%, während nur etwa 19% der Männer überlebten. Dies spiegelt die "Frauen und Kinder zuerst"-Politik bei der Evakuierung wider, die offensichtlich konsequent umgesetzt wurde.
+
+**Der soziale Status** spielte ebenfalls eine erhebliche Rolle: Passagiere der 1. Klasse hatten die höchste Überlebensrate mit etwa 63%, gefolgt von der 2. Klasse mit etwa 47% und der 3. Klasse mit nur etwa 24%. Die Kabinen der 1. Klasse lagen näher an den Rettungsbooten, und wohlhabendere Passagiere hatten vermutlich besseren Zugang zu Informationen und Rettungsmitteln.
+
+**Das Alter** zeigt ebenfalls interessante Muster: Kinder hatten eine höhere Überlebensrate als die anderen Altersgruppen, was die Beobachtung unterstützt, dass Kinder bei der Evakuierung bevorzugt wurden.
+
+::: {.callout-tip icon="false"}
+## 🎉 Herzlichen Glückwunsch!
+
+Sie haben nun die Grundlagen der Datenanalyse mit Pandas gemeistert! In diesem Kapitel haben Sie gelernt:
+
+- **Wie Sie Pandas installieren und importieren**: Die Grundlage für alle Datenanalyse-Projekte
+- **Was DataFrames und Series sind**: Die zentralen Datenstrukturen von Pandas
+- **Wie Sie Daten laden und erkunden**: Mit `read_csv()`, `head()`, `info()` und `describe()`
+- **Wie Sie Daten selektieren und filtern**: Mit Spaltenauswahl, `loc`, `iloc` und booleschen Bedingungen
+- **Wie Sie Daten bearbeiten**: Fehlende Werte behandeln, neue Spalten erstellen und Funktionen anwenden
+- **Wie Sie Daten sortieren und zusammenfügen**: Mit `sort_values()` und `merge()`
+- **Wie Sie statistische Analysen durchführen**: Mit grundlegenden Statistik-Methoden und `groupby()`
+
+Im nächsten Kapitel werden wir lernen, wie wir mit externen APIs und KI-Modellen interagieren können, um intelligente Anwendungen zu entwickeln.
+:::
